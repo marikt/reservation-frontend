@@ -28,6 +28,14 @@ $border-right-color_1: transparent;
 $border-bottom-color_1: transparent;
 $border-left-color_1: transparent;
 
+// Root CSS variables for consistent theming across the app
+:root {
+  --primary-color: #693bda;
+  --secondary-color: #9d6adf;
+  --font-body: 'Nunito', Arial, sans-serif;
+  --font-heading: 'Lobster', cursive;
+}
+
 /* You can add global styles to this file, and also import other style files */
 @font-face {
   font-family: bariol;
@@ -48,8 +56,9 @@ $border-left-color_1: transparent;
 /* ===================== END Dragula ==================================== */
 /*image cropper slider*/
 body {
-  font-family: $font-family_1;
+  font-family: var(--font-body);
   font-weight: 300;
+  line-height: 1.6;
   background: rgb(243, 243, 255);
   color: $color_1;
   font-size: 0.95em;
@@ -169,20 +178,14 @@ hr {
   color: $color_4;
 }
 
-h1 {
-  font-weight: 100 !important;
-}
-
-h2 {
-  font-weight: 100 !important;
-}
-
-h3 {
-  font-weight: 100 !important;
-}
-
-h4 {
-  font-weight: 100 !important;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 300 !important;
 }
 
 .list-group-item {
@@ -297,7 +300,7 @@ a {
 .drop-zone {
   margin: auto;
   height: 100px;
-  border: 2px dotted rgb(105, 59, 218) !important;
+  border: 2px dotted var(--primary-color) !important;
   border-radius: 30px;
   color: $color_5 !important;
 }
@@ -325,7 +328,7 @@ a {
 }
 
 .img-border {
-  border: 1px solid rgb(105, 59, 218);
+  border: 1px solid var(--primary-color);
   border-radius: 10px;
   width: 100%;
 }

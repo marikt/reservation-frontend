@@ -24,39 +24,39 @@
 .btn-blue-gradient,
 .btn-blue-gradient:visited {
   color: #fff;
-  background: linear-gradient(243deg, #6841D7 0%,#9D6ADF 97%);;
-  //border-color: rgb(105, 59, 218);
+  background: linear-gradient(243deg, var(--primary-color) 0%, var(--secondary-color) 97%);
+  //border-color: var(--primary-color);
 }
 
 .btn-blue-gradient:active,
 .btn-blue-gradient:hover {
   color: #fff;
-  background: linear-gradient(243deg, #6841D7 0%,#9D6ADF 97%);
-  //border-color: rgb(105, 59, 218);
-  -webkit-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
-  -moz-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
-  box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+  background: linear-gradient(243deg, var(--primary-color) 0%, var(--secondary-color) 97%);
+  //border-color: var(--primary-color);
+  -webkit-box-shadow: 0px 0px 21px 0px var(--primary-color);
+  -moz-box-shadow: 0px 0px 21px 0px var(--primary-color);
+  box-shadow: 0px 0px 21px 0px var(--primary-color);
 }
 
 .btn-blue,
 .btn-blue:visited {
   color: #fff;
-  background-color: rgb(105, 59, 218);
-  border-color: rgb(105, 59, 218);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .btn-blue:active,
 .btn-blue:hover {
   color: #fff;
-  background-color: rgb(105, 59, 218);
-  border-color: rgb(105, 59, 218);
-  -webkit-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
-  -moz-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
-  box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  -webkit-box-shadow: 0px 0px 21px 0px var(--primary-color);
+  -moz-box-shadow: 0px 0px 21px 0px var(--primary-color);
+  box-shadow: 0px 0px 21px 0px var(--primary-color);
 }
 
 .nav-link-blue {
-  color: rgb(105, 59, 218) !important;
+  color: var(--primary-color) !important;
 }
 
 .nav-link-blue:hover {
@@ -96,15 +96,15 @@
 }
 
 .btn-link-blue {
-  color: rgb(105, 59, 218);
+  color: var(--primary-color);
   text-decoration: underline;
 }
 
 .btn-link-blue:active {
-  color: rgb(105, 59, 218) !important;
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(105,59,218,1);
-  -moz-box-shadow: 0px 0px 10px 2px rgba(105,59,218,1);
-  box-shadow: 0px 0px 10px 2px rgba(105,59,218,1);
+  color: var(--primary-color) !important;
+  -webkit-box-shadow: 0px 0px 10px 2px var(--primary-color);
+  -moz-box-shadow: 0px 0px 10px 2px var(--primary-color);
+  box-shadow: 0px 0px 10px 2px var(--primary-color);
 }
 
 .btn-link-blue:hover,
@@ -156,17 +156,17 @@
 
 .btn-outline-blue,
 .btn-outline-blue:visited {
-  color: rgb(105, 59, 218);
+  color: var(--primary-color);
   background-image: none;
   background-color: transparent;
-  border-color: rgb(105, 59, 218);
+  border-color: var(--primary-color);
 }
 
 .btn-outline-blue:active,
 .btn-outline-blue:hover {
   color: #fff;
-  background-color: rgb(105, 59, 218);
-  border-color: rgb(105, 59, 218);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 
