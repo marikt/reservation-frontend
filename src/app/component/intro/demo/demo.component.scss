@@ -104,7 +104,7 @@ input[type=radio]:checked {
   margin: auto;
   position: absolute;
   height: 150px;
-  color: rgb(105, 59, 218);
+  color: var(--primary-color);
 }
 
 /* Arrow */
@@ -116,8 +116,8 @@ input[type=radio]:checked {
 }
 
 .arrow .curve {
-  border: 2px solid rgb(105, 59, 218);
-  border-color: transparent transparent transparent rgb(105, 59, 218);
+  border: 2px solid var(--primary-color);
+  border-color: transparent transparent transparent var(--primary-color);
   height: 260px;
   width: 1200px;
   border-radius: 230px 0 0 150px;
@@ -130,7 +130,7 @@ input[type=radio]:checked {
 }
 
 .arrow .point:before, .arrow .point:after {
-  border: 1px solid rgb(105, 59, 218);
+  border: 1px solid var(--primary-color);
   height: 25px;
   content: "";
   position: absolute;
