@@ -1,0 +1,80 @@
+<div class="row">
+
+  <div class="col-3 offset-1 text-center form-check" style="padding: 20px 0px; margin-right: 5px; ">
+    <label class="form-check-label" for="serviceRadio1">
+      <img class="rounded " for="serviceRadio1" src="../../../../../resources/demo/service/BARBER1.png"
+           style="width: 130px;">
+      <div class="service-label" [style.color]="dashboardService.template.textColor">{{'FORM.MANICURE' | translate}}</div>
+      <label class="service-duration" style="margin-bottom: -5px;">
+
+        <span *ngIf="!window?.config?.hideDuration" [style.color]="dashboardService.template.textColor">45 min</span>
+        <span *ngIf="!window?.config?.hideDuration && !window?.config?.hidePrice" [style.color]="dashboardService.template.textColor"> | </span>
+        <span *ngIf="!window?.config?.hidePrice" [style.color]="dashboardService.template.textColor">450 {{currencyName}}</span>
+      </label>
+    </label>
+    <br>
+    <input [(ngModel)]="demoService.reservation.service"
+           [checked]="demoService.reservation.service === 'Manikůra'"
+           class="form-check-input checkbox-lg"
+           id="serviceRadio1"
+           name="serviceRadioOptions1"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="Manikůra">
+
+  </div>
+
+  <div class="col-3 text-center" style="padding: 20px 0px;  margin-right: 5px; margin-left: 5px;">
+    <label class="form-check-label" for="serviceRadio2">
+      <img class="rounded" src="../../../../../resources/demo/service/BARBER2.png"
+           style="width: 130px;">
+
+      <div class="service-label" [style.color]="dashboardService.template.textColor">{{'FORM.PEDICURE' | translate}}</div>
+      <label class="service-duration" style="margin-bottom: -5px;">
+
+        <span *ngIf="!window?.config?.hideDuration" [style.color]="dashboardService.template.textColor">20 min</span>
+        <span *ngIf="!window?.config?.hideDuration && !window?.config?.hidePrice" [style.color]="dashboardService.template.textColor"> | </span>
+        <span *ngIf="!window?.config?.hidePrice" [style.color]="dashboardService.template.textColor">250 {{currencyName}}</span>
+      </label>
+    </label>
+    <br>
+    <input [(ngModel)]="demoService.reservation.service"
+           [checked]="demoService.reservation.service === 'Pedikúra'"
+           class="form-check-input checkbox-lg"
+           id="serviceRadio2"
+           name="serviceRadioOptions2"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="Pedikúra">
+
+  </div>
+
+  <div class="col-3 text-center" style="padding: 20px 0px; margin-right: 5px; margin-left: 5px;">
+    <label class="form-check-label" for="serviceRadio3">
+      <img class="rounded" src="../../../../../resources/demo/service/BARBER3.png"
+           style="width: 130px;">
+      <div class="service-label" [style.color]="dashboardService.template.textColor">{{'FORM.CUT' | translate}}</div>
+
+      <label class="service-duration" style="margin-bottom: -5px;">
+
+        <span *ngIf="!window?.config?.hideDuration" [style.color]="dashboardService.template.textColor">1 h</span>
+        <span *ngIf="!window?.config?.hideDuration && !window?.config?.hidePrice" [style.color]="dashboardService.template.textColor"> | </span>
+        <span *ngIf="!window?.config?.hidePrice" [style.color]="dashboardService.template.textColor">800 {{currencyName}}</span>
+      </label>
+
+    </label>
+    <br>
+    <input [(ngModel)]="demoService.reservation.service"
+           [checked]="demoService.reservation.service === 'Střih'"
+           class="form-check-input checkbox-lg"
+           id="serviceRadio3"
+           name="serviceRadioOptions3"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="Střih">
+  </div>
+
+</div>
+
+<br>
+

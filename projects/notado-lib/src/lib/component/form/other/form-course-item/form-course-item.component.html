@@ -1,0 +1,106 @@
+
+<label [for]="event.id" class="form-check-label"
+       style="position: relative; right: 5px; top: 8px;">
+  <input
+    (ngModelChange)="setCalendarEventDate()"
+    [checked]="event.id == formService.calendarEvent.id"
+    [id]="event.id"
+    [name]="event.id"
+    [ngModel]="formService.calendarEvent.id"
+    [value]="event.id"
+
+    [disabled]="event.remainingCapacity <= 0"
+    (click)="handleRadioClick($event, event.remainingCapacity)"
+    type="radio">
+  <span
+    [style.border-color]="event.id == formService.calendarEvent.id ? 'transparent' : formService.template?.textColor"
+    [style.background-color]="event.id == formService.calendarEvent.id ? formService.template?.componentColor : 'transparent'"
+    [style.color]="event.id == formService.calendarEvent.id ? formService.template?.textButtonColor : formService.template?.textColor"
+    style="position: relative; top: 3px; padding: 7px 12px;">
+      <div *ngIf="isOneDayEvent()">
+        <div class="date-label">
+          {{ getDateLabel() }}
+        </div>
+        <div class="time-label">
+          ({{ getDayName() }})
+        </div>
+        <div class="time-label">
+          {{ getTimeLabel() }} - {{ getEndTimeLabel() }}
+        </div>
+      </div>
+      <div *ngIf="!isOneDayEvent()">
+        <div class="date-label">
+          {{ 'FORM.FROM' | translate }}: {{ getDateLabel() }} {{ getTimeLabel() }}
+        </div>
+        <div class="date-label">
+          {{ 'FORM.TILL' | translate }}: {{ getEndDateLabel() }}  {{ getEndTimeLabel() }}
+        </div>
+      </div>
+    <br>
+        <div class="capacity-label" *ngIf="event.remainingCapacity > 0">
+            {{ 'FORM.AVAILABILITY.CAPACITY' | translate }}: {{ event.remainingCapacity }}
+        </div>
+        <div class="capacity-label" *ngIf="event.remainingCapacity === 0">
+            <div class="mt-2">
+              <button
+                [ngbTooltip]="'FORM.NOTIFY_ME_WHEN_AVAILABLE' | translate"
+                [style.background-color]="formService.template?.componentColor"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn btn-sm"
+                id="toggleCourseNotificationButton"
+                (click)="openNotificationModal(); $event.stopPropagation();">
+                {{ 'FORM.AVAILABILITY.FULL' | translate }}
+              </button>
+            </div>
+        </div>
+      </span>
+</label>
+
+<ng-template #notificationModal let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modalService.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center" [style.color]="formService.template?.textColor">
+      <p *ngIf="!notificationService.notificationSuccess && !notificationService.notificationError">{{ 'FORM.NOTIFICATION_EXPLANATION' | translate }}</p>
+
+      <div class="form-group d-flex justify-content-center" *ngIf="!notificationService.notificationSuccess">
+        <input
+          type="email"
+          class="form-control w-100"
+          id="courseNotificationEmailInput"
+          [(ngModel)]="notificationService.notificationEmail"
+          placeholder="{{ 'FORM.EMAIL_PLACEHOLDER' | translate }}"
+          [style.border-color]="formService.template?.componentColor">
+      </div>
+
+      <h5 class="mt-2 text-success" *ngIf="notificationService.notificationSuccess">
+        <i class="fas fa-check"></i> {{ 'FORM.NOTIFICATION_SUCCESS' | translate }}
+      </h5>
+
+      <div class="mt-2 text-danger" *ngIf="notificationService.notificationError">
+        {{ notificationService.notificationError }}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button
+      [style.background-color]="formService.template?.componentColor"
+      [style.color]="formService.template?.textButtonColor"
+      id="registerForCourseNotificationButton"
+      class="btn"
+      (click)="registerForNotification()"
+      [disabled]="!notificationService.notificationEmail || notificationService.isSubmitting"
+      *ngIf="!notificationService.notificationSuccess">
+      {{ 'FORM.SUBMIT' | translate }}
+    </button>
+  </div>
+</ng-template>
+
+<br>
+<br>
+
+
+

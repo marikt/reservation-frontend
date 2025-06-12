@@ -1,0 +1,73 @@
+<div
+  style="min-height: 100vh;" class="row"
+  [style.width]="formEditMode ? 'auto' : '100vw'"
+  [class.rounded]="formEditMode"
+  [style.background]="formService.template?.formBackgroundColor"
+  [class.shadow]="formEditMode">
+  <div class="col-2">
+    <app-vertical-booking-progress></app-vertical-booking-progress>
+  </div>
+  <div class="col-6">
+    <div class="row">
+      <div class="col-11 rounded"
+           style="min-height: 100vh; box-shadow: 0px 5px 5px rgba(23, 43, 77, 0.15);  background: rgba(255, 255, 255, 0.25)">
+        <div class="container">
+          <br>
+          <br>
+          <span *ngIf="!todoItems || todoItems.length == 0">
+          <br>
+           <div class="row text-center">
+             <div class="col-12">
+                <h4 *ngIf="formService.template?.windows[this.formService.idx]?.label"
+                    [style.color]="formService.template?.textColor"
+                    class="">{{formService.template?.windows[this.formService.idx]?.label}}
+                </h4>
+                <h6 *ngIf=" formService.mode== formMode.DEMO" class="text-error"
+                    style="font-size: 0.7em;"> ( {{'DEMO.SHOW' | translate}} )</h6>
+               </div>
+            </div>
+          <br>
+          <ng-content></ng-content>
+
+            <div class="container">
+                <div class="row">
+                  <div class="offset-2 col-8 text-center">
+                    <app-button-config-fullscreen [formEditMode]="formEditMode"
+                                                  [cardName]="cardName"></app-button-config-fullscreen>
+                  </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </span>
+
+          <!--validation problems ============================================================ -->
+          <app-form-todo-items [todoItems]="todoItems"></app-form-todo-items>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="row" [style.background]="formService.template?.backgroundColor" style="height: 100vh;">
+      <app-booking-detail-fullscreen></app-booking-detail-fullscreen>
+    </div>
+  </div>
+
+
+</div>
+<span *ngIf="!formEditMode" style="position: fixed; bottom: 20px; right: 20px;">
+  <span class="text-grey">powered by &nbsp; </span> <a href="https://www.notado.cz" target="_blank" style="color: rgb(59, 36, 246) !important;"> <img
+  src="../resources/logo-big.png"
+  style="width:17px;">  NOTADO</a>
+</span>
+
+<a *ngIf="formService.mode == formMode.DEMO && !formEditMode"
+   (click)="formService.finishReservation()" class="form-widget-close">
+</a>
+
+
+
+
+
+

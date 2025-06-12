@@ -1,0 +1,47 @@
+<div class="text-center">
+
+  <br>
+
+  <div class="row">
+    <div class="col-12">
+      <h1 [style.color]="formService.template?.textColor"><i class="far fa-paper-plane"></i></h1>
+      <h4 [style.color]="formService.template?.textColor"> {{ 'FORM.RESERVATION_CREATED' | translate }}</h4>
+    </div>
+  </div>
+
+  <br>
+
+  <div *ngIf="formService.calendarEvent?.email" class="row">
+    <div class="col-12">
+      <p [style.color]="formService.template?.textColor">{{ 'FORM.RESERVATION_CONFIRM' | translate }} <br>
+        <strong>{{ formService.calendarEvent.email }}</strong></p>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-12">
+      <p
+        *ngIf="!(window.config && window.config.redirectOnReservationFin && isValidUrl(window.config.redirectOnReservationFin))"
+        [style.color]="formService.template?.textColor">{{ 'FORM.REDIRECT' | translate }} <br>
+      </p>
+      <h5>{{ countdown }}</h5>
+    </div>
+  </div>
+  <br>
+
+  <div class="row" *ngIf="window?.config?.alertItems">
+    <div class="offset-1 col-10" *ngFor="let alertItem of window?.config?.alertItems">
+      <div [class]="'alert-' + alertItem.type" class="alert" role="alert">
+        <h6 *ngIf="alertItem.label">{{ alertItem.label }}</h6>
+        <p style="white-space: pre-line;" *ngIf="alertItem.msg">{{ alertItem.msg }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>
+
+
+<br>
+<br>

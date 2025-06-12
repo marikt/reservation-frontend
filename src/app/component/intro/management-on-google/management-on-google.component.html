@@ -1,0 +1,107 @@
+<div style="white-space: pre-line;">
+  <div [class.bg]="!isMobile" style="background-color: white;  white-space: pre-line;">
+
+    <!--INTRO xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+    <div [class.intro-section]="!isMobile" class="intro-section col-12 content-visibility" id="intro">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-11 col-lg-6">
+            <br>
+            <br>
+            <br class="d-none d-xl-block">
+            <br class="d-none d-xl-block">
+            <br class="d-none d-ml-block">
+            <br class="d-none d-ml-block">
+            <h1 [class.display-4]="!isMobile"
+                [class.font-mobile]="isMobile"
+                [class.text-center]="isMobile"
+                [class.text-left]="!isMobile"
+                class="text-black"
+            >
+              <b>  {{'INTRO.MANAGE_ON_GOOGLE.TITLE' | translate}}</b>
+            </h1>
+
+            <br>
+
+            <div class="row">
+              <div class="col-6 ">
+                <h6><i  class="fas fa-check text-blue" ></i>&nbsp; {{'INTRO.FUNCTION_CHECK_GOOGLE_CALENDAR.1' | translate}}</h6>
+              </div>
+              <div class="col-6 ">
+                <h6><i  class="fas fa-check text-blue" ></i>&nbsp; {{'INTRO.FUNCTION_CHECK_GOOGLE_CALENDAR.2' | translate}}</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 ">
+                <h6><i  class="fas fa-check text-blue"  ></i>&nbsp; {{'INTRO.FUNCTION_CHECK_GOOGLE_CALENDAR.3' | translate}}</h6>
+              </div>
+              <div class="col-6 ">
+                <h6><i  class="fas fa-check text-blue" ></i>&nbsp; {{'INTRO.FUNCTION_CHECK_GOOGLE_CALENDAR.4' | translate}}</h6>
+              </div>
+            </div>
+
+            <br>
+            <br>
+
+            <app-try-and-video-button></app-try-and-video-button>
+          </div>
+
+          <div class="col-md-6 offset-md-0 d-none d-lg-block">
+            <br>
+            <img src="/resources/intro/mobile-with-line.png" width="500">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <app-intro-item-revert
+    img="../../../../resources/intro/calendar.png"
+    topMargin="-40"
+    imgClass="img-responsive rounded"
+    alt="INTRO.MANAGE_ON_GOOGLE.ALT1"
+    title2="INTRO.MANAGE_ON_GOOGLE.LABEL1"
+    label1="INTRO.MANAGE_ON_GOOGLE.DESC1"
+  >
+
+  </app-intro-item-revert>
+
+  <app-intro-item
+    bgType="WHITE"
+    img="../../../../resources/intro/google-app.png"
+    imgClass="img-responsive rounded"
+    alt="INTRO.MANAGE_ON_GOOGLE.ALT2"
+    title1="INTRO.MANAGE_ON_GOOGLE.TITLE2"
+    title2="INTRO.MANAGE_ON_GOOGLE.LABEL2"
+    label1="INTRO.MANAGE_ON_GOOGLE.DESC2"
+  ></app-intro-item>
+
+  <app-intro-item-revert
+    img="../../../../resources/intro/sync.png"
+    imgClass="img-responsive"
+    alt="INTRO.MANAGE_ON_GOOGLE.ALT3"
+    title1="INTRO.MANAGE_ON_GOOGLE.TITLE3"
+    title2="INTRO.MANAGE_ON_GOOGLE.LABEL3"
+    label1="INTRO.MANAGE_ON_GOOGLE.DESC3"
+  >
+  </app-intro-item-revert>
+
+  <app-booking-channels></app-booking-channels>
+
+  <app-faq-on-bottom-page [faqOnBottomPages]="faq"></app-faq-on-bottom-page>
+
+  <app-try-button></app-try-button>
+
+</div>
+
+<app-demo-modal *ngIf="demoService.showFrame"
+                demoType="BARBER"
+                style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;"></app-demo-modal>
+
+<button (click)="demoService.showFrame = false"
+        *ngIf="demoService.showFrame"
+        class="notadoButtonHideDemo form-widget-close">
+</button>
+

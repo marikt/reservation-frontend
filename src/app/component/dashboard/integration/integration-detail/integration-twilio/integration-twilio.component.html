@@ -1,0 +1,74 @@
+<app-integration-template [integrationData]="integrationData">
+  <br>
+  <form #form="ngForm" (ngSubmit)="connect(); modalService.close();" class="text-left col-8 ">
+
+    <div class="form-group">
+      <label>Account SID &nbsp;
+        <i class="fas fa-info-circle"
+           ngbTooltip="Go To Twilio > Settings > General > API Credentials > ACCOUNT SID"></i>
+      </label>
+      <input #accountSID="ngModel"
+             [(ngModel)]="integrationData.config.accountSID"
+             [class.is-invalid]="accountSID?.invalid && showValidation"
+             [class.is-valid]="!accountSID?.invalid"
+             class="form-control"
+             id="accountSID"
+             name="accountSID"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Auth Token &nbsp;
+        <i class="fas fa-info-circle"
+           ngbTooltip="Go To Twilio > Settings > General > API Credentials > AUTH TOKEN"></i></label>
+      <input #authToken="ngModel"
+             [(ngModel)]="integrationData.config.authToken"
+             [class.is-invalid]="authToken?.invalid && showValidation"
+             [class.is-valid]="!authToken?.invalid"
+             class="form-control"
+             id="authToken"
+             name="authToken"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>From phone number &nbsp;
+        <i class="fas fa-info-circle"
+           ngbTooltip="Go To Twilio > All products & services Settings > Phone Numbers"></i>
+      </label>
+      <input #fromPhoneNumber="ngModel"
+             [(ngModel)]="integrationData.config.fromPhoneNumber"
+             [class.is-invalid]="fromPhoneNumber?.invalid && showValidation"
+             [class.is-valid]="!fromPhoneNumber?.invalid"
+             class="form-control"
+             id="fromPhoneNumber"
+             name="fromPhoneNumber"
+             required
+             type="tel">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm" type="button">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    &nbsp;
+    <button (click)="disconnect(); modalService.close()" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.DISCONNECT_BUTTON' | translate}}
+    </button>
+
+  </form>
+
+</app-integration-template>

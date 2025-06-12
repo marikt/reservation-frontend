@@ -1,0 +1,102 @@
+<div class="container">
+  <br>
+  <br>
+
+  <div class="row">
+
+    <h4 class="offset-1 col-10">{{'DASHBOARD.MENU.OTHER_FUNCTION' | translate}}</h4>
+    <br>
+    <br>
+    <hr class="offset-1 col-6">
+    <br>
+    <br>
+    <div class="offset-1 col-10">
+
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-message">
+        <i class="fas fa-envelope-open-text"></i>
+        &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.EMAIL' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.EMAIL_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-button-platform"><i class="far fa-plus-square"></i>
+        &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.ADD_BUTTON' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.ADD_BUTTON_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-reservation-form-payment"><i
+        class="far fa-credit-card"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.FORM_PAYMENT' | translate}}&nbsp; </span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.FORM_PAYMENT_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div *ngIf="dashboardService.business && dashboardService.business?.googleCalendarConnected" class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-calendar-usage">
+        <i class="fas fa-calendar"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.CALENDAR' | translate}}&nbsp; </span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.CALENDAR_USAGE.TITLE' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-event-detail">
+        <i class="fas fa-history"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.EVENT_DETAIL' | translate}}&nbsp; </span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.EVENT_DETAIL_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div *ngIf="userConfigService.features?.api" class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-api"><i class="fas fa-code"></i>
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.API' | translate}}&nbsp;
+        </span>
+        <br>
+      </a>
+    </div>
+
+    <div *ngIf="userConfigService.features?.csvExport" class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-export"><i
+        class="fas fa-file-export"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.EXPORT' | translate}}&nbsp; <span
+          class="badge badge-pill badge-primary"
+          style="font-size: 0.8em;">new</span></span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.EXPORT_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+  </div>
+  <br>
+  <br>
+
+</div>

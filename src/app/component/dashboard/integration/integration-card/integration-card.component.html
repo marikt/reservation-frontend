@@ -1,0 +1,79 @@
+<a (click)="modalService.open(integrationDetailModal, {size: 'lg'})"
+   class="text-center "
+   [ngbTooltip]="'DASHBOARD.INTEGRATION.' + integrationData.name.toUpperCase() + '.DESCRIPTION' | translate">
+
+  <div
+    [style.background]="integrationData.color"
+    class="card-item shadow">
+    <div
+      class="card-img-top">
+      <span *ngIf="integrationData.name == 'keyguru'" class="badge badge-pill badge-warning pull-left"
+            style="font-size: 0.8em; margin: 8px;"> <i class="fas fa-vial"></i> lab release</span>
+      <br *ngIf="integrationData.name == 'keyguru'" >
+      <br>
+
+      <img [src]="'../../../../../resources/integration/full-icon/' + integrationData.name + '.png'" width="120">
+      <br>
+      <div class="col text-center" style="margin-top: 10px;">
+
+        <p *ngIf="!integrationData.connected && integrationData.valid"
+           [class]="integrationData.classTextDanger"
+           class="text-small">
+          <i class="fas fa-ban"></i>
+          {{'DASHBOARD.INTEGRATION.TURN_OFF' | translate}}
+        </p>
+        <p *ngIf="integrationData.connected && integrationData.valid"
+           [class]="integrationData.classTextSuccess"
+           class="text-small">
+          <i class="fas fa-plug"></i>
+          {{'DASHBOARD.INTEGRATION.DONE' | translate}}
+
+        </p>
+        <p *ngIf="!integrationData.valid"
+           [class]="integrationData.classTextDanger"
+           class="text-small">
+          <i class="fas fa-exclamation-triangle"></i>
+          {{'DASHBOARD.INTEGRATION.TODO' | translate}}
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</a>
+
+<ng-template #integrationDetailModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center bg">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body bg">
+    <div class="container text-center">
+      <span [ngSwitch]="integrationData.type">
+        <app-integration-calendar *ngSwitchCase="integrationType.GOOGLE_CALENDAR" [integrationData]="integrationData">
+        </app-integration-calendar>
+        <app-integration-people *ngSwitchCase="integrationType.CONTACTS" [integrationData]="integrationData">
+        </app-integration-people>
+        <app-integration-stripe *ngSwitchCase="integrationType.STRIPE" [integrationData]="integrationData">
+        </app-integration-stripe>
+        <app-integration-twilio *ngSwitchCase="integrationType.TWILIO" [integrationData]="integrationData">
+        </app-integration-twilio>
+        <app-integration-smsmanager *ngSwitchCase="integrationType.SMS_MANAGER" [integrationData]="integrationData">
+        </app-integration-smsmanager>
+        <app-integration-slack *ngSwitchCase="integrationType.SLACK" [integrationData]="integrationData">
+        </app-integration-slack>
+        <app-integration-email *ngSwitchCase="integrationType.EMAIL" [integrationData]="integrationData">
+        </app-integration-email>
+        <app-integration-keyguru *ngSwitchCase="integrationType.KEYGURU" [integrationData]="integrationData">
+        </app-integration-keyguru>
+      </span>
+    </div>
+  </div>
+</ng-template>

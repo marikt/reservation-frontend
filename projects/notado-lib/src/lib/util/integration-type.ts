@@ -1,0 +1,13 @@
+export enum IntegrationType {
+  STRIPE = 'STRIPE',
+  SLACK = 'SLACK',
+  SMS_MANAGER = 'SMS_MANAGER',
+  TWILIO = 'TWILIO',
+  CONTACTS = 'CONTACTS',
+  GOOGLE_CALENDAR = 'GOOGLE_CALENDAR',
+  GMAIL = 'GMAIL',
+  EMAIL = 'EMAIL',
+  CRON = 'CRON',
+  KEYGURU = 'KEYGURU',
+  // ZOOM = 'ZOOM'
+}

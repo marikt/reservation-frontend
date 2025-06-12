@@ -1,0 +1,116 @@
+a:hover {
+  text-decoration: none !important;
+}
+
+.container {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+  max-width: 1200px;
+}
+
+.blog-header {
+  margin-bottom: 3rem;
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, #007bff, transparent);
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: #007bff;
+      border-radius: 2px;
+    }
+  }
+  
+  .blog-filters {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.row {
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  
+  [class*="col-"] {
+    padding: 15px;
+  }
+}
+
+// Animation for cards
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.col-12 {
+  animation: fadeIn 0.5s ease-out forwards;
+  
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+  
+  .blog-header h1 {
+    font-size: 2rem;
+  }
+  
+  .col-12 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Add a subtle background pattern
+.container {
+  position: relative;
+  
+  &:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#f0f4f8 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+    z-index: -1;
+  }
+}

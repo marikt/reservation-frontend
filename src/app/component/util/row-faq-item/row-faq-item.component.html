@@ -1,0 +1,19 @@
+<div class="row border text-left shadow">
+  <a class="col-12" (click)="open = !open" style="">
+    <h5 class="text-black">
+      {{question | translate}}
+      <span style="font-size: 1.3em" class="pull-right"><strong>
+      <span *ngIf="!open">+</span>
+      <span *ngIf="open">-</span>
+      </strong>
+      </span>
+    </h5>
+  </a>
+  <br>
+  <br>
+  <div *ngIf="open" class="col-12">
+    <h6 style="white-space: pre-line;">{{answer | translate}}</h6>
+  </div>
+</div>
+<br>
+

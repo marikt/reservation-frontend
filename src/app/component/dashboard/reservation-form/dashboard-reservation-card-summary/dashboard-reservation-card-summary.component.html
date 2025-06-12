@@ -1,0 +1,57 @@
+<div class="row">
+
+  <div class="offset-5 col-4">
+    <label [style.color]="dashboardService.template.textColor">{{'FORM.SERVICE' | translate}}:</label>
+    <h6 [style.color]="dashboardService.template.textColor">{{demoService.reservation.service | translate}} <span
+      style="font-size: 0.9em;">({{demoService.getDuration()}})</span></h6>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="offset-5 col-4">
+    <label [style.color]="dashboardService.template.textColor">
+      <span *ngIf="reservationConfig?.workerLabel">{{reservationConfig.workerLabel}}:</span>
+      <span *ngIf="!reservationConfig?.workerLabel">{{ 'FORM.WORKER' | translate }}:</span>
+    </label>
+    <h6 [style.color]="dashboardService.template.textColor">{{demoService.reservation.worker | translate}}</h6>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="offset-5 col-4">
+    <label [style.color]="dashboardService.template.textColor">{{'FORM.DATE_TIME' | translate}}:</label>
+    <h6 [style.color]="dashboardService.template.textColor">{{demoService.reservation.date.day}}.{{demoService.reservation.date.month}}
+                                            .{{demoService.reservation.date.year}}</h6>
+    <h6 [style.color]="dashboardService.template.textColor">{{demoService.reservation.time}}</h6>
+  </div>
+</div>
+
+<br *ngIf="window?.config?.licenceAgreement">
+<div *ngIf="window?.config?.licenceAgreement" class="row">
+  <div class="form-group offset-5 col-4">
+    <label class="custom-control custom-checkbox">
+      <input
+        name="licenceAgreement"
+        class="form-check-input checkbox-lg"
+        required
+        id="licenceAgreement"
+        type="checkbox">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description"
+            [style.color]="dashboardService.template.textColor"
+            style="position: relative; left: 15px; top: 4px;">{{window?.config?.licenceAgreementConf.label}} &nbsp;
+        <a *ngIf="window?.config?.licenceAgreementConf.value"
+           [href]="window?.config?.licenceAgreementConf.value" target="_blank" [style.color]="dashboardService.template.textColor">
+          <i class="far fa-file"></i>
+        </a>
+    </span>
+    </label>
+  </div>
+</div>
+
+<br>
+<br>

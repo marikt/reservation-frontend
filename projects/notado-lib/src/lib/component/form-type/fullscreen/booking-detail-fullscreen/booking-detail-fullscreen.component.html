@@ -1,0 +1,229 @@
+<br>
+<br>
+<div class="row">
+
+  <!--  formEditMode ============================================================================ -->
+  <div
+    *ngIf="formEditMode"
+    [style.background]="formService.template?.backgroundColor" class="rounded col-12 glass-frame"
+    id="backgroundColorComponent">
+    <br *ngIf="formService.template?.rightCustomMsg">
+    <div *ngIf="formService.template?.rightCustomMsg" class="row">
+      <div class="col-12">
+        <p [style.color]="formService.template?.backgroundTextColor"
+           [ngStyle]="formService.template?.fontSizeServiceDescription ? {'font-size': formService.template.fontSizeServiceDescription + 'em'} : {}">
+          {{ formService.template.rightCustomMsg }}
+        </p>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">{{ 'FORM.SERVICE' | translate }}:</label>
+        <h6 [style.color]="formService.template?.backgroundTextColor"
+            [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+          Moje Služba (1h)</h6>
+      </div>
+      <div class="col-12">
+        <p id="textColorComponentDetail"
+           [style.color]="formService.template?.backgroundTextColor">
+          <small
+            [ngStyle]="formService.template?.fontSizeServiceDescription ? {'font-size': formService.template.fontSizeServiceDescription + 'em'} : {}">
+            Lorem ipsum
+            dolor sit amet, consectetuer adipiscing
+            elit. Nulla non lectus sed nisl molestie malesuada. Phasellus faucibus molestie nisl. Quisque porta.</small>
+        </p>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-12">
+
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">
+          <span>{{ 'FORM.WORKER' | translate }}:</span>
+        </label>
+        <h6
+          [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}"
+          [style.color]="formService.template?.backgroundTextColor">
+          <img src="../../../resources/demo/worker/Screenshot%202019-03-08%20at%2011.52.36.png"
+               class="worker-img rounded-circle">
+          Jana Nováková</h6>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">{{ 'FORM.DATE' | translate }}:</label>
+        <h6 [style.color]="formService.template?.backgroundTextColor"
+            [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+          7.9.2024 &nbsp; <span
+          class="text-sm"> 9:00 </span>
+        </h6>
+      </div>
+    </div>
+    <br>
+    <iframe class="rounded map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.1008280235887!2d14.315027812107825!3d50.0843990714058!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470bbfcb4497843d%3A0x555a73e5433220b1!2sStochovsk%C3%A1%2C%20161%2000%20Praha%206!5e0!3m2!1scs!2scz!4v1725626643680!5m2!1scs!2scz"
+            width="100%" height="200" style="border:0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <br>
+    <br>
+
+  </div>
+  <!--  END formEditMode ================================================================================ -->
+
+
+  <div
+    *ngIf="!formEditMode && ((formService.calendarEvent?.service && (formService.idx > getIdx(formWindowName.SERVICE))) || getLocation().includes('www.google.com/maps/embed'))"
+    [style.background]="formService.template?.backgroundColor"
+    class="rounded col-12 glass-frame">
+
+    <br *ngIf="formService.template.rightCustomMsg">
+    <div *ngIf="formService.template.rightCustomMsg" class="row">
+      <div class="col-12">
+        <p [style.color]="formService.template?.backgroundTextColor"
+           [ngStyle]="formService.template?.fontSizeServiceDescription ? {'font-size': formService.template.fontSizeServiceDescription + 'em'} : {}">
+          {{ formService.template.rightCustomMsg }}
+        </p>
+      </div>
+    </div>
+
+    <span *ngIf="(formService.calendarEvent?.service && (formService.idx > getIdx(formWindowName.SERVICE)))">
+    <br>
+    <div class="row">
+
+      <div class="col-12">
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">{{ 'FORM.SERVICE' | translate }}:</label>
+        <h6 [style.color]="formService.template?.backgroundTextColor"
+            style="font-size: 0.9em; opacity: 0.9"
+            id="detail-service-name">
+          <img *ngIf="formService.calendarEvent.service.fullPathImg"
+               [src]="server.SERVER + formService.calendarEvent.service.fullPathImg"
+               class="service-img rounded">
+          <strong
+            [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">{{ formService.calendarEvent.service?.name }}</strong>
+          <small>
+          <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration">
+            {{ formService.calendarEvent.service?.duration | durationToString }}
+          </span>
+            <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration">
+          </span>
+            <span
+              *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration && formService.calculatePrice() > 0">
+            |
+          </span>
+            <span *ngIf="formService.calculatePrice() > 0">
+            {{ formService.calculatePrice() }} {{ formService.business.currency }}
+          </span>
+          </small>
+
+
+        </h6>
+      </div>
+      <div *ngIf="formService.calendarEvent.service.description" class="col-12">
+        <p [style.color]="formService.template?.backgroundTextColor">
+          <small
+            [ngStyle]="formService.template?.fontSizeServiceDescription ? {'font-size': formService.template.fontSizeServiceDescription + 'em'} : {}">
+            {{ formService.calendarEvent.service.description }}</small>
+        </p>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row"
+         *ngIf="formService.calendarEvent?.worker && (formService.idx > getIdx(formWindowName.DATE))">
+      <div class="col-12" *ngIf="formService.calendarEvent.service.type == 'APPOINTMENT'">
+
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">
+          <span *ngIf="formService.reservationConfig?.workerLabel">{{ formService.reservationConfig.workerLabel }}
+            :</span>
+          <span *ngIf="!formService.reservationConfig?.workerLabel">{{ 'FORM.WORKER' | translate }}:</span>
+        </label>
+        <h6
+          [style.color]="formService.template?.backgroundTextColor"
+          [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+          <img *ngIf="formService.calendarEvent.worker.fullPathImg"
+               [src]="server.SERVER + formService.calendarEvent.worker.fullPathImg" class="worker-img rounded-circle">
+
+
+          {{ formService.calendarEvent.worker?.name }}</h6>
+      </div>
+      <div class="col-12" *ngIf="formService.calendarEvent.service.type == 'DEVICE'">
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">{{ 'FORM.DEVICE' | translate }}:</label>
+        <h6
+          [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}"
+          [style.color]="formService.template?.backgroundTextColor">{{ formService.calendarEvent.device?.name }}</h6>
+      </div>
+    </div>
+
+
+    <br *ngIf="formService.calendarEvent?.worker && (formService.idx > getIdx(formWindowName.DATE))">
+    <div class="row"
+         *ngIf="(formService.calendarEvent?.dateAndTimeAndIds?.length > 0) && (formService.idx > getIdx(formWindowName.DATE)  || formEditMode)">
+      <div class="col-12">
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">{{ 'FORM.DATE' | translate }}:</label>
+        <span *ngFor="let dateAndTime of formService.calendarEvent.dateAndTimeAndIds.slice(0, 8); let idx = index;">
+            <h6 [style.color]="formService.template?.backgroundTextColor"
+                [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+              {{ dateAndTime.date | dateToString }} &nbsp; <span
+              class="text-sm"> {{ dateAndTime.time | timeToString }} </span>
+            </h6>
+          </span>
+        <span *ngIf="formService.calendarEvent.dateAndTimeAndIds.length > 8">
+          <h6 [style.color]="formService.template?.backgroundTextColor">
+            ( +{{ formService.calendarEvent.dateAndTimeAndIds.length - 8 }} {{ 'FORM.MORE' | translate }} )
+          </h6>
+    </span>
+      </div>
+    </div>
+      </span>
+    <br>
+    <div class="row"
+         *ngIf="formService.template?.showOpeningHours && formService.idx > getIdx(formWindowName.BUSINESS_BRANCH) && formService.idx <= getIdx(formWindowName.DATE)">
+      <div class="col-12">
+        <h6 [style.color]="formService.template?.backgroundTextColor"
+            [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+
+          <!-- Worker opening days (highest priority) -->
+          <app-opening-days-for-form
+            *ngIf="formService.calendarEvent.worker?.openingDays && formService.calendarEvent.worker?.openingDays.length > 0"
+            [openingDays]="formService.calendarEvent.worker.openingDays">
+          </app-opening-days-for-form>
+
+          <!-- Business Branch opening days (middle priority) -->
+          <app-opening-days-for-form
+            *ngIf="formService.calendarEvent.businessBranch?.openingDays && formService.calendarEvent.businessBranch?.openingDays.length > 0 &&
+                  (!formService.calendarEvent.worker?.openingDays || formService.calendarEvent.worker?.openingDays.length === 0)"
+            [openingDays]="formService.calendarEvent.businessBranch.openingDays">
+          </app-opening-days-for-form>
+
+          <!-- Business opening days (lowest priority) -->
+          <app-opening-days-for-form
+            *ngIf="formService.business && formService.business.openingDays &&
+                  (!formService.calendarEvent.worker?.openingDays || formService.calendarEvent.worker?.openingDays.length === 0) &&
+                  (!formService.calendarEvent.businessBranch?.openingDays || formService.calendarEvent.businessBranch?.openingDays.length === 0)"
+            [openingDays]="formService.business.openingDays">
+          </app-opening-days-for-form>
+        </h6>
+      </div>
+    </div>
+
+    <br>
+    <iframe *ngIf="getLocation().includes('www.google.com/maps/embed')" class="rounded map"
+            [src]="getLocation() | safeUrlForForm" width="100%" height="200" style="border:0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <br>
+    <br>
+  </div>
+</div>

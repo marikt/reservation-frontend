@@ -1,0 +1,59 @@
+<!--<div *ngIf="!isMobile && show && environment.environment !== 'DEV'"-->
+<!--environment.environment !== 'DEV' &&-->
+<div *ngIf="!isMobile && environment.environment !== 'DEV' && languageService.isCzOrSk()"
+     style=" z-index: 999; width: 830px; height: 380px; background: white;"
+     [class.show-guide]="show"
+     [class.hide-guide]="!show"
+     [@toggleGuide]="show ? 'show' : 'hide'"
+     class="rounded shadow">
+
+  <!--  <button type="button" *ngIf="!show"-->
+  <!--          class=show-modal" id="show-video-guide-"-->
+  <!--          (click)="show = true"-->
+  <!--          style="position: relative; bottom: 7px; left: 780px; ">-->
+  <!--  </button>-->
+
+  <button type="button" *ngIf="show" class="close-modal " id="close-video-guide" (click)="hideVideoTutorial()"
+          style="position: relative; bottom: 7px; left: 780px; ">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <button type="button" *ngIf="!show" class="show-modal " id="up-video-guide" (click)="show = true"
+          style="position: relative; bottom: 7px; left: -25px; " [ngbTooltip]="label | translate">
+    <i class="fas fa-graduation-cap"></i>
+  </button>
+
+
+  <div class="row">
+    <div class="col-5" style="margin-left: 25px;">
+      <div *ngIf="author" class="row">
+
+        <img class="img-fluid rounded-circle messenger-img col-3"
+             src="../../../../resources/contact/tomas.jpg"
+             width="45"
+             style="position: relative; bottom: 13px;">
+
+        <h4 class=" text-secondary col-8">
+          {{ label | translate }}
+        </h4>
+      </div>
+      <h4 *ngIf="!author" class="text-center text-secondary">
+        {{ label | translate }}
+      </h4>
+
+      <h6 class="text-left text-secondary">
+        {{ description | translate }}
+      </h6>
+
+      <ng-content></ng-content>
+    </div>
+    <div class="col-6">
+      <app-video-tutorial btnType="imgLg"
+                          [videoSrc]="videoSrc"></app-video-tutorial>
+
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,48 @@
+<div class="pricing-card h-100 d-flex flex-column">
+  <!-- Header -->
+  <div class="pricing-header text-center rounded-top p-4"
+       [class]="'bg-' + color">
+    <h5 class="text-white mb-0 d-flex align-items-center justify-content-center">
+      <strong>{{'PAYMENT.' + subscriptionType | translate}}</strong>
+      <i *ngIf="subscriptionType == '3MONTH'" class="fas fa-crown text-warning ms-2"
+         style="font-size: 0.9em; transform: rotate(15deg);"></i>
+    </h5>
+  </div>
+
+  <!-- Body -->
+  <div class="pricing-body p-4 flex-grow-1 d-flex flex-column">
+    <!-- Discount Badge -->
+    <div class="position-relative mb-3">
+      <span class="badge bg-warning position-absolute"
+            style="top: -10px; right: 0; font-size: 0.9em; padding: 0.5em 0.8em;">
+        -15%
+      </span>
+    </div>
+
+    <!-- Price -->
+    <div class="pricing-price text-center mb-3">
+      <h3 class="mb-1"><strong>{{'PAYMENT.' + subscriptionType + '_PRICE_PROMO' | translate}}</strong></h3>
+      <h6 class="text-danger text-decoration-line-through mb-0" *ngIf="subscriptionType != 'MONTHLY'">
+        <strong>{{'PAYMENT.MONTHLY_PRICE' | translate}}</strong>
+      </h6>
+    </div>
+
+    <!-- Features (Uncomment and use if needed) -->
+    <!-- <div class="pricing-features text-start mb-4">
+      <ul class="list-unstyled mb-0">
+        <li class="mb-2" *ngFor="let item of items; let idx = index">
+          <i class="fas fa-check me-2" [class]="'text-' + color"></i>
+          <span>{{'PAYMENT.ITEM_' + idx | translate}}</span>
+        </li>
+      </ul>
+    </div> -->
+
+    <!-- Call to action -->
+    <div class="pricing-cta text-center mt-auto">
+      <a [routerLink]="'/intro/' + languageService.language + '/signup'"
+         class="btn w-100" [class]="'btn-' + color">
+        <span class="text-uppercase">{{ 'COMMON.TRY_FREE' | translate }}</span>
+      </a>
+    </div>
+  </div>
+</div>

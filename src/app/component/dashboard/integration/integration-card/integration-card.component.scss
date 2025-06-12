@@ -1,0 +1,39 @@
+.card-item {
+  background-color: white;
+  border-radius: 8px;
+  border-color: rgb(231, 231, 231) !important;
+  border: 1px solid;
+  /*padding: 20px;*/
+  margin-bottom: 30px;
+  /*margin: 20px;*/
+}
+
+.card-item:hover {
+  filter: saturate(1.5);
+}
+
+.gray-filter {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+  opacity: 0.8;
+}
+
+.gray-bg {
+  background-color: rgb(242, 242, 242);
+}
+
+.white-bg {
+  background-color: white;
+}
+.text-small {
+  font-size: 0.65em !important;
+}
+
+.bg {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 40%, rgba(244, 244, 255, 1) 40%, rgba(244, 244, 255, 1) 100%);
+}
+
+a:hover {
+  text-decoration: none;
+}

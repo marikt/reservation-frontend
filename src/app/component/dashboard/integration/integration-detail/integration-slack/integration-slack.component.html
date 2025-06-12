@@ -1,0 +1,42 @@
+<app-integration-template [integrationData]="integrationData">
+  <br>
+  <br>
+  <form #form="ngForm" (ngSubmit)="connect(); modalService.close();" class="text-left col-8">
+    <div class="form-group">
+      <label>Webhook URL &nbsp;
+        <i class="fas fa-info-circle"
+           ngbTooltip="Go To https://api.slack.com/apps/ > Create New App > Incoming Webhooks > Add New Webhook to Workspace"></i>
+
+
+      </label>
+      <input #webhookUrl="ngModel"
+             [(ngModel)]="integrationData.config.webhookUrl"
+             [class.is-invalid]="webhookUrl?.invalid && showValidation"
+             [class.is-valid]="!webhookUrl?.invalid"
+             class="form-control"
+             id="webhookUrl"
+             name="webhookUrl"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm" type="button">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    &nbsp;
+    <button (click)="disconnect(); modalService.close()" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.DISCONNECT_BUTTON' | translate}}
+    </button>
+
+  </form>
+  <br>
+  <br>
+  <iframe class="rounded" width="560" height="315" src="https://www.youtube.com/embed/2ypdVA78Ld4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</app-integration-template>

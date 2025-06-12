@@ -1,0 +1,196 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "notado-frontend": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": {
+              "base": "build"
+            },
+            "index": "src/index.html",
+            "tsConfig": "tsconfig.json",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
+            "assets": [
+              "src/assets",
+              "src/assets/i18n",
+              "src/favicon.ico",
+              "src/resources",
+              "src/sitemap.xml",
+              "src/robots.txt"
+            ],
+            "styles": [
+              "node_modules/dragula/dist/dragula.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "src/style/social.scss",
+              "src/style/scrolling-nav.scss",
+              "src/style/my-bootstrap.scss",
+              "src/style/calendar-availability.scss",
+              "src/style/btn.scss",
+              "src/style/checkbox.scss",
+              "src/style/devices.min.scss",
+              "src/style/google-icons.scss",
+              "src/style/styles.scss",
+              "node_modules/flag-icons/css/flag-icons.min.css",
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css"
+            ],
+            "scripts": [
+              "node_modules/tether/dist/js/tether.min.js",
+              "node_modules/dragula/dist/dragula.js",
+              "node_modules/leader-line/leader-line.min.js"
+            ],
+            "aot": false,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true,
+            "browser": "src/main.ts"
+          },
+          "configurations": {
+            "test": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/environments/environment.ts",
+                  "with": "src/app/environments/environment.test.ts"
+                }
+              ]
+            },
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/environments/environment.ts",
+                  "with": "src/app/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "outputHashing": "all"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "notado-frontend:build:production"
+            },
+            "development": {
+              "buildTarget": "notado-frontend:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "notado-frontend:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "scripts": [
+              "node_modules/tether/dist/js/tether.min.js"
+            ],
+            "styles": [
+              "src/style/social.scss",
+              "src/style/scrolling-nav.scss",
+              "src/style/my-bootstrap.scss",
+              "src/style/calendar-availability.scss",
+              "src/style/btn.scss",
+              "src/style/styles.scss",
+              "node_modules/flag-icons/css/flag-icons.min.css"
+            ],
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              "src/resources",
+              "src/seo"
+            ]
+          }
+        }
+      }
+    },
+    "notado-frontend-e2e": {
+      "root": "e2e",
+      "sourceRoot": "e2e",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "notado-frontend:serve"
+          },
+          "configurations": {}
+        }
+      }
+    },
+    "notado-lib": {
+      "root": "projects/notado-lib",
+      "sourceRoot": "projects/notado-lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/notado-lib/tsconfig.lib.json",
+            "project": "projects/notado-lib/ng-package.json"
+          },
+          "configurations": {}
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/notado-lib/src/test.ts",
+            "tsConfig": "projects/notado-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/notado-lib/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

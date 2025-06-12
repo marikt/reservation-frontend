@@ -1,0 +1,109 @@
+<div class="container">
+  <br>
+  <br>
+
+  <div class="row">
+
+<!--    <h4 class="offset-1 col-10">{{'DASHBOARD.MENU.BUSINESS_TITLE' | translate}}</h4>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <hr class="offset-1 col-6">-->
+    <br>
+    <br>
+    <div class="offset-1 col-10">
+      <a id="dashboard-business-button-detail" class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-business"><i
+        class="fas fa-store-alt"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.BUSINESS' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.BUSINESS_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" id="dashboard-services-button" routerLink="/dashboard/dashboard-service"><i
+        class="fas fa-cut"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.SERVICE' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.SERVICE_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" id="dashboard-workers-button" routerLink="/dashboard/dashboard-worker"><i
+        class="fas fa-users"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.WORKER' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.WORKER_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" id="dashboard-devices-button" routerLink="/dashboard/dashboard-device"><i class="fas fa-hot-tub"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.DEVICE' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.DEVICE_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" id="dashboard-coupon-button" routerLink="/dashboard/dashboard-coupon"><i class="fas fa-gift"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.COUPON' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.COUPON_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" id="dashboard-services-group-button" routerLink="/dashboard/dashboard-service-group"><i
+        class="far fa-object-group"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.SERVICE_GROUP' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.SERVICE_GROUP_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+
+    <div class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" id="dashboard-business-branch-button" routerLink="/dashboard/dashboard-business-branch">
+        <i class="fas fa-city"></i> &nbsp;
+        <span
+          style="font-size: 1.1em">{{'DASHBOARD.MENU.BUSINESS_BRANCH' | translate}}</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.BUSINESS_BRANCH_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+    <div *ngIf="userConfigService.features?.multipleBusiness" class="offset-1 col-10">
+      <a class="nav-link-blue nav-link" routerLink="/dashboard/dashboard-add-business"><i class="far fa-building"></i> &nbsp;
+        <span style="font-size: 1.1em">
+          {{'DASHBOARD.MENU.MULTIPLE_BUSINESS' | translate}}
+        </span> &nbsp; <span class="badge badge-pill badge-primary"
+                                                                     style="font-size: 0.8em;">new</span>
+        <br>
+        <p class="text-grey" style="font-size: 0.9em; position: relative; left: 27px;">
+          {{'DASHBOARD.MENU.MULTIPLE_BUSINESS_DESC' | translate}}
+        </p>
+      </a>
+    </div>
+  </div>
+  <br>
+  <br>
+
+</div>

@@ -1,0 +1,287 @@
+<div [style.background]="formService.template?.formBackgroundColor">
+  <div class="container">
+    <br>
+    <br>
+    <div class="row" style="">
+      <div class="col-12">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <div class="btn-group">
+              <div
+                *ngIf="daysInWeek < 7 && view === CalendarView.Week"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                (click)="shiftDays('prev')"
+                class="btn-custom btn-sm">
+                {{ 'FORM.AVAILABILITY.PREVIOUS' | translate }}
+              </div>
+              <div
+                id="previousButton"
+                *ngIf="!(daysInWeek < 7 && view === CalendarView.Week)"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-sm"
+                mwlCalendarPreviousView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()"
+              >
+                {{ 'FORM.AVAILABILITY.PREVIOUS' | translate }}
+              </div>
+              <div
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-sm"
+                mwlCalendarToday
+                [(viewDate)]="viewDate"
+                (viewDateChange)="mapEvents()">
+                {{ 'FORM.AVAILABILITY.TODAY' | translate }}
+              </div>
+
+              <div
+                id="nextButton"
+                *ngIf="daysInWeek < 7 && view === CalendarView.Week"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                (click)="shiftDays('next')"
+                class="btn-custom btn-sm">
+                {{ 'FORM.AVAILABILITY.NEXT' | translate }}
+              </div>
+
+              <div
+                id="nextButton2"
+                *ngIf="!(daysInWeek < 7 && view === CalendarView.Week)"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-sm"
+                mwlCalendarNextView
+                [view]="view"
+                [(viewDate)]="viewDate"
+                (viewDateChange)="closeOpenMonthViewDay()">
+                {{ 'FORM.AVAILABILITY.NEXT' | translate }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):languageService.language:1 }}</h5>
+          </div>
+          <div class="col-md-4">
+            <div class="btn-group">
+              <div
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-sm"
+                (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month"
+              >
+                {{ 'FORM.AVAILABILITY.MONTH' | translate }}
+              </div>
+              <div
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-sm"
+                (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week"
+              >
+                {{ 'FORM.AVAILABILITY.WEEK' | translate }}
+              </div>
+              <div
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-sm"
+                (click)="setView(CalendarView.Day)"
+                [class.active]="view === CalendarView.Day"
+              >
+                {{ 'FORM.AVAILABILITY.DAY' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div *ngIf="calendarsForAvailability && calendarsForAvailability.length > 1" class="row">
+          <div *ngFor="let calendar of calendarsForAvailability" class="text-center"
+               style="margin-left: 10px; margin-right: 10px;">
+            <span
+              *ngIf="calendar && calendar.type !== calendarForAvailabilityType.HOLIDAY && calendar.type !== calendarForAvailabilityType.BUSINESS">
+            <a (click)="calendar.show = !calendar.show; mapEvents()">
+
+              <img [class.disabled]="!calendar.show" *ngIf="calendar?.img" [src]="server.SERVER + calendar?.img"
+                   class="img-fluid rounded-circle"
+                   style="border: solid 3px;"
+                   [style.border-color]="calendar.color"
+                   [ngbTooltip]="calendar.name"
+                   width="40">
+
+              <div [class.disabled]="!calendar.show" *ngIf="!calendar?.img"
+                   class="rounded-circle"
+                   style="border: solid 5px; width: 40px; height: 40px;"
+                   [style.background]="calendar.color"
+                   [style.border-color]="calendar.color"
+                   [ngbTooltip]="calendar.name"
+              ></div>
+            </a>
+            </span>
+          </div>
+        </div>
+        <br/>
+        <div [ngSwitch]="view">
+
+          <mwl-calendar-month-view
+            *ngSwitchCase="CalendarView.Month"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            [locale]="languageService.language"
+            [activeDayIsOpen]="activeDayIsOpen"
+          >
+          </mwl-calendar-month-view>
+
+          <mwl-calendar-week-view
+            *ngSwitchCase="CalendarView.Week"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            [dayStartHour]="dayStartHour"
+            [dayEndHour]="dayEndHour - 1"
+            weekStartsOn="1"
+            hourSegments="3"
+            [locale]="languageService.language"
+            (hourSegmentClicked)="dayClicked($event);"
+            (eventClicked)="eventClicked($event);"
+            [daysInWeek]="daysInWeek"
+          >
+          </mwl-calendar-week-view>
+
+          <mwl-calendar-day-view
+            *ngSwitchCase="CalendarView.Day"
+            [viewDate]="viewDate"
+            [events]="events"
+            [refresh]="refresh"
+            [locale]="languageService.language"
+            [dayStartHour]="dayStartHour"
+            [dayEndHour]="dayEndHour - 1"
+            (hourSegmentClicked)="dayClicked($event);"
+            (eventClicked)="eventClicked($event);"
+          >
+          </mwl-calendar-day-view>
+
+        </div>
+
+        <!--        for dev-->
+        <!--        <div *ngIf="selectedEventWithCapacity">-->
+        <!--          <h3>{{ '/form/form-course-selected/' + selectedEventWithCapacity.serviceId + '/' + selectedEventWithCapacity.id + '/' + selectedEventWithCapacity.remainingCapacity + '/' + encodedURISelectedDate() }}</h3>-->
+        <!--          <h3>-->
+        <!--            {{ '/form/form-service-selected/' + selectedEventWithCapacity.serviceId + '/' + selectedEventWithCapacity.workerId + '/' + encodedURISelectedDate() }}-->
+        <!--          </h3>-->
+
+        <!--        </div>-->
+
+        <!--        this is for unit tests but it hides hours in the calendar as side effect, so far its not used in the tests
+            for effect add [hourSegmentTemplate]="hourSegmentTemplate" in mwl-calendar-week-view and mwl-calendar-day-view
+        -->
+        <!--        <ng-template #hourSegmentTemplate let-segment="segment">-->
+        <!--          <div [attr.id]="'hour-segment-' + segment.date.getFullYear() + '-' + segment.date.getMonth() + '-' + segment.date.getDate() + '-' + segment.date.getHours()">-->
+
+        <!--          </div>-->
+        <!--        </ng-template>-->
+        <br/><br/><br/>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #createEventModal let-c="close" let-d="dismiss">
+
+  <div class="modal-body rounded" [class.mobile-modal]="isMobile"
+       [style.background]="formService.template?.formBackgroundColor">
+
+    <button type="button" class="close form-widget-close" aria-label="Close" (click)="d('Cross click')">
+    </button>
+
+    <iframe width="100%" height="850" style="border: 0"
+            [src]="(formService.business.url | formUrl) + '/form-date-selected/' + encodedURISelectedDate() | safeUrlForForm">
+    </iframe>
+
+  </div>
+</ng-template>
+
+<ng-template #assignForCourseModal let-c="close" let-d="dismiss">
+
+  <div class="modal-body rounded" [class.mobile-modal]="isMobile"
+       [style.background]="formService.template?.formBackgroundColor">
+
+    <button type="button" class="close form-widget-close" aria-label="Close" (click)="d('Cross click')">
+    </button>
+
+    <iframe width="100%" height="850" style="border: 0"
+            [src]="(formService.business.url | formUrl) + '/form-course-selected/' + selectedEventWithCapacity.serviceId + '/' + selectedEventWithCapacity.id + '/' + selectedEventWithCapacity.remainingCapacity + '/' + encodedURISelectedDate() | safeUrlForForm">
+    </iframe>
+
+  </div>
+</ng-template>
+
+<ng-template #assignForAppointmentModal let-c="close" let-d="dismiss">
+
+  <div class="modal-body rounded" [class.mobile-modal]="isMobile"
+       [style.background]="formService.template?.formBackgroundColor">
+
+    <button type="button" class="close form-widget-close" aria-label="Close" (click)="d('Cross click')">
+    </button>
+
+    <iframe width="100%" height="850" style="border: 0"
+            [src]="(formService.business.url | formUrl) + '/form-service-selected/' + selectedEventWithCapacity.serviceId + '/' + selectedEventWithCapacity.workerId + '/' + encodedURISelectedDate() | safeUrlForForm">
+    </iframe>
+
+  </div>
+</ng-template>
+
+<ng-template #notificationModal let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modalService.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center" [style.color]="formService.template?.textColor">
+      <p
+        *ngIf="!notificationService.notificationSuccess && !notificationService.notificationError">{{ 'FORM.NOTIFICATION_EXPLANATION' | translate }}</p>
+
+      <div class="form-group d-flex justify-content-center" *ngIf="!notificationService.notificationSuccess">
+        <input
+          type="email"
+          class="form-control w-100"
+          id="eventNotificationEmailInput"
+          [(ngModel)]="notificationService.notificationEmail"
+          placeholder="{{ 'FORM.EMAIL_PLACEHOLDER' | translate }}"
+          [style.border-color]="formService.template?.componentColor">
+      </div>
+
+      <h5 class="mt-2 text-success" *ngIf="notificationService.notificationSuccess">
+        <i class="fas fa-check"></i> {{ 'FORM.NOTIFICATION_SUCCESS' | translate }}
+      </h5>
+
+      <div class="mt-2 text-danger" *ngIf="notificationService.notificationError">
+        {{ notificationService.notificationError }}
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <button
+      [style.background-color]="formService.template?.componentColor"
+      [style.color]="formService.template?.textButtonColor"
+      id="registerForEventNotificationButton"
+      class="btn"
+      (click)="registerForNotification()"
+      [disabled]="!notificationService.notificationEmail || notificationService.isSubmitting"
+      *ngIf="!notificationService.notificationSuccess">
+      {{ 'FORM.SUBMIT' | translate }}
+    </button>
+  </div>
+</ng-template>

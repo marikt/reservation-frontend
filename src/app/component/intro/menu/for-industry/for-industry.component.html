@@ -1,0 +1,75 @@
+<app-menu-discount></app-menu-discount>
+<div style="white-space: pre-line;">
+
+  <div [ngStyle]="{'background': 'url(' + img + ') no-repeat scroll top center', 'background-size': 'cover'}"
+       style="min-height: 70vh;">
+    <div class="container intro-cell  ">
+      <div class="row">
+        <div [class.text-black]="blackStyle" [class.text-white]="!blackStyle"
+             class="col-md-7  col-10 offset-1 text-white ">
+          <h1>{{ 'AUDIENCE.RESERVATION_SYSTEM' | translate }} <b>{{ 'INTRO.INDUSTRY.' + profession | translate }}</b>
+          </h1>
+          <br>
+          <h5>
+            {{ 'INTRO.INDUSTRY.' + profession + '_DESC' | translate}}
+            <br>
+            <br>
+            <br>
+            <a [class.btn-primary]="blackStyle"
+               [class.btn-white]="!blackStyle"
+               [routerLink]="'/intro/' + languageService.language + '/signup'"
+               class="btn"
+            >
+              <span class="text-uppercase"> {{ 'COMMON.TRY_FREE' | translate }} </span>
+            </a>
+
+            <br>
+            <br>
+            <p class="text-sm col-12 col-md-6 col-lg-4">{{ 'COMMON.NO_CREDIT_CARD' | translate }}</p>
+
+            <br>
+            <br>
+            <br>
+
+          </h5>
+        </div>
+        <div class="text-center col-4 d-none d-md-block ">
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <span *ngFor="let industry of industries; let idx = index;">
+      <app-intro-item
+        *ngIf="idx % 2 == 0"
+        [img]="'../../../../resources/intro/audience/industry/' + industry.img"
+        [label1]="'AUDIENCE.PROFESSION.' + industry.title + '.DESC_SHORT'"
+        [link]="industry.link ? '/audience/' + languageService.language + '/' + industry.link : null"
+        [title2]="'AUDIENCE.PROFESSION.' + industry.title + '.TITLE'"
+        [alt]="'META.' + profession + '_ALT.' + industry.title"
+        imgClass="rounded"
+        linkClass="btn btn-sm btn-link btn-link-shine"
+        linkLabel="INTRO.WHY_US.MORE">
+      </app-intro-item>
+
+      <app-intro-item-revert
+        *ngIf="idx % 2 == 1"
+        [img]="'../../../../resources/intro/audience/industry/' + industry.img"
+        [label1]="'AUDIENCE.PROFESSION.' + industry.title + '.DESC_SHORT'"
+        [link]="industry.link ? '/audience/' + languageService.language + '/' + industry.link : null"
+        [title2]="'AUDIENCE.PROFESSION.' + industry.title + '.TITLE'"
+        [alt]="'META.' + profession + '_ALT.' + industry.title"
+        linkClass="btn btn-sm btn-link btn-link-shine"
+        imgClass="rounded"
+        linkLabel="INTRO.WHY_US.MORE">
+      </app-intro-item-revert>
+  </span>
+
+  <span *ngIf="faqOnBottomPages && (languageService.language === 'cs' || languageService.language === 'sk')">
+    <app-faq-on-bottom-page [faqOnBottomPages]="faqOnBottomPages"></app-faq-on-bottom-page>
+  </span>
+
+</div>
+

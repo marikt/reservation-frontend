@@ -1,0 +1,27 @@
+<div class="row">
+
+    <div class="col-1">
+        <br>
+        <button *ngIf="backLink" class="btn btn-link btn-link-blue btn-sm" [routerLink]="'/dashboard' + backLink"
+                id="back"
+                style="position: relative;right: 10px;">
+            <img class="" src="../../../resources/icon/back-blue.svg" style="margin-right: 5px; width: 12px;">
+            <span style="font-size: 0.9em">{{'COMMON.BACK' | translate}}</span>
+        </button>
+    </div>
+
+    <div class="col-xl-9 col-12">
+      <br>
+        <div class="glass-frame">
+            <br>
+            <br>
+            <br>
+            <div class="offset-lg-1 offset-0 col-lg-10 col-12">
+                <ng-content></ng-content>
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+
+</div>

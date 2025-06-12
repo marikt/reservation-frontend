@@ -1,0 +1,190 @@
+<div class="row">
+  <div class="col-md-7 col-12">
+    <form #form="ngForm" (ngSubmit)="saveService()">
+
+
+      <!--PRICE ============================================================================================ -->
+
+      <div class="form-group">
+        <label>{{ 'DASHBOARD.SERVICE_ITEM.SERVICE_TECH_NAME' | translate }}
+          &nbsp;&nbsp; <i [ngbTooltip]="'DASHBOARD.SERVICE_ITEM.SERVICE_TECH_NAME_DESC' | translate"
+                          class="far fa-question-circle text-primary" style="font-size: 0.9em;">
+          </i>
+        </label>
+        <input #name="ngModel" [(ngModel)]="service.techName"
+               class="form-control"
+               id="service-item-tech-name"
+               name="service-tech-name"
+               type="text">
+      </div>
+
+      <br>
+
+      <span *ngIf="service.type != 'COURSE' && dashboardService.business.googleCalendarConnected">
+        <label>{{ 'DASHBOARD.SERVICE_ITEM.COLOR_PER_SERVICE_LABEL' | translate }}</label>
+          <div class="form-group" style="margin-bottom: 0px;">
+            <label class="custom-control custom-checkbox">
+              <input
+                (click)="colorPerService = false; service.color = null;"
+                [checked]="colorPerService === false"
+                class="form-check-input checkbox-lg"
+                id="colorPerServiceOff"
+                name="colorPerServiceOff"
+                style="position: relative;"
+                type="radio"
+                value="colorPerServiceOff">
+              <span class="custom-control-description"
+                    style="position: relative; left: 10px; bottom: 4px;">{{ 'DASHBOARD.SERVICE_ITEM.COLOR_PER_SERVICE_OFF_LABEL' | translate }}</span>
+            </label>
+          </div>
+
+      <div class="form-group" style="margin-bottom: 0px;">
+        <label class="custom-control custom-checkbox">
+          <input
+            (click)="colorPerService = true"
+            [checked]="colorPerService"
+            class="form-check-input checkbox-lg"
+            id="colorPerServiceOn"
+            name="colorPerServiceOn"
+            style="position: relative;"
+            type="radio"
+            value="colorPerServiceOn">
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; bottom: 4px;">{{ 'DASHBOARD.SERVICE_ITEM.COLOR_PER_SERVICE_ON_LABEL' | translate }}</span>
+        </label>
+      </div>
+        <div *ngIf="colorPerService" class="form-group">
+          <div class="input-group ">
+            <div class="input-group-prepend">
+            <span [style.background]="getColorById() ? getColorById().background : 'grey'"
+                  class="input-group-text color-per-service"
+            ></span>
+            </div>
+
+            <div class="input-group-append input-group-text-color" ngbDropdown>
+              <button class="btn btn-outline-secondary btn-sm" id="dropdownColor" ngbDropdownToggle
+                      placement="bottom"
+                      style="margin-left: 4px;"
+                      type="button">
+              </button>
+              <div aria-labelledby="dropdownColor" ngbDropdownMenu>
+                  <span *ngFor="let color of colors; let idx = index;">
+                    <button (click)="service.color = color.id" class="dropdown-item rounded"
+                            [style.background-color]="color.background" ngbDropdownItem
+                            type="button" style="width: 10px; height: 25px; margin-bottom: 5px;"></button>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </span>
+
+      <br>
+      <div class="form-group" style="">
+        <label>{{ 'DASHBOARD.SERVICE_ITEM.ALLOW_MULTIPLE_BOOKING_LABEL' | translate }}</label>
+
+        <div class="checkbox">
+          <label class="custom-control custom-checkbox">
+            <input #allowMultipleBooking="ngModel"
+                   [(ngModel)]="service.allowMultipleBooking"
+                   class="form-check-input checkbox-lg"
+                   id="serviceAllowMultipleBooking"
+                   name="allowMultipleBooking"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: -5px;">{{ 'DASHBOARD.SERVICE_ITEM.ALLOW_MULTIPLE_BOOKING' | translate }}</span>
+            <br>
+          </label>
+        </div>
+      </div>
+      <hr>
+      <!--ACTIVE ========================================================================================== -->
+      <div class="form-group" style="margin-bottom: -10px;">
+        <label>{{ 'DASHBOARD.SERVICE_ITEM.TURN_OFF' | translate }}</label>
+        <div class="checkbox">
+          <label class="custom-control custom-checkbox">
+            <input #active="ngModel"
+                   [(ngModel)]="service.active"
+                   class="form-check-input checkbox-lg"
+                   id="serviceActive"
+                   name="active"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 0px;">{{ 'DASHBOARD.SERVICE_ITEM.ACTIVE' | translate }}</span>
+            <br>
+            <label *ngIf="service.active"
+                   style="position: relative; left: 10px; bottom: 8px;">({{
+                'DASHBOARD.SERVICE_ITEM.VISIBLE' |
+                  translate
+              }}
+              )</label>
+            <label *ngIf="!service.active"
+                   style="position: relative; left: 10px; bottom: 8px;">({{
+                'DASHBOARD.SERVICE_ITEM.NOT_VISIBLE' |
+                  translate
+              }}
+              <i class="fas fa-exclamation-triangle text-warning">
+              </i>) </label>
+          </label>
+        </div>
+      </div>
+      <br>
+      <br>
+    </form>
+
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid">
+      <i class="far fa-save "></i> &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button2">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+            <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+      &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+    </button>
+    <button (click)="modalService.open(serviceDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+            placement="bottom">
+      <i class="far fa-trash-alt"></i> {{ 'DASHBOARD.SERVICE_ITEM.DELETE' | translate }}
+    </button>
+  </div>
+</div>
+
+<ng-template #serviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{ 'DASHBOARD.SERVICE_ITEM.DELETE_CONFIRM' | translate }}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{ 'DASHBOARD.COMMON.DONT_DELETE' | translate }}
+      </button>
+      <button class="btn-blue btn btn-sm" (click)="deleteService(service)">{{ 'DASHBOARD.COMMON.DELETE' | translate }}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

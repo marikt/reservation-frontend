@@ -1,0 +1,60 @@
+<div class="card-for-form card mb-3" id="serviceItemComponentInForm"
+     [style.background]="formService.template?.serviceCardColor"
+     style="min-height: 100px;">
+
+  <button (click)="formEditMode ? doNothing() : selectService(service)"
+          [id]="service.name"
+          [name]="service.name"
+          style="padding: 0px !important;"
+          class="btn btn-default">
+
+    <div class="row no-gutters text-left">
+      <div *ngIf="showImage" class="col-md-3 col-4">
+        <img [src]="server.SERVER + service.fullPathImg"
+             (error)="handleImageNotLoaded()"
+             class="zoom-on-hover card-img">
+      </div>
+
+      <div [class.col-12]="!showImage"
+           [class.col-8]="showImage"
+           [class.col-md-9]="showImage">
+        <div class="card-body " style="padding: 1.2em 0.8em 0.2em 0.8em;"
+             [style.color]="formService.template?.serviceCardTextColor + ' !important'">
+          <h6 class="card-title" id="serviceItemComponentTextInForm"><strong> <span
+            [ngStyle]="{'font-size': (formService.template?.fontSizeServiceLabel || 1) + 'em'}">{{ service.name }}</span></strong>
+            &nbsp;&nbsp;
+            <small [style.color]="formService.template?.serviceCardTextColor | addAlphaColor: 0.8">
+              <span *ngIf="service.config?.rating && service.config.rating > 0" class="rating-bg"
+                    style="margin-right: 15px;">
+                <i class="fas fa-star text-warning"></i> {{ service.config.rating | rating }}
+              </span>
+
+              <span
+                *ngIf="!window?.config?.hideDuration && !service.durationNotSpecified && (service.type == 'APPOINTMENT' || service.type == 'DEVICE')">{{ service.duration | daysHoursMinutes }}</span>
+              <span
+                *ngIf="!window?.config?.hideDuration && !service.durationNotSpecified && !window?.config?.hidePrice && service.price && service.price != 0 && (service.type == 'APPOINTMENT' || service.type == 'DEVICE')"> | </span>
+              <span
+                *ngIf="!window?.config?.hidePrice && service.price && service.price != 0 && formService.business && formService.business.currency && !service.durationNotSpecified">{{ service.price }} {{ formService.business.currency }}</span>
+            </small>
+            <span *ngIf="service.config?.badge?.label &&
+              service.config?.badge?.label.length > 0 &&
+              service.config?.badge?.type"
+                  [class]="'badge-' + service.config.badge.type" class="badge pull-right">
+                  {{ service.config.badge.label }}
+            </span>
+          </h6>
+
+          <p *ngIf="this.service.description" class="card-text"
+             style="position: relative; bottom: 10px; white-space: pre-line; line-height: 1.1;">
+            <small
+              [ngStyle]="formService.template?.fontSizeServiceDescription ? {'font-size': formService.template.fontSizeServiceDescription + 'em'} : {}">
+              {{ this.service.description }}</small>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </button>
+
+
+</div>

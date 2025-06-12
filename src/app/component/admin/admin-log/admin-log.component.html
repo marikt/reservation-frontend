@@ -1,0 +1,32 @@
+  <div class="container">
+
+    <label>logs</label>
+    <div class="input-group">
+      <input [ngModel]="selectedLog"
+             class="form-control text-right radius-right-none"
+             disabled
+             #logsDropdown="ngModel"
+             id="logDropdownId"
+             name="logDropdownName"
+             type="text">
+      <div class="input-group-append" ngbDropdown>
+        <button class="btn btn-outline-secondary btn-sm" id="logDropdownButtonId" ngbDropdownToggle
+                placement="bottom"
+                style="margin-left: 4px;"
+                type="button">
+        </button>
+        <div aria-labelledby="logDropdownButtonId" ngbDropdownMenu>
+          <span *ngFor="let log of logs">
+            <button (click)="selectedLog = log;"
+                    [id]="log"
+                    class="dropdown-item"
+                    ngbDropdownItem
+                    type="button">{{ log }}</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <button class="btn btn-primary" (click)="downloadLog()"> Download</button>
+  </div>

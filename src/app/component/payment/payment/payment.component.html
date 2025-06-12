@@ -1,0 +1,187 @@
+<!--<div *ngIf="promo" class="text-center text-white" style=" border-radius: 10px; padding: 10px; background-color: #7a7adb; background-image: linear-gradient(315deg, #6841D7 0%, #170e13 74%);"> &nbsp;-->
+<!--  <br>-->
+<!--  <h5>🎁 {{'PAYMENT.PROMO_ACTIVE' | translate}} </h5>-->
+<!--  <br>-->
+<!--</div>-->
+
+
+<div class="" style="height: 110vh; ">
+  <div class="container text-center ">
+    <div class="row " style="height: 3vh">
+    </div>
+    <br>
+
+    <h2>{{ 'PAYMENT.TYPE' | translate }}</h2>
+    <h6>{{ 'PAYMENT.LABEL1' | translate }}</h6>
+    <br>
+    <br>
+    <div class="row">
+      <div class="offset-1 col-10">
+
+        <div class="row">
+
+          <div class="offset-0 col-3 text-center border rounded  text-primary centered shadow"
+               style="margin-left: 40px;">
+            <div class="row bg-primary text-center rounded-top">
+              <div class="col-12">
+                <br>
+                <br>
+                <h5 class="text-white"><strong>{{ 'PAYMENT.MONTHLY' | translate }}</strong></h5>
+                <br>
+                <br>
+              </div>
+            </div>
+            <br>
+            <br *ngIf="!promo">
+            <span *ngIf="promo"
+                  class="badge badge-warning"
+                  style="font-size: 1em; position: relative; left: 70px;">- 15%</span>
+            <h6 *ngIf="promo" class="text-danger">
+              <del>{{ 'PAYMENT.MONTHLY_PRICE' | translate }}</del>
+            </h6>
+            <h4 *ngIf="promo" class=""><strong>{{ 'PAYMENT.MONTHLY_PRICE_PROMO' | translate }}</strong></h4>
+            <h4 *ngIf="!promo" class=""><strong>{{ 'PAYMENT.MONTHLY_PRICE' | translate }}</strong></h4>
+            <br>
+            <br>
+
+            <button (click)="selectPlanAndProceedPayment(paymentPlan.MONTHLY)"
+                    class="btn btn-primary btn-lg text-uppercase ">
+              {{ 'PAYMENT.SELECT' | translate }}
+            </button>
+            <br>
+            <br>
+          </div>
+
+          <div class="offset-1 col-3 text-center border rounded text-info centered shadow border-info"  style="border-width: 4px !important;">
+            <div class="row bg-info text-center rounded-top">
+              <div class="col-12">
+                <br>
+                <br>
+                <h5 class="text-white"><strong>{{ 'PAYMENT.3MONTH' | translate }}</strong></h5>
+<!--                <span-->
+<!--                class="badge badge-pill badge-warning"-->
+<!--                style="color: white; font-size: 1.1em; position: relative; bottom: 75px; left: 55px;"> <i-->
+<!--                class="fas fa-star"></i> Popular</span>-->
+                <br>
+                <br>
+              </div>
+            </div>
+            <br>
+            <span *ngIf="promo"
+                  class="badge badge-warning"
+                  style="font-size: 1em; position: relative; left: 70px;">- 15%</span>
+
+            <h6 class="text-danger">
+              <del>{{ 'PAYMENT.MONTHLY_PRICE' | translate }}</del>
+            </h6>
+
+            <h4 *ngIf="promo" class=""><strong>{{ 'PAYMENT.3MONTH_PRICE_PROMO' | translate }}</strong></h4>
+            <h4 *ngIf="!promo" class=""><strong>{{ 'PAYMENT.3MONTH_PRICE' | translate }}</strong></h4>
+            <br>
+            <br>
+
+            <button (click)="selectPlanAndProceedPayment(paymentPlan.MONTHLY_3)"
+                    class="btn btn-info btn-lg text-uppercase ">
+              {{ 'PAYMENT.SELECT' | translate }}
+            </button>
+            <br>
+            <br>
+          </div>
+
+          <div class="col-3 offset-1 text-center border rounded text-success shadow">
+            <div class="row bg-success text-center rounded-top">
+              <div class="col-12">
+
+                <br>
+                <br>
+                <h5 class="text-white"><strong>{{ 'PAYMENT.YEARLY' | translate }}</strong></h5>
+                <br>
+                <br>
+              </div>
+            </div>
+            <br>
+            <span *ngIf="promo"
+                  class="badge badge-warning"
+                  style="font-size: 1em; position: relative; left: 70px;">- 15%</span>
+            <h6 class="text-danger">
+              <del>{{ 'PAYMENT.MONTHLY_PRICE' | translate }}</del>
+            </h6>
+
+            <h4 *ngIf="promo" class=""><strong>{{ 'PAYMENT.YEARLY_PRICE_PROMO' | translate }}</strong></h4>
+            <h4 *ngIf="!promo" class=""><strong>{{ 'PAYMENT.YEARLY_PRICE' | translate }}</strong></h4>
+
+            <br>
+            <br>
+
+            <button (click)="selectPlanAndProceedPayment(paymentPlan.YEARLY)"
+                    class="btn btn-success btn-lg text-uppercase ">{{ 'PAYMENT.SELECT' | translate }}
+            </button>
+            <br>
+            <br>
+          </div>
+
+          <div *ngIf="testMode" class="col-3 offset-1 text-center border rounded text-success shadow">
+            <div class="row bg-success text-center rounded-top">
+              <div class="col-12">
+
+                <br>
+                <br>
+                <h5 class="text-white"><strong>DAILY TEST PLAN</strong></h5>
+                <br>
+                <br>
+              </div>
+            </div>
+            <br>
+            <h4 class=""><strong>5Kc/day</strong></h4>
+
+            <br>
+            <br>
+
+            <button (click)="selectPlanAndProceedPayment(paymentPlan.DAILY)"
+                    class="btn btn-success btn-lg text-uppercase ">PAY
+            </button>
+            <br>
+            <br>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!--    <br>-->
+    <!--    <br>-->
+    <!--    <br>-->
+    <!--    <br>-->
+    <!--    <div class="row ">-->
+    <!--      <div class="col-3 offset-1">-->
+
+    <!--        <img class="img-responsive"-->
+    <!--             src="../../../../resources/payment/secure-payment.png" style="width: 200px;">-->
+    <!--      </div>-->
+    <!--      <div class="col-7 text-left">-->
+    <!--        <br>-->
+    <!--        <h5>-->
+    <!--          {{'PAYMENT.LABEL2' | translate}} <a href="https://stripe.com" target="_blank">-->
+    <!--          <i class="fab fa-cc-stripe text-secondary" style="font-size: 1.9em; position: relative; top: 9px;"></i></a>-->
+    <!--        </h5>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <br>
+    <br>
+    <!--    <div class="alert alert-info text-left offset-2 col-8" style="font-size: 1.2em;">-->
+    <!--      <i class="fas fa-handshake"></i> &nbsp;-->
+    <!--      {{'PAYMENT.SUBSCRIPTION_INFO' | translate}}-->
+
+    <!--    </div>-->
+    <div class="row ">
+      <div class="offset-2 col-8">
+        <app-row-faq-item question="PAYMENT.FAQ.Q1" answer="PAYMENT.FAQ.A1"></app-row-faq-item>
+        <app-row-faq-item question="PAYMENT.FAQ.Q2" answer="PAYMENT.FAQ.A2"></app-row-faq-item>
+        <app-row-faq-item question="PAYMENT.FAQ.Q3" answer="PAYMENT.FAQ.A3"></app-row-faq-item>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

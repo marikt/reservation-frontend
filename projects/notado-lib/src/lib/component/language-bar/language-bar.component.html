@@ -1,0 +1,16 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" style="background-color: rgba(255, 255, 255, 0.80) !important; z-index: 999;">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto" >
+
+      <a *ngFor="let lang of languageService.languages;" (click)="setLanguage(lang)" class="nav-item nav-link  ">
+        <img [src]="'../resources/lang/' + lang + '.png'" width="25px;">
+      </a>
+
+    </div>
+  </div>
+</nav>

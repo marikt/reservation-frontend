@@ -1,0 +1,42 @@
+<div class="col-12 bg-white"  style="white-space: pre-line;">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-7  col-10 offset-1 ">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1> <b>{{ 'INTRO.INTEGRATION.LABEL2' | translate }}</b>        </h1>
+        <br>
+        <h5>
+          <br>
+          <br>
+          <br>
+        </h5>
+      </div>
+      <div class="text-center col-4 d-none d-md-block ">
+        <br>
+        <br>
+        <img
+          src="../../../../../resources/integration/integration.png" style="width:380px;">
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row">
+
+      <div *ngFor="let integration of integrations; let idx = index;"
+           class="col-md-3 offset-md-0 col-12 text-center ">
+
+        <app-integration-item [integration]="integration"></app-integration-item>
+        <br>
+      </div>
+      <br>
+      <br>
+
+    </div>
+  </div>
+</div>

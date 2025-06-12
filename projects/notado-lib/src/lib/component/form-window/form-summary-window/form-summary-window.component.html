@@ -1,0 +1,92 @@
+<br>
+
+<span *ngIf="formService.calendarEvent?.service">
+  <div class="row">
+  <div class="offset-md-5 col-md-4 offset-3 col-7">
+    <label [style.color]="formService.template?.textColor">{{ 'FORM.SERVICE' | translate }}:</label>
+    <h6 [style.color]="formService.template?.textColor">
+
+                <strong>{{ formService.calendarEvent.service?.name }}</strong>
+          <small>
+          <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration">
+            {{ formService.calendarEvent.service?.duration | durationToString }}
+          </span>
+          <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration">
+          </span>
+          <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration && formService.calculatePrice() > 0">
+            |
+          </span>
+          <span *ngIf="formService.calculatePrice() > 0">
+            {{ formService.calculatePrice() }} {{formService.business.currency}}
+          </span>
+          </small>
+    </h6>
+  </div>
+</div>
+
+<br>
+
+<div class="row" *ngIf="formService.calendarEvent.worker">
+  <div class="offset-md-5 col-md-4 offset-3 col-7">
+    <label [style.color]="formService.template?.textColor">
+      <span *ngIf="formService.reservationConfig?.workerLabel">{{ formService.reservationConfig.workerLabel }}:</span>
+      <span *ngIf="!formService.reservationConfig?.workerLabel">{{ 'FORM.WORKER' | translate }}:</span>
+    </label>
+    <h6 [style.color]="formService.template?.textColor">{{ formService.calendarEvent.worker?.name }}</h6>
+  </div>
+</div>
+
+<br *ngIf="formService.calendarEvent.worker">
+
+<div class="row" *ngIf="formService.calendarEvent.startDate">
+  <div class="offset-md-5 col-md-4 offset-3 col-7">
+    <label [style.color]="formService.template?.textColor">{{ 'FORM.DATE' | translate }}:</label>
+    <span *ngFor="let dateAndTime of formService.calendarEvent.dateAndTimeAndIds.slice(0, 8); let idx = index;">
+    <h6 [style.color]="formService.template?.textColor">
+        {{ dateAndTime.date | dateToString }} &nbsp; <span
+      class="text-sm"> {{ dateAndTime.time | timeToString }} </span>
+    </h6>
+    </span>
+    <span *ngIf="formService.calendarEvent.dateAndTimeAndIds.length > 8">
+          <h6 [style.color]="formService.template?.textColor">
+            ( +{{ formService.calendarEvent.dateAndTimeAndIds.length - 8 }} {{ 'FORM.MORE' | translate }} )
+          </h6>
+    </span>
+  </div>
+</div>
+
+</span>
+
+<br *ngIf="window?.config?.licenceAgreement">
+<div *ngIf="window?.config?.licenceAgreement" class="row">
+  <div class="form-group offset-md-5 col-md-4 offset-3 col-7">
+    <label class="custom-control custom-checkbox">
+      <input
+        #licenceAgreement="ngModel"
+        name="licenceAgreement"
+        class="form-check-input checkbox-lg"
+        ngModel
+        required
+        [class.is-invalid]="!licenceAgreement.valid  && wasValidate"
+        [class.is-valid]="licenceAgreement.valid"
+        id="licenceAgreement"
+        type="checkbox">
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description"
+            [class.text-danger]="!licenceAgreement.valid && wasValidate"
+            [style.color]="formService.template?.textColor"
+            style="position: relative; left: 15px; top: 4px;">{{ window?.config?.licenceAgreementConf.label }} &nbsp;
+        <a *ngIf="window?.config?.licenceAgreementConf.value"
+           [style.color]="formService.template?.textColor"
+           [href]="window?.config?.licenceAgreementConf.value" target="_blank">
+          <i class="far fa-file"></i>
+        </a>
+    </span>
+    </label>
+  </div>
+</div>
+<ng-content></ng-content>
+
+
+<br>
+<br>

@@ -1,0 +1,151 @@
+.button-clean {
+  border: none !important;
+  background: transparent !important;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.bg {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background: url('../../../../resources/intro/feature.jpg') no-repeat scroll top center;
+}
+
+.feature-header {
+  min-height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0;
+}
+
+.simple-header {
+  padding: 2.5rem 0 1.5rem;
+}
+
+.feature-title {
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+}
+
+.features-container {
+  padding: 1.5rem 0 6rem;
+}
+
+.feature-item {
+  transition: transform 0.3s ease;
+  animation: fadeIn 0.8s ease-in-out forwards;
+  opacity: 0;
+  margin-bottom: 30px;
+  aspect-ratio: 1/1;
+}
+
+.feature-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.feature-card {
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(105, 59, 218, 0.15);
+    
+    .card-text {
+      opacity: 1;
+      max-height: 200px;
+      overflow: auto;
+    }
+    
+    .card-text-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.feature-icon {
+  margin: 0.5rem 0;
+  flex-shrink: 0;
+
+  i {
+    font-size: 2.2em;
+    transition: transform 0.3s ease;
+  }
+}
+
+.feature-card:hover .feature-icon i {
+  transform: scale(1.1);
+}
+
+.card-title {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.card-text {
+  color: #666;
+  line-height: 1.4;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 2;
+  
+  .card-title {
+    margin-bottom: 1rem;
+  }
+  
+  .card-text {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: auto;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

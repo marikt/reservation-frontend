@@ -1,0 +1,20 @@
+<br>
+<div class="card "
+     style="zoom: 95%;"
+     [class.disabled]="!formConfigService.window.active"
+     [class.shadow]="formConfigService.window.active"
+     [style.background]="dashboardService.template.formBackgroundColor">
+  <br>
+  <br>
+  <h5 class="text-center"
+      *ngIf="formConfigService.window.label"
+      [style.color]="dashboardService.template.textColor"><strong>{{formConfigService.window.label}}</strong>
+  </h5>
+  <app-dashboard-reservation-card [window]="formConfigService.window">
+  </app-dashboard-reservation-card>
+  <br>
+  <app-dashboard-form-config-button [window]="formConfigService.window">
+  </app-dashboard-form-config-button>
+  <br><br>
+</div>
+

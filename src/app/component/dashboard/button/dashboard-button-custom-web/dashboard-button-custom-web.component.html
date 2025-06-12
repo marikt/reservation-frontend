@@ -1,0 +1,465 @@
+<div *ngIf="reservationButtonConfig" class="row" style="background: rgb(245, 246, 248); min-height: 90vh; ">
+
+
+  <!--================================================================================================-->
+
+  <div [class.col-md-6]="!service && !serviceGroup"
+       [class.col-xl-5]="!service && !serviceGroup"
+       [class.col-lg-5]="!service && !serviceGroup"
+       [class.col-5]="service || serviceGroup"
+       style="padding-left: 50px;">
+    <br>
+    <br>
+
+
+    <h5 class="">{{ 'DASHBOARD.BUTTON.CUSTOM.BUTTON_CODE' | translate }}</h5>
+    <br>
+    <span *ngIf="!service && !serviceGroup">
+      <div class="row">
+        <ul class=" nav nav-tabs">
+          <li class="nav-item">
+            <a (click)="activeCard='WIDGET'" [class.active]="activeCard =='WIDGET'" aria-current="page"
+               class="nav-link">{{ 'DASHBOARD.BUTTON.CUSTOM.WIDGET' | translate }} <span
+              class="badge badge-pill badge-warning text-white"
+              style="font-size: 0.7em; position: relative; bottom: 5px; left: 3px;"><i class="fas fa-crown"></i></span></a>
+          </li>
+          <li class="nav-item">
+            <a (click)="activeCard='CALENDAR_AVAILABILITY'" [class.active]="activeCard =='CALENDAR_AVAILABILITY'"
+               class="nav-link">{{ 'DASHBOARD.MENU.CALENDAR_AVAILABILITY' | translate }} <span
+              class="badge badge-pill badge-primary"
+              style="font-size: 0.7em; position: relative; bottom: 5px; left: 3px;">new</span></a>
+          </li>
+          <li class="nav-item">
+            <a (click)="activeCard='IFRAME'" [class.active]="activeCard =='IFRAME'"
+               class="nav-link">{{ 'DASHBOARD.BUTTON.CUSTOM.IFRAME' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="activeCard='BUTTON'" [class.active]="activeCard =='BUTTON'"
+               class="nav-link">{{ 'DASHBOARD.BUTTON.CUSTOM.BUTTON' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="activeCard='LINK'" [class.active]="activeCard =='LINK'"
+               class="nav-link">{{ 'DASHBOARD.BUTTON.CUSTOM.LINK' | translate }}</a>
+          </li>
+          <!--          <li class="nav-item">-->
+          <!--            <a (click)="activeCard='QR'" [class.active]="activeCard =='QR'"-->
+          <!--               class="nav-link">QR code</a>-->
+          <!--          </li>-->
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-10">
+          <div class="form-group">
+            <br>
+            <p *ngIf="activeCard =='WIDGET'" class="code-frame">{{ widgetLink }}</p>
+            <p *ngIf="activeCard =='CALENDAR_AVAILABILITY'" class="code-frame">{{ calendarAvailabilityLink }}</p>
+            <p *ngIf="activeCard =='IFRAME'" class="code-frame">{{ iframeLink }}</p>
+            <p *ngIf="activeCard =='BUTTON'" class="code-frame">{{ buttonCode }}</p>
+            <p *ngIf="activeCard =='LINK'" class="code-frame">{{ linkCode }}</p>
+
+             <div *ngIf="activeCard =='CALENDAR_AVAILABILITY'" class="alert alert-info">
+               {{ 'DASHBOARD.CALENDAR_AVAILABILITY.STYLE' | translate }}
+               <app-video-tutorial
+                 btnType="link"
+                 label="VIDEO_LABEL.TUTORIAL"
+                 videoSrc="https://www.youtube.com/embed/Z8nRzHw-Br8"></app-video-tutorial>
+             </div>
+
+            <!--            <ngx-qrcode *ngIf="activeCard =='QR'" [value]="linkCode" qrc-class=“qr-code” qrc-element-type="img"-->
+            <!--                        scale="8">-->
+            <!--            </ngx-qrcode>-->
+            <br>
+            <button (click)="copyButtonLink(false)" *ngIf="activeCard !='QR'"
+                    class="btn btn-blue btn-sm "><i
+              class="far fa-copy"></i> {{ 'DASHBOARD.BUTTON.CUSTOM.COPY_CODE' | translate }}</button>
+            <!--            <a (click)="downloadQRImage()" *ngIf="activeCard =='QR'" [href]="qrCodeImage"-->
+            <!--               class="btn btn-outline-blue btn-sm text-uppercase"-->
+            <!--               download target="_blank"><i-->
+            <!--              class="fas fa-download"></i> {{'DASHBOARD.BUTTON.CUSTOM.DOWNLOAD_QR' | translate}}</a>-->
+            &nbsp;
+            <button (click)="modalService.open(codeForServicesModal, {size: 'lg'})"
+                    class="btn btn-link-blue btn-sm">{{ 'DASHBOARD.BUTTON.CUSTOM.CODE_FOR_SERVICES' | translate }}</button>
+
+          </div>
+        </div>
+      </div>
+    </span>
+
+    <span *ngIf="service">
+      <app-dashboard-button-custom-web-for-service
+        [service]="service"
+        [radius]="reservationButtonConfig.radius"
+        [formSize]="formSize"
+        [colorBackground]="reservationButtonConfig.colorBackground"
+        [colorLabel]="reservationButtonConfig.colorLabel"
+        [label]="reservationButtonConfig.label"
+      >
+      </app-dashboard-button-custom-web-for-service>
+        <br>
+        <br>
+        <a class="btn btn-link-blue btn-sm pull-right"
+           (click)="modalService.close()"
+           routerLink="/dashboard/dashboard-button-custom-web">{{ 'DASHBOARD.BUTTON.CUSTOM.CODE_FOR_ALL_SERVICES' | translate }} </a>
+
+    </span>
+
+    <span *ngIf="serviceGroup">
+      <app-dashboard-button-custom-web-for-service-group
+        [serviceGroup]="serviceGroup"
+        [radius]="reservationButtonConfig.radius"
+        [formSize]="formSize"
+        [colorBackground]="reservationButtonConfig.colorBackground"
+        [colorLabel]="reservationButtonConfig.colorLabel"
+        [label]="reservationButtonConfig.label"
+      >
+      </app-dashboard-button-custom-web-for-service-group>
+        <br>
+        <br>
+        <a class="btn btn-link-blue btn-sm pull-right"
+           (click)="modalService.close()"
+           routerLink="/dashboard/dashboard-button-custom-web">{{ 'DASHBOARD.BUTTON.CUSTOM.CODE_FOR_ALL_SERVICES' | translate }} </a>
+
+    </span>
+
+    <!--    <div *ngIf="activeCard != 'QR'" class="alert alert-light">-->
+    <!--      <i class="fas fa-info-circle"></i> &nbsp;-->
+    <!--      <span *ngIf="activeCard == 'WIDGET'">{{'DASHBOARD.BUTTON.CUSTOM.WIDGET_INFO' | translate}}</span>-->
+    <!--      <span-->
+    <!--        *ngIf="activeCard =='CALENDAR_AVAILABILITY'">{{'DASHBOARD.BUTTON.CUSTOM.CALENDAR_INFO' | translate}}</span>-->
+    <!--      <span *ngIf="activeCard =='IFRAME'">{{'DASHBOARD.BUTTON.CUSTOM.IFRAME_INFO' | translate}}</span>-->
+    <!--      <span-->
+    <!--        *ngIf="activeCard =='BUTTON' || activeCard =='LINK'">{{'DASHBOARD.BUTTON.CUSTOM.BUTTON_INFO' | translate}}</span>-->
+
+    <!--    </div>-->
+
+    <!--    <div *ngIf="activeCard == 'WIDGET' ||  activeCard == 'BUTTON'" class="row">-->
+
+    <!--      <a class="btn btn-link-blue btn-sm pull-left"-->
+    <!--         (click)="showButtonEditor = !showButtonEditor">-->
+    <!--       <span style="font-size: 1.3em" class="">-->
+    <!--         <strong>      <span *ngIf="!showButtonEditor">+</span>      <span *ngIf="showButtonEditor">-</span>-->
+    <!--      </strong>-->
+    <!--       </span>-->
+
+    <!--        {{'DASHBOARD.BUTTON.CUSTOM.SHOW_BUTTON_EDITOR' | translate}}-->
+    <!--      </a>-->
+    <!--    </div>-->
+    <br>
+    <br>
+
+
+  </div>
+
+  <div
+    [class.col-md-6]="!service"
+    [class.col-xl-7]="!service"
+    [class.col-lg-7]="!service"
+    [class.col-7]="service"
+    class="bg-dot" style="min-height: 100vh">
+    <br>
+
+
+    <div class="row">
+
+      <div *ngIf="activeCard !='QR'"
+           class="offset-lg-2 offset-1 col-md-10 col-lg-8 ">
+
+        <br>
+        <br>
+        <div style="max-width: 480px;">
+          <app-browser-frame></app-browser-frame>
+          <div
+            style="background: rgb(105,59,218);
+background: linear-gradient(243deg, rgba(105,59,218,1) 0%, rgba(229,169,231,1) 97%); height: 300px;"
+            class="rounded-bottom img-shadow" id="demo">
+            <div
+              [class.bg-01]="activeCard=='WIDGET' && widgetType === 'RIGHT_SIDE'"
+              [class.bg-02]="activeCard=='IFRAME' || (activeCard=='WIDGET' && widgetType === 'POP_UP')"
+              [class.bg-03]="activeCard=='CALENDAR_AVAILABILITY'"
+            >
+              <br>
+              <img src="resources/demo/home/menu.png" width="100%">
+              <div class="row " id="ignore-filter">
+                <div class="col-10 text-left">
+                  <button
+                    *ngIf="activeCard != 'IFRAME' && activeCard != 'CALENDAR_AVAILABILITY'"
+                    id="notadoButtonShow"
+                    [style.background]="reservationButtonConfig.colorBackground"
+                    [style.border-radius]="reservationButtonConfig.radius"
+                    [style.color]="reservationButtonConfig.colorLabel"
+                    [style]="computePositionOfDemoButton()"
+                    style="border-width: 0px; margin-top: 2px; margin-left: 18px;"
+                    class="btn-sm">{{ reservationButtonConfig.label }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+      </div>
+    </div>
+
+    <div *ngIf="activeCard == 'WIDGET' ||  activeCard == 'BUTTON'" class="buttonEditor shadow">
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <label class="text-xsm">{{ 'DASHBOARD.BUTTON.CUSTOM.BUTTON_LABEL' | translate }}</label>
+            <input #buttonLabel="ngModel" [(ngModel)]="reservationButtonConfig.label" buttonLabel
+                   class="form-control input-sm"
+                   name="buttonLable"
+                   placeholder="{{'DASHBOARD.SERVICE_ITEM.SERVICE_NAME_PLACEHOLDER' | translate}}"
+                   type="text"/>
+          </div>
+        </div>
+        <div class="col-2 offset-1">
+          <div class="form-group">
+            <label class="text-xsm"
+                   for="colorBackground">{{ 'DASHBOARD.BUTTON.CUSTOM.BUTTON_COLOR' | translate }}</label>
+            <input (change)="setBorderBackgroundColor()"
+                   [cpPosition]="'left'"
+                   [(colorPicker)]="reservationButtonConfig.colorBackground"
+                   [style.background]="reservationButtonConfig.colorBackground"
+                   class="form-control color-picker input-sm"
+                   id="colorBackground"/>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="form-group">
+            <label class="text-xsm" for="colorBackground">{{ 'DASHBOARD.BUTTON.CUSTOM.TEXT_COLOR' | translate }}</label>
+            <input (change)="setBorderLabelColor()"
+                   [cpPosition]="'left'"
+                   [(colorPicker)]="reservationButtonConfig.colorLabel"
+                   [style.background]="reservationButtonConfig.colorLabel"
+                   class="form-control color-picker  input-sm"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+
+            <label class="">{{ 'DASHBOARD.BUTTON.CUSTOM.EDGE' | translate }}</label>
+            <br>
+
+            <div class="row">
+              <div class="col-2">
+                <label class=" text-xsm form-check">
+                  <input [(ngModel)]="reservationButtonConfig.radius" checked class="form-check-input" id="edgeRadios1"
+                         name="exampleRadios"
+                         type="radio" value="50px">
+                  <div
+                    style="background-color: rgb(201, 201, 201); width: 60px; height: 30px !important; border-radius: 50px; margin-left: 10px;"></div>
+                </label>
+              </div>
+              <div class="col-2">
+                <label class="text-xsm form-check">
+                  <input [(ngModel)]="reservationButtonConfig.radius" class="form-check-input" id="edgeRadios2"
+                         name="exampleRadios"
+                         type="radio"
+                         value="8px">
+                  <div
+                    style="background-color: rgb(201, 201, 201); width: 60px; height: 30px !important; border-radius: 8px; margin-left: 10px;"></div>
+                </label>
+              </div>
+              <div class="col-2">
+                <label class="text-xsm form-check">
+                  <input [(ngModel)]="reservationButtonConfig.radius" class="form-check-input" id="edgeRadios3"
+                         name="exampleRadios"
+                         type="radio"
+                         value="0px">
+                  <div
+                    style="background-color: rgb(201, 201, 201); width: 60px; height: 30px !important; border-radius: 0; margin-left: 10px;"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--      <hr *ngIf="activeCard =='WIDGET'">-->
+      <!--      <div class="row" *ngIf="activeCard =='WIDGET'">-->
+      <!--        <div class="col-12">-->
+      <!--          <div class="form-group">-->
+      <!--            <label class="">{{'DASHBOARD.BUTTON.CUSTOM.FORM_SIZE' | translate}}</label>-->
+      <!--            <br>-->
+      <!--            <div class="row">-->
+      <!--              <div class="col-5">-->
+      <!--                <label class="form-check">-->
+      <!--                  <input [(ngModel)]="formSize" checked class="form-check-input" id="formSizeRadios1"-->
+      <!--                         name="formSizeRadios1"-->
+      <!--                         type="radio" value="SMALL_FORM">-->
+      <!--                  <div-->
+      <!--                    style="background: linear-gradient(90deg, rgba(201,201,201,1) 0%, rgba(201,201,201,1) 70%, rgba(201,201,201,1) 70%, rgba(180,180,180,1) 70%);-->
+      <!--                 width: 65px; height: 45px !important; border-radius: 2px; margin-left: 10px;"></div>-->
+      <!--                </label>-->
+      <!--              </div>-->
+      <!--              <div class="col-5 offset-1">-->
+      <!--                <label class="form-check">-->
+      <!--                  <input [(ngModel)]="formSize" class="form-check-input" id="formSizeRadios2" name="formSizeRadios2"-->
+      <!--                         type="radio" value="BIG_FORM">-->
+      <!--                  <div-->
+      <!--                    style="background: linear-gradient(90deg, rgba(201,201,201,1) 0%, rgba(201,201,201,1) 35%, rgba(201,201,201,1) 35%, rgba(180,180,180,1) 35%);-->
+      <!--                 width: 65px; height: 45px !important; border-radius: 2px; margin-left: 10px;"></div>-->
+      <!--                </label>-->
+      <!--              </div>-->
+      <!--            </div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label class="text-xsm">{{ 'DASHBOARD.BUTTON.CUSTOM.BUTTON_POSITION' | translate }}</label>
+            <br>
+            <div class="row">
+              <div class="col-2">
+                <label class="form-check">
+                  <input [(ngModel)]="reservationButtonConfig.buttonPosition" checked class="form-check-input"
+                         id="buttonPositionRadios1"
+                         name="buttonPositionRadios1"
+                         type="radio" value="RELATIVE">
+                  <div
+                    style="background: rgb(201,201,201);
+                     width: 60px; height: 42px !important; border-radius: 2px; margin-left: 10px;">
+                    <div style="background: white;
+                     width: 15px; height: 8px !important; border-radius: 2px; margin-left: 10px; position: relative; top: 15px; left: 5px;"></div>
+                  </div>
+                </label>
+              </div>
+              <div class="col-2">
+                <label class="text-xsm form-check">
+                  <input [(ngModel)]="reservationButtonConfig.buttonPosition" class="form-check-input"
+                         id="buttonPositionRadios2"
+                         name="buttonPositionRadios2"
+                         type="radio" value="BOTTOM_RIGHT">
+                  <div
+                    style="background: rgb(201,201,201);
+                     width: 60px; height: 42px !important; border-radius: 2px; margin-left: 10px;">
+                    <div style="background: white;
+                     width: 15px; height: 8px !important; border-radius: 2px; margin-left: 10px; position: relative; top: 30px; left: 33px;"></div>
+                  </div>
+                </label>
+              </div>
+
+              <div class="col-2">
+                <label class="text-xsm form-check">
+                  <input [(ngModel)]="reservationButtonConfig.buttonPosition" class="form-check-input"
+                         id="buttonPositionRadios3"
+                         name="buttonPositionRadios3"
+                         type="radio" value="BOTTOM_LEFT">
+                  <div
+                    style="background: rgb(201,201,201);
+                     width: 60px; height: 42px !important; border-radius: 2px; margin-left: 10px;">
+                    <div style="background: white;
+                     width: 15px; height: 8px !important; border-radius: 2px; margin-left: 10px; position: relative; top: 30px; right: 5px;"></div>
+                  </div>
+                </label>
+              </div>
+              <div class="col-2">
+                <label class="text-xsm form-check">
+                  <input [(ngModel)]="reservationButtonConfig.buttonPosition" class="form-check-input"
+                         id="buttonPositionRadios4"
+                         name="buttonPositionRadios4"
+                         type="radio" value="TOP_RIGHT">
+                  <div
+                    style="background: rgb(201,201,201);
+                     width: 60px; height: 42px !important; border-radius: 2px; margin-left: 10px;">
+                    <div style="background: white;
+                     width: 15px; height: 8px !important; border-radius: 2px; margin-left: 10px; position: relative; top: 4px; left: 33px;"></div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="activeCard == 'WIDGET'" class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label class="text-xsm">{{ 'DASHBOARD.BUTTON.CUSTOM.WIDGET_POSITION' | translate }}</label>
+            <br>
+            <div class="row">
+              <div class="col-2">
+                <label class="form-check">
+                  <input [(ngModel)]="widgetType" checked class="form-check-input"
+                         id="widgetPositionRadios1"
+                         name="widgetPositionRadios1"
+                         type="radio" value="POP_UP">
+                  <div
+                    style="background: rgb(201,201,201);
+                     width: 60px; height: 42px !important; border-radius: 2px; margin-left: 10px;">
+                    <div style="background: white;
+                     width: 40px; height: 22px !important; border-radius: 2px; margin-left: 10px; position: relative; top: 10px;"></div>
+                  </div>
+                </label>
+              </div>
+              <div class="col-2">
+                <label class="text-xsm form-check">
+                  <input [(ngModel)]="widgetType" class="form-check-input"
+                         id="widgetPositionRadios2"
+                         name="widgetPositionRadios2"
+                         type="radio" value="RIGHT_SIDE">
+                  <div
+                    style="background: rgb(201,201,201);
+                     width: 60px; height: 42px !important; border-radius: 2px; margin-left: 10px;">
+                    <div style="background: white;
+                     width: 15px; height: 38px !important; border-radius: 2px; margin-left: 10px; position: relative; top: 2px; left: 33px;"></div>
+                  </div>
+                </label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<ng-template #codeForServicesModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      {{ 'DASHBOARD.BUTTON.CUSTOM.CODE_FOR_SERVICES' | translate }}
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <span *ngFor="let serviceFromList of services; let idx = index;">
+        <app-dashboard-button-custom-web-for-service
+          [service]="serviceFromList"
+          [serviceName]="serviceFromList.name"
+          [radius]="reservationButtonConfig.radius"
+          [formSize]="formSize"
+          [colorBackground]="reservationButtonConfig.colorBackground"
+          [colorLabel]="reservationButtonConfig.colorLabel"
+          [label]="reservationButtonConfig.label"
+        >
+        </app-dashboard-button-custom-web-for-service>
+        <br>
+        <hr *ngIf="idx !== (services.length - 1)">
+        <br>
+      </span>
+    </div>
+  </div>
+</ng-template>
+<app-video-guide *ngIf="activeCard == 'CALENDAR_AVAILABILITY'"
+                 label="VIDEO_GUIDE.CALENDAR_AVAILABILITY.LABEL"
+                 description="VIDEO_GUIDE.CALENDAR_AVAILABILITY.DESCRIPTION"
+                 videoSrc="https://www.youtube.com/embed/Z8nRzHw-Br8"></app-video-guide>
+<app-video-guide *ngIf="activeCard != 'CALENDAR_AVAILABILITY'"
+                 label="VIDEO_GUIDE.WIDGET.LABEL"
+                 description="VIDEO_GUIDE.WIDGET.DESCRIPTION"
+                 videoSrc="https://www.youtube.com/embed/HtWVCKOyvC4"></app-video-guide>

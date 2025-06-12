@@ -1,0 +1,29 @@
+<div class="row">
+
+    <div class="offset-1 col-10 card text-center" style="min-height: 40vh;">
+        <br>
+        <br>
+        <div class="row text-left">
+            <div class="offset-1 col-6 ">
+                <h5 class="text-blue">{{'DASHBOARD.BUTTON.OTHER_PLATFORM_PAGE' | translate}}:</h5>
+                <br>
+                <div class="row">
+                    <div class="input-group col-12">
+                        <input #url [ngModel]="dashboardService.business.url | formUrl" class="form-control input-with-element-right"
+                               disabled
+                               name="buttonLabel" type="text"/>
+                        <div class="input-group-append">
+                            <button (click)="copyButtonLink()"
+                                    class="btn btn-sm  btn-outline-secondary button-with-element-left"><i
+                                    class="far fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<button ngxClipboard [cbContent]="dashboardService.url" class="btn btn-red text-uppercase">Kopírovat link</button>-->
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>

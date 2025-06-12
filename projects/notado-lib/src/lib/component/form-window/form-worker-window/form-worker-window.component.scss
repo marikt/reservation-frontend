@@ -1,0 +1,21 @@
+
+.worker-label {
+    font-size: 1.2em;
+    color: rgb(89, 89, 89);
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+:focus {
+    outline: none;
+}
+
+.worker-img {
+    width: 90px;
+}
+
+.gray-filter {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    opacity: 0.5;
+}

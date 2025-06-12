@@ -1,0 +1,290 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.CUSTOMER.TITLE"
+                            [faqItems]="[
+  {name: 'CUSTOMER', link: 'customer'}
+  ]"
+  >
+    <button (click)="save()"
+            *ngIf="dashboardService.business?.googleCalendarConnected"
+            class="btn btn-blue btn-sm pull-right"
+            id="save-customer-config"
+            placement="bottom">
+            <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+                  role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+      &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="container">
+    <div *ngIf="!dashboardService.business?.googleCalendarConnected" class="row">
+      <div class="col-5">
+        <h5>{{ 'DASHBOARD.CUSTOMER.CALENDAR_CONNECT' | translate }}:</h5>
+        <br>
+      </div>
+
+      <div class="col-md-4 col-12">
+        <app-google-calendar-connect-business-item></app-google-calendar-connect-business-item>
+      </div>
+    </div>
+
+    <div *ngIf="dashboardService.business?.googleCalendarConnected" class="row">
+      <div class="col-md-8 col-12">
+        <div class="row mb-4">
+          <div class="checkbox">
+            <label class="custom-control custom-checkbox">
+              <input #googleContactActive="ngModel"
+                     [ngModel]="dashboardService.business.googleContactConnected"
+                     (click)="dashboardService.business.googleContactConnected = !dashboardService.business.googleContactConnected; save();"
+                     class="form-check-input checkbox-lg"
+                     id="dashboard-googleContactConnected-active"
+                     name="serviceGroupActive"
+                     type="checkbox">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"
+                    style="position: relative; left: 10px; bottom: 0px;">{{ 'DASHBOARD.CUSTOMER.SYNC1' | translate }} <a
+                class="text-primary" href="https://contacts.google.com/"
+                target="_blank">{{ 'DASHBOARD.CUSTOMER.SYNC2' | translate }}</a> </span>
+              <br>
+              <label
+                style="position: relative; left: 10px; bottom: 6px;">({{ 'DASHBOARD.CUSTOMER.SYNC_LABEL' | translate }}
+                )</label>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs - only shown when Google Contacts are connected -->
+    <div *ngIf="dashboardService.business?.googleCalendarConnected && dashboardService.business?.googleContactConnected"
+         class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a (click)="activeCard='CONTACTS'" [class.active]="activeCard =='CONTACTS'" aria-current="page"
+               class="nav-link text-sm"><i
+              class="fas fa-address-book"></i> {{ 'DASHBOARD.CUSTOMER.CONTACTS_TAB' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="activeCard='BLACKLIST'" [class.active]="activeCard =='BLACKLIST'"
+               id="blacklist-tab"
+               class="nav-link text-sm"> <i class="fas fa-ban"></i>
+              &nbsp; {{ 'DASHBOARD.CUSTOMER.BLACKLIST_TAB' | translate }}</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="activeCard='WHITELIST'" [class.active]="activeCard =='WHITELIST'"
+               id="whitelist-tab"
+               class="nav-link text-sm"> <i class="fas fa-check-circle"></i>
+              &nbsp; {{ 'DASHBOARD.CUSTOMER.WHITELIST_TAB' | translate }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <br>
+
+    <!-- CONTACTS TAB -->
+    <div
+      *ngIf="dashboardService.business?.googleCalendarConnected && dashboardService.business?.googleContactConnected && activeCard=='CONTACTS'"
+      class="row">
+      <div class="col-md-8 col-12">
+        <app-customer-dropdown
+          *ngIf="customerLabels && customerLabel"
+          [customerLabel]="customerLabel"
+          [customerLabels]="customerLabels"
+          [readyToRefresh]="readyToRefresh"
+          [getLabelUrlFn]="getLabelForUrl.bind(this)"
+          [label]="'DASHBOARD.CUSTOMER.TAG'"
+          [dropdownId]="'dropdownMenuContactLabelLink'"
+          [inputId]="'contact-label-input-id'"
+          [inputName]="'contact-label-input-name'"
+          (selectLabelAction)="selectLabel($event)"
+          (deleteLabelAction)="deleteContactLabel()"
+          (deleteCacheAction)="deleteCache()">
+        </app-customer-dropdown>
+      </div>
+    </div>
+
+    <!-- BLACKLIST TAB -->
+    <div
+      *ngIf="dashboardService.business?.googleCalendarConnected && dashboardService.business?.googleContactConnected && activeCard=='BLACKLIST'"
+      class="row">
+      <div class="col-md-8 col-12">
+        <!-- Blacklist Label Selection -->
+        <app-customer-dropdown
+          *ngIf="customerLabels"
+          [customerLabel]="blacklistLabel"
+          [customerLabels]="customerLabels"
+          [readyToRefresh]="readyToRefresh"
+          [getLabelUrlFn]="getBlacklistLabelForUrl.bind(this)"
+          [label]="'DASHBOARD.CUSTOMER.BLACKLIST_TAG'"
+          [dropdownId]="'dropdownMenuBlacklistLabelLink'"
+          [inputId]="'blacklist-label-input-id'"
+          [inputName]="'blacklist-label-input-name'"
+          (selectLabelAction)="selectBlacklistLabel($event)"
+          (deleteLabelAction)="deleteBlacklistLabel()"
+          (deleteCacheAction)="deleteCache()">
+        </app-customer-dropdown>
+      </div>
+    </div>
+
+    <!-- WHITELIST TAB -->
+    <div
+      *ngIf="dashboardService.business?.googleCalendarConnected && dashboardService.business?.googleContactConnected && activeCard=='WHITELIST'"
+      class="row">
+      <div class="col-md-8 col-12">
+        <!-- Whitelist Label Selection -->
+        <app-customer-dropdown
+          *ngIf="customerLabels"
+          [customerLabel]="whitelistLabel"
+          [customerLabels]="customerLabels"
+          [readyToRefresh]="readyToRefresh"
+          [getLabelUrlFn]="getWhitelistLabelForUrl.bind(this)"
+          [label]="'DASHBOARD.CUSTOMER.WHITELIST_TAG'"
+          [dropdownId]="'dropdownMenuWhitelistLabelLink'"
+          [inputId]="'whitelist-label-input-id'"
+          [inputName]="'whitelist-label-input-name'"
+          (selectLabelAction)="selectWhitelistLabel($event)"
+          (deleteLabelAction)="deleteWhitelistLabel()"
+          (deleteCacheAction)="deleteCache()">
+        </app-customer-dropdown>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <!-- Customer table - only shown in CONTACTS tab -->
+  <div *ngIf="dashboardService.business?.googleContactConnected && activeCard=='CONTACTS'" class="row">
+    <table *ngIf="customers && customers.length > 0" class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">{{ 'DASHBOARD.CUSTOMER.LAST_VISIT' | translate }}</th>
+        <th scope="col">{{ 'DASHBOARD.CUSTOMER.VISIT_COUNT' | translate }}</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers; let idx = index;">
+        <td>
+          <img *ngIf="customer.fullPathImg"
+               [src]="customer.fullPathImg"
+               class="img-fluid rounded-circle"
+               style="border-top-right-radius: 8px;
+                   border-top-left-radius: 8px;"
+               width="30">
+        </td>
+        <td>{{ customer.name }}</td>
+        <td>
+          {{ customer.email }}
+        </td>
+        <td>
+          {{ customer.lastVisit }}
+        </td>
+        <td>
+          {{ customer.visitCount }} {{ 'DASHBOARD.CUSTOMER.TIMES' | translate }}
+        </td>
+        <td>
+          <a [href]="'https://contacts.google.com/person/' + customer.id" target="_blank">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Blacklisted customers table - only shown in BLACKLIST tab -->
+  <div *ngIf="dashboardService.business?.googleContactConnected && activeCard=='BLACKLIST'" class="row">
+    <table *ngIf="blacklistedCustomers && blacklistedCustomers.length > 0" class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of blacklistedCustomers; let idx = index;">
+        <td>
+          <img *ngIf="customer.fullPathImg"
+               [src]="customer.fullPathImg"
+               class="img-fluid rounded-circle"
+               style="border-top-right-radius: 8px; border-top-left-radius: 8px;"
+               width="30">
+        </td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!blacklistedCustomers || blacklistedCustomers.length === 0" class="col-12 text-center mt-3">
+      <p class="text-muted">No blacklisted customers found.</p>
+    </div>
+  </div>
+
+  <!-- Whitelisted customers table - only shown in WHITELIST tab -->
+  <div *ngIf="dashboardService.business?.googleContactConnected && activeCard=='WHITELIST'" class="row">
+    <table *ngIf="whitelistedCustomers && whitelistedCustomers.length > 0" class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of whitelistedCustomers; let idx = index;">
+        <td>
+          <img *ngIf="customer.fullPathImg"
+               [src]="customer.fullPathImg"
+               class="img-fluid rounded-circle"
+               style="border-top-right-radius: 8px; border-top-left-radius: 8px;"
+               width="30">
+        </td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.email }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!whitelistedCustomers || whitelistedCustomers.length === 0" class="col-12 text-center mt-3">
+      <p class="text-muted">No whitelisted customers found.</p>
+    </div>
+  </div>
+
+  <!-- Info alert for CONTACTS tab -->
+  <div *ngIf="dashboardService.business?.googleContactConnected && activeCard=='CONTACTS'" class="row">
+    <br>
+    <br>
+    <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+      {{ 'DASHBOARD.CUSTOMER.INFO' | translate }}
+    </div>
+  </div>
+
+  <!-- Info alert for BLACKLIST tab -->
+  <div *ngIf="dashboardService.business?.googleContactConnected && activeCard=='BLACKLIST'" class="row">
+    <br>
+    <br>
+    <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+      {{ 'DASHBOARD.CUSTOMER.BLACKLIST_INFO' | translate }}
+    </div>
+  </div>
+
+  <!-- Info alert for WHITELIST tab -->
+  <div *ngIf="dashboardService.business?.googleContactConnected && activeCard=='WHITELIST'" class="row">
+    <br>
+    <br>
+    <div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> &nbsp;
+      {{ 'DASHBOARD.CUSTOMER.WHITELIST_INFO' | translate }}
+    </div>
+  </div>
+
+</app-dashboard-card>
+

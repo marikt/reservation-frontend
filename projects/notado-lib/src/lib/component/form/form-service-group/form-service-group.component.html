@@ -1,0 +1,14 @@
+<span *ngIf="ready">
+  <app-form-template-fullscreen *ngIf="formTypeValue == formType.FULLSCREEN" cardName="SERVICE_GROUP">
+    <app-form-service-group-window></app-form-service-group-window>
+  </app-form-template-fullscreen>
+
+  <app-form-template-simple *ngIf="formTypeValue == formType.FULLSCREEN_SIMPLE" cardName="SERVICE_GROUP">
+      <app-form-service-group-window></app-form-service-group-window>
+  </app-form-template-simple>
+
+  <app-form-template-widget *ngIf="formTypeValue == formType.WIDGET" cardName="SERVICE_GROUP">
+    <app-form-service-group-window></app-form-service-group-window>
+  </app-form-template-widget>
+
+</span>

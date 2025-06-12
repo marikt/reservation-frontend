@@ -1,0 +1,661 @@
+<!--1 COLUMN ============================================================================================ -->
+<div class="row">
+  <div class="col-md-4 col-12 ">
+
+    <!--UPLOAD IMG ========================================================================================= -->
+    <div class="row">
+      <button (click)="openImageModal()" class="offset-1 btn btn-outline btn-outline-blue btn-sm">
+        {{'DASHBOARD.COMMON.ADD_IMAGE' | translate}} &nbsp; <i aria-hidden="true" class="fa fa-upload"></i>
+      </button>
+      <button *ngIf="service?.img"
+              (click)="service.img = null; service.fullPathImg = null; deleteImg()"
+              type="button"
+              class="btn btn-link btn-link-gray btn-sm">
+        <i class="far fa-trash-alt"></i></button>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <!--SERVICE TYPE ====================================================================================== -->
+    <label>{{'DASHBOARD.SERVICE_ITEM.TYPE_LABEL' | translate}}</label>
+    <div class="form-group" style="margin-bottom: 0px;">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="service.type"
+               [checked]="service.type === serviceType.APPOINTMENT"
+               class="form-check-input checkbox-lg"
+               id="APPOINTMENT"
+               name="APPOINTMENT"
+               style="position: relative; left: 0px;"
+               type="radio"
+               value="APPOINTMENT">
+
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; bottom: 5px;">{{'DASHBOARD.SERVICE_ITEM.TYPE.APPOINTMENT' | translate}}</span>
+        <br>
+        <label
+          style="position: relative; left: 10px; bottom: 9px;">{{'DASHBOARD.SERVICE_ITEM.TYPE.APPOINTMENT_LABEL' |
+          translate}}</label>
+      </label>
+    </div>
+    <div class="form-group" style="margin-bottom: 0px;">
+
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="service.type"
+               [checked]="service.type === serviceType.COURSE"
+               class="form-check-input checkbox-lg"
+               id="COURSE"
+               name="COURSE"
+               style="position: relative; left: 0px;"
+               type="radio"
+               value="COURSE">
+
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; bottom: 5px;">{{'DASHBOARD.SERVICE_ITEM.TYPE.COURSE' | translate}}
+          <app-video-tutorial btnType="tooltip"
+                              videoSrc="https://www.youtube.com/embed/STYdlM1TlT8"></app-video-tutorial>
+          </span>
+
+        <br>
+        <label
+          style="position: relative; left: 10px; bottom: 9px;">{{'DASHBOARD.SERVICE_ITEM.TYPE.COURSE_LABEL' |
+          translate}}</label>
+      </label>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 0px;">
+
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="service.type"
+               [checked]="service.type === serviceType.DEVICE"
+               class="form-check-input checkbox-lg"
+               id="DEVICE"
+               name="DEVICE"
+               style="position: relative; left: 0px;"
+               type="radio"
+               value="DEVICE">
+
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; bottom: 5px;">{{'DASHBOARD.SERVICE_ITEM.TYPE.DEVICE' | translate}}
+          </span>
+        <br>
+        <label
+          style="position: relative; left: 10px; bottom: 9px;">{{'DASHBOARD.SERVICE_ITEM.TYPE.DEVICE_LABEL' |
+          translate}}</label>
+      </label>
+    </div>
+
+    <hr>
+    <!--CAPACITY TYPE ====================================================================================== -->
+    <span>
+        <div class="form-group" style="margin-bottom: 0px;">
+          <label class="custom-control custom-checkbox">
+            <input [(ngModel)]="service.capacityType"
+                   [checked]="service.capacityType === 'ONE_TO_ONE'"
+                   class="form-check-input checkbox-lg"
+                   id="ONE_TO_ONE"
+                   name="ONE_TO_ONE"
+                   style="position: relative; left: 0px;"
+                   type="radio"
+                   value="ONE_TO_ONE">
+
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 5px;">{{'DASHBOARD.SERVICE_ITEM.INDIVIDUAL' | translate}}</span>
+            <br>
+            <label
+              style="position: relative; left: 10px; bottom: 9px;">{{'DASHBOARD.SERVICE_ITEM.INDIVIDUAL_LABEL' | translate}}</label>
+          </label>
+        </div>
+        <div class="form-group" style="margin-bottom: 0px;">
+
+          <label class="custom-control custom-checkbox">
+            <input [(ngModel)]="service.capacityType"
+                   [checked]="service.capacityType === 'MANY_TO_ONE'"
+                   class="form-check-input checkbox-lg"
+                   id="MANY_TO_ONE"
+                   name="MANY_TO_ONE"
+                   style="position: relative; left: 0px;"
+                   type="radio"
+                   value="MANY_TO_ONE">
+
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 5px;">{{'DASHBOARD.SERVICE_ITEM.MULTIPLE' | translate}}
+              <a class="btn btn-link-blue btn-sm"
+                 [href]="'https://www.notado.cz/faq/' + languageService.language + '/attendees'"
+                 style="position: relative; right: 20px; bottom: 1px;"
+                 target="_blank"> <i
+                class="far fa-question-circle"></i></a>
+            </span>
+            <br>
+            <label
+              style="position: relative; left: 10px; bottom: 9px;">{{'DASHBOARD.SERVICE_ITEM.MULTIPLE_LABEL' | translate}}
+
+
+
+            </label>
+          </label>
+        </div>
+      </span>
+    <!--CAPACITY NUMBER ==================================================================================== -->
+    <div class="form-group">
+      <label>{{'DASHBOARD.SERVICE_ITEM.MAX_CAPACITY'
+        | translate}}</label>
+      <div class="row">
+        <div class="input-group col-9">
+          <input #capacity="ngModel" [(ngModel)]="service.capacity"
+                 [disabled]="service.capacityType === 'ONE_TO_ONE'"
+                 class="form-control text-right"
+                 id="service-capacity-input"
+                 min="2"
+                 name="capacity"
+                 placeholder="10"
+                 type="number">
+          <div class="input-group-append">
+            <div class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.PEOPLE' | translate}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!--2 COLUMN ============================================================================================ -->
+
+  <div class="offset-md-1 col-md-7 col-12">
+
+
+    <form #form="ngForm" (ngSubmit)="saveService()">
+      <!--NAME ============================================================================================ -->
+      <hr class="d-block d-md-none">
+
+      <div class="form-group">
+        <label>{{'DASHBOARD.SERVICE_ITEM.SERVICE_NAME' | translate}}</label>
+        <input #name="ngModel" [(ngModel)]="service.name"
+               [class.is-invalid]="name?.invalid && showValidation"
+               [class.is-valid]="!name?.invalid"
+               class="form-control"
+               id="service-item-name"
+               name="service-name"
+               placeholder="{{'DASHBOARD.SERVICE_ITEM.SERVICE_NAME_PLACEHOLDER' | translate}}"
+               required
+               type="text">
+        <div class="invalid-feedback">
+          {{'COMMON.REQUIRED' | translate}}
+        </div>
+      </div>
+
+      <!--DESCRIPTION ========================================================================================== &ndash;&gt;-->
+
+      <div class="form-group">
+        <label>{{'DASHBOARD.SERVICE_ITEM.SERVICE_DESC' | translate}}</label>
+        <textarea
+          #description="ngModel"
+          [(ngModel)]="service.description"
+          class="form-control"
+          name="description"
+          placeholder="{{'DASHBOARD.SERVICE_ITEM.SERVICE_DESC_PLACEHOLDER' | translate}}"
+          rows="2"></textarea>
+        <small *ngIf="service.description && service.description.length > 150" class="text-warning">
+          <i class="fas fa-exclamation-triangle"></i> {{'DASHBOARD.SERVICE_ITEM.DESCRIPTION_TOO_LONG' | translate}}
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label>{{'DASHBOARD.SERVICE_ITEM.SERVICE_RATING' | translate}}</label>
+        <br>
+        <input
+          type="range"
+          id="ratingSlider"
+          [min]="0"
+          [max]="50"
+          style="width: 100%;"
+          [value]="this.service.config.rating"
+          [(ngModel)]="this.service.config.rating"
+          (input)="setRating($event.target.value)">
+      </div>
+
+      <div class="form-group" *ngIf="service.config?.badge">
+        <label>{{'DASHBOARD.SERVICE_ITEM.SERVICE_BADGE' | translate}}</label>
+        <div class="input-group">
+          <input [(ngModel)]="service.config.badge.label"
+                 name="badgeLabel"
+                 placeholder="Tento měsíc sleva 20%"
+                 class="form-control" type="text">
+          <div class="input-group-append">
+              <span class="input-group-text"> <i class="fas fa-circle"
+                                                 [class]="'text-' + service.config.badge.type"
+                                                 style="font-size: 1.5em;
+                                                  border-radius: 50px; border: 1px solid gray !important;"></i> </span>
+          </div>
+        </div>
+
+        <button class="btn btn-sm btn-link btn-color" (click)="service.config.badge.type = 'primary'"
+                type="button">
+          <i class="fas fa-circle text-primary"></i>
+        </button>
+
+        <button class="btn btn-sm btn-link btn-color" (click)="service.config.badge.type = 'secondary'"
+                type="button">
+          <i class="fas fa-circle text-secondary"></i>
+        </button>
+
+        <button class="btn btn-sm btn-link btn-color" (click)="service.config.badge.type = 'success'"
+                type="button">
+          <i class="fas fa-circle text-success"></i>
+        </button>
+
+        <button class="btn btn-sm btn-link btn-color" (click)="service.config.badge.type = 'light'"
+                type="button">
+          <i class="fas fa-circle text-light"
+             style="border-radius: 50px; border: 1px solid gray !important;"></i>
+        </button>
+
+        <button class="btn btn-sm btn-link btn-color" (click)="service.config.badge.type = 'danger'"
+                type="button">
+          <i class="fas fa-circle text-danger"></i>
+        </button>
+
+        <button class="btn btn-sm btn-link btn-color" (click)="service.config.badge.type= 'warning'" type="button">
+          <i class="fas fa-circle text-warning"></i>
+        </button>
+      </div>
+      <hr *ngIf="service.type === 'COURSE'">
+      <div *ngIf="service.type === 'COURSE'" class="form-group">
+
+        <label>
+          {{'DASHBOARD.SERVICE_ITEM.SERVICE_DURATION' | translate}}
+        </label>
+        <div class="row">
+          <div class="input-group col-5">
+            <input #hoursCmp="ngModel"
+                   [(ngModel)]="service.duration.hours"
+                   [class.is-invalid]="service.duration.hours > 23"
+                   class="form-control text-right"
+                   id="hoursCmp"
+                   name="hoursCmp"
+                   placeholder="1"
+                   style=""
+                   min="0"
+                   max="23"
+                   type="number">
+
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.HOURS' | translate}}</span>
+            </div>
+
+            <div *ngIf="service.duration.hours > 23" class="invalid-feedback">max 23</div>
+          </div>
+          <div class="input-group col-5">
+            <input #minutesCmp="ngModel"
+                   [(ngModel)]="service.duration.minutes"
+                   [class.is-invalid]="service.duration.minutes > 59"
+                   class="form-control text-right"
+                   id="minutesCmp"
+                   name="minutesCmp"
+                   placeholder="30"
+                   style=""
+                   min="0"
+                   max="59"
+                   type="number">
+
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.MINUTES' | translate}}</span>
+            </div>
+
+            <div class="invalid-feedback">max 59</div>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!--          TODO add those configs -->
+      <!--          <button-->
+      <!--            *ngIf="formConfigService.window.name == 'SERVICE' && (!formConfigService.window.config || !formConfigService.window.config?.hideDuration)"-->
+      <!--            (click)="hideServiceDuration(formConfigService.window)"-->
+      <!--            class="btn-link btn btn-link-blue edit-btn btn-sm">-->
+      <!--            <i class="fas fa-minus"></i> {{'DASHBOARD.FORM_WINDOW.SERVICE_DURATION_HIDE' | translate}}-->
+      <!--          </button>-->
+      <!--          <button *ngIf="formConfigService.window.name == 'SERVICE' && formConfigService.window.config?.hideDuration"-->
+      <!--                  (click)="formConfigService.window.config.hideDuration = false"-->
+      <!--                  class="btn-link btn btn-link-blue edit-btn  btn-sm">-->
+      <!--            <i class="fas fa-plus"></i> {{'DASHBOARD.FORM_WINDOW.SERVICE_DURATION_SHOW' | translate}}-->
+      <!--          </button>-->
+      <!--          <br>-->
+      <!--          <button-->
+      <!--            *ngIf="formConfigService.window.name == 'SERVICE' && (!formConfigService.window.config || !formConfigService.window.config?.hidePrice)"-->
+      <!--            (click)="hideServicePrice(formConfigService.window)"-->
+      <!--            class="btn-link btn btn-link-blue edit-btn  btn-sm">-->
+      <!--            <i class="fas fa-minus"></i> {{'DASHBOARD.FORM_WINDOW.SERVICE_PRICE_HIDE' | translate}}-->
+      <!--          </button>-->
+      <!--          <button *ngIf="formConfigService.window.name == 'SERVICE' && formConfigService.window.config?.hidePrice"-->
+      <!--                  (click)="formConfigService.window.config.hidePrice = false"-->
+      <!--                  class="btn-link btn btn-link-blue edit-btn btn-sm">-->
+      <!--            <i class="fas fa-plus"></i> {{'DASHBOARD.FORM_WINDOW.SERVICE_PRICE_SHOW' | translate}}-->
+      <!--          </button>-->
+      <!--WORKERS ============================================================================================ -->
+      <div *ngIf="serviceWorkers && service.type === serviceType.APPOINTMENT" class="form-group"
+           style="margin-bottom: -10px;">
+        <label>{{'DASHBOARD.SERVICE_ITEM.WORKERS' | translate}}</label>
+        <a class="btn btn-sm btn-link" id="add-worker-button"
+           routerLink="/dashboard/dashboard-worker">
+          <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.WORKER.ADD_WORKER' | translate}}
+        </a>
+        <br *ngIf="!serviceWorkers || serviceWorkers.length === 0 || noWorkerForService">
+        <label *ngIf="!serviceWorkers || serviceWorkers.length === 0 || noWorkerForService"
+               routerLink="/dashboard/dashboard-service" class="text-danger">
+          <i class="fas fa-exclamation-triangle "></i> {{'DASHBOARD.SERVICE_ITEM.NO_WORKER' | translate}}
+        </label>
+
+        <span *ngFor="let serviceWorker of serviceWorkers">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input (change)="evaluateNoWorkerForService()"
+                         [(ngModel)]="serviceWorker.active"
+                         [id]="'workerActive' + serviceWorker.worker.id"
+                         [name]="serviceWorker.worker.name + serviceWorker.worker.id"
+                         class="form-check-input"
+                         type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; top: 5px;">{{serviceWorker.worker.name}}
+
+                    <a [routerLink]="['/dashboard/dashboard-worker-item', serviceWorker.worker?.id]"
+                       style="margin-left: 10px;">
+                        <small><i class="fas fa-sign-in-alt"></i></small></a>
+            </span>
+
+                  <br>
+                </label>
+              </div>
+            </span>
+      </div>
+
+      <div *ngIf="serviceDevices && service.type === serviceType.DEVICE" class="form-group"
+           style="margin-bottom: -10px;">
+        <label>{{'DASHBOARD.SERVICE_ITEM.WORKERS' | translate}}</label>
+        <a class="btn btn-sm btn-link" id="add-device-button"
+           routerLink="/dashboard/dashboard-device">
+          <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.DEVICE.ADD_DEVICE' | translate}}
+        </a>
+        <br *ngIf="!serviceDevices || serviceDevices.length === 0 || noDeviceForService">
+        <label *ngIf="!serviceDevices || serviceDevices.length === 0 || noDeviceForService"
+               routerLink="/dashboard/dashboard-service" class="text-danger">
+          <i class="fas fa-exclamation-triangle "></i> {{'DASHBOARD.SERVICE_ITEM.NO_DEVICE' | translate}}
+        </label>
+
+        <span *ngFor="let serviceDevice of serviceDevices">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+
+                  <input
+                    (change)="evaluateNoDeviceForService()"
+                    [(ngModel)]="serviceDevice.active"
+                    [id]="'deviceActive' + serviceDevice.device.id"
+                    [name]="serviceDevice.device.name + serviceDevice.device.id"
+                    class="form-check-input"
+                    type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; bottom: -3px;">{{serviceDevice.device.name}}
+                    <a [routerLink]="['/dashboard/dashboard-device-item', serviceDevice.device?.id]"
+                       style="margin-left: 10px;">
+                                              <small><i class="fas fa-sign-in-alt"></i></small></a>
+                  </span>
+                  <br>
+                </label>
+              </div>
+            </span>
+      </div>
+
+      <div
+        *ngIf="service.type === serviceType.COURSE"
+        class="alert alert-info">
+        {{'DASHBOARD.SERVICE_ITEM.COURSE_EXPL' | translate}}
+        <a class="btn btn-link-blue btn-sm"
+           *ngIf="service.type === serviceType.COURSE"
+           [href]="'https://www.notado.cz/faq/' + languageService.language + '/course'"
+           style="position: relative; right: 20px; bottom: 1px;"
+           target="_blank"> {{'FAQ.COURSE.TITLE' | translate}} &nbsp; <i
+          class="fas fa-external-link-alt"></i></a>
+        <br>
+      </div>
+
+      <!--CALENDAR ============================================================================================ -->
+
+      <app-calendar-dropdown-with-refresh
+        (reloadCalendarsAction)="loadCalendars(loadEventNames())"
+        (selectCalendarAction)="selectCalendar($event)"
+        *ngIf="service.type === serviceType.COURSE"
+        [calendar]="calendar"
+        [calendars]="calendars"
+        label="DASHBOARD.WORKER_ITEM.CALENDAR_ID"
+        labelTooltip="DASHBOARD.SERVICE_ITEM.CALENDAR_ID_TOOLTIP">
+      </app-calendar-dropdown-with-refresh>
+
+      <br>
+      <span *ngIf="service.type === serviceType.COURSE && courseNames && courseNames.length > 0">
+      <div
+        class="form-group">
+        <label>{{'DASHBOARD.SERVICE_ITEM.SERVICE_EVENT_NAME' | translate}}
+          <i [ngbTooltip]="'DASHBOARD.SERVICE_ITEM.SERVICE_EVENT_NAME_TOOLTIP' | translate"
+             class="fas fa-info-circle"></i></label>
+        <div class="input-group ">
+
+          <input
+            [ngModel]="service.eventName"
+            class="form-control text-right radius-right-none input-sm"
+            required
+            disabled
+            id="business-selection-menu"
+            name="business-selection-menu"
+            type="text">
+
+          <div class="input-group-append input-group-text-course-name" ngbDropdown>
+            <button class="btn btn-outline-secondary btn-sm" id="dropdownMenuLinkToSelectCurrency"
+                    ngbDropdownToggle
+                    placement="bottom"
+                    style="margin-left: 4px;"
+                    type="button">
+            </button>
+            <div aria-labelledby="dropdownMenuLinkToSelectCurrency" ngbDropdownMenu>
+                  <span *ngFor="let courseName of courseNames; let idx = index;">
+                    <button (click)="service.eventName = courseName" class="dropdown-item" ngbDropdownItem
+                            type="button">{{courseName}}</button>
+                  </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!--      <div class="form-group" style="">-->
+        <!--        <div class="checkbox">-->
+        <!--          <label class="custom-control custom-checkbox">-->
+        <!--            <input #courseOnlyWholeCourse="ngModel"-->
+        <!--                   [(ngModel)]="service.config.bookOnlyWholeCourse"-->
+        <!--                   class="form-check-input checkbox-lg"-->
+        <!--                   id="courseOnlyWholeCourse"-->
+        <!--                   name="courseOnlyWholeCourse"-->
+        <!--                   type="checkbox">-->
+        <!--            <span class="custom-control-indicator"></span>-->
+        <!--            <span class="custom-control-description"-->
+        <!--                  style="position: relative; left: 10px; bottom: -5px;">{{'DASHBOARD.SERVICE_ITEM.WHOLE_COURSE_ONLY' | translate}}</span>-->
+        <!--            <br>-->
+        <!--          </label>-->
+        <!--        </div>-->
+        <!--      </div>-->
+      </span>
+
+      <div
+        *ngIf="service.type === serviceType.COURSE && service.calendarId && (!courseNames || courseNames.length === 0)"
+        class="alert alert-info">
+        {{'DASHBOARD.SERVICE_ITEM.SERVICE_EVENT_NONAME' | translate}}
+        <button class="btn btn-sm btn-primary" (click)="readNewlyCreatedCoursesFromCalendar()"
+                type="button">{{'DASHBOARD.SERVICE_ITEM.SERVICE_EVENT_NONAME_BUTTON_LABEL' | translate}}</button>
+      </div>
+      <div
+        *ngIf="service.type === serviceType.COURSE && service.calendarId && (!courseNames || courseNames.length === 0) && noCoursesFound"
+        class="alert alert-danger">
+        {{'DASHBOARD.SERVICE_ITEM.SERVICE_EVENT_NONAME_FOUND' | translate}} &nbsp;
+        &nbsp; <strong>{{this.calendar.name}}</strong>
+      </div>
+
+      <!--ACTIVE ========================================================================================== -->
+
+      <br>
+      <br>
+      <br>
+      <br>
+    </form>
+
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid2">
+      <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+      &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+    <button (click)="modalService.open(serviceDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+            placement="bottom">
+      <i class="far fa-trash-alt"></i> {{'DASHBOARD.SERVICE_ITEM.DELETE' | translate}}
+    </button>
+  </div>
+</div>
+
+<!-- =================================================================================================== -->
+<!--ADVANCE ============================================================================================ -->
+<!-- =================================================================================================== -->
+
+
+<!--IMAGE UPLOAD modal ==================================================== -->
+<ng-template #serviceImageUpload let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong> {{'DASHBOARD.SERVICE_ITEM.ADD_IMAGE' | translate}} </strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+
+      <span *ngIf="resizeImageService.state === 'IMG_SELECTED'">
+          <app-image-resize width="170"></app-image-resize>
+      </span>
+
+      <div *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'" class="text-center offset-1 col-10">
+        <div class="row">
+
+          <div class="offset-0 col-12">
+            <div class="alert alert-danger"><i class="fas fa-info-circle"></i> &nbsp;
+              {{'DASHBOARD.OPTIMIZE_IMG' | translate}} <a href="https://tinypng.com" target="_blank">tinypng.com</a>
+            </div>
+            <br>
+
+            <div class="">
+              <span class="btn btn-link-blue btn-file"
+                    style="position: relative; right: 18px; bottom: 2px;"> <strong>{{'DASHBOARD.COMMON.SELECT_IMG' | translate}}</strong> &nbsp; <i
+                aria-hidden="true" class="fa fa-upload"></i>
+                    <input [uploader]="uploader" ng2FileSelect type="file">
+                  </span>
+              <br>
+              <br>
+
+              <div class="row text-center">
+                <h6><span>  {{'COMMON.OR' | translate}}    </span></h6>
+              </div>
+
+
+              <form (submit)="searchForPexelImg()" style="margin-top: 30px;">
+                <div class="row">
+                  <div class="col-12">
+                    <label>{{'DASHBOARD.COMMON.SELECT_IMG_FROM_GALLERY' | translate}}</label>
+                    <div class="input-group">
+                      <input #name="ngModel"
+                             [(ngModel)]="searchKey"
+                             class="form-control"
+                             id="pexelSearchInput"
+                             name="nameServiceForSearch"
+                             placeholder="Massage"
+                             type="text">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">
+                          <button class="btn btn-link-gray btn-link" style="padding: 1px;">
+                                <i class="fas fa-search"></i>
+                          </button>
+                        </span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 30px;">
+            <div *ngFor="let img of imgs" class="col-2" style="margin-bottom: 30px;">
+              <a (click)="selectPexelImg(img.src.medium)">
+                <img *ngIf="img" [src]="img.src.small" class="img-fluid rounded"
+                     style="max-width: 120px;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #serviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.SERVICE_ITEM.DELETE_CONFIRM' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}
+      </button>
+      <button class="btn-blue btn btn-sm"
+              (click)="deleteService(service)">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #showDuration>
+  <img class="img-shadow rounded"
+       src="../../../../../resources/dashboard/duration-in-booking.png" style="width: 1000px; margin: 0 auto;">
+</ng-template>

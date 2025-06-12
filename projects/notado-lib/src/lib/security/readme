@@ -1,0 +1,8 @@
+
+
+How to use:
+
+1. Copy whole security folder to your project
+2. Into app.module.ts add all services and components
+3. Configuration Copy bootstraping AppModule from main.ts - use it in your project 
+4. In angular-cli.json add "./app/security/style/social.css"

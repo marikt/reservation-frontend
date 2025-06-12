@@ -1,0 +1,72 @@
+<div class="row">
+
+    <div class="offset-1 col-10 card text-center" style="min-height: 40vh;">
+        <br>
+        <br>
+        <div class="row text-left">
+            <div class="offset-1 col-6 ">
+                <h6 class="text-grey">
+                  {{'DASHBOARD.BUTTON.WIX.IF_YOU_HAVE' | translate}}:
+                </h6>
+            </div>
+            <div class="offset-1 col-3">
+                <app-video-tutorial
+                        btnType="blue"
+                        label="VIDEO_LABEL.TUTORIAL"
+                        videoSrc="https://www.youtube.com/embed/KcW5D1V1Myo"></app-video-tutorial>
+            </div>
+        </div>
+        <div class="row text-left">
+            <div class="offset-1 col-6 ">
+                <br>
+                <h5 class="text-blue"> 1. {{'DASHBOARD.BUTTON.WIX.STEP1A' | translate}} <b><a href="https://www.wix.com"
+                                                                 target="_blank">www.wix.com</a></b>
+                  {{'DASHBOARD.BUTTON.WIX.STEP1B' | translate}}</h5>
+                <br>
+                <h5 class="text-blue"> 2. {{'DASHBOARD.BUTTON.WIX.STEP2' | translate}}.</h5>
+                <br>
+                <img class="img-border" src="../../../../../resources/add-button/wix/1.png" style="max-width: 700px; ">
+
+                <br>
+                <br>
+                <br>
+
+                <h5 class="text-blue"> 3.  {{'DASHBOARD.BUTTON.WIX.STEP3' | translate}}.</h5>
+
+                <br>
+
+                <img class="img-border" src="../../../../../resources/add-button/wix/2.png" style="max-width: 700px; ">
+
+                <br>
+                <br>
+                <br>
+
+                <h5 class="text-blue"> 4.  {{'DASHBOARD.BUTTON.WIX.STEP4' | translate}}: </h5>
+                <br>
+                <div class="row">
+                    <div class="input-group col-12">
+                        <input #url [ngModel]="dashboardService.business.url | formUrl" class="form-control input-with-element-right"
+                               disabled name="buttonLabel" type="text"/>
+                        <div class="input-group-append">
+                            <button (click)="copyButtonLink()"
+                                    class="btn btn-outline-secondary btn-sm button-with-element-left"><i
+                                    class="far fa-copy"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <img class="img-border" src="../../../../../resources/add-button/wix/3.png" style="max-width: 700px; ">
+                <br>
+                <br>
+                <br>
+
+                <h5 class="text-blue"> {{'DASHBOARD.BUTTON.GOOD_WORK' | translate}} <i class="far fa-smile"></i></h5>
+                <br>
+
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>

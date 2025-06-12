@@ -1,0 +1,152 @@
+<app-dashboard-card *ngIf="stripeIntegrationService.stripeIntegrationBusinessConfig" backLink="">
+
+  <app-dashboard-card-label label="DASHBOARD.PAYMENT.TITLE">
+    <button (click)="stripeIntegrationService.saveStripeIntegration()"
+            class="btn btn-blue btn-sm pull-right "
+            id="save-payment-settings"
+            placement="bottom">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+        <span class="sr-only">Loading...</span>
+      </span>
+
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+  </app-dashboard-card-label>
+
+  <div *ngIf="stripeIntegrationService.stripeIntegrationBusinessConfig" class="container">
+
+
+    <!-- TOUR END ============================================================================================= -->
+
+
+    <!--STEP 1 ======== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  -->
+
+    <div class="row">
+      <div class="col-10">
+
+        <h6 class="text-blue">{{'DASHBOARD.PAYMENT.INSERT_KEY' | translate}}</h6>
+        <br>
+
+        <label>Publishable key <a [ngbPopover]="popPublicKey" placement="top" type="button">
+          <i class="far fa-question-circle text-primary"> </i></a></label>
+        <textarea [(ngModel)]="stripeIntegrationService.stripeIntegrationBusinessConfig.keyPublic"
+                  class="form-control"
+                  rows="3"
+                  id="keyPublicTextarea"
+                  placeholder="pk_iLVDY4VLLMlGOV4fQ2Co71nZ3dWLM31SYsOcYIx32ABLNGmJv0FI9SLm0swxi4D60z2Mn46trOwndasdfasdfasdf"></textarea>
+        <br>
+
+        <label>Secret key <a [ngbPopover]="popPrivateKey" placement="top" type="button">
+          <i class="far fa-question-circle text-primary"> </i></a></label>
+
+        <div class="secret-key-container">
+          <!-- Display mode -->
+          <div *ngIf="!isEditingSecretKey" class="secret-key-display">
+            <span class="secret-key-text">
+              {{
+              stripeIntegrationService.stripeIntegrationBusinessConfig.hiddenKeyPrivate == null ?
+                'private_key.......' :
+                stripeIntegrationService.stripeIntegrationBusinessConfig.hiddenKeyPrivate
+              }}
+            </span>
+            <button class="btn btn-outline-secondary btn-sm"
+                    (click)="toggleSecretKeyEdit()"
+                    id="keyPrivateEdit"
+                    aria-label="Edit secret key">
+              <i class="fas fa-edit"></i>      {{'DASHBOARD.COMMON.EDIT' | translate}}
+            </button>
+          </div>
+
+          <!-- Edit mode -->
+          <div *ngIf="isEditingSecretKey" class="secret-key-edit-form">
+            <form [formGroup]="secretKeyForm" (ngSubmit)="savePrivateKey()">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text"
+                         formControlName="privateKey"
+                         class="form-control"
+                         id="secretKeyInput"
+                         placeholder="Enter your secret key here"
+                         autocomplete="off">
+                </div>
+
+                <div *ngIf="secretKeyForm.get('privateKey').invalid && secretKeyForm.get('privateKey').touched" class="text-danger mt-1">
+                  <small *ngIf="secretKeyForm.get('privateKey').errors?.required">Secret key is required</small>
+                  <small *ngIf="secretKeyForm.get('privateKey').errors?.minlength">Secret key must be at least 10 characters</small>
+                </div>
+
+                <div class="mt-2 mb-2">
+                  <small class="text-muted">
+                    <i class="fas fa-lock"></i> {{'DASHBOARD.PAYMENT.SECRET_KEY_SECURE' | translate}}
+                  </small>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-outline-secondary btn-sm mr-2" (click)="cancelSecretKeyEdit()">
+                  {{'DASHBOARD.COMMON.CANCEL' | translate}}
+                </button>
+                <button type="submit"
+                        class="btn btn-blue btn-sm"
+                        id="save-private-key"
+                        [disabled]="secretKeyForm.invalid || isSubmitting">
+                  <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
+                  <i *ngIf="!isSubmitting" class="far fa-save mr-1"></i>
+                  {{'DASHBOARD.COMMON.SAVE' | translate}}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="row">
+      <div class="alert alert-info">
+        {{'DASHBOARD.PAYMENT.INFO' | translate}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="alert alert-info">
+        <i class="fas fa-gift"></i> {{'DASHBOARD.PAYMENT.VOUCHER_INFO' | translate}}
+      </div>
+    </div>
+
+
+    <!-- TOUR ================================================================================================ -->
+    <div class="row">
+      <a class="btn btn-link-blue btn-sm"
+         [href]="'https://www.notado.cz/faq/' + languageService.language + '/payment'" target="_blank">
+        {{'DASHBOARD.SERVICE_ITEM.PAYMENT.HOW' | translate}} <i class="fas fa-external-link-alt"></i></a>
+    </div>
+
+
+    <!--STEP 3 ======== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ==== ====  -->
+
+
+  </div>
+</app-dashboard-card>
+
+<ng-template #popPublicKey>
+  <img class="img-shadow rounded"
+       src="../../../../resources/form_payment/stripe-api-key-1.png" style="width: 810px; margin: 0 auto;">
+</ng-template>
+
+<ng-template #popPrivateKey>
+  <img class="img-shadow rounded"
+       src="../../../../resources/form_payment/stripe-api-key-2.png" style="width: 810px; margin: 0 auto;">
+</ng-template>
+
+
+
+
+<app-video-guide
+  label="VIDEO_GUIDE.PAYMENT.LABEL"
+  description="VIDEO_GUIDE.PAYMENT.DESCRIPTION"
+  videoSrc="https://www.youtube.com/embed/P-jUaEgK-ow"></app-video-guide>
+

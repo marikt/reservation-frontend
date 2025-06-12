@@ -1,0 +1,15 @@
+<div class="card button-cursor text-secondary text-center" [class.bg-white]="isChecked"
+     style="background: transparent; margin-bottom: 15px; padding: 8px 5px;" [class.checked]="isChecked" (click)="toggleCheck()">
+  <h3 class="card-img-top" [class.text-blue]="isChecked" style="margin-top: 5px; margin-bottom: 5px; font-size: 1.5rem;">
+    <i class="{{ icon }}" aria-hidden="true"></i>
+  </h3>
+  <div class="card-body" style="padding: 0.15rem;">
+    <p class="label" [class.text-blue]="isChecked" style="font-size: 0.9rem; margin-bottom: 5px;">{{ 'TRY_BUTTON_CONFIG.' + label | translate}}</p>
+  </div>
+
+  <span class="check-icon">
+    <i class="far fa-square" *ngIf="!isChecked"></i>
+    <i class="fas fa-check-square" *ngIf="isChecked"></i>
+  </span>
+</div>
+

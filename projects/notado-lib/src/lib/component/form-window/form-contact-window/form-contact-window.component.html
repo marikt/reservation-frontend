@@ -1,0 +1,107 @@
+<div class="form-group offset-md-2 col-md-8 offset-1 col-10">
+  <label [style.color]="formService.template?.textColor">{{ 'FORM.NAME' | translate }}*</label>
+  <!--  <label class="pull-right" [style.color]="formService.template?.textColor">({{ 'FORM.NOT_REQUIRED' | translate }})</label>-->
+  <input #name="ngModel"
+         [(ngModel)]="formService.calendarEvent.name"
+         class="form-control"
+         [class.is-invalid]="name.invalid && !isValid()"
+         [class.is-valid]="name.valid"
+         name="name"
+         placeholder="Jan Novak"
+         required
+         id="form-contact-name"
+         type="text">
+  <div class="invalid-feedback">
+    {{ 'FORM.REQUIRED' | translate }}
+  </div>
+</div>
+<div class="form-group offset-md-2 col-md-8 offset-1 col-10">
+
+
+  <label [style.color]="formService.template?.textColor"> {{ 'FORM.EMAIL' | translate }}*</label>
+  <input #email="ngModel"
+         [(ngModel)]="formService.calendarEvent.email"
+         [class.is-invalid]="(email.invalid && !isValid() && !isValidEmail()) || emailAlreadyExists || emailBlacklisted || (whitelistEnabled && emailNotWhitelisted)"
+         [class.is-valid]="email.valid && isValidEmail() && !emailAlreadyExists && !emailBlacklisted && !(whitelistEnabled && emailNotWhitelisted)"
+         [style.border-radius]="formService.template?.buttonRadius"
+         class="form-control"
+         email
+         name="email"
+         placeholder="jannovak@seznam.cz"
+         required
+         type="text"
+         id="form-contact-email">
+  <div class="invalid-feedback" *ngIf="!emailAlreadyExists && !emailBlacklisted && !(whitelistEnabled && emailNotWhitelisted)">
+    {{ 'FORM.REQUIRED' | translate }}
+  </div>
+  <div class="invalid-feedback" *ngIf="emailAlreadyExists">
+    {{ 'FORM.EMAIL_ALREADY_EXISTS' | translate }} <!-- This email is already registered for this event -->
+  </div>
+  <div class="invalid-feedback" id="emailBlacklistedErrorMsg" *ngIf="emailBlacklisted">
+    {{ 'FORM.EMAIL_NOT_AVAILABLE' | translate }} <!-- Generic message for blacklisted emails -->
+  </div>
+  <div class="invalid-feedback" id="emailNotWhitelistedErrorMsg" *ngIf="whitelistEnabled && emailNotWhitelisted">
+    {{ 'FORM.EMAIL_NOT_AVAILABLE' | translate }} <!-- Message for emails not in whitelist -->
+  </div>
+</div>
+
+<div *ngIf="window?.config?.phone" class="form-group offset-md-2 col-md-8 offset-1 col-10">
+  <label [style.color]="formService.template?.textColor">{{ 'FORM.PHONE' | translate }}*</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text" id="flag-addon1">
+      <i *ngIf="!phone || !isValidPhonePrefix(phone)" class="fas fa-mobile-alt"></i>
+      <span *ngIf="phone && isValidPhonePrefix(phone)" class="fi flag-circle" [class]="getFlagClass(phone)"></span>
+    </span>
+    </div>
+    <input #phoneComponent="ngModel"
+           [(ngModel)]="phone"
+           [class.is-invalid]="phoneComponent.invalid && !isValid()"
+           [class.is-valid]="phoneComponent.valid"
+           [style.border-radius]="formService.template?.buttonRadius"
+           class="form-control"
+           name="phoneComponent"
+           placeholder="Enter phone number"
+           id="form-contact-phone"
+           (input)="onPhoneChange()"
+           [mask]="dynamicMask"
+           required
+           aria-describedby="flag-addon1"
+           preventDeletePrefix
+           type="text">
+    <div class="invalid-feedback">
+      {{ 'FORM.REQUIRED' | translate }}
+    </div>
+  </div>
+
+  <!--  <div class="input-group">-->
+  <!--    <div class="input-group-prepend">-->
+  <!--    <span class="input-group-text" id="flag-addon1">-->
+  <!--      <i *ngIf="!phone || (!phone.match('420') && !phone.match('421'))" class="fas fa-mobile-alt"></i>-->
+  <!--      <img src="../resources/lang/cs.png" *ngIf="phone && phone.length >=3 && phone.substr(0, 3).match('420')" width="20"/>-->
+  <!--      <img src="../resources/lang/sk.png" *ngIf="phone && phone.length >=3 && phone.substr(0, 3).match('421')" width="20"/>-->
+  <!--    </span>-->
+  <!--    </div>-->
+
+  <!--    <input #phoneComponent="ngModel"-->
+  <!--           [(ngModel)]="phone"-->
+  <!--           [class.is-invalid]="phoneComponent.invalid && !isValid()"-->
+  <!--           [class.is-valid]="phoneComponent.valid"-->
+  <!--           [style.border-radius]="formService.template?.buttonRadius"-->
+  <!--           class="form-control"-->
+  <!--           name="phoneComponent"-->
+  <!--           placeholder="+420 735 063 099"-->
+  <!--           id="form-contact-phone"-->
+  <!--           mask='(+000) 000-000-000'-->
+  <!--           required-->
+  <!--           aria-describedby="flag-addon1"-->
+  <!--           preventDeletePrefix-->
+  <!--           type="text">-->
+  <!--    <div class="invalid-feedback">-->
+  <!--      {{ 'FORM.REQUIRED' | translate }}-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+</div>
+<br>
+

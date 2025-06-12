@@ -1,0 +1,33 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+
+  <app-dashboard-card-label label="DASHBOARD.CALENDAR_AVAILABILITY.TITLE">
+    <a class="btn btn-blue btn-sm" target="_blank" [href]="(dashboardService.business.url | formUrl) + '/calendar-availability'">
+      <i class="fas fa-external-link-alt"></i>
+    </a>
+
+<!--    <a class="btn btn-blue btn-sm" routerLink="/form/calendar-availability">-->
+<!--      <i class="fas fa-external-link-alt"></i> DEV-->
+<!--    </a>-->
+  </app-dashboard-card-label>
+  <p>
+    {{'DASHBOARD.CALENDAR_AVAILABILITY.STYLE' | translate}}
+  </p>
+  <textarea class="form-control" cols="200" disabled rows="2"
+            style="white-space: pre; overflow: scroll;"
+            wrap="off">{{calendarAvailabilityLink}}</textarea>
+
+  <button (click)="copyButtonLink()"
+          class="btn btn-outline-blue btn-sm text-uppercase"><i
+    class="far fa-copy"></i> {{'DASHBOARD.BUTTON.CUSTOM.COPY_CODE' | translate}}</button>
+
+  <br>
+  <br>
+  <br>
+
+  <div class="alert alert-warning"><i class="fas fa-vial"></i> &nbsp;
+    {{'DASHBOARD.CALENDAR_AVAILABILITY.LAB' | translate}}
+  </div>
+
+</app-dashboard-card>
+

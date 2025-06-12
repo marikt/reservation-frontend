@@ -1,0 +1,24 @@
+
+
+.frame {
+  width:70px;
+  height: 70px;
+  /*height: 25px;      !* Equals maximum image height *!*/
+  /*width: 160px;*/
+  border: 1px solid rgb(222, 224, 226);
+  white-space: nowrap; /* This is required unless you put the helper span closely near the img */
+
+  text-align: center;
+  margin: 1em 0;
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+img {
+  /*background: #3A6F9A;*/
+  vertical-align: middle;
+}

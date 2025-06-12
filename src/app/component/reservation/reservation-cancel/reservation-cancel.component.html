@@ -1,0 +1,67 @@
+<br class="d-none d-xl-block">
+<br class="d-none d-xl-block">
+<br class="d-none d-xl-block">
+
+
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-1 col-10">
+      <div *ngIf="result == reservationCancelResult.UNKNOWN" class="alert alert-info text-center shadow" role="alert">
+        <br>
+        <h3 class="alert-heading">{{ 'RESERVATION_CANCEL.TITLE0' | translate}}</h3>
+        <br>
+        <div *ngIf="reservationConfig && reservationConfig.showCancelReservationReason"
+             class="form-group">
+          <h5 class="">{{'RESERVATION_CANCEL.REASON_LABEL' | translate}}</h5>
+          <textarea class="form-control" [(ngModel)]="tokenHolder.reason" rows="4">        </textarea>
+        </div>
+        <button id="cancelReservation" class="btn btn-primary"
+                (click)="cancelReservation()">{{'RESERVATION_CANCEL.BUTTON_LABEL' | translate}}</button>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <div class="alert alert-warn"> <i class="fas fa-exclamation-triangle"></i>
+          {{'RESERVATION_CANCEL.CONDITION_WARN' | translate}}
+        </div>
+      </div>
+    </div>
+
+    <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-1 col-10">
+      <div *ngIf="result == reservationCancelResult.CANCELED" class="alert alert-success shadow" role="alert">
+        <h4 class="alert-heading">{{ 'RESERVATION_CANCEL.TITLE1' | translate}} <i class="far fa-smile"></i></h4>
+        <p>{{ 'RESERVATION_CANCEL.LABEL1' | translate}}</p>
+        <hr>
+        <p class="mb-0">
+        <p style="font-size: 0.8em;">{{ 'RESERVATION_CANCEL.LABEL_CLOSE' | translate}}</p>
+      </div>
+    </div>
+
+    <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-1 col-10">
+      <div *ngIf="result == reservationCancelResult.CANCELED_AFTER_TIME_LIMIT" class="alert alert-info shadow"
+           role="alert">
+        <h4 class="alert-heading">{{ 'RESERVATION_CANCEL.TITLE2' | translate}} <i class="far fa-sad-cry"></i></h4>
+        <p>{{ 'RESERVATION_CANCEL.LABEL2' | translate}}</p>
+        <hr>
+        <p class="mb-0">
+        <p style="font-size: 0.8em;">{{ 'RESERVATION_CANCEL.LABEL_CLOSE' | translate}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center footer">
+  <div class="col-12" style="position: relative; bottom: 16px;">
+    <hr>
+  </div>
+  <div class="col-12" style="position: relative; bottom: 20px;">
+    <span class="text-grey">powered by </span> <a href="https://www.notado.cz" target="_blank"
+                                                  style="color: rgb(59, 36, 246) !important;"> <img
+    src="../resources/logo-big.png"
+    alt="Notado Logo"
+    style="width:17px;">
+    NOTADO</a>
+  </div>
+</div>

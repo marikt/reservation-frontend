@@ -1,0 +1,85 @@
+<div *ngIf="wizardService.business" class="col-12">
+  <div class="row" style="height: 100vh; max-height: 100vh; max-width: 100vw; background-color: white;">
+
+    <div class="col-12 col-md-6">
+      <app-business-wizard-left label="WIZARD.ENTER_URL"></app-business-wizard-left>
+    </div>
+
+    <div class="col-12 col-md-5" style="background: white;">
+
+      <div class="row" style="height: 5vh"></div>
+      <div class="row d-none d-md-block" style="height: 35vh"></div>
+
+      <form #form="ngForm" (ngSubmit)="onSubmit()" validate>
+
+        <div class="input-group input-group-lg col-11 offset-1">
+
+          <div class="input-group-prepend">
+            <span [class.is-invalid]="url.invalid && showValidation"
+                  [class.is-valid]="!url.invalid"
+                  class=" input-group-text text-grey"
+                  style="padding-right: 2px; padding-bottom: 6px; margin-bottom: 0px;">www.
+            </span>
+          </div>
+          <input #url="ngModel"
+                 (ngModelChange)="urlAlreadyExists = false;"
+                 [(ngModel)]="wizardService.business.url"
+                 [class.is-invalid]="url.invalid && showValidation"
+                 [class.is-valid]="!url.invalid"
+                 class="form-control"
+                 id="business-url-input"
+                 name="url"
+                 pattern="^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                 placeholder="{{'WIZARD.URL_PLACEHOLDER' | translate}}"
+                 required
+                 style="
+           border-top-left-radius: 0px !important;
+           border-bottom-left-radius: 0px !important;
+           border-left: 0px;
+           padding-left: 2px;
+          "
+                 type="text">
+          <div class="invalid-feedback">
+            {{ 'WIZARD.ENTER_VALID_URL' | translate }}
+          </div>
+          <div *ngIf="urlAlreadyExists" class="url-exists">
+            {{ 'WIZARD.URL_ALREADY_EXISTS' | translate }}
+            <a routerLink="dashboard/dashboard-landing"
+               routerLinkActive="active">  {{ 'WIZARD.LOGIN' | translate }} </a>
+          </div>
+          <div *ngIf="url.valid && !urlAlreadyExists" class="feedback-icon" style="width: 15px;">
+            <i class="fas fa-check"></i>
+          </div>
+          <div *ngIf="!url.valid" class="feedback-icon" style=" width: 15px;">
+          </div>
+        </div>
+      </form>
+      <br>
+      <br>
+      <div class="row d-none d-md-block" style="height: 33vh"></div>
+      <div class="row">
+        <div class="col-sm-12 text-right">
+          <button (click)="showValidation = true" *ngIf="form.invalid"
+                  [class.btn-continue-fix-position]="!isMobile"
+                  [class.btn-continue-fix-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+                  class="btn btn-blue text-uppercase " type="button">
+            {{ 'COMMON.CONTINUE' | translate }}
+          </button>
+          <button (click)="form.ngSubmit.emit()"
+                  *ngIf="!form.invalid"
+                  [class.btn-continue-fix-position]="!isMobile"
+                  [class.btn-continue-fix-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+                  class="btn btn-blue text-uppercase "
+                  id="wizard-continue-button">
+            {{ 'COMMON.CONTINUE' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

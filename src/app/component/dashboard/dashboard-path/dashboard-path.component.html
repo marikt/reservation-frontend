@@ -1,0 +1,75 @@
+  <div style="position: absolute; right: 15px; top: 15px;">
+    <img src="../resources/dashboard/setup.png" style="width:90px;">
+
+  </div>
+
+
+<div class="row" >
+  <div class="col-3 text-center">
+    <i class="fas fa-store text-grey" style="font-size: 2em;"></i>
+    <br>
+    <br>
+    <span class="text-grey"> <del>{{'DASHBOARD.3STEPS.SET_BUSINESS' | translate}} </del></span>
+
+    <i class="fas fa-check text-success" style="position: relative; top: 7px;"></i>
+  </div>
+  <div class="col-1">
+    <i class="fas fa-long-arrow-alt-right text-grey" style="position: relative; top: 7px;"></i>
+  </div>
+  <div *ngIf="!googleCalendarConnected" class="col-3 text-center">
+
+    <button (click)="modalService.open(calendarConnect,  {size: 'lg'})" class="btn btn-link btn-link-blue "
+            id="three-steps-connect-whit-google"
+            style="padding: 0; text-decoration: none !important; white-space: pre-line;"
+    >
+      <i class="far fa-calendar-alt" style="font-size: 2em;"></i>
+      <br>
+      <br>
+      {{'DASHBOARD.3STEPS.BUSINESS_CONNECT' | translate}}
+    </button>
+  </div>
+
+  <div *ngIf="googleCalendarConnected" class="col-3 text-center">
+    <i class="far fa-calendar-alt text-grey" style="font-size: 2em;"></i>
+    <br>
+    <br>
+    <span class="text-grey" style="white-space: pre-line;"> <del> {{'DASHBOARD.3STEPS.BUSINESS_CONNECT' | translate}}</del></span>
+    <i class="fas fa-check text-success" style="position: relative; top: 7px;"></i>
+
+  </div>
+
+  <div class="col-1">
+    <i class="fas fa-long-arrow-alt-right text-grey" style="position: relative; top: 7px;"></i>
+  </div>
+  <div *ngIf="!reservationButtonAdded" class="col-3 text-center">
+
+    <a class="btn btn-link btn-link-blue"
+       routerLink="/dashboard/dashboard-button-platform"
+       style="padding: 0; text-decoration: none !important; white-space: pre-line;">
+
+      <i class="fas fa-laptop-code" style="font-size: 2em;"></i>
+      <br>
+      <br>
+      {{'DASHBOARD.3STEPS.ADD_BUTTON' | translate}}</a>
+  </div>
+
+  <div *ngIf="reservationButtonAdded" class="col-3 text-center">
+    <i class="fas fa-laptop-code text-grey" style="font-size: 2em;"></i>
+    <br>
+    <br>
+    <span class="text-grey" style="white-space: pre-line;"> <del> {{'DASHBOARD.3STEPS.ADD_BUTTON' | translate}}</del></span>
+    <i class="fas fa-check text-success" style="position: relative; top: 7px;"></i>
+  </div>
+</div>
+
+  <ng-template #calendarConnect let-c="close" let-d="dismiss">
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+  <app-google-connect-popup-info [type]="googleConnectType.CONNECT"></app-google-connect-popup-info>
+</ng-template>
+

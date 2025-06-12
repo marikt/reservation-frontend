@@ -1,0 +1,331 @@
+
+// Section Header
+.section-header {
+  margin-bottom: 2rem;
+  
+  .section-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .section-divider {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #2980b9);
+    margin: 0 auto;
+    border-radius: 3px;
+  }
+}
+
+// Client Logos
+.client-logos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  
+  .client-logo {
+    transition: all 0.3s ease;
+    
+    .logo-link {
+      display: block;
+      
+      .client-logo-img {
+        width: 80px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        filter: grayscale(1) opacity(0.7);
+        
+        &:hover {
+          filter: grayscale(0) opacity(1);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// Reviews Carousel
+.reviews-carousel {
+  position: relative;
+  padding: 1rem 3rem;
+  margin-bottom: 2rem;
+  
+  .reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .review-card-wrapper {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+    margin: 0.5rem;
+  }
+  
+  .review-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .review-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      .reviewer-avatar {
+        margin-right: 1rem;
+        
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 3px solid #f8f9fa;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+      }
+      
+      .reviewer-info {
+        flex: 1;
+        
+        .star-rating {
+          color: #ffc107;
+          margin-bottom: 0.3rem;
+          font-size: 0.9rem;
+          
+          i {
+            margin-right: 2px;
+          }
+        }
+        
+        .reviewer-name {
+          margin: 0 0 0.2rem;
+          font-weight: 600;
+          color: #333;
+        }
+        
+        .review-meta {
+          font-size: 0.8rem;
+          color: #6c757d;
+          margin: 0;
+        }
+      }
+    }
+    
+    .review-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      
+      .review-text {
+        flex: 1;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+        color: #555;
+        font-size: 0.95rem;
+        
+        .read-more-link {
+          color: #3498db;
+          font-weight: 500;
+          text-decoration: none;
+          cursor: pointer;
+          transition: color 0.2s ease;
+          
+          &:hover {
+            color: #2980b9;
+            text-decoration: underline;
+          }
+        }
+      }
+      
+      .review-date {
+        font-size: 0.8rem;
+        color: #6c757d;
+        margin-top: auto;
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // Carousel Navigation
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    
+    &:hover {
+      background-color: #3498db;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      
+      i {
+        color: #fff;
+      }
+    }
+    
+    i {
+      color: #333;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+    
+    &.carousel-nav-prev {
+      left: 0;
+    }
+    
+    &.carousel-nav-next {
+      right: 0;
+    }
+  }
+}
+
+// Modal Styling
+:host ::ng-deep {
+  .modal-header {
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+    position: relative;
+    
+    .modal-close-btn {
+      position: absolute;
+      right: 1.5rem;
+      top: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      color: #6c757d;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      
+      &:hover {
+        color: #dc3545;
+      }
+    }
+  }
+  
+  .modal-body {
+    padding: 0 1.5rem 1.5rem;
+    
+    .modal-review-card {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      
+      .modal-review-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        
+        .modal-reviewer-avatar {
+          margin-right: 1.5rem;
+          
+          img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #f8f9fa;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          }
+        }
+        
+        .modal-reviewer-info {
+          flex: 1;
+          
+          .star-rating {
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            
+            i {
+              margin-right: 3px;
+            }
+          }
+          
+          .modal-reviewer-name {
+            margin: 0 0 0.3rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.2rem;
+          }
+          
+          .modal-review-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin: 0;
+          }
+        }
+      }
+      
+      .modal-review-content {
+        .modal-review-text {
+          line-height: 1.6;
+          color: #444;
+          font-size: 1rem;
+          white-space: pre-wrap;
+          margin-bottom: 1.5rem;
+        }
+        
+        .modal-review-date {
+          font-size: 0.9rem;
+          color: #6c757d;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .reviews-carousel {
+    padding: 1rem;
+    
+    .review-card-wrapper {
+      min-width: 100%;
+    }
+    
+    .carousel-nav {
+      top: auto;
+      bottom: -50px;
+      
+      &.carousel-nav-prev {
+        left: calc(50% - 50px);
+      }
+      
+      &.carousel-nav-next {
+        right: calc(50% - 50px);
+      }
+    }
+  }
+}
+

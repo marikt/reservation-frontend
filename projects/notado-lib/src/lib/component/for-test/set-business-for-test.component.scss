@@ -1,0 +1,25 @@
+.modal-dialog {
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+.form-widget-close {
+  position: fixed;
+  top: 1vh;
+  right: 2vw;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAARVBMVEUAAABAUGBEWWNBWV9DVWFFWWNFWmREWWNEWmNDV2BEWmNEWWRCWmNEWWJDWWRFWGNEWGJEWmNEWWRDWWREWWNFWmT////nTSXdAAAAFXRSTlMAELQrKrrp6Lw17/A2U1xdZb7AF8b7jkLoAAAAAWJLR0QWfNGoGQAAAAd0SU1FB+YLGgYsBQlrN0YAAABYSURBVAjXTY1JEoAgDAQHxAV3hfz/q6aAMObWXTVpOD/ALniHUSYTYZYFcTWhuO0oIhBNdKziIBYhPwRO5YuoW2G2vLpbpYcs20NNsFvFw5CKFymzG3P6AGjxBZLv6mAuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTExLTI2VDA2OjQ0OjA0KzAwOjAw+nzFeQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0xMS0yNlQwNjo0NDowNCswMDowMIshfcUAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjItMTEtMjZUMDY6NDQ6MDUrMDA6MDB6Q1euAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat; background-position: center center; background-size: 12px 12px; box-sizing: border-box; border: 1px solid;
+}
+
+.mobile-modal {
+  width: 113% !important;
+}
+.white-frame {
+  padding: 5px;
+  border: 1px white;
+  border-radius: 8px;
+}

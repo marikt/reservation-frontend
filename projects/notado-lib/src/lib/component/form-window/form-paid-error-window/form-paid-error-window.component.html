@@ -1,0 +1,14 @@
+<app-form-summary-window>
+  <br>
+  <div class="offset-md-5 col-md-4 offset-3 col-7">
+    <p class="text-error"><strong><i class="fas fa-exclamation-triangle"></i> {{ 'FORM.RESERVATION_UNPAID' | translate }}</strong></p>
+    <div class="row">
+      <div class="col-12">
+        <p
+          [style.color]="formService.template?.textColor">{{ 'FORM.ERROR.LABEL_REDIRECT' | translate }} <br>
+        </p>
+        <h5>{{ countdown }}</h5>
+      </div>
+    </div>
+  </div>
+</app-form-summary-window>

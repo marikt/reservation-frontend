@@ -1,0 +1,166 @@
+<div class="row">
+  <div class="col-md-í col-12">
+    <form #form="ngForm" (ngSubmit)="saveService()">
+
+
+      <!--   SWITCH CALENDAR  ====================================================================================   -->
+      <div class="border">
+        <br>
+
+        <h5><img src="../../../../resources/dashboard/robot.png" width="25"/> &nbsp;
+          &nbsp;{{'DASHBOARD.SERVICE_ITEM.ON_COURSE_FULL_CAPACITY' | translate}}</h5>
+        <br>
+        <br>
+        <div class="checkbox" style="margin-bottom: 10px;">
+          <label class="custom-control custom-checkbox">
+            <input #onCourseFullCapacitySwitchCalendarComponent="ngModel"
+                   (click)="clearSwitchCalendar()"
+                   [(ngModel)]="onCourseFullCapacitySwitchCalendar"
+                   class="form-check-input checkbox-lg"
+                   id="onCourseFullCapacitySwitchCalendarComponent"
+                   name="onCourseFullCapacitySwitchCalendarComponent"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  [class.disabled]="!onCourseFullCapacitySwitchCalendar"
+                  style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.CALENDAR_SWITCH_LABEL' | translate}}</span>
+            <br>
+          </label>
+        </div>
+
+        <app-calendar-dropdown-with-refresh
+          hideExternalRefreshButtons="true"
+          *ngIf="service.type === serviceType.COURSE && onCourseFullCapacitySwitchCalendar"
+          (reloadCalendarsAction)="loadCalendars()"
+          (selectCalendarAction)="selectSwitchCalendar($event)"
+          [calendar]="switchCalendar"
+          [calendars]="calendars">
+        </app-calendar-dropdown-with-refresh>
+
+        <div class="checkbox" style="margin-bottom: 10px;">
+          <label class="custom-control custom-checkbox">
+            <input #onCourseFullCapacitySwitchNameComponent="ngModel"
+                   (click)="service.nameToSwitch = null"
+                   [(ngModel)]="onCourseFullCapacitySwitchName"
+                   class="form-check-input checkbox-lg"
+                   id="onCourseFullCapacitySwitchNameComponent"
+                   name="onCourseFullCapacitySwitchNameComponent"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  [class.disabled]="!onCourseFullCapacitySwitchName"
+                  style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.NAME_SWITCH_LABEL' | translate}}</span>
+            <br>
+          </label>
+        </div>
+        <input #nameToSwitchComponent="ngModel"
+               *ngIf="onCourseFullCapacitySwitchName"
+               [(ngModel)]="service.nameToSwitch"
+               class="form-control"
+               id="nameToSwitch"
+               name="nameToSwitchComponent"
+               placeholder="{{'DASHBOARD.SERVICE_ITEM.NAME_SWITCH_LABEL_PLACEHOLDER' | translate}}"
+               type="text">
+
+        <div class="checkbox" style="margin-bottom: 10px;">
+          <label class="custom-control custom-checkbox">
+            <input #onCourseFullCapacitySwitchColorComponent="ngModel"
+                   (click)="service.colorToSwitch = null"
+                   [(ngModel)]="isColorToSwitch"
+                   class="form-check-input checkbox-lg"
+                   id="onCourseFullCapacitySwitchColorComponent"
+                   name="onCourseFullCapacitySwitchColorComponent"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  [class.disabled]="!isColorToSwitch"
+                  style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.SWITCH_COLOR' | translate}}</span>
+            <br>
+          </label>
+        </div>
+        <div *ngIf="isColorToSwitch" class="form-group">
+          <div class="input-group ">
+            <div class="input-group-prepend">
+            <span [style.background]="getColorById() ? getColorById().background : 'grey'"
+                  class="input-group-text color-per-service"
+            ></span>
+            </div>
+
+            <div class="input-group-append input-group-text-color" ngbDropdown>
+              <button class="btn btn-outline-secondary btn-sm" id="dropdownColor" ngbDropdownToggle
+                      placement="bottom"
+                      style="margin-left: 4px;"
+                      type="button">
+              </button>
+              <div aria-labelledby="dropdownColor" ngbDropdownMenu>
+                  <span *ngFor="let color of colors; let idx = index;">
+                    <button (click)="service.colorToSwitch = color.id" class="dropdown-item rounded"
+                            [style.background-color]="color.background" ngbDropdownItem
+                            type="button" style="width: 10px; height: 25px; margin-bottom: 5px;"></button>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+          {{'DASHBOARD.SERVICE_ITEM.AUTOMATION_INFO' | translate}}
+        </div>
+      </div>
+      <br>
+      <br>
+    </form>
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid3">
+      <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button3">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+           <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+    <button (click)="modalService.open(serviceDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+            placement="bottom">
+      <i class="far fa-trash-alt"></i> {{'DASHBOARD.SERVICE_ITEM.DELETE' | translate}}
+    </button>
+  </div>
+</div>
+
+
+<ng-template #serviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.SERVICE_ITEM.DELETE_CONFIRM' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}
+      </button>
+      <button class="btn-blue btn btn-sm" (click)="deleteService(service)">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+

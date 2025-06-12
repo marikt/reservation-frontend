@@ -1,0 +1,135 @@
+<app-dashboard-card *ngIf="userService.user" backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.PROFILE.TITLE"
+                            [faqItems]="[
+  {name: 'INVOICE', link: 'invoice'},
+  {name: 'SUBSCRIPTION_CANCEL', link: 'subscription-cancel'}
+  ]"
+  >
+  </app-dashboard-card-label>
+
+  <div class="row">
+
+    <div class="col-md-7 col-12">
+      <form #form="ngForm" (ngSubmit)="saveUserAccount()" class="form-horizontal" novalidate>
+        <div class="form-group ">
+          <label>{{'DASHBOARD.PROFILE.NAME' | translate}}</label>
+          <input #name="ngModel" [(ngModel)]="userService.user.name"
+                 [class.is-invalid]="name.invalid && showValidation" [class.is-valid]="!name.invalid"
+                 class="form-control"
+                 id="name"
+                 name="name"
+                 placeholder="Josef Novák"
+                 type="text">
+        </div>
+
+        <div class="form-group">
+          <label for="email">{{'DASHBOARD.PROFILE.EMAIL' | translate}}</label>
+
+          <input #email="ngModel"
+                 (ngModelChange)="userService.user.email ? userService.user.email = userService.user.email.toLocaleLowerCase() : 'do nothing'"
+                 [(ngModel)]="userService.user.email"
+                 [class.is-invalid]="email.invalid && showValidation" [class.is-valid]="!email.invalid"
+                 class="form-control"
+                 id="email"
+                 name="email"
+                 placeholder="josef.novak@seznam.cz"
+                 required
+                 type="email">
+        </div>
+
+        <div class="text-right">
+          <button (click)="isCollapsedAdvance = !isCollapsedAdvance"
+                  class="btn btn-link btn-link-danger btn-sm"
+                  type="button"><i class="fa fa-plus-square"></i> {{'DASHBOARD.PROFILE.CHANGE_PASSWORD' | translate}}
+          </button>
+        </div>
+        <div [ngbCollapse]="isCollapsedAdvance">
+          <div class="form-row ">
+            <label class="text-danger">{{'DASHBOARD.PROFILE.CHANGE_PASSWORD' | translate}}</label>
+            <input #password="ngModel" [(ngModel)]="userService.user.newPassword" class="form-control"
+                   name="password"
+                   placeholder="{{'DASHBOARD.PROFILE.CHANGE_PASSWORD_PLACEHOLDER' | translate}}" type="text">
+          </div>
+          <br>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <hr/>
+  <br>
+  <div class="row">
+
+    <div class="col-7">
+      <div class="form-group d-inline-block" ngbDropdown placement="top-right">
+        <label>{{'DASHBOARD.PROFILE.LANGUAGE' | translate}}</label>
+        <br>
+        <br>
+        <button class="btn btn-outline-blue btn-sm" id="language-component"
+                ngbDropdownToggle placement="bottom"><i
+          class="fas fa-globe"></i> &nbsp; {{languageService.languageLabel}}</button>
+        <div aria-labelledby="language-component" ngbDropdownMenu>
+          <button (click)="changeLanguage('en')" ngbDropdownItem>English</button>
+          <button (click)="changeLanguage('cs')" ngbDropdownItem>Čeština</button>
+          <button (click)="changeLanguage('sk')" ngbDropdownItem>Slovensky</button>
+          <button (click)="changeLanguage('pl')" ngbDropdownItem>Polskie</button>
+<!--          <button (click)="changeLanguage('es')" ngbDropdownItem>Español</button>-->
+<!--          <button (click)="changeLanguage('de')" ngbDropdownItem>Deutsch</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <span *ngIf="
+          dashboardService.payment.plan == paymentPlan.CANCELED ||
+          dashboardService.payment.plan == paymentPlan.DAILY ||
+          dashboardService.payment.plan == paymentPlan.MONTHLY ||
+          dashboardService.payment.plan == paymentPlan.MONTHLY_3 ||
+          dashboardService.payment.plan == paymentPlan.YEARLY">
+    <br>
+    <hr/>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <label>{{'DASHBOARD.PROFILE.PAYMENT_INFO' | translate}}
+          <a class="btn btn-link-blue btn-sm" target="_blank"
+             style="position: relative; right: 20px;"
+             href="https://www.notado.cz/faq/cs/invoice"> <i
+            class="fas fa-question-circle"></i></a></label>
+        <br>
+        <br>
+        <button (click)="goToBillingPortal()"
+                class="btn btn-outline-blue btn-sm" style="margin-top: 2px;"> <i
+          class="fas fa-cog"></i> {{'DASHBOARD.PROFILE.PAYMENT' | translate}}
+        </button>
+        <br>
+
+      </div>
+    </div>
+  </span>
+
+  <br>
+  <hr/>
+  <br>
+
+  <div class="row">
+    <div class="col-7">
+      <a (click)="authService.logout()" class="dropdown-item text-danger" href="#">
+        <i class="fas fa-sign-out-alt"></i> &nbsp; {{'DASHBOARD.PROFILE.LOGOUT' | translate}}</a>
+    </div>
+  </div>
+  <br>
+  <hr/>
+  <br>
+  <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+          type="button"><i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+  </button>
+  <button (click)="saveUserAccount()" *ngIf="!form.invalid" class="btn btn-blue btn-sm">
+    <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+          <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+    &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}</button>
+
+
+</app-dashboard-card>

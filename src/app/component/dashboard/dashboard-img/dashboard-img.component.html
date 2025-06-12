@@ -1,0 +1,30 @@
+<div class="row">
+
+  <div class="col-8 offset-2">
+    <div class="form-group">
+      <label>{{'DASHBOARD.IMG.SERVICE_NAME' | translate}}</label>
+      <input #name="ngModel" [(ngModel)]="searchKey"
+             class="form-control"
+             name="name"
+             placeholder="{{'DASHBOARD.IMG.SERVICE_NAME' | translate}}"
+             type="text">
+    </div>
+    <button (click)="search()" class="btn btn-red"
+            placement="bottom">
+      {{'DASHBOARD.IMG.SEARCH' | translate}}
+    </button>
+
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+
+  <div class="col-8 offset-2">
+      <span *ngFor="let img of imgs">
+        <img *ngIf="img" [src]="img.src.medium" class="img-fluid rounded" style="">
+      </span>
+  </div>
+  <br>
+</div>

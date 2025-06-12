@@ -1,0 +1,68 @@
+
+.calendar-availability-busy {
+  width: 100% !important;
+  left: 0 !important;
+  cursor: default !important;
+}
+
+.calendar-availability-common {
+  span {
+    color: white !important;
+    font-weight: 900;
+    line-height: 15px !important;
+  }
+
+  border: white 4px solid;
+  border-radius: 10px;
+  width: 100% !important;
+  left: 0 !important;
+  min-height: 0;
+  transition: min-height 0.3s ease, width 0.3s ease;
+}
+
+.calendar-availability-common:hover {
+  z-index: 999 !important;
+  min-height: 120px;
+  width: 180% !important;
+
+  -webkit-box-shadow: 0px 0px 20px -4px rgba(158,158,158,1);
+  -moz-box-shadow: 0px 0px 20px -4px rgba(158,158,158,1);
+  box-shadow: 0px 0px 20px -4px rgba(158,158,158,1);
+
+}
+
+.calendar-availability-without-capacity {
+  cursor: default !important;
+}
+
+.position-top-right-corner {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.position-top-left-corner {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+/* Style for notification badge */
+.calendar-availability-common .badge.badge-dark.position-top-left-corner {
+  white-space: nowrap;
+}
+
+/* Hide all text in the badge except the bell icon */
+.calendar-availability-common .badge.badge-dark.position-top-left-corner {
+  font-size: 0;
+}
+
+/* But keep the icon visible */
+.calendar-availability-common .badge.badge-dark.position-top-left-corner i.fas.fa-bell {
+  font-size: 14px; /* Restore the icon size */
+}
+
+/* Show all text when parent div is hovered */
+.calendar-availability-common:hover .badge.badge-dark.position-top-left-corner {
+  font-size: 14px; /* Restore the text size */
+}

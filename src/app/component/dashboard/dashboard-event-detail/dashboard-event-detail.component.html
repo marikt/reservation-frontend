@@ -1,0 +1,57 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.EVENT_DETAIL.TITLE"  >
+  </app-dashboard-card-label>
+
+
+  <label>Notado Id    <a [ngbPopover]="notadoIdToolbar" placement="bottom"
+                         type="button">
+    <i class="far fa-question-circle text-primary"
+       style="font-size: 0.8em; position: relative; bottom: 2px; left: 10px;"> </i></a></label>
+
+  <div class="input-group">
+    <input [(ngModel)]="notadoId"
+           placeholder="fZomjoVycTeQ39s2AWtC5bcbn3CkSMquemenbK4sjwMMDiDooISyZzGaJLx/ol6KgQCTzvJmDGKFBdUWuaHduSvl+UmHigQPuldIo0jW5XzcQVWQ2P31Msyq0EbTowcnI6aYHh2loYr1kFKjHIgrlA=="
+           class="form-control form-control-sm" name="name" type="text">
+  </div>
+  <br>
+  <button
+    (click)="showHistory()"
+    *ngIf="notadoId"
+    class="btn btn-blue btn-sm"
+    id="form-previous">{{ 'DASHBOARD.EVENT_DETAIL.GIVE_ME_HISTORY' | translate }} </button>
+
+
+  <div *ngIf="eventHistoryRecords && eventHistoryRecords.length > 0" class="mt-4">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>{{ 'DASHBOARD.EVENT_DETAIL.DATE' | translate }}</th>
+        <th>{{ 'DASHBOARD.EVENT_DETAIL.ACTION' | translate }}</th>
+        <th>{{ 'DASHBOARD.EVENT_DETAIL.USER' | translate }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let record of eventHistoryRecords">
+        <td>{{ record.date }}</td>
+        <td>
+          <i *ngIf="record.action == 'AA' || record.action == 'CR'" class="fas fa-plus-circle text-success"></i>
+          <i *ngIf="record.action == 'AR'" class="fas fa-minus-circle text-danger"></i>
+          {{ 'DASHBOARD.EVENT_DETAIL.' + record.action | translate}}</td>
+        <td>{{ record.user }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <ng-template #notadoIdToolbar>
+    <div class="alert alert-info" style="width: 750px"><i class="fas fa-info-circle"></i> &nbsp;
+      {{ 'DASHBOARD.EVENT_DETAIL.TOOLTIP' | translate }}
+      <br>
+      <br>
+      <img src="../../../../resources/dashboard/notado-id.png" width="80%"/>
+    </div>
+  </ng-template>
+
+</app-dashboard-card>

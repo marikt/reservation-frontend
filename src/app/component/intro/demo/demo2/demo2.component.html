@@ -1,0 +1,73 @@
+<div class="row" style="height: 5em;">
+
+</div>
+<div class="row">
+
+
+  <div class="offset-1 col-11 text-sm">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="text-blue"
+             style="position: relative; top: 0px; left: 20px; font-size: 1.3em;">   {{ 'INTRO.DEMO_LABEL' | translate }}
+          .
+          {{ 'DEMO.LABEL2' | translate }}.
+        </div>
+        <div class="arrow"
+             style="position: relative;    right: 220px;    z-index: 999;    bottom: 55px; transform: rotate(-12deg)">
+          <div class="curve"></div>
+          <div class="point"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row" style="position: relative; bottom: 250px;">
+      <div class="col-12 text-center">
+        <app-browser-frame></app-browser-frame>
+        <div style="background: rgb(105,59,218);
+background: linear-gradient(243deg, rgba(105,59,218,0.6) 0%, rgba(229,169,231,0.6) 97%);">
+
+          <div
+            class="rounded-bottom img-shadow"
+            style="min-height: 280px; background-size: 38%; background-position: bottom 25px right 25px; background-repeat: no-repeat;"
+
+            id="demo">
+            <br>
+            <img src="resources/demo/home/menu.png" width="100%">
+            <div class="row" style=" height: 40px;">
+              <div class="offset-1 col-10 text-center">
+                <p class="text-white" [class.fade-in]="fadeIn" [class.fade-out]="!fadeIn"
+                   style="position: relative; top: 20px; font-size: 2.2em;">{{'DEMO.HOME.' + this.img | translate}}</p>
+              </div>
+            </div>
+
+            <div class="row ">
+              <div class="offset-1 col-4 text-left" style="position: relative; top: 95px;">
+                <button (click)="demoService.showFrame = true"
+                        class="btn btn-white btn-sm"
+                        id="notadoButtonShow"
+                        style="padding-right: 25px; padding-left: 25px;">
+        <span
+          class="text-uppercase "
+          style="font-size: 1.3em; color: rgb(198, 177, 189);">{{ 'DEMO.MAKE_RESERVATION' | translate }}</span>
+                </button>
+
+                <br>
+                <br>
+                <br>
+              </div>
+              <div class="col-7">
+                <img [class.fade-in]="fadeIn" [class.fade-out]="!fadeIn"
+                     [src]="'resources/demo/home/' + this.img + '.png'" width="60%">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+

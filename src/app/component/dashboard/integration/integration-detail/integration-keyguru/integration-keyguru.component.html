@@ -1,0 +1,42 @@
+<app-integration-template [integrationData]="integrationData">
+  <br>
+  <br>
+  <form #form="ngForm" (ngSubmit)="connect(); modalService.close();" class="text-left col-8">
+
+    <div class="form-group">
+      <label>API key &nbsp;
+      </label>
+      <input #apiKey="ngModel"
+             [(ngModel)]="integrationData.config.apiKey"
+             [class.is-invalid]="apiKey?.invalid && showValidation"
+             [class.is-valid]="!apiKey?.invalid"
+             class="form-control"
+             id="apiKey"
+             name="apiKey"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+    <button (click)="showValidation = true" type="button" *ngIf="form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    &nbsp;
+    <button  type="button" (click)="disconnect(); modalService.close()" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.DISCONNECT_BUTTON' | translate}}
+    </button>
+
+  </form>
+
+  <br>
+  <br>
+  <div class="alert alert-info" role="alert">
+    {{ 'DASHBOARD.INTEGRATION.KEYGURU.INFO' | translate }}
+  </div>
+  <img src="resources/integration/keyguru-service-detail.png" width="100%">
+
+</app-integration-template>

@@ -1,0 +1,159 @@
+<app-dashboard-card *ngIf="messages && messages.get(when).emailMsg && messages.get(when).smsMsg"
+                    backLink="/dashboard-notification">
+
+  <app-dashboard-card-label
+    [faqItems]="[{name: 'NOTIFICATION', link: 'notification'},
+                 {name: 'NOTIFICATION_FROM_OWN_EMAIL', link: 'notification-from-own-email'},
+                 {name: 'ZOOM', link: 'zoom'},
+                 {name: 'CANCEL_EVENT', link: 'cancel-event'}]"
+    label="DASHBOARD.EMAIL.TITLE">
+    <button (click)="saveMsg()" class="btn btn-blue btn-sm pull-right"
+            id="save-reservation-form-windows">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+          <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save"></i>
+      &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="row">
+    <div class="offset-1">
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="when=notificationWhen.ON_RESERVATION_CREATE"
+             [class.active]="when == notificationWhen.ON_RESERVATION_CREATE" aria-current="page"
+             class="nav-link"> {{ 'NOTIFICATION.ON_RESERVATION_CREATE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="when=notificationWhen.TWO_DAYS_BEFORE"
+             [class.active]="when == notificationWhen.TWO_DAYS_BEFORE"
+             aria-current="page"
+             class="nav-link"> {{ 'NOTIFICATION.TWO_DAYS_BEFORE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="when=notificationWhen.ONE_DAY_BEFORE"
+             [class.active]="when == notificationWhen.ONE_DAY_BEFORE"
+             aria-current="page"
+             class="nav-link"> {{ 'NOTIFICATION.ONE_DAY_BEFORE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="when=notificationWhen.FIVE_HOURS_BEFORE"
+             [class.active]="when == notificationWhen.FIVE_HOURS_BEFORE" aria-current="page"
+             class="nav-link"> {{ 'NOTIFICATION.FIVE_HOURS_BEFORE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="when=notificationWhen.ONE_DAY_AFTER;"
+             [class.active]="when == notificationWhen.ONE_DAY_AFTER" aria-current="page"
+             class="nav-link"> {{ 'NOTIFICATION.ONE_DAY_AFTER' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br>
+
+  <label>{{ 'DASHBOARD.EMAIL.CUSTOMER_EMAIL' | translate }}</label>
+  <div>
+    <app-keyword-highlighter
+      [height]="300"
+      [message]="messages.get(when).emailMsg.msg"
+      (messageChange)="messages.get(when).emailMsg.msg = $event"
+    ></app-keyword-highlighter>
+<!--    <textarea-->
+<!--              [(ngModel)]="messages.get(when).emailMsg.msg"-->
+<!--              class="col-10"-->
+<!--              rows="12">-->
+<!--    </textarea>-->
+
+  </div>
+  <br>
+  <label>{{ 'DASHBOARD.EMAIL.CUSTOMER_SMS' | translate }}</label>
+  <div>
+
+    <app-keyword-highlighter
+      [showEmojiOption]="false"
+      [height]="130"
+      [message]="messages.get(when).smsMsg.msg"
+      (messageChange)="messages.get(when).smsMsg.msg = $event"
+    ></app-keyword-highlighter>
+<!--    <textarea-->
+<!--              [(ngModel)]="messages.get(when).smsMsg.msg"-->
+<!--              class="col-10"-->
+<!--              rows="4">-->
+<!--    </textarea>-->
+  </div>
+  <label>{{ 1 + ((messages.get(when).smsMsg.msg.length + 10) / SMS_SIZE) | toInt }} sms</label>
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-10 alert alert-info">
+      {{ 'DASHBOARD.EMAIL.KEY_WORDS' | translate }}
+      <br>
+      <br>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.SERVICE' | translate }}
+        <i [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.SERVICE' | translate" class="far fa-question-circle my-tooltip"></i>
+      </h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.EMPLOYEE' | translate" class="far fa-question-circle my-tooltip"></i>
+      </h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE_EMAIL' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.EMPLOYEE_EMAIL' | translate"
+        class="far fa-question-circle my-tooltip"></i></h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE_PHONE' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.EMPLOYEE_PHONE' | translate"
+        class="far fa-question-circle my-tooltip"></i></h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.DATE' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.DATE' | translate" class="far fa-question-circle my-tooltip"></i></h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.TIME' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.TIME' | translate" class="far fa-question-circle my-tooltip"></i></h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.PRICE' | translate }} </h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.RESERVATION_CANCEL' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.RESERVATION_CANCEL' | translate"
+        class="far fa-question-circle my-tooltip"></i></h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.RESERVATION_CONFIRM' | translate }} <i
+        [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.RESERVATION_CONFIRM' | translate"
+        class="far fa-question-circle my-tooltip"></i></h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.SERVICE_MSG' | translate }} <a class="btn btn-link-blue btn-sm"
+                                                                       href="https://www.notado.cz/faq/cs/notification"
+                                                                       style="position: relative; right: 20px; bottom: 1px;"
+                                                                       target="_blank">
+        <i
+          class="fas fa-question-circle"></i></a>
+      </h6>
+      <h6>#{{ 'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE_MSG' | translate }} </h6>
+      <h6>#zoom
+        <a class="btn btn-link-blue btn-sm"
+           href="https://www.notado.cz/faq/en/zoom"
+           style="position: relative; right: 20px; bottom: 1px;"
+           target="_blank">
+          <i
+            class="fas fa-question-circle"></i></a>
+      </h6>
+      <br>
+      <hr>
+      <br>
+      <p>
+
+        {{ 'DASHBOARD.EMAIL.SUPPORT_SPECIAL_CHARACTERS' | translate }}
+        🎄❤️ ✨ 🎁 ✅ 😊 🔥 🎉 🎅 ❄️ 😂 👍
+      </p>
+
+      <br>
+      <hr>
+      <br>
+
+      <app-video-tutorial btnType="blue"
+                          label="VIDEO_LABEL.TUTORIAL"
+                          videoSrc="https://www.youtube.com/embed/VrbsQgZYMKg"></app-video-tutorial>
+
+    </div>
+  </div>
+  <br>
+
+</app-dashboard-card>
+<app-video-guide
+  label="VIDEO_GUIDE.MSG.LABEL"
+  description="VIDEO_GUIDE.MSG.DESCRIPTION"
+  videoSrc="https://www.youtube.com/embed/VrbsQgZYMKg"></app-video-guide>

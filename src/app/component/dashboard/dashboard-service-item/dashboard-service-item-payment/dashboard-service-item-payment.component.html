@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-md-7 col-12">
+    <form #form="ngForm" (ngSubmit)="saveServiceAndPayment()">
+      <div class="form-group">
+        <label *ngIf="!(service.durationNotSpecified && service.type != 'COURSE')">{{'DASHBOARD.SERVICE_ITEM.PRICE' | translate}}</label>
+        <label *ngIf="(service.durationNotSpecified && service.type != 'COURSE')">{{'DASHBOARD.SERVICE_ITEM.PRICE_15_MIN' | translate}}</label>
+        <div class="row">
+
+          <div class="input-group col-5">
+            <input #price="ngModel"
+                   [(ngModel)]="service.price"
+                   class="form-control text-right"
+                   id="price"
+                   name="price"
+                   placeholder="450"
+                   style=""
+                   type="text">
+            <div class="input-group-append">
+              <div class="input-group-text text-grey"
+                   style="padding-right: 2px; padding-bottom: 4px; margin-bottom: 0px;">{{dashboardService.business.currency}}
+                <a [ngbPopover]="popCurrency" placement="top"
+                   type="button">
+                  <i class="far fa-question-circle text-primary"
+                     style="font-size: 0.6em; position: relative; bottom: 10px; left: 10px;"> </i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="(service.durationNotSpecified && service.type != 'COURSE')" class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+        {{'DASHBOARD.SERVICE_ITEM.PRICE_15_MIN_INFO' | translate}}
+      </div>
+      <hr>
+      <div class="checkbox" style="">
+        <label class="custom-control custom-checkbox">
+          <input #paymentEnabledComponent="ngModel"
+                 name="paymentEnabledComponent"
+                 [(ngModel)]="paymentEnabled"
+                 (change)="clearPrice()"
+                 class="form-check-input checkbox-lg"
+                 id="priceComponent"
+                 type="checkbox">
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.PAYMENT.ENABLED' | translate}}</span>
+          <br>
+        </label>
+      </div>
+      <div class="checkbox" style="" *ngIf="paymentEnabled">
+        <label class="custom-control custom-checkbox">
+          <input #paymentMandatoryComponent="ngModel"
+                 [(ngModel)]="stripeIntegrationService.getStripeIntegrationBusinessConfig(service.id).paymentMandatory"
+                 class="form-check-input checkbox-lg"
+                 id="paymentMandatory"
+                 name="paymentMandatoryComponent"
+                 type="checkbox">
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.PAYMENT.MANDATORY' | translate}}
+            <a [ngbPopover]="popMandatory"
+               placement="top"
+               type="button">
+            <i class="far fa-question-circle text-primary" style="font-size: 0.8em"> </i></a></span>
+          <br>
+        </label>
+      </div>
+      <br>
+      <app-stripe-price-dropdown
+        *ngIf="paymentEnabled"
+        label="DASHBOARD.SERVICE_ITEM.PAYMENT.INSERT_SERVICE_PRICE"
+        [priceId]="stripeIntegrationService.getStripeIntegrationBusinessConfig(service.id).price"
+        [showValidation]="showValidation"
+        (loadPriceAction)="loadPrice($event)"
+        (selectPriceAction)="setPrice($event)">
+      </app-stripe-price-dropdown>
+
+      <a class="btn btn-link-blue btn-sm" style="position: relative; right: 20px; bottom: 1px;"
+         [href]="'https://www.notado.cz/faq/' + languageService.language + '/payment'" target="_blank"
+         *ngIf="paymentEnabled">
+          <span
+            *ngIf="stripeIntegrationService.stripeIntegrationBusinessConfig.keyPublic && stripeIntegrationService.stripeIntegrationBusinessConfig.hiddenKeyPrivate">{{'DASHBOARD.SERVICE_ITEM.PAYMENT.HOW' | translate}}
+            <i class="fas fa-external-link-alt"></i>
+        </span>
+        <span class="text-danger"
+              *ngIf="!stripeIntegrationService.stripeIntegrationBusinessConfig.keyPublic || !stripeIntegrationService.stripeIntegrationBusinessConfig.hiddenKeyPrivate"><i
+          class="fas fa-exclamation-circle"></i> {{'DASHBOARD.SERVICE_ITEM.PAYMENT.NOT_SET' | translate}}</span>
+      </a>
+      <br>
+      <br>
+      <br>
+      <br>
+    </form>
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid4">
+      <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button4">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+            <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+  </div>
+</div>
+
+
+<ng-template #popMandatory>
+  <img class="img-shadow rounded"
+       src="../../../../resources/form_payment/mandatory.png" style="width: 610px; margin: 0 auto;">
+</ng-template>
+<ng-template #popCurrency>
+  <img class="img-shadow rounded"
+       src="../../../../resources/dashboard/currency.png" style="width: 650px; margin: 0 auto;">
+</ng-template>
+

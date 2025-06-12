@@ -1,0 +1,38 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="Health check">
+  </app-dashboard-card-label>
+
+  <div class="container">
+    <div class="row">
+
+      <div *ngFor="let healthCheckResult of healthCheckResults"
+           class="col-5 text-center form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+        <div *ngIf="healthCheckResult" class="row">
+
+          <div class="col text-center">
+            <br>
+            <h6>entity ID: <b>{{healthCheckResult?.entityId}}</b></h6>
+            <h6>entity Name: <b>{{healthCheckResult?.entityName}}</b></h6>
+            <h6>entity: <b>{{healthCheckResult?.entity}}</b></h6>
+            <h6>level: <b>{{healthCheckResult?.level}}</b></h6>
+            <br>
+            <h6>description: </h6>
+            <ul>
+            <span *ngFor="let desc of healthCheckResult?.description">
+              <li>  {{desc}} </li>
+            </span>
+            </ul>
+            <br>
+            <br>
+            <button (click)="requestRefreshToken(healthCheckResult?.entityId)" *ngIf="healthCheckResult?.entityName == 'Business'"
+                    class="btn-outline-blue btn-sm"> refresh token
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dashboard-card>

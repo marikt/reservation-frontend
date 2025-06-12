@@ -1,0 +1,101 @@
+
+.close-modal {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAARVBMVEUAAABAUGBEWWNBWV9DVWFFWWNFWmREWWNEWmNDV2BEWmNEWWRCWmNEWWJDWWRFWGNEWGJEWmNEWWRDWWREWWNFWmT////nTSXdAAAAFXRSTlMAELQrKrrp6Lw17/A2U1xdZb7AF8b7jkLoAAAAAWJLR0QWfNGoGQAAAAd0SU1FB+YLGgYsBQlrN0YAAABYSURBVAjXTY1JEoAgDAQHxAV3hfz/q6aAMObWXTVpOD/ALniHUSYTYZYFcTWhuO0oIhBNdKziIBYhPwRO5YuoW2G2vLpbpYcs20NNsFvFw5CKFymzG3P6AGjxBZLv6mAuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTExLTI2VDA2OjQ0OjA0KzAwOjAw+nzFeQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0xMS0yNlQwNjo0NDowNCswMDowMIshfcUAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjItMTEtMjZUMDY6NDQ6MDUrMDA6MDB6Q1euAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat; background-position: center center; background-size: 12px 12px; box-sizing: border-box; border: 1px solid;
+  margin: -1rem -40rem -1rem auto;
+}
+
+.row {
+  margin-right: 0px !important;;
+  margin-left: 0px !important;
+}
+
+.bg {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+  url('../../../resources/blur.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.glass-frame {
+  border-radius: 8px;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  background: rgba(255, 255, 255);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.shadow {
+  /*background: url('../../../../src/resources/intro/bg.png') no-repeat top center;*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  /*background-attachment: scroll;*/
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(104, 77, 212, 0.3);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(104, 77, 212, 0.3);
+  box-shadow: 0px 0px 5px 3px rgba(104, 77, 212, 0.3);
+}
+
+
+.modal-content {
+  background: #F4F4F4;
+  padding: 10px;
+
+}
+
+.modal-header {
+  background: #F4F4F4;
+}
+
+.modal-body {
+  background: #F4F4F4;
+  padding: 20px;
+}
+
+h6 {
+  width: 100%;
+  text-align: center;
+  color: #777777;
+  border-bottom: 1px solid #777777;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+h6 span {
+  padding: 0 10px;
+  background: white;
+}
+
+a.btn {
+  margin: 2px;
+}
+
+.btn-join {
+  padding-left: 33px;
+  padding-right: 33px;
+}
+
+
+a:hover {
+  border: 1px solid transparent;
+}
+
+a#btnGoogleSignin1:before {
+  content: url('../../../../src/resources/btn_google_signin_dark_normal_web.png');
+}
+
+a#btnGoogleSignin1 {
+  background-color: #fff0;
+  border: 0px;
+  padding: 0px;
+}

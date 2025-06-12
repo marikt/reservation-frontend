@@ -1,0 +1,23 @@
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+.fixed {
+  position: fixed;
+  left: 49vw;
+}
+
+.margin-sm {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.bg {
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  background-attachment: scroll !important;
+}
+

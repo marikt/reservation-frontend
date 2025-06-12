@@ -1,0 +1,61 @@
+<app-dashboard-card>
+
+  <app-dashboard-card-label label="{{'DASHBOARD.BUSINESS.BUSINESSES' | translate}}">
+    <button (click)="addBusiness()" class="btn btn-outline-blue btn-sm pull-right text-uppercase"
+            id="add-business-button">
+      <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.BUSINESS.ADD_BUSINESS' | translate}}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="container">
+    <div class="row">
+
+
+      <div *ngFor="let business of dashboardService.businesses; let idx = index;"
+           class="col-5 form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+        <a (click)="goToBusinessDetail(idx)">
+          <div [class.gray-bg]="!business.active"
+               [class.gray-filter]="!business.active"
+               [class.white-bg]="business.active"
+               class="card-item">
+
+            <div class="row">
+              <div class="col text-center ">
+                <br>
+                <br>
+                <i class="fas fa-store-alt text-primary" style="font-size: 3em;"></i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center ">
+                <br>
+                <br>
+                <h6>                  {{business.name}}</h6>
+                <h6>                  {{business.url}}</h6>
+                <br *ngIf="business.active">
+                <p *ngIf="!business.active" class="text-grey text-uppercase"
+                   ngbTooltip="Podnik je neaktivní, není na něm možné vytvářet rezervace"
+                   style="font-size: 1.1em">
+                  <i class="far fa-eye-slash"></i>
+                </p>
+                <br *ngIf="business.active">
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <br>
+    <br>
+    <div class="alert alert-danger"><i class="fas fa-info-circle"></i> &nbsp;
+      {{'DASHBOARD.BUSINESS.WARN' | translate}}
+    </div>
+
+  </div>
+
+</app-dashboard-card>

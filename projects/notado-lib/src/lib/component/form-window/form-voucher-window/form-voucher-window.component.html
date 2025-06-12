@@ -1,0 +1,28 @@
+
+<br>
+<div class="form-group offset-md-2 col-md-8 offset-1 col-10">
+    <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+            <input #active="ngModel" [(ngModel)]="voucherActive" class="form-check-input checkbox-lg"
+                   name="active"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  [style.color]="formService.template?.textColor"
+                  style="position: relative; left: 15px; top: 3px;">{{ 'FORM.VOUCHER_OPTION' | translate }}</span>
+        </label>
+    </div>
+</div>
+
+<div class="form-group offset-md-2 col-md-8 offset-1 col-10">
+    <label  [style.color]="formService.template?.textColor">{{ 'FORM.VOUCHER_CODE' | translate }}</label>
+    <input #name="ngModel" [(ngModel)]="formService.calendarEvent.voucher"
+           [disabled]="!voucherActive"
+           class="form-control"
+           name="voucher"
+           placeholder="12345"
+           type="text">
+    <div class="feedback-icon" style=" width: 15px;">
+    </div>
+</div>
+<br>

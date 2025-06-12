@@ -1,0 +1,37 @@
+<div *ngIf="formService.getDevices() && formService.getDevices().length > 1 && formService.calendarEvent.service.type == serviceType.DEVICE" class="row justify-content-center">
+
+  <div *ngFor="let device of formService.getDevices()" class="col-md-3 col-5 text-center form-check"
+       style="padding: 20px 0; margin-right: 5px;">
+
+    <span [class.gray-filter]="!device.available">
+      <label [for]="device.name" class="form-check-label">
+
+        <img *ngIf="device.fullPathImg" [src]="server.SERVER + device.fullPathImg" class="device-img rounded-circle">
+        <img *ngIf="!device.fullPathImg" class="device-img rounded-circle"
+             src="../../../../resources/default-worker.png"
+             width="130">
+
+        <div class="device-label" [style.color]="formService.template?.textColor">{{device.name}}</div>
+      </label>
+      <br>
+      <input
+        (ngModelChange)="deviceSelected($event)"
+        [(ngModel)]="formService.calendarEvent.device"
+        [checked]="formService.calendarEvent.device?.name === device.name"
+        [id]="device.name"
+        [name]="device.name"
+        [value]="device"
+        class="form-check-input checkbox-lg"
+        style="position: relative; left: 11px;"
+        type="radio">
+      <br>
+    </span>
+  </div>
+</div>
+
+<div *ngIf="formService.getDevices() && formService.getDevices().length > 1 && !isValid()"
+     class="text-error text-center">
+  {{ 'FORM.PLEASE_SELECT_DEVICE' | translate }}
+</div>
+
+<br>

@@ -1,0 +1,41 @@
+s<div *ngIf="!simple" class="bg feature-header">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+        <h1 class="text-blue feature-title">{{'INTRO.FEATURES.TITLE' | translate}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="simple" class="simple-header">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+        <h2 class="text-blue feature-title">{{'INTRO.FEATURES.TITLE' | translate}}</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container features-container">
+  <div class="row g-3">
+    <div *ngFor="let feature of features; let i = index" class="col-12 col-sm-6 col-md-4 col-lg-3 feature-item" [style.animation-delay]="i * 0.08 + 's'">
+      <a [routerLink]="feature.link" class="feature-link">
+        <div class="card feature-card">
+          <div class="card-img-top text-center feature-icon">
+            <i [class]="feature.icon" class="text-blue"></i>
+          </div>
+          <div class="card-body p-2">
+            <h5 class="card-title text-blue text-center">{{'INTRO.FEATURES.' + feature.title | translate}}</h5>
+            <p class="card-text">{{'INTRO.FEATURES.' + feature.title + '_DESC' | translate}}</p>
+          </div>
+          <div class="card-text-overlay">
+            <h5 class="card-title text-blue text-center">{{'INTRO.FEATURES.' + feature.title | translate}}</h5>
+            <p class="card-text">{{'INTRO.FEATURES.' + feature.title + '_DESC' | translate}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

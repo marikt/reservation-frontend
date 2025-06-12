@@ -1,0 +1,129 @@
+.glass-frame {
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 8px solid white;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.overlap-element {
+  position: relative;
+  margin-bottom: -170px;
+}
+
+.normal-button {
+  padding: 10px 45px;
+  transition: padding 0.1s ease-in-out;
+}
+
+.bigger-button {
+  padding: 12px 47px;
+  transition: padding 0.1s ease-in-out;
+}
+
+.frame-shadow {
+  //-webkit-box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.5);
+  //-moz-box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.5);
+  //box-shadow: 0px 0px 21px 0px rgba(0,0,0,0.5);
+}
+
+.feature-background {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  transition: all 0.8s ease-in-out;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  &.transitioning {
+    animation: backgroundPulse 0.8s ease-in-out;
+  }
+}
+
+@keyframes backgroundPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.01);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Common background properties
+.feature-common-bg {
+  background-size: 100% auto;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: linear-gradient(0deg, rgba(133, 104, 223, 1) 5%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+  }
+}
+
+.default {
+  background-image: url('../../../../resources/feature-conf/default.png');
+  @extend .feature-common-bg;
+}
+
+.appointment {
+  background-image: url('../../../../resources/feature-conf/appointment.png');
+  @extend .feature-common-bg;
+}
+
+.course {
+  background-image: url('../../../../resources/feature-conf/course.png');
+  @extend .feature-common-bg;
+}
+
+.calendar {
+  background-image: url('../../../../resources/feature-conf/calendar.png');
+  @extend .feature-common-bg;
+}
+
+.coupon {
+  background-image: url('../../../../resources/feature-conf/coupon.png');
+  @extend .feature-common-bg;
+}
+
+.notifications {
+  background-image: url('../../../../resources/feature-conf/notifications.png');
+  @extend .feature-common-bg;
+}
+
+.design {
+  background-image: url('../../../../resources/feature-conf/design.png');
+  @extend .feature-common-bg;
+}

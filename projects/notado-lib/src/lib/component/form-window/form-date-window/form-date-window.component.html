@@ -1,0 +1,10 @@
+<app-form-date-window-for-appointment-and-device
+  *ngIf="!isDurationInDays() && (formService.calendarEvent.service.type === serviceType.APPOINTMENT ||
+             formService.calendarEvent.service.type === serviceType.DEVICE)"></app-form-date-window-for-appointment-and-device>
+
+<app-form-date-window-for-appointment-and-device-day-duration
+  *ngIf="isDurationInDays() && (formService.calendarEvent.service.type === serviceType.APPOINTMENT ||
+             formService.calendarEvent.service.type === serviceType.DEVICE)"></app-form-date-window-for-appointment-and-device-day-duration>
+
+<app-form-date-window-for-course
+  *ngIf="formService.calendarEvent.service.type === serviceType.COURSE"></app-form-date-window-for-course>

@@ -1,0 +1,81 @@
+
+<a *ngIf="label"   class="" (click)="modalService.open(calendarReset,  {size: 'lg'})">
+  {{ label | translate }}
+</a>
+
+
+<div *ngIf="!label" class="card text-center">
+
+<span *ngIf="!dashboardService.business.googleCalendarConnected">
+
+  <div style="background: rgb(248, 248, 248); padding: 20px 10px; font-size: 0.85em;">
+    {{'DASHBOARD.GOOGLE_CALENDAR.CONNECT_WITH' | translate}}
+  </div>
+  <div style="padding: 20px 10px;">
+    <img src="../../../resources/brand/google-calendar-logo.png"
+         style="
+                  display: block;
+              margin-left: auto;
+             margin-right: auto;">
+    <br>
+    <br>
+    <button (click)="modalService.open(calendarConnect,  {size: 'lg'})"
+            class="btn btn-blue btn-sm text-uppercase"><i
+      class="fas fa-plug"></i> {{'DASHBOARD.GOOGLE_CALENDAR.CONNECT' | translate}}</button>
+
+  </div>
+
+</span>
+
+  <span *ngIf="dashboardService.business.googleCalendarConnected">
+
+  <div style="background: rgb(248, 248, 248); padding: 20px 10px; font-size: 0.85em;">
+    <i class="fas fa-check text-success"
+       style="position: relative; top: 0px;"></i> {{'DASHBOARD.GOOGLE_CALENDAR.CONNECTED' | translate}}
+  </div>
+
+  <div style="padding: 20px 10px;">
+    <img src="../../../resources/brand/google-calendar-logo.png"
+         style="
+                  display: block;
+              margin-left: auto;
+             margin-right: auto;">
+    <br>
+    <br>
+    <button (click)="modalService.open(calendarReset,  {size: 'lg'})"
+            class="btn btn-link btn-link-gray btn-sm text-uppercase"><i
+      class="fas fa-refresh"></i> {{'DASHBOARD.GOOGLE_CALENDAR.RESET' | translate}}
+    </button>
+  </div>
+
+</span>
+
+</div>
+
+
+<ng-template #calendarReset let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <app-google-connect-popup-info [type]="googleConnectType.RESET"></app-google-connect-popup-info>
+
+</ng-template>
+
+<ng-template #calendarConnect let-c="close" let-d="dismiss">
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <app-google-connect-popup-info [type]="googleConnectType.CONNECT"></app-google-connect-popup-info>
+</ng-template>

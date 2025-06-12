@@ -1,0 +1,100 @@
+<div style="background: rgb(243, 243, 255);">
+  <div *ngIf="navbarService.showDashboardBar" class="col-12 d-md-block d-none">
+    <app-dashboard-menu-horizontal></app-dashboard-menu-horizontal>
+  </div>
+</div>
+
+<div class="d-block d-md-none col-12">
+  <app-dashboard-menu-horizontal-mobile></app-dashboard-menu-horizontal-mobile>
+</div>
+
+
+<div [class.row]="!isMobile">
+  <!-- TOAST -->
+  <div *ngFor="let toast of alertService.toasts" class="alert-toast text-center">
+    <ngb-alert [type]="toast.type" [dismissible]="false"
+               style=" position: fixed; top: 1em; right: 1em; min-width: 300px; z-index: 999;">
+      <i *ngIf="toast.type === 'success' " class="fa fa-check" aria-hidden="true"></i>
+      <i *ngIf="toast.type === 'error' " class="fa fa-close" aria-hidden="true"></i>
+      <i *ngIf="toast.type === 'warning' " class="fa fa-warning" aria-hidden="true"></i> {{toast.msg}}
+    </ngb-alert>
+  </div>
+
+  <!-- ALERT -->
+  <div *ngFor="let alert of alertService.alerts" class="alert-toast text-center">
+    <ngb-alert [type]="alert.type" [dismissible]="false"
+               style=" position: fixed; top: 1em; right: 1em; min-width: 300px; z-index: 999999;">
+      <i *ngIf="alert.type === 'success' " class="fa fa-check" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'error' " class="fa fa-close" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'warning' " class="fa fa-warning" aria-hidden="true"></i> {{alert.msg}}
+    </ngb-alert>
+  </div>
+
+  <!--  VERTICAL DASHBOARD BAR ================================================================================================ -->
+  <div
+    *ngIf="navbarService.showDashboardBar || navbarService.showSimpleDashboardBar"
+    class="col-2 text-left hideOverflow site-menu-background d-md-block d-none"
+    style="min-height: 100%  ; margin-right: 0; padding-right: 0; padding-left: 0;">
+    <app-dashboard-menu-vertical></app-dashboard-menu-vertical>
+  </div>
+
+
+<!--  <div-->
+<!--    *ngIf="navbarService.showSimpleDashboardBar"-->
+<!--    class="text-left hideOverflow site-menu-background col-1 d-md-block d-none"-->
+<!--    style="min-height: 100%; margin-right: 0; padding-right: 0; padding-left: 0; ">-->
+<!--    <app-dashboard-menu-vertical-simple></app-dashboard-menu-vertical-simple>-->
+<!--  </div>-->
+
+
+  <div
+    [class.col-md-10]="navbarService.showDashboardBar || navbarService.showSimpleDashboardBar"
+    class="col-12"
+    style="min-height: 95vh;background: #F1EBFF;background: linear-gradient(135deg, #F1EBFF, #FFFFFF);">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div *ngIf="spinnerService.isShow" class="on-top"
+     [class.loading-white]="!spinnerService.reasonMessage"
+     [class.loading-blue]="spinnerService.reasonMessage">
+
+  <img *ngIf="!spinnerService.reasonMessage" id="spinner" src="../resources/loading-spinner-md.png" style="width:80px;"
+       class="centered spinner">
+  <div *ngIf="spinnerService.reasonMessage" class="text-center" style="margin-top: 22%">
+    <h1 *ngIf="spinnerService.icon" class="text-white">
+      <i [class]="spinnerService.icon" style="font-size: 1.5em;"></i>
+    </h1>
+    <br>
+    <h2 class="text-white">{{spinnerService.reasonMessage}}</h2>
+  </div>
+</div>
+
+
+<ng-template #paymentModal let-c="close" let-d="dismiss">
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <br>
+      <br>
+      <h4>{{'DASHBOARD.ACCOUNT_VALIDITY.LABEL_1' | translate}}</h4>
+      <br>
+      <br>
+      <button (click)="goToPayment()"
+              class="btn btn-primary text-uppercase"> {{'DASHBOARD.ACCOUNT_VALIDITY.LABEL_2' | translate}}</button>
+      <br>
+      <br>
+      <br>
+
+    </div>
+  </div>
+</ng-template>
+
+<a href="https://m.me/notadoRezervace" target="_blank"
+   style="position: fixed; bottom: 13px; right: 30px;">
+  <img class="img-fluid rounded-circle messenger-img shadow-on-hover"
+       src="../../../../resources/contact/tomas.jpg"
+       style="">
+  <i class="fab fa-facebook-messenger" style=" font-size: 1.4em; color: #2E9A49; position: relative; top: 22px; right: 13px;"></i>
+</a>
+

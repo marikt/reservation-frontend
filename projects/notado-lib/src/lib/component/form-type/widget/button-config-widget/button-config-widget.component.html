@@ -1,0 +1,54 @@
+<!--========================================================-->
+
+
+<button (click)="nextFormWindow()"
+        *ngIf="showNextButton(cardName)"
+        [style.background]="formService.template?.componentColor"
+        [style.border-radius]="formService.template?.buttonRadius"
+        [style.color]="formService.template?.textButtonColor"
+        class="btn-custom text-uppercase btn-block"
+        id="form-next"
+        style="border-width: 0;">
+  {{ 'FORM.CONTINUE' | translate }}
+</button>
+
+
+<!--========================================================-->
+
+<span *ngIf="cardName == 'SUMMARY' ">
+        <button *ngIf="formService.getStripeServiceConfig().price"
+                (click)="formService.pay()"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                style="border-width: 0px;"
+                class="btn-custom ">
+
+          <span *ngIf="spinnerService.isShowUnstoppable" aria-hidden="true" class="spinner-grow spinner-grow-sm"
+                role="status"
+                style="position: relative; bottom: 3px; right: 4px;"></span>
+                        <span *ngIf="!config?.paymentButtonLabel">
+                {{'FORM.PAY' | translate}}
+              </span>
+              <span *ngIf="config?.paymentButtonLabel">
+                {{config.paymentButtonLabel}}
+              </span>
+          </button>
+        <button *ngIf="(formService.getStripeServiceConfig().price && !formService.getStripeServiceConfig().paymentMandatory) || owner"
+                (click)="nextFormWindow()"
+                [style.border-radius]="formService.template?.buttonRadius"
+                style="color: #fff; background-color: #6c757d; border-color: #6c757d; border: none;"
+                class="btn-custom ">
+          {{'FORM.PAY_LATER' | translate}}
+        </button> &nbsp;
+        <button *ngIf="!formService.getStripeServiceConfig().price"
+                (click)="nextFormWindow()"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom btn-block"
+                id="form-book-button"
+                style="border-width: 0px;">
+          {{'FORM.CREATE_RESERVATION' | translate}}
+        </button>
+</span>

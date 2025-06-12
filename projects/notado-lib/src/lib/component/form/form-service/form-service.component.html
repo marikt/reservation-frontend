@@ -1,0 +1,17 @@
+
+<span *ngIf="ready">
+  <app-form-template-fullscreen *ngIf="formTypeValue == formType.FULLSCREEN" [formEditMode]="formEditMode"
+                                cardName="SERVICE">
+    <app-form-service-window [formEditMode]="formEditMode"></app-form-service-window>
+  </app-form-template-fullscreen>
+
+  <app-form-template-simple *ngIf="formTypeValue == formType.FULLSCREEN_SIMPLE" [formEditMode]="formEditMode"
+                            cardName="SERVICE">
+    <app-form-service-window [formEditMode]="formEditMode"></app-form-service-window>
+  </app-form-template-simple>
+
+  <app-form-template-widget *ngIf="formTypeValue == formType.WIDGET" [formEditMode]="formEditMode" cardName="SERVICE">
+    <app-form-service-window [formEditMode]="formEditMode"></app-form-service-window>
+  </app-form-template-widget>
+
+</span>

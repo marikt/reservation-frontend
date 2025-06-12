@@ -1,0 +1,9 @@
+<button type="button" class="btn btn-link btn-sm" [ngbPopover]="popover">
+  <i class="far fa-question-circle text-primary"></i>
+</button>
+
+<!-- Time Window Config -->
+<ng-template #popover>
+  <img [src]="img"
+       class="img-shadow rounded" style="width: 550px; margin: 0 auto;" [alt]="img">
+</ng-template>

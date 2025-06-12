@@ -1,0 +1,83 @@
+
+
+<div *ngIf="wizardService.business && wizardService.services[idx]" class="col-12">
+  <div class="row" style="height: 100vh; max-height: 100vh; max-width: 100vw; background-color: white;">
+
+    <div class="col-12 col-md-6">
+      <app-business-wizard-left
+        [label]="idx === 0 ? 'WIZARD.NEXT_SERVICE_FIRST' : 'WIZARD.NEXT_SERVICE'"
+      ></app-business-wizard-left>
+    </div>
+
+    <div class="col-12 col-md-5" style="background: white;">
+
+      <div class="row" style="height: 5vh"></div>
+      <div class="row d-none d-md-block" style="height: 35vh"></div>
+
+      <form #form="ngForm" (ngSubmit)="onSubmit()" validate>
+        <div *ngIf="wizardService.services[idx]" class="input-group col-11 offset-1">
+          <input #serviceName="ngModel" [(ngModel)]="wizardService.services[idx].name"
+                 [class.is-invalid]="serviceName.invalid && showValidation"
+                 [class.is-valid]="!serviceName.invalid"
+                 class="form-control form-control-lg"
+                 id="wizard-service-name-input"
+                 name="service-name"
+                 placeholder="{{ 'WIZARD.SERVICE_INPUT_PLACEHOLDER' | translate }}"
+                 required
+                 type="text">
+          <div class="invalid-feedback">
+            {{ 'COMMON.REQUIRED' | translate }}
+          </div>
+          <div *ngIf="serviceName.valid" class="feedback-icon" style="width: 15px;">
+            <i class="fas fa-check"></i>
+          </div>
+          <div *ngIf="!serviceName.valid" class="feedback-icon" style=" width: 15px;">
+          </div>
+        </div>
+      </form>
+
+      <br>
+      <br>
+      <div class="row d-none d-md-block" style="height: 33vh"></div>
+
+      <div class="row">
+        <div class="col-6 col-md-6 offset-0 offset-md-2 text-right">
+          <button *ngIf="idx > 0"
+                  (click)="goToWorkerName()"
+                  class="btn btn-secondary  "
+                  [class.btn-sm-padding]="isMobile"
+                  [class.btn-no-other-position]="!isMobile"
+                  [class.btn-no-other-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+                  id="wizard-dont-have-other-services-button">
+            {{ 'WIZARD.SERVICE_NO_OTHER' | translate }}
+          </button>
+        </div>
+        <div class="col-6 col-md-2 text-right">
+          <button (click)="showValidation = true" *ngIf="form.invalid"
+                  [class.btn-sm-padding]="isMobile"
+                  [class.btn-continue-fix-position]="!isMobile"
+                  [class.btn-continue-fix-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+
+                  class="btn btn-blue text-uppercase " type="button">
+            {{ 'COMMON.CONTINUE' | translate }}
+          </button>
+          <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid"
+                  [class.btn-sm-padding]="isMobile"
+                  [class.btn-continue-fix-position]="!isMobile"
+                  [class.btn-continue-fix-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+
+                  class="btn btn-blue text-uppercase "
+                  id="wizard-continue-button">
+            {{ 'COMMON.CONTINUE' | translate }}
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

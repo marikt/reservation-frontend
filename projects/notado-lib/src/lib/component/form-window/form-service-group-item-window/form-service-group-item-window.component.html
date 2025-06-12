@@ -1,0 +1,27 @@
+<div class="card-for-form card mb-3" id="serviceGroupItemComponentInForm"
+     [style.background]="formService.template?.serviceCardColor">
+  <button
+    (click)="selectServiceGroup()"
+    [id]="serviceGroup.name"
+    [name]="serviceGroup.name"
+    style="padding: 0px !important;"
+    class="btn btn-default">
+
+    <div class="row no-gutters text-left">
+      <div class="col-4" *ngIf="serviceGroup.fullPathImg">
+        <img
+          [src]="server.SERVER + serviceGroup.fullPathImg"
+          (error)="handleImageNotLoaded()"
+          class="card-img"
+          for="serviceGroupRadio1">
+      </div>
+      <div class="col-8" >
+        <div class="card-body" >
+          <h6 class="card-title"
+              [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}"
+              [style.color]="formService.template?.serviceCardTextColor + ' !important'">{{serviceGroup.name}}</h6>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>

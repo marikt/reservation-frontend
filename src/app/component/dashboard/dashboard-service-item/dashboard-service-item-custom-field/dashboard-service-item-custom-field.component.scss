@@ -1,0 +1,32 @@
+
+.btn-link-blue {
+  color: rgb(105, 59, 218);
+}
+
+.text-grey {
+  color: #6c757d;
+}
+
+.icon-position {
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+}
+
+.preview-icon {
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+:host ::ng-deep .preview-popover {
+  max-width: 600px !important;
+  width: auto;
+
+  .popover-body {
+    padding: 0;
+  }
+}

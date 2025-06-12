@@ -1,0 +1,54 @@
+<div class="col-12">
+  <div class="row"
+       style="height: 100vh; max-height: 100vh; max-width: 100vw; background-color: white; overflow: hidden;">
+
+    <div class="col-12 col-md-6">
+      <app-business-wizard-left
+        label="WIZARD.GOOGLE_CONNECT"></app-business-wizard-left>
+    </div>
+
+    <div class="col-12 col-md-5">
+
+      <div class="row d-none d-md-block " style="height: 20vh"></div>
+      <img src="../../../../resources/wizard-calendar.png" width="500">
+
+      <div class="row">
+        <div class="col-6 col-md-7 offset-0 offset-md-1 text-right">
+          <button (click)="wizardService.next('business-wizard-fin')"
+                  class="btn btn-secondary btn-lg "
+                  [class.btn-sm-padding]="isMobile"
+                  [class.btn-no-other]="!isMobile"
+                  id="wizard-dont-connect-now">
+            {{ 'WIZARD.GOOGLE_CONNECT_BTN_ANOTHER_TIME' | translate }}
+          </button>
+        </div>
+        <div class="col-6 col-md-2 text-right">
+          <button class="btn btn-blue text-uppercase "
+                  id="wizard-continue-button"
+                  [class.btn-continue-fix-position]="!isMobile"
+                  [class.btn-continue-fix-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+                  (click)="modalService.open(calendarConnect,  {size: 'lg'})"
+                  type="button">
+            <i class="fas fa-plug"></i> {{ 'WIZARD.GOOGLE_CONNECT_BTN' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #calendarConnect let-c="close" let-d="dismiss">
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <app-google-connect-popup-info [type]="googleConnectType.CONNECT"></app-google-connect-popup-info>
+
+</ng-template>
+
+

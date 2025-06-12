@@ -1,0 +1,25 @@
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+.bg {
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+  background-attachment: scroll !important;
+}
+
+/*.modal-dialog {*/
+/*margin-top: 2% !important;*/
+/*}*/
+
+
+.frame {
+  border: 1px solid rgb(201, 212, 218);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(176, 176, 176, 1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(176, 176, 176, 1);
+  box-shadow: 0px 0px 5px 0px rgba(176, 176, 176, 1);
+}

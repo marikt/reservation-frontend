@@ -1,0 +1,75 @@
+<app-dashboard-card>
+
+  <app-dashboard-card-label label="Admin Active Users">
+  </app-dashboard-card-label>
+
+  <div class="container">
+    <div class="row">
+
+      <div *ngFor="let user of adminService.users; let idx = index;"
+           class="col-5 text-center form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+
+
+        <div class="card-item" >
+
+          <div class="row alert" style="margin: 0 !important;"
+               [class.alert-secondary]="user.paymentInfo?.plan == 'TRIAL'"
+               [class.alert-dark]="user.paymentInfo?.plan == 'CANCELED' || user.paymentInfo?.isValid"
+               [class.alert-warning]="user.paymentInfo?.plan == 'MONTHLY'"
+               [class.alert-primary]="user.paymentInfo?.plan == 'MONTHLY_3'"
+               [class.alert-success]="user.paymentInfo?.plan == 'YEARLY'"
+          >
+            <h4>{{user.paymentInfo?.plan}}</h4>
+          </div>
+
+          <div class="row" style="padding: 20px">
+
+            <div class="col text-left">
+              <br>
+              <a [routerLink]="['/dashboard/admin-user-item', idx]">
+                <h6>name: <b> {{user.name}}</b></h6>
+                <h6>username: <b>{{user.username}}</b></h6>
+                <h6>email: <b>{{user.email}}</b></h6>
+                <h6>phone: <b>{{user.phone}}</b></h6>
+                <h6>id: <b>{{user.id}}</b></h6>
+              </a>
+              <hr>
+              <h6>plan: {{user.paymentInfo?.plan}}</h6>
+              <h6>valid: {{user.paymentInfo?.validityFormatted}} (left: {{user.paymentInfo?.daysValidFromToday}})</h6>
+              <hr>
+              <span *ngIf="user.urls && user.urls.length > 0">
+
+                  <div *ngFor="let url of user.urls">
+                    <h6>url: <a target="_blank" class="btn-outline-primary btn" [href]="'http://www.' + url">{{url}}</a> </h6>
+                  </div>
+              </span>
+              <hr>
+              <div class="form-group">
+                <label for="phone-{{idx}}">Phone:</label>
+                <input type="text" id="phone-{{idx}}" class="form-control" [(ngModel)]="user.phone">
+              </div>
+
+              <div class="form-group">
+                <label for="contacted-{{idx}}">
+                  <input type="checkbox" id="contacted-{{idx}}" [(ngModel)]="user.contacted"> Contacted
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label for="description-{{idx}}">Description:</label>
+                <textarea id="description-{{idx}}" class="form-control" [(ngModel)]="user.description"></textarea>
+              </div>
+
+              <button class="btn btn-success mt-2" (click)="saveUser(user)">Save</button>
+
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+</app-dashboard-card>
+

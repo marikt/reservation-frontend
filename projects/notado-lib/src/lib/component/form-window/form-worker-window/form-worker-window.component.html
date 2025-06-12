@@ -1,0 +1,42 @@
+
+
+<div *ngIf="formService.getWorkers() && formService.getWorkers().length > 1 && formService.calendarEvent.service.type == serviceType.APPOINTMENT" class="row justify-content-center">
+
+  <div *ngFor="let worker of formService.getWorkers()" class="col-md-3 col-5 text-center form-check"
+       style="padding: 20px 0; margin-right: 5px;">
+
+    <span [class.gray-filter]="!worker.available">
+      <label [for]="worker.name" class="form-check-label">
+
+        <img *ngIf="worker.fullPathImg"
+             (error)="handleImageNotLoaded(worker)"
+
+             [src]="server.SERVER + worker.fullPathImg" class="worker-img rounded-circle">
+        <img *ngIf="!worker.fullPathImg" class="worker-img rounded-circle"
+             src="../../../../resources/default-worker.png"
+             width="130">
+
+        <div class="worker-label" [style.color]="formService.template?.textColor">{{worker.name}}</div>
+      </label>
+      <br>
+      <input
+        (ngModelChange)="workerSelected($event)"
+        [(ngModel)]="formService.calendarEvent.worker"
+        [checked]="formService.calendarEvent.worker?.name === worker.name"
+        [id]="worker.name"
+        [name]="worker.name"
+        [value]="worker"
+        class="form-check-input checkbox-lg"
+        style="position: relative; left: 11px;"
+        type="radio">
+      <br>
+    </span>
+  </div>
+</div>
+
+<div *ngIf="formService.getWorkers() && formService.getWorkers().length > 1 && !isValid()"
+     class="text-error text-center">
+  {{ 'FORM.PLEASE_SELECT_WORKER' | translate }}
+</div>
+
+<br>

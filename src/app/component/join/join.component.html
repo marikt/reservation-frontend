@@ -1,0 +1,105 @@
+<div *ngIf="authService.user" class="container text-center">
+  <br>
+  <br>
+  <h2 class="text-primary">
+    {{ 'JOIN.LABEL1' | translate }}
+  </h2>
+  <br>
+  <br>
+  <button class="col-xs-offset-1 col-sm-offset-3 col-md-offset-3 btn btn-lg btn-link"
+          routerLink="/dashboard/dashboard-landing">
+    {{ 'JOIN.LABEL2' | translate }}
+  </button>
+</div>
+
+<om-flickering-grid>
+<div *ngIf="!authService.user" class="bg" style="height: 100vh">
+  <!-- ALERT -->
+  <div *ngFor="let alert of alertService.alerts" class="alert-alert col-12 text-center">
+    <ngb-alert [type]="alert.type" (close)="alertService.closeAlert(alert)">
+      <i *ngIf="alert.type === 'success' " class="fas fa-check" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'error' " class="fa fa-close" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'warning' " class="fa fa-warning" aria-hidden="true"></i> {{alert.msg}}
+    </ngb-alert>
+  </div>
+  <br>
+  <br>
+  <div class="container text-center">
+    <div class="col-lg-7 col-md-8 col-12 card img-shadow rounded" style="margin: 0 auto;">
+      <br>
+      <br>
+      <h4 class="text-blue">
+        {{ 'JOIN.LABEL3' | translate }}
+      </h4>
+      <br>
+      <br>
+      <div class=" offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-0 col-12">
+
+        <form #form="ngForm" (ngSubmit)="login()">
+
+          <!-- has-success -->
+          <div class="form-group has-success">
+            <input type="text" [(ngModel)]="user.email" #email="ngModel" name="email" class="form-control"
+                   [class.is-invalid]="email?.invalid && showValidation"
+                   [class.is-valid]="!email?.invalid"
+                   [class.form-control-success]="!email.invalid" placeholder="Email " required
+                   id="user-email" />
+          </div>
+
+          <div class="form-group has-success">
+            <input #password="ngModel"
+                   [(ngModel)]="user.password"
+                   [class.form-control-success]="!password.invalid"
+                   [class.is-invalid]="password?.invalid && showValidation"
+                   [class.is-valid]="!password?.invalid" [placeholder]="'TOOLTIP.PASSWORD' | translate"
+                   class="form-control " id="user-password" minlength="5"
+                   name="password"
+                   required
+                   suggested="current-password" type="password"/>
+            <div class="invalid-feedback">
+              {{ 'JOIN.PASSWORD_REQ' | translate }}
+            </div>
+
+          </div>
+          <p *ngIf="badCredentials" class="text-danger text-center">{{ 'JOIN.WRONG_EMAIL' | translate }}</p>
+          <p *ngIf="emailNotExists" class="text-danger text-center">{{ 'JOIN.EMAIL_EXISTS' | translate }}</p>
+
+          <br>
+          <button (click)="showValidation = true" class="btn btn-blue-gradient btn-block text-uppercase disabled"
+                  type="button"
+                  *ngIf="form.invalid ">{{ 'JOIN.LOGIN'  | translate }}
+          </button>
+          <button class="btn btn-blue-gradient btn-block text-uppercase " id="join-button" type="submit"
+                  *ngIf="!form.invalid ">{{ 'JOIN.LOGIN' | translate }}
+          </button>
+          <button type="button" [disabled]="email?.errors" class="btn btn-link text-right btn-sm"
+                  (click)="sendPassword()"
+          >{{ 'JOIN.PASSWORD_FORGOT' | translate }} {{email?.errors ? ('JOIN.FILL_EMAIL' | translate) : ''}}
+          </button>
+
+          <br>
+          <div class="row text-center ">
+            <h6><span> {{ 'JOIN.OR' | translate }}  </span></h6>
+          </div>
+          <br>
+
+          <div class="container-fluid" style="padding: 0; margin-bottom: 10px;">
+<!--            <a id="btnGoogleSignin1" [href]="server.SERVER + 'auth/google'"></a>-->
+
+            <a type="button" (click)="joinWithGoogle()" class="googleButton text-center"
+               aria-disabled="false" aria-busy="false" aria-label="Continue with Google">
+              <img class="Q2rN3" alt="Continue with Google" width="17" height="17"
+                                                                                               src="https://dapulse-res.cloudinary.com/image/upload/remote_logos/995426/google-icon.svg">
+              <span style="font-size: 1.2em; position: relative; top: 2px;">&nbsp; {{ 'JOIN.LOGIN_GOOGLE'  | translate }}</span></a>
+            <br>
+            <br>
+            <br>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</om-flickering-grid>

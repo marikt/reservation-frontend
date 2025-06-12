@@ -1,0 +1,40 @@
+.input-group-text {
+  background: transparent;
+  border: 1px solid #ced4da;
+  border-top-left-radius: 8px !important;
+  border-bottom-left-radius: 8px !important;
+  border-right: 0px;
+}
+
+.input-group-text.is-valid {
+  border-color: rgb(69, 0, 237) !important;
+  border: 2px solid;
+  box-shadow: none !important;
+  border-right: 0px;
+}
+
+.disabled {
+  opacity: 0.4;
+  color: #777777 !important;
+}
+
+.small-side-padding {
+  padding-left: 10px !important;
+  padding-right: 2px !important;
+}
+
+.overlay-menu {
+  padding: 10px;
+  z-index: 999;
+  position: absolute;
+  left: 20px;
+  top: 35px;
+  width: 280px;
+  min-height: 15%;
+  background-color: white;
+  //-webkit-box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  //-moz-box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  //box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  border-radius: 10px;
+  border: 1px solid;
+}

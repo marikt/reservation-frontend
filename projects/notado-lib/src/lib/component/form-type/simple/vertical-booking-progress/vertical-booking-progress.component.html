@@ -1,0 +1,25 @@
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div *ngFor="let window of this.formService.template?.windows; let idx = index;">
+    <div class="" *ngIf="window.active">
+      <div *ngIf="idx != 0"
+           class="offset-8 row"
+           style="width: 2px; height: 5em; position: relative; left: 4px;"
+           [style.background]="idx <= this.formService.idx ? formService.template?.componentColor : (formService.template?.componentColor | addAlphaColor: 0.2)">
+      </div>
+      <div style="border-radius: 50%; width: 10px; height: 10px"
+           class="offset-8 row"
+           [style.background]="idx <= this.formService.idx ? formService.template?.componentColor : (formService.template?.componentColor | addAlphaColor: 0.2)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--[style.width]="idx == this.formService.idx ? '15px' : '15px'"-->
+<!--[style.height]="idx == this.formService.idx ? '15px' : '15px'"-->

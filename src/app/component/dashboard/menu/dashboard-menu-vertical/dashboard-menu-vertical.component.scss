@@ -1,0 +1,101 @@
+
+.overlay-menu {
+  z-index: 999;
+  position: fixed;
+  top: 10vh;
+  left: 10vw;
+  min-width: 40%;
+  min-height: 60%;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  border-radius: 10px;
+}
+
+
+.overlay-menu-bottom {
+  z-index: 999;
+  position: fixed;
+  top: 30vh;
+  left: 10vw;
+  min-width: 40%;
+  min-height: 60%;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  box-shadow: 0px 0px 5px 3px rgba(104,77,212,0.3);
+  border-radius: 10px;
+}
+
+
+
+.list-group-item {
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.list-group-item.selected {
+  font-weight: 900;
+}
+
+.hideOverflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.list-group-item {
+  margin-left: 0px;
+  margin-bottom: 0px;
+  padding: 0.35em 0em;
+}
+
+.link-selected {
+  background: rgb(47, 26, 54);
+}
+
+.btn-link-shine {
+  color: white;
+  opacity: 0.65;
+}
+.btn-link-shine:hover, .btn-link-shine:active, .btn-link-shine:focus  {
+  color: white;
+  opacity: 1;
+  text-decoration: none !important;
+}
+
+.nav-link {
+  margin-left: 10px !important;
+}
+
+.text-small {
+  font-size: 0.9em;
+}
+
+.btn-round {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: white;
+  background: transparent;
+  border: 0 !important;
+  opacity: 0.65;
+}
+
+.btn-round:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+
+
+

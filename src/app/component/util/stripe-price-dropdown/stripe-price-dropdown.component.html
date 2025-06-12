@@ -1,0 +1,69 @@
+<div *ngIf="!integrationData.connected && (spinnerService.loadingProgress == 0)" class="row">
+  <button type="button" class="btn btn-primary" routerLink="/dashboard/dashboard-reservation-form-payment"><i
+    class="fab fa-stripe-s"></i>
+    &nbsp; {{ 'DASHBOARD.INTEGRATION.STRIPE.DO_CONNECTED'  | translate }} &nbsp; <i
+      class="fas fa-long-arrow-alt-right"></i>
+  </button>
+</div>
+
+<div *ngIf="(!stripePrices || stripePrices.length === 0) && (spinnerService.loadingProgress == 0)" class="row">
+  <div class="alert alert-info">
+    <i class="fas fa-gifts"></i> &nbsp; {{ 'DASHBOARD.INTEGRATION.STRIPE.NO_PRODUCT' | translate }}
+    <app-video-tutorial videoSrc="https://www.youtube.com/embed/P-jUaEgK-ow"
+                        btnType="link"
+                        label="VIDEO_GUIDE.PAYMENT.LABEL"></app-video-tutorial>
+  </div>
+  <br>
+</div>
+
+<app-loading-progress *ngIf="spinnerService.loadingProgress > 0" label="DASHBOARD.COUPON.LOADING">
+</app-loading-progress>
+
+<div
+  *ngIf="(stripePrices && stripePrices.length > 0) && integrationData.connected && (spinnerService.loadingProgress == 0)"
+  class="form-group">
+  <label>{{ label | translate }}*</label>
+  <div class="input-group">
+    <input [ngModel]="priceName"
+           class="form-control text-right radius-right-none"
+           disabled
+           [class.is-invalid]="(!priceName && showValidation) || isRecurring"
+           [class.is-valid]="priceName"
+           #stripeCouponPriceDropdown="ngModel"
+           id="stripeCouponPriceDropdown"
+           name="stripeCouponPriceDropdown"
+           type="text">
+    <div class="input-group-append" ngbDropdown>
+      <button class="btn btn-outline-secondary btn-sm" id="dropdownMenuLinkToSelectStripePrice" ngbDropdownToggle
+              placement="bottom"
+              style="margin-left: 4px;"
+              type="button">
+      </button>
+      <div aria-labelledby="dropdownMenuLinkToSelectStripePrice" ngbDropdownMenu>
+          <span *ngFor="let stripePrice of stripePrices">
+            <button (click)="selectPriceAction.emit(stripePrice); setPriceName(stripePrice)"
+                    [id]="stripePrice.id"
+                    class="dropdown-item"
+                    ngbDropdownItem
+                    type="button">{{ stripePrice.productName + ': ' + stripePrice.price + ',-' }}</button>
+          </span>
+      </div>
+
+      <a class="btn btn-link-blue btn-sm pull-right"
+         (click)="loadPrices()"
+         style="margin-top: 3px;">
+        <i class="fas fa-sync-alt"></i>
+      </a>
+
+    </div>
+    <div class="invalid-feedback" *ngIf="isRecurring">
+      {{ 'DASHBOARD.COUPON.RECURRING_NOT_ALLOWED' | translate }}
+      <a target="_blank"
+         href="https://dashboard.stripe.com">
+        <i class="fab fa-stripe" style="font-size: 1.7em; position: relative; top: 4px;"></i> &nbsp;<i
+        class="fas fa-arrow-right " style="font-size: 0.8em"></i>
+      </a>
+    </div>
+  </div>
+</div>
+

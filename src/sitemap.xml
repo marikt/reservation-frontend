@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.notado.cz/cs/home</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/cs/home" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/sk/home" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/pl/home" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/intro-google-contacts</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/intro-google-contacts" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/intro-google-contacts" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/intro-google-contacts" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/contact</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/contact" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/contact" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/contact" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/price-menu</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/price-menu" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/price-menu" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/price-menu" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/management-on-google</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/management-on-google" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/management-on-google" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/management-on-google" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/faq-menu</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/faq-menu" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/faq-menu" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/faq-menu" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/online-reservation</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/online-reservation" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/online-reservation" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/online-reservation" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/notification</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/notification" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/notification" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/notification" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/intro/cs/integration</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/intro/cs/integration" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/intro/sk/integration" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/intro/pl/integration" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-hairdresser</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-hairdresser" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-hairdresser" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-hairdresser" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-salon</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-salon" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-salon" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-salon" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-doctor</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-doctor" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-doctor" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-doctor" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-car-repair</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-car-repair" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-car-repair" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-car-repair" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-other-services</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-other-services" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-other-services" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-other-services" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-yoga</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-yoga" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-yoga" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-yoga" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-course</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-course" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-course" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-course" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-device</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-device" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-device" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-device" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-sports-ground</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-sports-ground" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-sports-ground" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-sports-ground" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-beauty</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-beauty" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-beauty" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-beauty" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-education</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-education" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-education" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-education" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-events</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-events" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-events" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-events" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-health</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-health" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-health" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-health" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/audience/cs/for-sport</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/audience/cs/for-sport" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/audience/sk/for-sport" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/audience/pl/for-sport" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/blog-list</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/blog-list" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/blog-list" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/blog-list" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/reservation-system-help-your-business</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/reservation-system-help-your-business" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/reservation-system-help-your-business" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/reservation-system-help-your-business" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/google-calendar-as-reservation-system</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/google-calendar-as-reservation-system" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/google-calendar-as-reservation-system" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/google-calendar-as-reservation-system" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/reservation-system-for-barber</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/reservation-system-for-barber" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/reservation-system-for-barber" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/reservation-system-for-barber" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/reservation-system-for-massage</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/reservation-system-for-massage" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/reservation-system-for-massage" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/reservation-system-for-massage" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/reservation-system-and-security</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/reservation-system-and-security" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/reservation-system-and-security" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/reservation-system-and-security" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/configurable-booking-form</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/configurable-booking-form" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/configurable-booking-form" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/configurable-booking-form" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/jak-funguje-rezervacni-system</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/jak-funguje-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/jak-funguje-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/jak-funguje-rezervacni-system" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/jakub-story</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/jakub-story" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/jakub-story" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/jakub-story" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/booking-for-yoga</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/booking-for-yoga" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/booking-for-yoga" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/booking-for-yoga" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/notado-features</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/notado-features" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/notado-features" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/notado-features" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/about-notado</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/about-notado" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/about-notado" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/about-notado" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/booking-for-dentists</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/booking-for-dentists" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/booking-for-dentists" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/booking-for-dentists" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/payments-during-booking</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/payments-during-booking" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/payments-during-booking" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/payments-during-booking" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/how-online-booking-can-revolutionize-your-hair-salon-business</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/how-online-booking-can-revolutionize-your-hair-salon-business" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/how-online-booking-can-revolutionize-your-hair-salon-business" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/how-online-booking-can-revolutionize-your-hair-salon-business" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/reservation-system-for-sport-venue</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/reservation-system-for-sport-venue" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/reservation-system-for-sport-venue" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/reservation-system-for-sport-venue" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/telefonicke-vs-online-rezervace</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/telefonicke-vs-online-rezervace" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/telefonicke-vs-online-rezervace" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/telefonicke-vs-online-rezervace" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/pro-koho-jsou-rezervacni-systemy</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/pro-koho-jsou-rezervacni-systemy" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/pro-koho-jsou-rezervacni-systemy" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/pro-koho-jsou-rezervacni-systemy" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/guide-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/guide-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/guide-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/guide-for-beginners" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/price</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/price" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/price" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/price" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/masaz-story</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/masaz-story" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/masaz-story" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/masaz-story" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/pro-koho-jsou-rezervacni-systemy</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/pro-koho-jsou-rezervacni-systemy" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/pro-koho-jsou-rezervacni-systemy" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/pro-koho-jsou-rezervacni-systemy" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/telefonicke-vs-online-rezervace</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/telefonicke-vs-online-rezervace" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/telefonicke-vs-online-rezervace" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/telefonicke-vs-online-rezervace" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/reverzni-rezervace</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/reverzni-rezervace" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/reverzni-rezervace" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/reverzni-rezervace" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/historie-rezervacnich-systemu</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/historie-rezervacnich-systemu" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/historie-rezervacnich-systemu" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/historie-rezervacnich-systemu" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/guide-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/guide-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/guide-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/guide-for-beginners" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/advantages-and-disadvantages</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/advantages-and-disadvantages" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/advantages-and-disadvantages" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/advantages-and-disadvantages" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/key-features</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/key-features" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/key-features" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/key-features" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/jak-vybrat-rezervacni-system</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/jak-vybrat-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/jak-vybrat-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/jak-vybrat-rezervacni-system" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/jak-vytvorit-rezervacni-system</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/jak-vytvorit-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/jak-vytvorit-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/jak-vytvorit-rezervacni-system" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/notado-integrace-blog</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/notado-integrace-blog" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/notado-integrace-blog" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/notado-integrace-blog" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/sprava-zakazniku</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/sprava-zakazniku" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/sprava-zakazniku" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/sprava-zakazniku" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/proc-ne-system-zdarma</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/proc-ne-system-zdarma" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/proc-ne-system-zdarma" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/proc-ne-system-zdarma" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/jednoduchy-rezervacni-system</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/jednoduchy-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/jednoduchy-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/jednoduchy-rezervacni-system" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/rezervacni-system-pro-salony</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/rezervacni-system-pro-salony" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/rezervacni-system-pro-salony" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/rezervacni-system-pro-salony" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/rezervacni-system-pro-fotografy</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/rezervacni-system-pro-fotografy" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/rezervacni-system-pro-fotografy" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/rezervacni-system-pro-fotografy" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/advantages-and-disadvantages</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/advantages-and-disadvantages" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/advantages-and-disadvantages" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/advantages-and-disadvantages" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/rezervacni-system-pro-psychology</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/rezervacni-system-pro-psychology" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/rezervacni-system-pro-psychology" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/rezervacni-system-pro-psychology" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/booking-calendar</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/booking-calendar" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/booking-calendar" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/booking-calendar" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/rozhovor-s-fotografem</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/rozhovor-s-fotografem" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/rozhovor-s-fotografem" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/rozhovor-s-fotografem" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/neravidelna-pracovni-doba</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/neravidelna-pracovni-doba" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/neravidelna-pracovni-doba" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/neravidelna-pracovni-doba" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/integrace-na-web</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/integrace-na-web" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/integrace-na-web" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/integrace-na-web" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/co-je-online-rezervacni-system</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/co-je-online-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/co-je-online-rezervacni-system" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/co-je-online-rezervacni-system" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/blog/cs/canceling-reservation</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/blog/cs/canceling-reservation" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/blog/sk/canceling-reservation" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/blog/pl/canceling-reservation" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/attendees</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/attendees" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/attendees" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/attendees" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/google-calendar</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/google-calendar" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/google-calendar" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/google-calendar" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/notification</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/notification" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/notification" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/notification" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/zoom</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/zoom" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/zoom" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/zoom" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/vacation</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/vacation" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/vacation" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/vacation" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/specific-close-days</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/specific-close-days" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/specific-close-days" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/specific-close-days" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/edit-event</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/edit-event" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/edit-event" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/edit-event" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/cancel-event</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/cancel-event" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/cancel-event" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/cancel-event" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/phone-booking</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/phone-booking" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/phone-booking" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/phone-booking" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/voucher</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/voucher" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/voucher" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/voucher" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/share</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/share" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/share" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/share" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/course</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/course" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/course" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/course" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/multiple-business</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/multiple-business" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/multiple-business" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/multiple-business" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/button-for-each-service</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/button-for-each-service" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/button-for-each-service" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/button-for-each-service" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/cache</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/cache" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/cache" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/cache" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/customer</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/customer" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/customer" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/customer" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/invoice</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/invoice" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/invoice" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/invoice" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.notado.cz/faq/cs/subscription-cancel</loc>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.notado.cz/faq/cs/subscription-cancel" />
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.notado.cz/faq/sk/subscription-cancel" />
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.notado.cz/faq/pl/subscription-cancel" />
+    <lastmod>2025-01-29</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+
+
+</urlset>
+

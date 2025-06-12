@@ -1,0 +1,62 @@
+<div class="row">
+
+  <div class="col-3 offset-1 text-center form-check" style="padding: 20px 0px; margin-right: 5px; ">
+    <label class="form-check-label" for="serviceGroupRadio1">
+      <img class="rounded " for="serviceGroupRadio1" src="../../../../../resources/demo/service-group/sg1.png"
+           style="width: 130px;">
+      <div class="service-label">{{'FORM.COSMETIC' | translate}}</div>
+    </label>
+    <br>
+    <input class="form-check-input checkbox-lg"
+           id="serviceGroupRadio1"
+           name="serviceGroupRadioOptions1"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="Kosmetika"
+           [(ngModel)]="demoService.reservation.serviceGroup"
+           [checked]="demoService.reservation.serviceGroup === 'Kosmetika'">
+
+  </div>
+
+  <div class="col-3 text-center" style="padding: 20px 0px;  margin-right: 5px; margin-left: 5px;">
+    <label class="form-check-label" for="serviceGroupRadio2">
+      <img class="rounded" src="../../../../../resources/demo/service-group/sg2.png"
+           style="width: 130px;">
+
+      <div class="service-label">{{'FORM.HAIRCUT' | translate}}</div>
+    </label>
+    <br>
+    <input class="form-check-input checkbox-lg"
+           id="serviceGroupRadio2"
+           name="serviceGroupRadioOptions2"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="Kadeřnické služby"
+           [(ngModel)]="demoService.reservation.serviceGroup"
+           [checked]="demoService.reservation.serviceGroup === 'Kadeřnické služby'">
+
+  </div>
+
+  <div class="col-3 text-center" style="padding: 20px 0px;  margin-right: 5px; margin-left: 5px;">
+    <label class="form-check-label" for="serviceGroupRadio3">
+      <img class="rounded" src="../../../../../resources/demo/service-group/sg3.png"
+           style="width: 130px;">
+
+      <div class="service-label">{{'FORM.MASSAGE' | translate}}</div>
+    </label>
+    <br>
+    <input class="form-check-input checkbox-lg"
+           id="serviceGroupRadio3"
+           name="serviceGroupRadioOptions3"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="Masáže"
+           [(ngModel)]="demoService.reservation.serviceGroup"
+           [checked]="demoService.reservation.serviceGroup === 'Masáže'">
+
+  </div>
+
+</div>
+
+<br>
+

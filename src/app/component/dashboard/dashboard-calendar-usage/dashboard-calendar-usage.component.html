@@ -1,0 +1,94 @@
+<app-dashboard-card *ngIf="calendars" backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.CALENDAR_USAGE.TITLE"
+                            [faqItems]="[{name: 'TIME_ZONE', link: 'timezone'}]">
+    <a href="https://calendar.google.com/calendar/u/2/r/settings" target="_blank"
+       class="btn btn-blue btn-sm rounded-pill">
+      {{ 'DASHBOARD.CALENDAR_USAGE.GO_TO_SETTINGS' | translate }}
+      <i class="fas fa-external-link-alt ms-1"></i>
+    </a>
+  </app-dashboard-card-label>
+
+  <div class="alert alert-info rounded-3 shadow-sm">
+    <div class="d-flex align-items-center">
+      <i class="fas fa-info-circle me-2"></i>
+      <div>
+        {{ 'DASHBOARD.CALENDAR_USAGE.DESC' | translate }}
+        <div class="mt-2">
+          <a [href]="'https://www.notado.cz/faq/'+languageService.language+'/timezone'" target="_blank"
+             class="btn btn-link-blue btn-sm">
+            <i class="fas fa-question-circle me-1"></i>
+            {{ 'FAQ.TIME_ZONE.TITLE' | translate }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-list mt-4">
+    <div *ngFor="let calendar of calendars" class="calendar-item mb-3">
+      <div class="card border-0 rounded-3 shadow-sm hover-shadow">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center">
+              <div class="calendar-color-dot me-2" [style.background-color]="calendar.color"></div>
+              <h5 class="mb-0 fw-bold">&nbsp;&nbsp;{{ calendar.name }}</h5>
+            </div>
+            <div class="d-flex align-items-center">
+              <app-go-to-google-calendar-setting-popup [calendar]="calendar"></app-go-to-google-calendar-setting-popup>
+
+              <i *ngIf="(calendar.owners && calendar.owners?.length > 0) || calendar.systemCalendar"
+                 class="fas fa-check-circle text-success ms-2"
+                 style="font-size: 1.2em;"></i>
+
+              <i *ngIf="(!calendar.owners || calendar.owners?.length === 0) && !calendar.systemCalendar"
+                 [ngbTooltip]="'DASHBOARD.CALENDAR_USAGE.NOT_USED' | translate"
+                 class="fas fa-exclamation-circle text-warning ms-2"
+                 style="font-size: 1.2em;"></i>
+            </div>
+          </div>
+
+          <hr class="my-2">
+
+          <div class="calendar-details">
+            <div class="d-flex align-items-center mb-2">
+              <i class="far fa-clock text-secondary me-2"></i> &nbsp;
+              <span class="text-secondary">{{ 'DASHBOARD.BUSINESS.TIMEZONE' | translate }}:</span>
+              <span class="text-primary ms-2 fw-medium">{{ calendar.timeZone }}</span>
+            </div>
+
+            <div *ngIf="calendar.owners && calendar.owners?.length > 0" class="d-flex align-items-start">
+              <i class="fas fa-info-circle text-secondary me-2 mt-1"></i> &nbsp;
+              <div>
+                <span class="text-secondary">{{ 'DASHBOARD.CALENDAR_USAGE.CALENDAR_OWNER' | translate }}:</span>
+                <div class="d-flex flex-wrap mt-1">
+                  <div *ngFor="let owner of calendar.owners; let last = last"
+                       class="owner-badge me-2 mb-1 d-flex align-items-center">
+                    <ng-container [ngSwitch]="getOwnerType(owner)">
+                      <i *ngSwitchCase="'worker'" class="fas fa-user me-1"></i>
+                      <i *ngSwitchCase="'device'" class="icon-device me-1"></i>
+                      <i *ngSwitchCase="'service'" class="icon-service me-1"></i>
+                    </ng-container>
+                    <span>{{ owner.name }}{{ !last ? ',' : '' }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="calendar.systemCalendar" class="d-flex align-items-center">
+              <i class="fas fa-info-circle text-secondary me-2"></i>
+              <span class="text-secondary">{{ 'DASHBOARD.CALENDAR_USAGE.CALENDAR_OWNER' | translate }}:</span>
+              <span class="ms-2">{{ 'DASHBOARD.CALENDAR_USAGE.SYSTEM_CALENDAR' | translate }}</span>
+            </div>
+
+            <div *ngIf="(!calendar.owners || calendar.owners?.length === 0) && !calendar.systemCalendar"
+                 class="d-flex align-items-center mt-2 p-2 bg-warning-subtle rounded-2">
+              <i class="text-warning me-2"></i>
+              <span>{{ 'DASHBOARD.CALENDAR_USAGE.NOT_USED' | translate }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-dashboard-card>

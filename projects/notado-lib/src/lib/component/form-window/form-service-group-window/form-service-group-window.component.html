@@ -1,0 +1,18 @@
+<div class="row justify-content-center">
+
+
+  <div *ngFor="let serviceGroup of formService.getServiceGroups()"
+       class="text-center form-check col-11"
+       [class.big-padding]="formService.template?.margin == 'BIG'"
+       style="margin-right: 5px;">
+
+    <app-form-service-group-item-window
+      *ngIf="serviceGroup && serviceGroup.active"
+      [serviceGroup]="serviceGroup"
+    ></app-form-service-group-item-window>
+
+  </div>
+
+</div>
+
+<br>

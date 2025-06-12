@@ -1,0 +1,23 @@
+.custom-control-label::before,
+.custom-control-label::after {
+    top: .8rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.schedule-input {
+    padding: 0.25em 0.1em;
+    position: relative;
+    top: 5px;
+
+}
+
+.col-form-label {
+    line-height: 0.2;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+

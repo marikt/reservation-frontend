@@ -1,0 +1,30 @@
+
+.btn:not([disabled]):not(.disabled).active, .btn:not([disabled]):not(.disabled):active {
+    color: rgb(89, 89, 89);
+}
+
+.btn-link {
+    margin-right: 28px;
+    margin-left: 28px;
+}
+
+.btn-link-gray {
+    color: rgb(198, 198, 198);
+}
+
+.btn-link-gray:hover {
+    color: rgb(89, 89, 89);
+}
+
+.color-picker {
+    position: inherit;
+    /*border-buttonRadius: 40px !important;*/
+    /*line-height: 24px !important;;*/
+    width: 100px !important;;
+    cursor: pointer;
+}
+
+img {
+  opacity: 0.5;
+}
+

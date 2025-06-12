@@ -1,0 +1,116 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.SERVICE.TITLE">
+    <button (click)="serviceService.addService()" class="btn btn-outline-blue btn-sm pull-right text-uppercase"
+            id="add-service-button"
+            placement="bottom">
+      <i class="fas fa-plus "></i> &nbsp; {{ 'DASHBOARD.SERVICE.ADD_SERVICE' | translate }}
+    </button>
+  </app-dashboard-card-label>
+  <div class="row">
+    <button *ngIf="services && services.length > 1" (click)="modalService.open(serviceOrderModal, {size: 'sm'})"
+            class="btn btn-link-blue btn-sm pull-left"
+            id="sort-service-btn"
+            placement="bottom">
+      <i class="fas fa-sort-alpha-down"></i>&nbsp; {{ 'DASHBOARD.SERVICE.ORDER' | translate }}
+    </button>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+      <div *ngFor="let service of services; let idx = index;"
+           class="col-md-3 col-4 text-center form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+        <a [routerLink]="['/dashboard/dashboard-service-item', service.id]" [id]="'service-item-' + service.id">
+          <div [class.gray-bg]="!service.active"
+               [class.gray-filter]="!service.active"
+               [class.white-bg]="service.active"
+               class="card-item">
+
+            <img *ngIf="service.fullPathImg"
+                 [src]="server.SERVER + service.fullPathImg"
+                 (error)="handleImageNotLoaded(service)"
+                 class="img-fluid"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+            <img *ngIf="!service.fullPathImg"
+                 class="img-fluid"
+                 src="../../../../resources/default-service.png"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+
+            <div class="row">
+              <div class="col text-center">
+                <br>
+                <br>
+                <h6>{{ service.name }}</h6>
+                <p *ngIf="service.techName" class="text-secondary text-sm">({{ service.techName }})</p>
+                <p *ngIf="service.type != 'COURSE' && !service.durationNotSpecified" class="text-grey"
+                   style="font-size: 0.8em">{{ service.duration | daysHoursMinutes }}</p>
+                <p *ngIf="service.type != 'COURSE' && service.durationNotSpecified" class="text-grey"
+                   style="font-size: 0.8em">{{ service.durationMin | daysHoursMinutes }}
+                  - {{ service.durationMax | daysHoursMinutes }}</p>
+                <br *ngIf="service.active">
+                <p *ngIf="!service.active" class="text-grey text-uppercase"
+                   [ngbTooltip]="'TOOLTIP.SERVICE_DISABLED' | translate"
+                   style="font-size: 1.1em">
+                  <i class="far fa-eye-slash"></i>
+                </p>
+                <br *ngIf="service.active">
+              </div>
+            </div>
+          </div>
+        </a>
+        <br>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+</app-dashboard-card>
+
+
+<ng-template #serviceOrderModal let-c="close" let-d="dismiss">
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <h5>Drag & Drop</h5>
+      <br>
+      <br>
+      <div>
+        <div class="wrapper">
+          <div dragula="DRAGULA_FACTS" [(dragulaModel)]="services">
+            <div *ngFor="let service of services; let idx = index;" class="card grab"
+                 style="padding: 10px; margin-bottom: 10px;">
+              <h6><i class="text-blue fas fa-ellipsis-v"></i><i class="text-blue fas fa-ellipsis-v"></i>&nbsp;
+                &nbsp; {{ service.name }} &nbsp; &nbsp; &nbsp; <span class="text-grey"
+                                                                     style="font-size: 0.8em">{{ service.duration | daysHoursMinutes }}</span>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <button (click)="saveOrder()" class="btn-blue btn btn-sm">
+        <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+              role="status">
+            <span class="sr-only">Loading...</span>
+        </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

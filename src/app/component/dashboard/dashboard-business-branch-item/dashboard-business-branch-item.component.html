@@ -1,0 +1,446 @@
+<app-dashboard-card *ngIf="businessBranch" backLink="/dashboard-business-branch">
+
+
+  <app-dashboard-card-label [entityName]="businessBranch?.name"
+                            label="DASHBOARD.BUSINESS_BRANCH_ITEM.TITLE">
+  </app-dashboard-card-label>
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-12 ">
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='BASIC'" [class.active]="activeCard =='BASIC'" aria-current="page"
+             class="nav-link text-sm"><i class="fas fa-wrench"></i> {{ 'DASHBOARD.COMMON.BASIC' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='SCHEDULE'" [class.active]="activeCard =='SCHEDULE'"
+             id="schedule-tab"
+             class="nav-link text-sm"> <i class="fas fa-clock"></i>
+            &nbsp; {{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.TIME_SCHEDULE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='LOCATION'" [class.active]="activeCard =='LOCATION'"
+             id="location-tab"
+             class="nav-link text-sm"> <i class="fas fa-map-marker-alt"></i>
+            &nbsp; {{ 'DASHBOARD.SERVICE_ITEM.LOCATION.TITLE' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br>
+
+  <div *ngIf="activeCard=='BASIC'" class="row">
+    <!--1 COLUMN ============================================================================================ -->
+    <div class="col-4">
+      <img *ngIf="businessBranch?.fullPathImg" [src]="server.SERVER + businessBranch.fullPathImg"
+           class="img-fluid rounded"
+           style="">
+      <img *ngIf="!businessBranch?.fullPathImg" class="img-fluid rounded"
+           src="../../../../resources/default-service.png"
+           style="">
+      <br>
+      <br>
+      <div class="row">
+
+        <!--UPLOAD IMG ========================================================================================= -->
+        <button (click)="openImageModal()" class="btn btn-outline btn-outline-blue btn-sm">
+          {{ 'DASHBOARD.COMMON.ADD_IMAGE' | translate }}&nbsp; <i class="fa fa-upload"></i>
+        </button>
+        <button *ngIf="businessBranch?.img"
+                (click)="businessBranch.img = null; businessBranch.fullPathImg = null; deleteImg()"
+                class="btn btn-link btn-link-gray btn-sm">
+          <i class="far fa-trash-alt"></i></button>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+
+    <!--2 COLUMN ============================================================================================ -->
+
+    <div class="offset-md-1 col-md-7 col-12">
+      <form #form="ngForm" (ngSubmit)="saveBusinessBranch()">
+        <!--NAME ============================================================================================ -->
+        <div class="form-group">
+          <label>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.GROUP_NAME' | translate }}</label>
+          <input #name="ngModel" [(ngModel)]="businessBranch.name"
+                 [class.is-invalid]="name?.invalid && showValidation"
+                 [class.is-valid]="!name?.invalid"
+                 class="form-control"
+                 id="business-branch-item-name"
+                 name="businessBranch-name"
+                 placeholder="Masaze"
+                 required
+                 type="text">
+          <div class="invalid-feedback">
+            {{ 'COMMON.REQUIRED' | translate }}
+          </div>
+        </div>
+
+        <!--SERVICES GROUPS ============================================================================================ -->
+        <div *ngIf="serviceGroupsInRelation && serviceGroupsInRelation.length > 0" class="form-group"
+             style="margin-bottom: -10px;">
+          <label>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.INTO_SERVICE_GROUP_BELONG' | translate }}</label>
+          <span *ngFor="let businessBranchServiceGroup of serviceGroupsInRelation">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input
+                    [(ngModel)]="businessBranchServiceGroup.active"
+                    [checked]="businessBranchServiceGroup.active"
+                    [id]="'serviceGroupActive' + businessBranchServiceGroup.serviceGroup.id"
+                    [name]="businessBranchServiceGroup.serviceGroup.name + businessBranchServiceGroup.serviceGroup.id"
+                    class="form-check-input"
+                    type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; bottom: -3px;">{{ businessBranchServiceGroup.serviceGroup.name }}
+                    <span *ngIf="businessBranchServiceGroup?.serviceGroup?.techName"
+                          class="text-grey"><small>({{ businessBranchServiceGroup.serviceGroup.techName }})</small>
+                    </span>
+                  </span>
+                  <br>
+                </label>
+              </div>
+            </span>
+        </div>
+        <br>
+        <br>
+
+        <!--SERVICES ============================================================================================ -->
+        <div *ngIf="servicesInRelation" class="form-group" style="margin-bottom: -10px;">
+          <label>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.INTO_SERVICE_BELONG' | translate }}</label>
+          <span *ngFor="let businessBranchService of servicesInRelation">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input
+                    [(ngModel)]="businessBranchService.active"
+                    [checked]="businessBranchService.active"
+                    [id]="'serviceActive' + businessBranchService.service.id"
+                    [name]="businessBranchService.service.name + businessBranchService.service.id"
+                    class="form-check-input"
+                    type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; bottom: -3px;">{{ businessBranchService.service.name }}
+                    <span *ngIf="businessBranchService?.service?.techName"
+                          class="text-grey"><small>({{ businessBranchService.service.techName }})</small>
+                    </span>
+                  </span>
+                  <br>
+                </label>
+              </div>
+            </span>
+        </div>
+        <br>
+        <br>
+
+      </form>
+      <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+              id="business-branch-save-button-invalid">
+        <i class="far fa-save "></i> &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+
+      <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+              id="business-branch-save-button">
+              <span *ngIf="preventDoubleClickService.clickInProgress"
+                    class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+      <button (click)="modalService.open(businessBranchDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.DELETE' | translate }}
+      </button>
+    </div>
+
+  </div>
+
+  <div *ngIf="activeCard=='LOCATION'" class="row">
+    <div class="col-md-10 col-12">
+      <form #form="ngForm" (ngSubmit)="saveBusinessBranch()">
+
+
+      <label>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.LOCATION_PER_BUSINESS_BRANCH_LABEL' | translate }}</label>
+      <div class="form-group">
+        <div class="form-group">
+          <label>{{ 'DASHBOARD.BUSINESS.LOCATION' | translate }}
+            <app-video-tutorial btnType="tooltip"
+                                videoSrc="https://www.youtube.com/embed/W4Mi-wfftTU"></app-video-tutorial>
+          </label>
+          <div class="input-group">
+            <input #locationComponent="ngModel"
+                   [(ngModel)]="location"
+                   (ngModelChange)="setBusinessLocation()"
+                   class="form-control"
+                   id="dashboard-business-location"
+                   name="location"
+                   type="text">
+          </div>
+          <iframe *ngIf="businessBranch.location && businessBranch.location.includes('www.google.com/maps/embed')"
+                  [src]="businessBranch.location | safeUrl: 'url'"
+                  width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade" class="rounded"></iframe>
+          <div  class="alert alert-warning" *ngIf="businessBranch.location && !businessBranch.location.includes('www.google.com/maps/embed')">
+            <i class="fas fa-info-circle"></i> &nbsp;
+            <label>{{ 'DASHBOARD.BUSINESS.WRONG_LOCATION' | translate }}</label>
+            <app-video-tutorial btnType="tooltip"
+                                videoSrc="https://www.youtube.com/embed/W4Mi-wfftTU"></app-video-tutorial>
+          </div>
+
+        </div>
+      </div>
+      </form>
+      <br>
+      <br>
+
+      <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+              id="business-branch-save-button2">
+              <span *ngIf="preventDoubleClickService.clickInProgress"
+                    class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+      <button (click)="modalService.open(businessBranchDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.DELETE' | translate }}
+      </button>
+    </div>
+
+
+    <br>
+    <br>
+
+  </div>
+
+  <!-- SCHEDULE TAB -->
+  <div *ngIf="activeCard=='SCHEDULE'" class="row">
+    <div class="col-md-10 col-12">
+      <form #form="ngForm" (ngSubmit)="saveBusinessBranch()">
+        <label>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.TIME_SCHEDULE' | translate }}</label>
+
+        <!-- Schedule Type Selection -->
+        <div class="form-group" style="margin-bottom: 0px;">
+          <label class="custom-control custom-checkbox">
+            <input
+              (click)="removeOpeningDays()"
+              [(ngModel)]="scheduleType"
+              [checked]="scheduleType === 'defaultSchedule'"
+              class="form-check-input checkbox-lg"
+              id="defaultSchedule"
+              name="defaultSchedule"
+              style="position: relative; left: 0px;"
+              type="radio"
+              value="defaultSchedule">
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 4px;">{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.TIME_SCHEDULE_SAME' | translate }}</span>
+          </label>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0px;">
+          <label class="custom-control custom-checkbox">
+            <input
+              (click)="addOpeningDays()"
+              [(ngModel)]="scheduleType"
+              [checked]="scheduleType === 'customeSchedule'"
+              class="form-check-input checkbox-lg"
+              id="customeSchedule"
+              name="customeSchedule"
+              style="position: relative; left: 0px;"
+              type="radio"
+              value="customeSchedule">
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 4px;">{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.TIME_SCHEDULE_DIFF' | translate }}</span>
+          </label>
+        </div>
+
+        <br>
+        <!-- Opening Days Schedule -->
+        <span *ngIf="scheduleType === 'customeSchedule' && openingDays && openingDays?.length > 0"
+              style="position: relative; left: 20px;">
+          <app-opening-item [openingDay]="openingDays[0]"
+                            labelDay="COMMON.MONDAY"
+                            uniqueId="monday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[1]"
+                            labelDay="COMMON.TUESDAY"
+                            uniqueId="tuesday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[2]"
+                            labelDay="COMMON.WEDNESDAY"
+                            uniqueId="wednesday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[3]"
+                            labelDay="COMMON.THURSDAY"
+                            uniqueId="thursday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[4]"
+                            labelDay="COMMON.FRIDAY"
+                            uniqueId="friday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[5]"
+                            labelDay="COMMON.SATURDAY"
+                            uniqueId="saturday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[6]"
+                            labelDay="COMMON.SUNDAY"
+                            uniqueId="sunday"></app-opening-item>
+        </span>
+      </form>
+
+      <br>
+      <br>
+
+      <button (click)="form.ngSubmit.emit()" class="btn btn-blue btn-sm"
+              id="business-branch-save-button3">
+              <span *ngIf="preventDoubleClickService.clickInProgress"
+                    class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+      <button (click)="modalService.open(businessBranchDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.DELETE' | translate }}
+      </button>
+    </div>
+
+    <br>
+    <br>
+  </div>
+</app-dashboard-card>
+
+<div class="row">
+
+  <div *ngIf="businessBranch" class="offset-1 col-10 ">
+    <br>
+    <div class="businessBranch-card">
+      <br>
+      <br>
+      <div class="row">
+        <!--1 COLUMN ============================================================================================ -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--IMAGE UPLOAD modal ==================================================== -->
+<ng-template #businessBranchImageUpload let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.ADD_IMAGE' | translate }}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+
+      <span *ngIf="resizeImageService.state === 'IMG_SELECTED'">
+          <app-image-resize></app-image-resize>
+      </span>
+
+      <div *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'" class="text-center offset-1 col-10">
+        <div class="row">
+
+          <div class="offset-2 col-8">
+
+            <div class="">
+              <span class="btn btn-link-blue btn-file"
+                    style="position: relative; right: 18px; bottom: 2px;"> <strong>{{ 'DASHBOARD.COMMON.SELECT_IMG' | translate }}</strong> &nbsp; <i
+                aria-hidden="true" class="fa fa-upload"></i>
+                    <input [uploader]="uploader" ng2FileSelect type="file">
+                  </span>
+
+              <br>
+              <br>
+
+              <div class="row text-center">
+                <h6><span> {{ 'COMMON.OR' | translate }}  </span></h6>
+              </div>
+
+
+              <form (submit)="searchForPexelImg()" style="margin-top: 30px;">
+                <div class="row">
+                  <div class="col-12">
+                    <label>{{ 'DASHBOARD.COMMON.SELECT_IMG_FROM_GALLERY' | translate }}</label>
+                    <div class="input-group">
+                      <input #name="ngModel"
+                             [(ngModel)]="searchKey"
+                             class="form-control"
+                             id="pexelSearchInput"
+                             name="name"
+                             placeholder="Masaze"
+                             type="text">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">
+                          <button class="btn btn-link-gray btn-link" style="padding: 1px;">
+                                <i class="fas fa-search"></i>
+                          </button>
+                        </span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 30px;">
+            <div *ngFor="let img of imgs" class="col-3" style="margin-bottom: 30px;">
+              <a (click)="selectPexelImg(img.src.medium)">
+                <img *ngIf="img" [src]="img.src.small" class="img-fluid rounded"
+                     style="max-width: 120px;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #businessBranchDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{ 'DASHBOARD.BUSINESS_BRANCH_ITEM.DELETE_CONFIRM' | translate }}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{ 'DASHBOARD.COMMON.DONT_DELETE' | translate }}
+      </button>
+      <button class="btn-blue btn btn-sm" (click)="deleteBusinessBranch()">{{ 'DASHBOARD.COMMON.DELETE' | translate }}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

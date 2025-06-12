@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg container" id="home">
+
+  <a class="navbar-brand" id="intro-screen" [routerLink]="'/' + languageService.language + '/home'" style="position: relative; top: 4px;">
+    &nbsp;&nbsp;
+    <span class="text-blue" style="font-family: bariol, serif; font-size: 1.3em; font-weight: 700;">
+      <img src="../resources/logo-big.png" style="width:30px;" alt="Notado Logo">
+      NOTADO
+    </span>
+
+  </a>
+
+  <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+          class="navbar-toggler"
+          data-target="#navbarSupportedContent"
+          data-toggle="collapse"
+          type="button">
+    <i class="fas fa-bars text-blue" style="font-size:28px;"></i>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item text-black " style="position: relative; top: 9px; right: 10vw;">
+      </li>
+      <li class="nav-item" style="">
+        <a *ngIf="route !=='/payment'" class="nav-link nav-link-blue"
+                                       id="back-to-notado"
+                                       [routerLink]="'/' + languageService.language + '/home'"
+                                       routerLinkActive="active">{{'INTRO.MENU.BACK_TO_NOTADO' | translate}}
+        </a>
+        <a *ngIf="route ==='/payment'" class="nav-link nav-link-blue"
+                                       routerLink="/dashboard/dashboard-landing"
+                                       routerLinkActive="active">{{'INTRO.MENU.BACK_TO_DASHBOARD' | translate}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

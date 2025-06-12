@@ -1,0 +1,41 @@
+<br>
+<br>
+<app-intro-item-revert
+  alt="online reservations"
+  bgType="GREY"
+  title2="INTRO.FEATURES.CUSTOMIZABLE_MSG"
+  img="../../../../../resources/intro/cm1.png"
+  imgClass="rounded img-responsive"
+  label1="INTRO.CUSTOM_MSG.LABEL1"
+  topMargin="70"
+></app-intro-item-revert>
+<br>
+<div class="container">
+  <div class="row">
+    <h4 class="text-blue col-12 col-md-6 ">{{'INTRO.CUSTOM_MSG.LABEL2' | translate}}</h4>
+  </div>
+  <br>
+  <div *ngFor="let item of [].constructor(10); let i = index" class="row">
+    <h6 class="col-12"><span class="text-blue"><b>{{'INTRO.CUSTOM_MSG.KEYWORD' + i | translate}}</b></span>
+      - {{'INTRO.CUSTOM_MSG.KEYWORD' + i + '_DESC' | translate}}</h6>
+  </div>
+</div>
+<br>
+<app-intro-item
+  topMargin="50"
+  img="../../../../../resources/intro/custom-msg.png"
+  label1="INTRO.CUSTOM_MSG.LABEL3"
+></app-intro-item>
+<br>
+<div class="container">
+  <h5 class="col-12"><span class="text-blue">{{'INTRO.CUSTOM_MSG.LABEL4' | translate}}</span></h5>
+
+  <div class="card col-12 col-md-8" style="padding: 50px">
+    <h6 >"{{'INTRO.CUSTOM_MSG.LABEL5' | translate}}."</h6>
+
+  </div>
+  <br>
+</div>
+<app-intro-item-revert
+  label1="INTRO.CUSTOM_MSG.LABEL6"
+></app-intro-item-revert>

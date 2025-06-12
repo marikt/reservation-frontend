@@ -1,0 +1,65 @@
+<!--====================================================================================================-->
+<!-- CUSTOM FIELDS MANAGER -->
+<!--====================================================================================================-->
+
+<div class="row">
+  <div ngbDropdown class="show col-8">
+    <button ngbDropdownToggle placement="bottom" class="btn btn-sm btn-link-blue"
+            id="dropdownMenuCustomFieldSelection">
+      <i class="fas fa-plus-circle"></i> {{addFieldLabel}}
+    </button>
+    <div aria-labelledby="dropdownMenuCustomFieldSelection"
+         class="col-10"
+         ngbDropdownMenu>
+      <span *ngFor="let compType of supportedComponentType">
+        <button
+          class="dropdown-item text-lowercase"
+          (click)="addCustomField(compType.componentType)"
+          [id]="'custom-field-' + compType.componentType"
+          ngbDropdownItem>
+          <i [class]="compType.icon"></i> {{
+            compType.componentType === 'ATTENDEES' ?
+              (translate.currentLang === 'cs' ? 'Počet účastníků' :
+               translate.currentLang === 'pl' ? 'Liczba uczestników' :
+               translate.currentLang === 'sk' ? 'Počet účastníkov' :
+               compType.componentType) :
+            compType.componentType
+          }}</button>
+      </span>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<span *ngIf="formConfigService.customFieldForService">
+  <div
+    *ngFor="let customField of formConfigService.customFieldForService.customFields; let idx = index;"
+    class="row" style="margin-bottom: 5px;">
+    <i *ngIf="customField.componentType == componentType.CHECKBOX"
+       class="text-grey offset-1 far fa-check-square icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.TEXT"
+       class="text-grey offset-1 far fa-file-alt icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.ATTENDEES"
+       class="text-grey offset-1 fas fa-users icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.LABEL"
+       class="text-grey offset-1 fas fa-tag icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.TEXTAREA"
+       class="text-grey offset-1 far fa-file-alt icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.COLOR"
+       class="text-grey offset-1 fas fa-palette icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.DATEPICKER"
+       class="text-grey offset-1 fas fa-calendar icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.TIMEPICKER"
+       class="text-grey offset-1 fas fa-clock icon-position"></i>
+    <i *ngIf="customField.componentType == componentType.LINE"
+       class="text-grey offset-1 fas fa-minus icon-position"></i>
+      &nbsp;  &nbsp;
+    <input *ngIf="customField.componentType != componentType.LINE" class="form-control form-control-sm col-4"
+           [(ngModel)]="customField.label">
+
+    <div *ngIf="customField.componentType == componentType.LINE" class="col-4"></div>
+     &nbsp;
+    <button (click)="removeCustomField(idx)"
+            class="btn btn-sm btn-link-blue col-1"><i class="fas fa-times"></i></button>
+  </div>
+</span>

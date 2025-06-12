@@ -1,0 +1,78 @@
+<div *ngIf="window" class="row">
+  <div class="col text-center">
+
+
+    <!--========================================================-->
+    <span *ngIf="
+                window?.name == 'CONTACT' ||
+                window?.name == 'BUSINESS_BRANCH' ||
+                window?.name == 'SERVICE_GROUP' ||
+                window?.name == 'SERVICE' ||
+                window?.name == 'SERVICE_DURATION' ||
+                window?.name == 'CUSTOM' ||
+                window?.name == 'NOTE' ||
+                window?.name == 'DATE' ||
+                window?.name == 'VOUCHER' ">
+                  <button *ngIf="window?.name != 'BUSINESS_BRANCH'"
+                          [style.color]="dashboardService.template.textColor"
+                          class="btn btn-link btn-link-gray">  <i
+                    class="fas fa-chevron-left"></i> {{'COMMON.BACK' | translate}}</button>
+
+                  <button [style.background]="dashboardService.template.componentColor"
+                          [style.border-radius]="dashboardService.template.buttonRadius"
+                          [style.color]="dashboardService.template.textButtonColor"
+                          class="btn-custom "
+                          style="border-width: 0px;"
+                  >
+                    {{'COMMON.CONTINUE' | translate}}
+                  </button>
+
+    </span>
+    <!--========================================================-->
+    <span *ngIf="window?.name == 'SUMMARY' ">
+            <button [style.color]="dashboardService.template.textColor"
+                    class="btn btn-link btn-link-gray"> <i
+              class="fas fa-chevron-left"></i> {{'COMMON.BACK' | translate}}</button>
+
+            <button
+              [style.background]="dashboardService.template.componentColor"
+              [style.border-radius]="dashboardService.template.buttonRadius"
+              [style.color]="dashboardService.template.textButtonColor"
+              style="border-width: 0px;"
+              class="btn-custom ">
+                    <span *ngIf="!window?.config?.paymentButtonLabel">
+                {{'FORM.PAY' | translate}}
+              </span>
+              <span *ngIf="window?.config?.paymentButtonLabel">
+                {{window.config.paymentButtonLabel}}
+              </span>
+
+            </button>
+            &nbsp;
+            <button
+              style="color: #fff; background-color: #6c757d; border-color: #6c757d; border: none;"
+              class="btn-custom "
+              [style.border-radius]="dashboardService.template.buttonRadius"
+            >
+              {{'FORM.PAY_LATER' | translate}}
+            </button> &nbsp;
+      <!--            <button *ngIf="!window?.config?.payment"-->
+      <!--                    [style.background]="dashboardService.template.componentColor"-->
+      <!--                    [style.border-radius]="dashboardService.template.buttonRadius"-->
+      <!--                    [style.color]="dashboardService.template.textButtonColor"-->
+      <!--                    class="btn-custom "-->
+      <!--                    style="border-width: 0px;">-->
+      <!--              {{'FORM.CREATE_RESERVATION' | translate}}-->
+      <!--            </button>-->
+    </span>
+    <!--========================================================-->
+    <span *ngIf="window?.name == 'THANKS'">
+
+        <button [style.background]="dashboardService.template.componentColor"
+                [style.border-radius]="dashboardService.template.buttonRadius"
+                [style.color]="dashboardService.template.textButtonColor"
+                class="btn-custom "
+                style="padding: 8px 50px; border-width: 0px;">{{'COMMON.OK' | translate}}</button>
+    </span>
+  </div>
+</div>

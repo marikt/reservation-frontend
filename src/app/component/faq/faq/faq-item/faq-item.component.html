@@ -1,0 +1,23 @@
+&nbsp;&nbsp;  <a
+  *ngIf="faqItems.length > 0"
+  [ngbPopover]="faqPopover" placement="bottom" style="font-size: 0.4em; position: relative; bottom: 5px;" type="button">
+  <i class="far fa-question-circle text-blue"> </i></a>
+
+
+<ng-template #faqPopover>
+  <div class="shadow" style="width: 650px; background: white; padding: 24px;">
+
+    <h4>FAQ</h4>
+    <hr>
+    <div *ngFor="let item of  faqItems">
+
+      <h5><a class="btn btn-link-blue btn-sm" target="_blank"
+             style="position: relative; right: 20px;"
+             [href]="'https://www.notado.cz/faq/' + languageService.language + '/' + item.link">
+        {{'FAQ.' + item.name + '.TITLE' | translate}}
+      </a>
+      </h5>
+    </div>
+
+  </div>
+</ng-template>

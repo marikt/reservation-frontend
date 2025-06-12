@@ -1,0 +1,64 @@
+<app-menu-discount></app-menu-discount>
+<div style="background: rgb(248, 248, 255);">
+  <app-menu></app-menu>
+</div>
+<div [class.bg]="!isMobile" style="background-color: white;  white-space: pre-line;">
+
+  <!--INTRO xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  <div [class.intro-section]="!isMobile" class="intro-section col-12 content-visibility" id="intro">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-12  text-center">
+          <br>
+          <br>
+          <br class="d-none d-xl-block">
+          <br class="d-none d-xl-block">
+          <br class="d-none d-ml-block">
+          <br class="d-none d-ml-block">
+          <h1 [class.display-3]="!isMobile"
+              [class.display-5]="isMobile"
+              class="text-black"
+          >
+            <b> {{ 'INTRO.TITLE.MAIN' | translate }}</b>
+          </h1>
+          <h2
+            [class.main2-text]="!isMobile"
+            [class.font-mobile]="isMobile"><b>{{ 'INTRO.TITLE.MAIN2' | translate }} </b></h2>
+          <br>
+
+          <!--          <div class="row">-->
+          <!--            <div class="col-3 ">-->
+          <!--              <h6><i  class="fas fa-check text-blue" ></i>&nbsp; {{'INTRO.FUNCTION_CHECK.1' | translate}}</h6>-->
+          <!--            </div>-->
+          <!--            <div class="col-3 ">-->
+          <!--              <h6><i  class="fas fa-check text-blue" ></i>&nbsp; {{'INTRO.FUNCTION_CHECK.2' | translate}}</h6>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!--          <div class="row">-->
+          <!--            <div class="col-3 ">-->
+          <!--              <h6><i  class="fas fa-check text-blue"  ></i>&nbsp; {{'INTRO.FUNCTION_CHECK.3' | translate}}</h6>-->
+          <!--            </div>-->
+          <!--            <div class="col-3 ">-->
+          <!--              <h6><i  class="fas fa-check text-blue" ></i>&nbsp; {{'INTRO.FUNCTION_CHECK.4' | translate}}</h6>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
+          <app-social-proof></app-social-proof>
+
+          <br>
+
+          <app-try-and-video-button></app-try-and-video-button>
+        </div>
+
+        <!--        <div class="col-md-6 offset-md-0 d-none d-lg-block">-->
+        <!--          <br>-->
+        <!--          <app-demo2 demoType="BARBER"></app-demo2>-->
+        <!--        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+<!--<app-below-home>-->
+<!--</app-below-home>-->
+<ng-template #belowHomeContainer></ng-template>

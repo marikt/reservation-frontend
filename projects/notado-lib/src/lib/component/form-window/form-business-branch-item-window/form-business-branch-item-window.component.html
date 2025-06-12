@@ -1,0 +1,27 @@
+<div class="card-for-form card mb-3" style="">
+  <button
+    (click)="selectBusinessBranch()"
+    [id]="businessBranch.name"
+    [name]="businessBranch.name"
+    style="padding: 0px !important;"
+    class="btn btn-default">
+
+    <div class="row no-gutters text-left">
+      <div class="col-4" *ngIf="businessBranch.fullPathImg">
+        <img
+             [src]="server.SERVER + businessBranch.fullPathImg"
+             (error)="handleImageNotLoaded()"
+             class="card-img"
+             for="businessBranchRadio1">
+      </div>
+      <div class="col-8">
+        <div class="card-body">
+          <h5 class="service-label"
+              [style.color]="formService.template?.serviceCardTextColor + ' !important'"
+              [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}"
+          >{{businessBranch.name}}</h5>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>

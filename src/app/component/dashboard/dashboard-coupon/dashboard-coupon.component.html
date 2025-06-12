@@ -1,0 +1,153 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <span class="badge badge-pill badge-warning"
+        style="font-size: 0.8em;"> <i class="fas fa-vial"></i> lab release</span>
+  <app-dashboard-card-label label="DASHBOARD.COUPON.TITLE">
+    <button *ngIf="integrationData.connected  && !noStripeCoupons" (click)="addCoupon()"
+            class="btn btn-outline-blue btn-sm pull-right text-uppercase"
+            id="add-coupon-button">
+      <i class="fas fa-plus "></i> &nbsp; {{ 'DASHBOARD.COUPON.ADD_COUPON' | translate }}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="row" *ngIf="integrationData.connected && !noStripeCoupons">
+    <button *ngIf="coupons && coupons.length > 1" (click)="modalService.open(couponsOrderModal, {size: 'sm'})"
+            class="btn btn-link-blue btn-sm pull-left"
+            id="sort-service-btn"
+            placement="bottom">
+      <i class="fas fa-sort-alpha-down"></i>&nbsp; {{ 'DASHBOARD.SERVICE.ORDER' | translate }}
+    </button>
+  </div>
+
+
+  <div class="container">
+
+    <div *ngIf="!integrationData.connected" class="row">
+      <div class="alert alert-info">
+        <i class="fas fa-plug "></i> &nbsp; {{ 'DASHBOARD.INTEGRATION.STRIPE.NOT_CONNECTED' | translate }}
+      </div>
+      <br>
+      <button type="button" class="btn btn-primary btn-lg" routerLink="/dashboard/dashboard-reservation-form-payment"><i
+        class="fab fa-stripe-s"></i>
+        &nbsp; {{ 'DASHBOARD.INTEGRATION.STRIPE.DO_CONNECTED'  | translate }} &nbsp; <i
+          class="fas fa-long-arrow-alt-right"></i>
+      </button>
+    </div>
+
+    <div *ngIf="noStripeCoupons" class="row">
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i> &nbsp; {{ 'DASHBOARD.COUPON.NO_COUPON' | translate }}
+        <br>
+        <br>
+        <img class="rounded"
+             src="../../../../resources/dashboard/add-cupoun.png" width="100%">
+        <br>
+        <br>
+        <a target="_blank" class="pull-right btn btn-link btn-link-blue"
+           href="https://dashboard.stripe.com/coupons">
+          <i class="fab fa-stripe" style="font-size: 1.7em; position: relative; top: 4px;"></i> &nbsp;<i
+          class="fas fa-arrow-right " style="font-size: 0.8em"></i>
+        </a>
+        <br>
+        <br>
+      </div>
+      <br>
+    </div>
+
+    <div *ngIf="integrationData.connected && !noStripeCoupons" class="row">
+
+
+      <div *ngFor="let service of coupons; let idx = index;"
+           class="col-md-3 col-4 text-center form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+        <a [routerLink]="['/dashboard/dashboard-coupon-item', service.id]" [id]="'coupon-item-' + service.id">
+          <div [class.gray-bg]="!service.active"
+               [class.gray-filter]="!service.active"
+               [class.white-bg]="service.active"
+               class="card-item">
+
+            <img *ngIf="service.fullPathImg"
+                 [src]="server.SERVER + service.fullPathImg"
+                 (error)="handleImageNotLoaded(service)"
+                 class="img-fluid"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+            <img *ngIf="!service.fullPathImg"
+                 class="img-fluid"
+                 src="../../../../resources/default-service.png"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+
+            <div class="row">
+              <div class="col text-center">
+                <br>
+                <br>
+                <h6>{{ service.name }}</h6>
+                <p *ngIf="service.techName" class="text-secondary text-sm">({{ service.techName }})</p>
+                <br *ngIf="service.active">
+                <p *ngIf="!service.active" class="text-grey text-uppercase"
+                   [ngbTooltip]="'TOOLTIP.SERVICE_DISABLED' | translate"
+                   style="font-size: 1.1em">
+                  <i class="far fa-eye-slash"></i>
+                </p>
+                <br *ngIf="service.active">
+              </div>
+            </div>
+          </div>
+        </a>
+        <br>
+      </div>
+
+    </div>
+  </div>
+
+</app-dashboard-card>
+
+
+<ng-template #couponsOrderModal let-c="close" let-d="dismiss">
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <h5>Drag & Drop</h5>
+      <br>
+      <br>
+      <div>
+        <div class="wrapper">
+          <div dragula="DRAGULA_FACTS" [(dragulaModel)]="coupons">
+            <div *ngFor="let coupon of coupons; let idx = index;" class="card grab"
+                 style="padding: 10px; margin-bottom: 10px;">
+              <h6><i class="text-blue fas fa-ellipsis-v"></i><i class="text-blue fas fa-ellipsis-v"></i>&nbsp;
+                &nbsp; {{ coupon.name }} &nbsp;
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <button (click)="saveOrder()" class="btn-blue btn btn-sm">
+        <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+              role="status">
+            <span class="sr-only">Loading...</span>
+        </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+<app-video-guide
+  label="VIDEO_GUIDE.COUPON.LABEL"
+  description="VIDEO_GUIDE.COUPON.DESCRIPTION"
+  videoSrc="https://www.youtube.com/embed/wFcV8v7sg3k?si=dSPTLorhtTtv-sKf"></app-video-guide>

@@ -1,0 +1,18 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.EXPORT.TITLE">
+  </app-dashboard-card-label>
+
+  <app-calendar-dropdown-with-refresh
+    label="DASHBOARD.BUSINESS.CALENDAR_ENTER"
+    [calendar]="calendar"
+    [calendars]="calendars"
+    (selectCalendarAction)="selectCalendar($event)"
+    (reloadCalendarsAction)="loadCalendars()">
+  </app-calendar-dropdown-with-refresh>
+
+  <button (click)="exportCalendar()" class="btn-blue btn-sm"
+          id="dashboard-calendar-export-calendar">
+    <i class="fa fa-download"></i> &nbsp; {{'DASHBOARD.COMMON.EXPORT' | translate}}
+  </button>
+</app-dashboard-card>

@@ -1,0 +1,96 @@
+<div
+  [class.bg-blue]="bgType == getBGType.BLUE"
+  [class.bg-grey]="!bgType || bgType == getBGType.GREY"
+  [class.bg-white]="bgType == getBGType.WHITE"
+  class="text-left col-12 intro-cell content-visibility"
+  style="white-space: pre-line;">
+  <div class="container">
+
+    <div class="row">
+      <br>
+      <br>
+    </div>
+
+    <div class="row">
+      <div *ngIf="img" class="col-12 text-center d-block d-md-none">
+        <img
+
+          [alt]="alt | translate"
+          [class]="imgClass"
+          [class.img-size]="!isMobile"
+          [class.img-size-mb]="isMobile"
+          [src]="img"
+          [style.width]="imgSize">
+        <br>
+        <br>
+        <br>
+      </div>
+      <div *ngIf="img" class="col-md-5  col-10 text-center d-none d-md-block">
+        <img
+          [alt]="alt | translate"
+          [class]="imgClass"
+          [class.img-size]="!isMobile"
+          [class.img-size-mb]="isMobile"
+          [src]="img"
+          [style.width]="imgSize"
+        >
+      </div>
+
+      <div
+        [style]="'margin-top:' + getTopMargin() + 'px;'"
+        [class.text-white]="bgType == getBGType.BLUE"
+        [class]="img ? 'col-md-6 col-11' : 'col-11'"
+        class="offset-1">
+<!--        <h2 *ngIf="title1" class="text-uppercase" style="font-size: 0.85em">-->
+<!--          <b>  {{ title1 | translate }} </b>-->
+<!--        </h2>-->
+        <h3 *ngIf="title2">
+          <b> {{ title2 | translate }}</b>
+        </h3>
+        <br>
+
+        <p *ngIf="label1">
+          {{ label1 | translate }}
+        </p>
+        <p *ngIf="label2">
+          {{ label2 | translate }}
+        </p>
+        <p *ngIf="label3">
+          {{ label3 | translate }}
+        </p>
+
+        <ul *ngIf="item1 || item2 || item3|| item4" class="fa-ul">
+          <li *ngIf="item1">
+            <app-what-we-know-list-item
+              [label]="item1"></app-what-we-know-list-item>
+          </li>
+          <li *ngIf="item2">
+            <app-what-we-know-list-item
+              [label]="item2"></app-what-we-know-list-item>
+          </li>
+          <li *ngIf="item3">
+            <app-what-we-know-list-item
+              [label]="item3"></app-what-we-know-list-item>
+          </li>
+          <li *ngIf="item4">
+            <app-what-we-know-list-item
+              [label]="item4"></app-what-we-know-list-item>
+          </li>
+        </ul>
+        <br>
+        <button *ngIf="link"
+                [class]="linkClass"
+                [routerLink]="link"> {{ linkLabel | translate }}</button>
+        <button (click)="action.emit('button click');"
+                *ngIf="actionBtn"
+                [class]="linkClass"> {{ linkLabel | translate }}</button>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <br>
+      <br>
+    </div>
+  </div>
+</div>

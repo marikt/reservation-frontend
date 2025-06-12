@@ -1,0 +1,104 @@
+
+.bg {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(69,39,79,1) 0%, rgba(47,26,54,1) 100%);
+}
+
+
+h6 {
+    width: 100%;
+    text-align: center;
+    color: #777777;
+    border-bottom: 1px solid #777777;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+h6 span {
+    padding: 0 10px;
+    background: white;
+}
+
+a.btn {
+    margin: 2px;
+}
+
+.btn-join {
+    padding-left: 33px;
+    padding-right: 33px;
+}
+
+
+a:hover {
+    border: 1px solid transparent;
+}
+
+a,
+a:hover,
+a:active {
+  /*color: rgb(89, 89, 89);*/
+  text-decoration: none;
+}
+
+h6 {
+  width: 100%;
+  text-align: center;
+  color: rgb(223, 223, 223);
+  border-bottom: 1px solid rgb(223, 223, 223);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+h6 span {
+  padding: 0 10px;
+  background: white;
+}
+
+.feedback-icon {
+  position: relative;
+  top: 14px;
+}
+
+.btn-sm-padding {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.url-exists {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.btn-no-other-position {
+  position: fixed;
+  bottom: 135px;
+  right: 270px;
+}
+.btn-no-other-position-mobile {
+  margin-top: 30px;
+
+  /*position: absolute;*/
+  /*bottom: 15px;*/
+  /*left: 15px;*/
+}
+
+.btn-continue-fix-position {
+  position: fixed;
+  bottom: 135px;
+  right: 100px;
+}
+
+.btn-continue-fix-position-mobile {
+  margin-top: 30px;
+  /*position: absolute;*/
+  /*bottom: 15px;*/
+  /*right: 15px;*/
+}
+
+.btn-back-position {
+  position: fixed;
+  bottom: 135px;
+  left: 100px;
+}

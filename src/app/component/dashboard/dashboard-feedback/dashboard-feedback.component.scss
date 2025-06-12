@@ -1,0 +1,18 @@
+.rating {
+  font-size: 2.2em;
+  color: rgb(254, 209, 113);
+}
+
+textarea {
+  font-size: 1.2em;
+}
+
+.bg-feedback {
+  background: url('../../../../resources/feedback.jpg') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  height: 350px;
+}

@@ -1,0 +1,92 @@
+<br>
+
+<span *ngIf="formConfigService.customFieldForService">
+  <div
+    *ngFor="let customField of formConfigService.customFieldForService.customFields; let idx = index;"
+    class="row">
+      <div class="form-group offset-2 col-8">
+        <span *ngIf="customField.componentType === componentType.LABEL">
+          <h5 [style.color]="dashboardService.template.textColor">{{customField.label}}</h5>
+        </span>
+        <span *ngIf="customField.componentType === componentType.LINE">
+          <hr>
+        </span>
+        <span *ngIf="customField.componentType === componentType.TEXT">
+          <label [style.color]="dashboardService.template.textColor">{{customField.label}}</label>
+          <input class="form-control"
+                 [(ngModel)]="customField.value" type="text">
+        </span>
+        <span *ngIf="customField.componentType === componentType.ATTENDEES">
+          <label [style.color]="dashboardService.template.textColor">{{customField.label}}</label>
+          <input class="form-control"
+                 [(ngModel)]="customField.value" type="number">
+        </span>
+        <span *ngIf="customField.componentType === componentType.TEXTAREA">
+          <label [style.color]="dashboardService.template.textColor">{{customField.label}}</label>
+          <textarea class="form-control" rows="2"
+                    [(ngModel)]="customField.value" type="text"></textarea>
+        </span>
+        <span *ngIf="customField.componentType === componentType.COLOR">
+          <label [style.color]="dashboardService.template.textColor">{{customField.label}}</label>
+          <input
+            [(colorPicker)]="customField.value"
+            [style.background]="customField.value"
+            class="form-control color-picker" style="width: 80px;" />
+        </span>
+        <span *ngIf="customField.componentType === componentType.TIMEPICKER">
+          <label [style.color]="dashboardService.template.textColor">{{customField.label}}</label>
+          <ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+        </span>
+        <span *ngIf="customField.componentType === componentType.DATEPICKER">
+          <label [style.color]="dashboardService.template.textColor">{{customField.label}}</label>
+
+          <form class="row row-cols-sm-auto">
+              <div class="col-6">
+                <div class="input-group">
+                  <input class="form-control input-calendar radius-right-none" placeholder="dd-mm-yyyy"
+                         [dayTemplate]="dtcustom"
+                         name="dp"
+                         ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary btn-calendar btn-sm"
+                              disabled
+                              [style.background]="dashboardService.template?.componentColor"
+                              [style.color]="dashboardService.template?.textButtonColor"
+                              (click)="d.toggle()" type="button">
+                        <i class="fas fa-calendar"></i>
+                      </button>
+                    </div>
+                </div>
+              </div>
+            </form>
+            <ng-template #dtcustom let-currentMonth="currentMonth" let-date="date" let-disabled="disabled"
+                         let-selected="selected">
+                  <div
+                    [class.current-month-cell]="date.month === currentMonth"
+                    [class.selected-cell]="selected"
+                    [style.background-color]="getDatePickerColor(selected)"
+                    class="cell">
+                    {{ date.day }}
+                  </div>
+            </ng-template>
+
+        </span>
+        <span *ngIf="customField.componentType === componentType.CHECKBOX">
+            <label class="custom-control custom-checkbox">
+                  <input class="form-check-input checkbox-lg"
+                         [(ngModel)]="customField.value" checked="customField.value" type="checkbox">
+               <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"
+                    style="position: relative; left: 15px; top: 3px;" [style.color]="dashboardService.template.textColor">{{customField.label}}</span>
+            </label>
+        </span>
+
+    </div>
+    <br>
+
+  </div>
+
+</span>
+<br>
+
+

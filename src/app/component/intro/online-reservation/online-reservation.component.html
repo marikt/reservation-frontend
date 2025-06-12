@@ -1,0 +1,45 @@
+<div class="container intro-cell text-center ">
+
+  <h1>{{ 'INTRO.ONLINE_RESERVATION.TITLE' | translate }}</h1>
+
+  <h5>{{ 'INTRO.ONLINE_RESERVATION.LABEL' | translate }}</h5>
+  <br>
+  <p>{{ 'INTRO.ONLINE_RESERVATION.LABEL1' | translate }}</p>
+  <br>
+  <a [routerLink]="'/intro/' + languageService.language + '/signup'" class="btn btn-red">
+    <span class="text-uppercase"> {{ 'COMMON.TRY_FREE' | translate }} </span>
+  </a>
+
+
+</div>
+
+<app-intro-item-revert
+  img="../../../../../resources/intro/online-rezervace.png"
+  alt="online reservations"
+  imgClass="rounded"
+  title1="INTRO.ONLINE_RESERVATION.WHY.TITLE1"
+  title2="INTRO.ONLINE_RESERVATION.WHY.TITLE2"
+  label1="INTRO.ONLINE_RESERVATION.WHY.LABEL1"
+>
+</app-intro-item-revert>
+
+<app-intro-item
+  img="../../../../../resources/intro/online-night.png"
+  alt="online reservations always accessible"
+  imgClass="rounded"
+  title1="INTRO.ONLINE_RESERVATION.WHY.TITLE3"
+  title2="INTRO.ONLINE_RESERVATION.WHY.TITLE4"
+  label1="INTRO.ONLINE_RESERVATION.WHY.LABEL2"
+>
+</app-intro-item>
+
+<app-try-button></app-try-button>
+
+
+<button (click)="demoService.showFrame = false"
+        *ngIf="demoService.showFrame"
+        class="notadoButtonHideDemo form-widget-close">
+</button>
+
+
+

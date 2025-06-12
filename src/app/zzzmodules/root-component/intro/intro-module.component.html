@@ -1,0 +1,15 @@
+<div style="background: rgb(243, 243, 255);">
+  <app-menu *ngIf="navbarService.showMainBar"></app-menu>
+  <app-menu-simple *ngIf="navbarService.showMainBarSimple" [route]="route"></app-menu-simple>
+
+</div>
+
+
+<div>
+  <div style="min-height: 95vh;">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer *ngIf="navbarService.showFooter"></app-footer>
+</div>
+
+

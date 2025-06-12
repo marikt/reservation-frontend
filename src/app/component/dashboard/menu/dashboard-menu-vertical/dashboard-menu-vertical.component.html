@@ -1,0 +1,212 @@
+<br>
+<br>
+
+<ul *ngIf="userService.user?.role === 'ROLE_ADMIN'" class="menu-list list-group text-left "
+>
+<!--  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-setting'">-->
+<!--    <button routerLink="/dashboard/admin-setting"-->
+<!--            class="btn btn-link btn-link-shine text-small">-->
+<!--      Settings-->
+<!--    </button>-->
+<!--  </li>-->
+<!--  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-cache'">-->
+<!--    <button routerLink="/dashboard/admin-cache"-->
+<!--            class="btn btn-link btn-link-shine text-small">-->
+<!--      CacheEnum-->
+<!--    </button>-->
+<!--  </li>-->
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-active-user'">
+    <button routerLink="/dashboard/admin-active-user"
+            class="btn btn-link btn-link-shine text-small">
+      Activ Users
+    </button>
+  </li>
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-user'">
+    <button routerLink="/dashboard/admin-user"
+            class="btn btn-link btn-link-shine text-small">
+      ALL Users
+    </button>
+  </li>
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-log'">
+    <button routerLink="/dashboard/admin-log"
+            class="btn btn-link btn-link-shine text-small">
+      LOG
+    </button>
+  </li>
+
+
+  <!--  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-health-check'">-->
+<!--    <button routerLink="/dashboard/admin-health-check"-->
+<!--            class="btn btn-link btn-link-shine text-small">-->
+<!--      Health check-->
+<!--    </button>-->
+<!--  </li>-->
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/admin-health-check'">
+    <button routerLink="/dashboard/admin-marketing-contact-marker"
+            class="btn btn-link btn-link-shine text-small">
+      Marketing contact marker
+    </button>
+  </li>
+
+</ul>
+
+<ul *ngIf="userService.user?.role === 'ROLE_USER'" class="menu-list list-group "
+    (mousedown)="businessMenuCollapsed = true; formMenuCollapsed = true;">
+  <li class="list-group-item">
+  </li>
+
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/dashboard-landing'">
+    <button
+      id="dashboard-landing"
+      routerLink="/dashboard/dashboard-landing"
+      class="btn btn-link btn-link-shine text-small">
+      <i class="fas fa-columns"></i> &nbsp; {{'DASHBOARD.MENU.DASHBOARD' | translate}}
+    </button>
+  </li>
+  <li class="list-group-item"
+      [class.link-selected]="
+      route === '/dashboard/dashboard-business' ||
+      route === '/dashboard/dashboard-service' ||
+      route === '/dashboard/dashboard-service-group' ||
+      route === '/dashboard/dashboard-coupon' ||
+      route === '/dashboard/dashboard-worker'">
+
+    <button
+      (click)="
+      businessMenuCollapsed = !businessMenuCollapsed;
+      formMenuCollapsed = true;
+      profileMenuCollapsed = true;
+      otherMenuCollapsed = true;"
+      id="dashboard-business-button"
+      class="btn btn-link btn-link-shine text-small">
+      <i class="fas fa-store-alt"></i> &nbsp; {{'DASHBOARD.MENU.BUSINESS_MENU' | translate}}
+    </button>
+  </li>
+
+  <li class="list-group-item"
+      [class.link-selected]="route === '/dashboard/dashboard-reservation-config'">
+    <button
+      id="dashboard-reservation-config"
+      routerLink="/dashboard/dashboard-reservation-config"
+      class="btn btn-link btn-link-shine text-small">
+      <i class="fas fa-wrench"></i> &nbsp; {{'DASHBOARD.MENU.RESERVATION_CONFIG' | translate}} &nbsp;
+    </button>
+  </li>
+
+  <li class="list-group-item"
+      [class.link-selected]="route === '/dashboard/dashboard-reservation-form'">
+
+    <button routerLink="/dashboard/dashboard-reservation-form"
+            id="dashboard-form"
+            class="btn btn-link btn-link-shine text-small">
+      <i class="far fa-window-restore"></i> &nbsp; {{'DASHBOARD.MENU.RESERVATION_FORM' | translate}}
+    </button>
+  </li>
+
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/dashboard-notification'">
+    <button
+      routerLink="/dashboard/dashboard-notification"
+      class="btn btn-link btn-link-shine text-small">
+      <i class="far fa-comment-dots"></i> &nbsp; {{'DASHBOARD.MENU.NOTIFICATION' | translate}}
+    </button>
+  </li>
+
+  <li class="list-group-item" [class.link-selected]="route === '/dashboard/dashboard-customer'">
+    <button
+      routerLink="/dashboard/dashboard-customer"
+      class="btn btn-link btn-link-shine text-small">
+      <i class="fas fa-user-check"></i> &nbsp; {{'DASHBOARD.MENU.CUSTOMER' | translate}}&nbsp;
+    </button>
+  </li>
+
+  <li class="list-group-item"
+      [class.link-selected]="
+      route === '/dashboard/dashboard-calendar-usage' ||
+      route === '/dashboard/dashboard-button-platform' ||
+      route === '/dashboard/dashboard-reservation-form-payment' ||
+      route === '/dashboard/dashboard-api' ||
+      route === '/dashboard/dashboard-message'">
+
+    <button
+      (click)="
+      otherMenuCollapsed = !otherMenuCollapsed;
+      formMenuCollapsed = true;
+      profileMenuCollapsed = true;"
+      id=""
+      class="btn btn-link btn-link-shine text-small">
+      <i class="fas fa-ellipsis-h"></i> &nbsp; {{'DASHBOARD.MENU.OTHER' | translate}}
+    </button>
+  </li>
+
+
+  <br>
+  <br>
+</ul>
+<br>
+<br>
+<br>
+<br>
+
+<button
+  (click)="
+        supportMenuCollapsed = !supportMenuCollapsed;
+        profileMenuCollapsed = true;
+        businessMenuCollapsed = true;
+        formMenuCollapsed = true;
+        otherMenuCollapsed = true;"
+  class=" btn-round text-center" style="position: fixed; bottom: 95px; left: 54px;">
+  <i class="fas fa-info-circle" style="font-size: 1.5em;"></i></button>
+
+<button
+  routerLink="/dashboard/dashboard-profile"
+  class=" btn-round text-center" style="position: fixed; bottom: 50px; left: 50px;">
+  <i class="fas fa-user-circle" style="font-size: 2.8em;"></i></button>
+
+
+<div
+  [@popupMenu]="supportMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+  (mouseleave)="supportMenuCollapsed = true"
+  [ngbCollapse]="supportMenuCollapsed" class="collapse overlay-menu-bottom">
+  <app-dashboard-menu-support></app-dashboard-menu-support>
+</div>
+
+
+<div
+  [@popupMenu]="businessMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+  (mouseleave)="businessMenuCollapsed = true"
+  [ngbCollapse]="businessMenuCollapsed" class="collapse overlay-menu">
+  <app-dashboard-menu-business></app-dashboard-menu-business>
+</div>
+
+<div
+  [@popupMenu]="formMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+  (mouseleave)="formMenuCollapsed = true"
+  [ngbCollapse]="formMenuCollapsed" class="collapse overlay-menu">
+  <app-dashboard-menu-form></app-dashboard-menu-form>
+</div>
+
+<div
+  [@popupMenu]="otherMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+  (mouseleave)="otherMenuCollapsed = true"
+  [ngbCollapse]="otherMenuCollapsed" class="collapse overlay-menu">
+  <app-dashboard-menu-other></app-dashboard-menu-other>
+</div>
+
+
+<!--<button *ngIf="dashboardService.payment &&-->
+<!--      (-->
+<!--      dashboardService.payment.plan == paymentPlan.FREE ||-->
+<!--      dashboardService.payment.plan == paymentPlan.TRIAL ||-->
+<!--      dashboardService.payment.plan == paymentPlan.CANCELED-->
+<!--      )"-->
+<!--        [@subscriptionMenu]="subscriptionMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"-->
+<!--        (mouseenter)="subscriptionMenuCollapsed = false"-->
+<!--        (mouseleave)="subscriptionMenuCollapsed = true"-->
+<!--        class="btn btn-success navbar-button btn-sm shadow"-->
+<!--        routerLink="/dashboard/payment"-->
+<!--        style="-->
+<!--        padding-top: 20px;-->
+<!--        border-radius: 0px 0px 15px 15px !important;-->
+<!--        position: fixed; top: 50vh; left: -45px; transform: rotate(-90deg);">-->
+<!--  <i class="far fa-sun"></i> &nbsp; {{'DASHBOARD.MENU.SUBSCRIPTION' | translate}}-->
+<!--</button>-->

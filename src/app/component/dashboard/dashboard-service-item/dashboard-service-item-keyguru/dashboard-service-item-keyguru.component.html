@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-7 col-12">
+    <form #form="ngForm" (ngSubmit)="saveServiceAndKeyguru()">
+
+      <app-keyguru-drawer-dropdown
+        label="DASHBOARD.SERVICE_ITEM.KEYGURU.LABEL"
+        [drawerId]="keyguruIntegrationService.getKeyguruIntegrationBusinessConfig(service.id).drawerId"
+        [showValidation]="showValidation"
+        (loadDrawerAction)="loadDrawer($event)"
+        (selectDrawerAction)="setDrawer($event)">
+      </app-keyguru-drawer-dropdown>
+
+      <a class="btn btn-link-blue btn-sm" style="position: relative; right: 20px; bottom: 1px;"
+         [href]="'https://www.notado.cz/faq/' + languageService.language + '/keyguru'" target="_blank"
+         *ngIf="paymentEnabled">
+          <span
+            *ngIf="keyguruIntegrationService.keyguruIntegrationBusinessConfig.apiKey">{{'DASHBOARD.SERVICE_ITEM.KEYGURU.HOW' | translate}}
+            <i class="fas fa-external-link-alt"></i>
+        </span>
+        <span class="text-danger"
+              *ngIf="!keyguruIntegrationService.keyguruIntegrationBusinessConfig.apiKey"><i
+          class="fas fa-exclamation-circle"></i> {{'DASHBOARD.SERVICE_ITEM.KEYGURU.NOT_SET' | translate}}</span>
+      </a>
+      <br>
+      <br>
+      <br>
+      <br>
+    </form>
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid4">
+      <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button4">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+            <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+  </div>
+</div>
+

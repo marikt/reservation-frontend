@@ -1,0 +1,43 @@
+
+<app-loading-progress *ngIf="spinnerService.loadingProgress > 0" label="DASHBOARD.KEYGURU.LOADING">
+</app-loading-progress>
+
+<div
+  *ngIf="(keyguruDrawers && keyguruDrawers.length > 0) && integrationData.connected && (spinnerService.loadingProgress == 0)"
+  class="form-group">
+  <label>{{ label | translate }}*</label>
+  <div class="input-group">
+    <input [ngModel]="drawerName"
+           class="form-control text-right radius-right-none"
+           disabled
+           [class.is-invalid]="(!drawerName && showValidation)"
+           [class.is-valid]="drawerName"
+           #keyguruDropdown="ngModel"
+           id="keyguruDropdown"
+           name="keyguruDropdown"
+           type="text">
+    <div class="input-group-append" ngbDropdown>
+      <button class="btn btn-outline-secondary btn-sm" id="dropdownMenuLinkToSelectKeyguru" ngbDropdownToggle
+              placement="bottom"
+              style="margin-left: 4px;"
+              type="button">
+      </button>
+      <div aria-labelledby="dropdownMenuLinkToSelectKeyguru" ngbDropdownMenu>
+          <span *ngFor="let keyguruDrawer of keyguruDrawers">
+            <button (click)="selectDrawerAction.emit(keyguruDrawer); setName(keyguruDrawer)"
+                    [id]="keyguruDrawer.id"
+                    class="dropdown-item"
+                    ngbDropdownItem
+                    type="button">{{ keyguruDrawer.name }}</button>
+          </span>
+      </div>
+      <a class="btn btn-link-blue btn-sm pull-right"
+         (click)="loadDrawers()"
+         style="margin-top: 3px;">
+        <i class="fas fa-sync-alt"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+

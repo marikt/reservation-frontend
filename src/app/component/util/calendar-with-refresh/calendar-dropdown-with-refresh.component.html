@@ -1,0 +1,116 @@
+<div *ngIf="dashboardService.business?.googleCalendarConnected && calendars && calendar" class="form-group ">
+  <label *ngIf="label">{{ label | translate }}
+    <i *ngIf="labelTooltip" [ngbTooltip]="labelTooltip | translate" class="fas fa-info-circle"></i>
+  </label>
+
+  <div class="input-group ">
+    <div class="input-group-prepend">
+            <span [style.background]="calendar.color" class="input-group-text"
+                  style="width: 30px; height: 30px; margin-top: 4px; border-radius: 50px !important; margin-right: 4px;"></span>
+    </div>
+    <input
+      [(ngModel)]="calendar.name"
+      [ngModelOptions]="{standalone: true}"
+      class="form-control radius-right-none"
+      name="business-calendar-id-input"
+      [class.is-invalid]="!deletable && calendar.name == null"
+      disabled
+      id="business-calendar-id">
+    <div class="input-group-append" ngbDropdown>
+      <button class="btn btn-outline-secondary btn-sm" id="dropdownMenuLinkToSelectCalendar" ngbDropdownToggle
+              placement="bottom"
+              type="button"
+              style="margin-left: 4px;">
+
+      </button>
+      <div aria-labelledby="dropdownMenuLinkToSelectCalendar" ngbDropdownMenu>
+        <span *ngFor="let selectedCalendar of calendars">
+          <button (click)="selectCalendarAction.emit(selectedCalendar);" class="dropdown-item" type="button"
+                  [id]="selectedCalendar.name"
+                  ngbDropdownItem>{{ selectedCalendar.name }}</button>
+        </span>
+      </div>
+
+      <a class="btn btn-link-blue btn-sm pull-right"
+         (click)="addItemMenuCollapsed = !addItemMenuCollapsed;"
+         style="margin-top: 3px;">
+        <i class="fas fa-cog"></i>
+      </a>
+
+      <div
+        [@popupMenu]="addItemMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+        (mouseleave)="addItemMenuCollapsed = true"
+        [ngbCollapse]="addItemMenuCollapsed" class="collapse overlay-menu">
+        <div class="row">
+          <div class="col-12">
+
+            <button *ngIf="deletable && calendar.name != null"
+                    class="btn-link-blue btn btn-sm pull-left"
+                    type="button"
+                    (click)="deleteCalendarsAction.emit()"><i
+              class="far fa-trash-alt"></i> {{ 'DASHBOARD.REMOVE_CALENDAR' | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button *ngIf="!hideRefreshButtons"
+                    [disabled]="preventDoubleClickService.clickInProgress"
+                    [class.disabled]="preventDoubleClickService.clickInProgress"
+                    class="btn-link-blue btn btn-sm pull-left"
+                    type="button"
+                    (click)="deleteCache(calendar.id)">
+              <i
+                class="fas fa-sync-alt"></i> {{ 'DASHBOARD.CLEAR_CACHE_CALENDAR' | translate }}
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <app-go-to-google-calendar-setting-popup [calendar]="calendar"
+                                                     buttonLabel="DASHBOARD.GO_TO_CALENDAR_SETTING"></app-go-to-google-calendar-setting-popup>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <a (click)="modalService.open(addCalendar)"
+               class="btn btn-link-blue btn-sm pull-left"
+               type="button"><i class="fas fa-plus "></i> {{ 'DASHBOARD.ADD_CALENDAR' | translate }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pull-right">
+  </div>
+</div>
+
+<ng-template #addCalendar let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="container">
+        <img class="img-shadow rounded"
+             src="../../../../resources/dashboard/add-calendar.png" style="width: 510px; margin: 0 auto;">
+        <br>
+        <br>
+        <a href="https://calendar.google.com" target="_blank" class="btn btn-outline-secondary pull-right" style="">
+          <img src="../../../../../resources/integration/small-icon/calendar.png" alt="Calendar Icon"
+               style="height: 20px; margin-right: 5px;">
+          {{'DASHBOARD.BUSINESS.CALENDAR_ENTER' | translate}} &nbsp; <i
+          class="fas fa-long-arrow-alt-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</ng-template>

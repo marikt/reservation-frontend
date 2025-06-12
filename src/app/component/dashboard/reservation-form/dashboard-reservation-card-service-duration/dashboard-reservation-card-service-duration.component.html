@@ -1,0 +1,20 @@
+<br>
+
+<div class="row">
+  <div class="form-group offset-2 col-8 text-center">
+    <h4>{{duration}} h</h4>
+
+    <input
+      type="range"
+      min="2"
+      max="10"
+      style="width: 95%;"
+      [(ngModel)]="duration"
+      (input)="onValueChange()"
+    >
+
+  </div>
+</div>
+
+<br>
+

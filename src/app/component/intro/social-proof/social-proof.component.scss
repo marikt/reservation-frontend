@@ -1,0 +1,22 @@
+.profile-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #595959;
+  transition: height 0.3s ease, width 0.3s ease;
+}
+
+.profile-stack {
+  display: flex;
+  align-items: center;
+}
+.profile-stack img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.profile-stack > div {
+  margin-left: -10px; /* Adjust overlap */
+}

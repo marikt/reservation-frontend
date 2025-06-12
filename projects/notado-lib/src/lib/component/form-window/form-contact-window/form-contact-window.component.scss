@@ -1,0 +1,14 @@
+.flag-circle {
+  display: inline-block;
+  width: 20px; /* Adjust size as needed */
+  height: 20px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes it a circle */
+  overflow: hidden;
+  line-height: 50px; /* Centers the flag vertically */
+  text-align: center; /* Centers the flag horizontally */
+  border: 1px solid #ddd; /* Optional border for styling */
+}
+.flag-circle .fi {
+  font-size: 1rem; /* Adjust size as needed */
+  line-height: 50px; /* Match the height for proper alignment */
+}

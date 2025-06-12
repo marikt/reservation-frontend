@@ -1,0 +1,103 @@
+<div class="row form-group" style="margin-left: 5px;">
+
+    <!--day checkbox & label ====================================================================== -->
+    <div class="col-lg-2 col-3">
+
+        <div class="row">
+            <div class="offset-lg-1 col-sm-10">
+                <div class="checkbox" style="margin-top: 6px;">
+                    <input #openClose="ngModel"
+                           (change)="closeOpen($event)"
+                           [checked]="!openingDay.close"
+                           [id]="labelDay"
+                           [ngModel]="!openingDay.close"
+                           class="form-check-input checkbox-lg" name="openClose"
+                           required
+                           type="checkbox"
+                    >
+                </div>
+            </div>
+
+            <label [class.text-grey]="openingDay.close"
+                   [for]="labelDay"
+                   class="col-8  col-sm-5 col-form-label"
+                   style="position: relative; top: 8px; left: 20px; color: rgb(89, 89, 89);">{{labelDay | translate}}
+            </label>
+        </div>
+
+    </div>
+
+    <!-- HRS ====================================================================== -->
+    <div *ngIf="!openingDay.close" class="col-md-9 col-9">
+
+        <div *ngFor="let openingDayRange of openingDay.openingDayRanges; let idx = index;"
+             [class.margin-top-10]="idx > 0"
+             class="row">
+
+            <div class="col-md-4 col-5">
+                <input #dayFrom="ngModel"
+                       (ngModelChange)="setFromFromString($event, idx)"
+                       [ngModel]="froms[idx]"
+                       class="form-control schedule-input text-center"
+                       max="24:00"
+                       min="00:00"
+                       name="mondayFrom"
+                       required
+                       step="300"
+                       type="time">
+            </div>
+
+            <div style="
+            margin-top: 10px;
+            margin-left: -10px;
+            margin-right: -10px;">–
+                <!--<i class="fas fa-minus"></i>-->
+            </div>
+
+            <div class="col-md-4 col-5">
+                <input #dayTo="ngModel"
+                       (ngModelChange)="setTillFromString($event, idx)"
+                       [ngModel]="tills[idx]"
+                       class="form-control schedule-input text-center"
+                       max="24:00"
+                       min="00:00"
+                       name="mondayTo"
+                       required
+                       step="300"
+                       type="time">
+            </div>
+
+            <div class="col-25">
+                <div class="row">
+                    <div class="col-4">
+                        <button (click)="addNewOpeningDayRange()"
+                                class="btn btn-link btn-link-gray btn-sm"
+                                style="position: relative;
+              top: 5px;
+              right: 25px;">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+
+                    <div class="col-4">
+                        <button (click)="removeOpeningDayRange(idx)" *ngIf="idx > 0"
+                                class="btn btn-link btn-link-gray btn-sm"
+                                style="position: relative;
+              top: 5px;
+              right: 25px;">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CLOSE ====================================================================== -->
+    <div *ngIf="openingDay.close" class="col-md-7 col-5 text-grey text-center" style="margin-top: 9px;">
+        {{closeLabel | translate}}
+    </div>
+
+</div>
+

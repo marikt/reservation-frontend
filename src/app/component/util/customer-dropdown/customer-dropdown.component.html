@@ -1,0 +1,80 @@
+<div class="form-group">
+  <label *ngIf="label">{{ label | translate }}
+    <i *ngIf="labelTooltip" [ngbTooltip]="labelTooltip | translate" class="fas fa-info-circle"></i>
+  </label>
+
+  <div class="input-group">
+    <input
+      [(ngModel)]="customerLabel.name"
+      [ngModelOptions]="{standalone: true}"
+      class="form-control radius-right-none"
+      [name]="inputName"
+      disabled
+      [id]="inputId">
+
+    <div class="input-group-append" ngbDropdown>
+      <button class="btn btn-outline-secondary btn-sm"
+              [id]="dropdownId"
+              placement="bottom"
+              type="button"
+              style="margin-left: 4px;"
+              ngbDropdownToggle>
+      </button>
+      <div [attr.aria-labelledby]="dropdownId" ngbDropdownMenu>
+        <span *ngFor="let selectedLabel of customerLabels">
+          <button
+            (click)="selectLabel(selectedLabel)"
+            class="dropdown-item"
+            type="button"
+            [id]="selectedLabel.name"
+            ngbDropdownItem>{{ selectedLabel.name }}</button>
+        </span>
+      </div>
+
+      <a class="btn btn-link-blue btn-sm pull-right"
+         (click)="menuCollapsed = !menuCollapsed;"
+         style="margin-top: 3px;">
+        <i class="fas fa-cog"></i>
+      </a>
+
+      <div
+        [@popupMenu]="menuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+        (mouseleave)="menuCollapsed = true"
+        [ngbCollapse]="menuCollapsed" class="collapse overlay-menu">
+        <div class="row">
+          <div class="col-12">
+            <button *ngIf="customerLabel?.id"
+                    class="btn-link-danger btn btn-sm pull-left"
+                    type="button"
+                    (click)="deleteLabel()"><i
+              class="far fa-trash-alt"></i> {{ 'DASHBOARD.CUSTOMER.DELETE' | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <button [disabled]="!readyToRefresh"
+                    [class.disabled]="!readyToRefresh"
+                    class="btn-link-blue btn btn-sm pull-left"
+                    type="button"
+                    (click)="deleteCache()">
+              <i class="fas fa-sync-alt"></i> {{ 'DASHBOARD.CUSTOMER.CLEAR_CACHE' | translate }}
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <a *ngIf="customerLabel?.id && getLabelUrlFn"
+               [href]="'https://contacts.google.com/label/' + getLabelUrlFn()"
+               class="btn btn-link-blue btn-sm pull-left"
+               target="_blank">
+              <i class="fas fa-external-link-alt"></i> {{ 'DASHBOARD.CUSTOMER.GO_TO_LABEL' | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

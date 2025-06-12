@@ -1,0 +1,39 @@
+<br>
+<span [ngSwitch]="window.name">
+
+  <app-dashboard-reservation-card-contact [window]="window" *ngSwitchCase="'CONTACT'">
+  </app-dashboard-reservation-card-contact>
+
+  <app-dashboard-reservation-card-service-group *ngSwitchCase="'SERVICE_GROUP'">
+  </app-dashboard-reservation-card-service-group>
+
+  <app-dashboard-reservation-card-business-branch *ngSwitchCase="'BUSINESS_BRANCH'">
+  </app-dashboard-reservation-card-business-branch>
+
+  <app-dashboard-reservation-card-service [window]="window" *ngSwitchCase="'SERVICE'">
+  </app-dashboard-reservation-card-service>
+
+  <app-dashboard-reservation-card-service-duration *ngSwitchCase="'SERVICE_DURATION'">
+  </app-dashboard-reservation-card-service-duration>
+
+<!--  <app-dashboard-reservation-card-worker *ngSwitchCase="'WORKER'">-->
+<!--  </app-dashboard-reservation-card-worker>-->
+
+  <app-dashboard-reservation-card-date *ngSwitchCase="'DATE'">
+  </app-dashboard-reservation-card-date>
+
+  <app-dashboard-reservation-card-voucher *ngSwitchCase="'VOUCHER'">
+  </app-dashboard-reservation-card-voucher>
+
+  <app-dashboard-reservation-card-custom  [window]="window" *ngSwitchCase="'CUSTOM'">
+  </app-dashboard-reservation-card-custom>
+
+  <app-dashboard-reservation-card-note *ngSwitchCase="'NOTE'">
+  </app-dashboard-reservation-card-note>
+
+  <app-dashboard-reservation-card-summary [window]="window" *ngSwitchCase="'SUMMARY'">
+  </app-dashboard-reservation-card-summary>
+
+  <app-dashboard-reservation-card-thanks [window]="window"  *ngSwitchCase="'THANKS'">
+  </app-dashboard-reservation-card-thanks>
+</span>

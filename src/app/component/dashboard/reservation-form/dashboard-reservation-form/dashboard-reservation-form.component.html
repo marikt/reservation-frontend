@@ -1,0 +1,214 @@
+<br>
+<div class="row">
+    <div class="col-12">
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='WINDOWS'; formConfigService.registerHover();" [class.active]="activeCard =='WINDOWS'"
+             id="WINDOWS"
+             class="nav-link text-sm"><i
+            class="fas fa-window-restore"></i> {{ 'DASHBOARD.MENU.FORM_WINDOW' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='GALLERY'; formConfigService.registerHover();" [class.active]="activeCard =='GALLERY'"
+             aria-current="page"
+             id="GALLERY"
+             class="nav-link text-sm"><i
+            class="far fa-images"></i> {{ 'DASHBOARD.FORM_ADJUSTMENT.GALLERY' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='VIDEO_GALLERY'; formConfigService.registerHover();"
+             [class.active]="activeCard =='VIDEO_GALLERY'"
+             aria-current="page"
+             id="VIDEO_GALLERY"
+             class="nav-link text-sm"><i
+            class="fas fa-film"></i> {{ 'DASHBOARD.FORM_ADJUSTMENT.VIDEO_GALLERY' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='CUSTOM_FORM'; formConfigService.registerHover();"
+             [class.active]="activeCard =='CUSTOM_FORM'"
+             id="CUSTOM_FORM"
+             class="nav-link text-sm"><i
+            class="fas fa-palette"></i> {{ 'DASHBOARD.FORM_ADJUSTMENT.CUSTOM_DESIGN' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='RIGHT_DETAIL'; formConfigService.registerHover();"
+             [class.active]="activeCard =='RIGHT_DETAIL'"
+             id="RIGHT_DETAIL"
+             class="nav-link text-sm"><i
+            class="fas fa-list"></i> {{ 'DASHBOARD.FORM_ADJUSTMENT.RIGHT_DETAIL' | translate }} <span
+            class="badge badge-pill badge-success"
+            style="font-size: 0.8em;">new</span></a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='FONT_FORM'; formConfigService.registerHover();"
+             [class.active]="activeCard =='FONT_FORM'"
+             id="FONT_FORM"
+             class="nav-link text-sm"><i
+            class="fas fa-font"></i> {{ 'DASHBOARD.FORM_ADJUSTMENT.FONT_FORM' | translate }}
+          </a>
+        </li>
+        <li class="nav-item ml-auto">
+          <a *ngIf="dashboardService.business?.url"
+             [href]="dashboardService.business.url | formUrl"
+             class="nav-link nav-link btn-sm"
+             style="margin-bottom: -6px;"
+             target="_blank">
+            <i
+              class="fas fa-eye "></i> {{ ('DASHBOARD.MENU.SHOW_ME_FORM' | translate) + ' ' + dashboardService.business?.url }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div *ngIf="dashboardService.template" class="row" style="background-color: white">
+
+    <div class="col-3" style="min-height: 100vh">
+      <br>
+      <app-dashboard-form-config-card *ngIf="activeCard == 'WINDOWS'"></app-dashboard-form-config-card>
+      <app-dashboard-reservation-form-gallery *ngIf="activeCard == 'GALLERY'"></app-dashboard-reservation-form-gallery>
+      <app-dashboard-reservation-form-video-gallery
+        *ngIf="activeCard == 'VIDEO_GALLERY'"></app-dashboard-reservation-form-video-gallery>
+      <app-dashboard-reservation-form-custom
+        *ngIf="activeCard == 'CUSTOM_FORM'"></app-dashboard-reservation-form-custom>
+      <app-dashboard-reservation-form-font *ngIf="activeCard == 'FONT_FORM'"></app-dashboard-reservation-form-font>
+      <app-dashboard-reservation-form-right-detail
+        *ngIf="activeCard == 'RIGHT_DETAIL'"></app-dashboard-reservation-form-right-detail>
+      <br>
+      <button (click)="saveFormTemplate(activeCard)"
+              id="save"
+              class="offset-6 btn btn-blue btn-sm">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+          <span class="sr-only">Loading...</span>
+      </span>
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+      <br>
+      <br>
+
+    </div>
+    <!--================================================================================================-->
+    <!--MONITOR screen-->
+    <div class="col-9 bg-dot" style="padding-left: 50px; padding-right: 50px;">
+      <br>
+      <br>
+      <div class="row">
+        <div *ngIf="activeCard == 'WINDOWS'" class="col-1">
+          <div class="row" *ngFor="let windowItems of windowsItems; let idx = index;">
+            <button
+              [ngbTooltip]="'DASHBOARD.FORM_ADJUSTMENT.WINDOWS.' + windowItems.windowName | translate"
+              placement="right"
+              *ngIf="dashboardService.template?.windows[idx]"
+              class=" row btn-md btn btn-outline-blue btn-circle"
+              [id]="'vertical-menu-window-' + windowItems.windowName"
+              [class.hover]="formConfigService.window == dashboardService.template?.windows[idx]"
+              (click)="
+                  formConfigService.window = dashboardService.template?.windows[idx];
+                  formConfigService.windowIdx = idx;"
+              [class.disabled]="!dashboardService.template.windows[idx].active"
+              style="margin-bottom: 20px;"><i [class]="windowItems.icon"> </i>
+            </button>
+            <div *ngIf="idx < (windowsItems.length - 1)" class="vl row"></div>
+            <i *ngIf="formConfigService.windowIdx === idx"
+               [class.dot-position]="formConfigService.windowIdx === idx && idx < (windowsItems.length - 1)"
+               [class.dot-position-2]="formConfigService.windowIdx === idx && idx === (windowsItems.length - 1)"
+               class="fas fa-circle text-blue"></i>
+          </div>
+        </div>
+
+        <div
+          id="preview-window"
+          *ngIf="activeCard == 'WINDOWS' && formConfigService.window"
+          [class.offset-1]="!mobileMode"
+          [class.col-10]="!mobileMode"
+          [class.col-lx-8]="!mobileMode"
+          [class.col-4]="mobileMode"
+          [class.offset-3]="mobileMode"
+          style="height: 100vh;">
+          <app-dashboard-form-windows></app-dashboard-form-windows>
+          <div
+            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+           background-color: rgba(255, 255, 255, 0); cursor: not-allowed;">
+
+          </div>
+          <div *ngIf="formConfigService.hover"
+
+               class="text-center col-12 alert alert-info">
+            <h5>{{ 'DASHBOARD.FORM_ADJUSTMENT.PREVIEW_FOR_WINDOWS' | translate }}</h5><br>
+            <h5>
+              <i
+                class="far fa-hand-point-left"></i> {{ 'DASHBOARD.FORM_ADJUSTMENT.PREVIEW_FOR_WINDOWS_LEFT' | translate }}
+            </h5>
+            <br>
+          </div>
+
+        </div>
+
+
+      </div>
+      <br>
+      <br>
+      <div *ngIf="
+    activeCard == 'GALLERY' ||
+    activeCard == 'VIDEO_GALLERY' ||
+    activeCard == 'CUSTOM_FORM' ||
+    activeCard == 'RIGHT_DETAIL' ||
+     activeCard == 'FONT_FORM'" class="row"
+           style="zoom: 65%;"
+           id="preview-container">
+        <!--      <pre>-->
+        <!--    {{'{'}}-->
+        <!--        'textColor': '{{ formService.template.textColor }}',-->
+        <!--        'backgroundColor': '{{ formService.template.backgroundColor }}',-->
+        <!--  'backgroundTextColor': '{{ formService.template.backgroundTextColor }}',-->
+        <!--  'componentColor': '{{ formService.template.componentColor }}',-->
+        <!--  'formBackgroundColor': '{{ formService.template.formBackgroundColor }}',-->
+        <!--  'textButtonColor': '{{ formService.template.textButtonColor }}',-->
+        <!--  'buttonRadius': '{{ formService.template.buttonRadius }}',-->
+        <!--        'backgroundImg': '{{ formService.template.backgroundImg }}',-->
+        <!--        'backgroundImgFromGallery': true-->
+        <!--        {{'}'}}-->
+        <!--</pre>-->
+        <!--      -->
+        <div
+          *ngIf="formConfigService.showBackground"
+          [class.col-12]="!mobileMode"
+          [class.col-4]="mobileMode"
+          [class.offset-3]="mobileMode"
+          style="height: 100vh; overflow:hidden; "
+          class="rounded card border-secondary">
+          <app-form-service [formEditMode]="true"></app-form-service>
+          <div
+            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+           background-color: rgba(255, 255, 255, 0); cursor: not-allowed;">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div
+          *ngIf="formConfigService.hover"
+          class=" col-12 alert alert-info">
+          <h4>{{ 'DASHBOARD.FORM_ADJUSTMENT.PREVIEW' | translate }}
+            <br> <i
+              class="far fa-hand-point-left"></i>
+          </h4>
+        </div>
+
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+
+<app-video-guide
+  label="VIDEO_GUIDE.FORM.LABEL"
+  description="VIDEO_GUIDE.FORM.DESCRIPTION"
+  videoSrc="https://www.youtube.com/embed/gSiKNTVT7n8"></app-video-guide>
+
+

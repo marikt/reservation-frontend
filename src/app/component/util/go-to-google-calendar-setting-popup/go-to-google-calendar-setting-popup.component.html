@@ -1,0 +1,36 @@
+<button class="btn-link-blue btn btn-sm pull-left"
+        [style]="buttonStyle"
+        type="button"
+        (click)="modalService.open(goToCalendarSetting)"><i class="fas fa-cogs"></i>&nbsp; <span
+  *ngIf="buttonLabel">{{ buttonLabel | translate }}</span>
+</button>
+
+<ng-template #goToCalendarSetting let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="container">
+        <div class="alert alert-info" role="alert">
+          <h6>{{ 'DASHBOARD.CALENDAR_SETTING.DESC' | translate }}</h6>
+        </div>
+        <br>
+        <br>
+        <a [href]="calendarSettingsUrl" target="_blank" class="btn btn-outline-secondary pull-right" style="">
+          <img src="../../../../../resources/integration/small-icon/calendar.png" alt="Calendar Icon"
+               style="height: 20px; margin-right: 5px;">
+          {{ 'DASHBOARD.CALENDAR_SETTING.GO_TO_SETTING' | translate }} &nbsp; <i
+          class="fas fa-long-arrow-alt-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</ng-template>

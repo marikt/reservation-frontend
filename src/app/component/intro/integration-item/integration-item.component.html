@@ -1,0 +1,36 @@
+<div class="card-item">
+
+  <div class="img-item">
+
+    <br>
+    <br>
+
+    <div class="row">
+      <div [style.background-color]="integration.color" class="shadow frame" style=" margin: 0 auto;">
+        <span class="helper"></span>
+
+        <img [src]="'../../../../../resources/integration/small-icon/' + integration.name + '.png'" width="40">
+      </div>
+    </div>
+    <br>
+    <br>
+
+  </div>
+
+  <div class="row">
+    <div class="col text-left">
+      <br>
+      <h5><b>{{integration.label}}</b></h5>
+
+      <p>{{ 'INTRO.INTEGRATION.' + integration.desc + '.DESC' | translate }}</p>
+
+      <a *ngIf="integration.url" [href]="integration.url" class="nav-link nav-link-blue" target="_blank" style="margin-left: -17px;">
+        {{'DASHBOARD.INTEGRATION.VISIT_SITE' | translate}} >
+      </a>
+      <br>
+    </div>
+  </div>
+</div>
+
+
+

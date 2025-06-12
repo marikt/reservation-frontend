@@ -1,0 +1,38 @@
+<div class="row">
+  <div [class.text-center]="isMobile"
+       class="col-12"
+  >
+    <a [routerLink]="'/intro/' + languageService.language + '/signup'"
+       class="btn btn-blue-gradient btn-lg"
+       id="try-notado-button"
+       style="border-radius: 10px !important; padding: 20px 50px;"
+       role="button">
+                <span class="text-uppercase">  {{ 'INTRO.BUTTON_TRY' | translate }} &nbsp; <i class="fas fa-long-arrow-alt-right"></i>
+                </span>
+    </a>
+    <br>
+    <p class="text-sm text-secondary" style="position: relative; margin-top: 8px;">{{ 'COMMON.NO_CREDIT_CARD' | translate }}</p>
+
+  </div>
+
+<!--  <div-->
+
+<!--    *ngIf="languageService.language == 'cs'"-->
+<!--    [class.text-center]="isMobile"-->
+<!--    [class.shif-left]="!isMobile"-->
+<!--    class="col-md-6 col-12" style="padding-top: 2px; padding-bottom: 20px; white-space: nowrap;">-->
+<!--    <app-video-tutorial-->
+<!--      btnType="link"-->
+<!--      label="VIDEO_LABEL.NOTADO_INTRODUCTION"-->
+<!--      videoSrc="https://www.youtube.com/embed/6VjBq4TWib4"></app-video-tutorial>-->
+<!--  </div>-->
+<!--  <div-->
+<!--    *ngIf="languageService.language == 'sk'"-->
+<!--    [class.text-center]="isMobile"-->
+<!--    class="col-md-6 col-12" style="padding-top: 2px;padding-bottom: 20px;">-->
+<!--    <app-video-tutorial-->
+<!--      btnType="link"-->
+<!--      label="VIDEO_LABEL.NOTADO_INTRODUCTION"-->
+<!--      videoSrc="https://www.youtube.com/embed/8L5kqeesuMk"></app-video-tutorial>-->
+<!--  </div>-->
+</div>

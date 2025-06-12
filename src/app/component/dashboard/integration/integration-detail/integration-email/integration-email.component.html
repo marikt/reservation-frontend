@@ -1,0 +1,119 @@
+<app-integration-template [integrationData]="integrationData">
+  <br>
+  <br>
+  <form #form="ngForm" (ngSubmit)="connect(); modalService.close();" class="text-left col-8">
+    <div class="form-group">
+      <label>{{'DASHBOARD.INTEGRATION.EMAIL.NAME' | translate}}</label>
+      <input #emailname="ngModel"
+             [(ngModel)]="integrationData.config.name"
+             [class.is-invalid]="emailname?.invalid && showValidation"
+             [class.is-valid]="!emailname?.invalid"
+             placeholder="Moje Rezervace"
+             class="form-control"
+             id="emailname"
+             name="emailname"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input #emailintegration="ngModel"
+             [(ngModel)]="integrationData.config.email"
+             [class.is-invalid]="emailintegration?.invalid && showValidation"
+             [class.is-valid]="!emailintegration?.invalid"
+             placeholder="mujemail@seznam.cz"
+             class="form-control"
+             id="em_20211013"
+             name="em_20211013"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'DASHBOARD.INTEGRATION.EMAIL.PASSWORD' | translate}}</label>
+      <input #passwemail="ngModel"
+             autocomplete="new-password"
+             [(ngModel)]="integrationData.config.password"
+             [class.is-invalid]="passwemail?.invalid && showValidation"
+             [class.is-valid]="!passwemail?.invalid"
+             class="form-control"
+             id="p_20211013"
+             name="p_20211013"
+             required
+             type="password">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label>SMTP Host
+        <a [href]="'https://www.notado.cz/faq/'+languageService.language+'/notification-from-own-email'"
+           target="_blank">
+          <i class="fas fa-info-circle"></i>
+        </a></label>
+
+      <input #host="ngModel"
+             [(ngModel)]="integrationData.config.host"
+             [class.is-invalid]="host?.invalid && showValidation"
+             [class.is-valid]="!host?.invalid"
+             class="form-control"
+             placeholder="smtp.seznam.cz"
+             id="host"
+             name="host"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>SMTP Port</label>
+      <input #port="ngModel"
+             [(ngModel)]="integrationData.config.port"
+             [class.is-invalid]="port?.invalid && showValidation"
+             [class.is-valid]="!port?.invalid"
+             class="form-control"
+             placeholder="465"
+             id="port"
+             name="port"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+
+    <button (click)="testConnection()" *ngIf="!form.invalid" class="btn btn-outline-blue btn-sm" type="button">
+      <i class="far fa-paper-plane"></i> &nbsp; {{'DASHBOARD.INTEGRATION.TEST_CONNECTION' | translate}}
+    </button>
+
+    <div *ngIf="showTestSuccess" class="alert alert-success"><i class="fas fa-info-circle"></i> &nbsp;
+      {{'DASHBOARD.INTEGRATION.EMAIL.SUCCESS' | translate}}
+    </div>
+    <div *ngIf="showTestFail" class="alert alert-error"><i class="fas fa-info-circle"></i> &nbsp;
+      {{'DASHBOARD.INTEGRATION.EMAIL.FAIL' | translate}}
+    </div>
+
+    <br>
+    <br>
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm" type="button">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    &nbsp;
+    <button (click)="disconnect(); modalService.close()" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.DISCONNECT_BUTTON' | translate}}
+    </button>
+
+  </form>
+
+</app-integration-template>

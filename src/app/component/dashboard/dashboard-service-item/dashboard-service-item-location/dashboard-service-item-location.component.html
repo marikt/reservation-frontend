@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-md-7 col-12">
+    <form #form="ngForm" (ngSubmit)="saveService()">
+
+
+      <!--PRICE ============================================================================================ -->
+      <!--SERVICE MSG ============================================================================================ -->
+        <label>{{'DASHBOARD.SERVICE_ITEM.LOCATION_PER_SERVICE_LABEL' | translate}}</label>
+          <div class="form-group" style="margin-bottom: 0px;">
+            <label class="custom-control custom-checkbox">
+              <input
+                (click)="customLocation = false; service.location = null; location = null"
+                [checked]="customLocation === false"
+                class="form-check-input checkbox-lg"
+                id="locationPerServiceOff"
+                name="locationPerServiceOff"
+                style="position: relative; left: 0px;"
+                type="radio"
+                value="locationPerServiceOff">
+              <span class="custom-control-description"
+                    style="position: relative; left: 10px; bottom: 4px;">{{'DASHBOARD.SERVICE_ITEM.LOCATION_PER_SERVICE_OFF_LABEL' | translate}}</span>
+            </label>
+          </div>
+
+      <div class="form-group" style="margin-bottom: 0px;">
+        <label class="custom-control custom-checkbox">
+          <input
+            (click)="customLocation = true"
+            [checked]="customLocation"
+            class="form-check-input checkbox-lg"
+            id="locationPerServiceOn"
+            name="locationPerServiceOn"
+            style="position: relative; left: 0px;"
+            type="radio"
+            value="locationPerServiceOn">
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; bottom: 4px;">{{'DASHBOARD.SERVICE_ITEM.LOCATION_PER_SERVICE_ON_LABEL' | translate}}</span>
+        </label>
+      </div>
+        <div *ngIf="customLocation" class="form-group">
+          <div class="form-group">
+            <label>{{'DASHBOARD.BUSINESS.LOCATION' | translate}}
+              <app-video-tutorial btnType="tooltip"
+                                  videoSrc="https://www.youtube.com/embed/W4Mi-wfftTU"></app-video-tutorial>
+            </label>
+            <div class="input-group">
+              <input #locationComponent="ngModel"
+                     [(ngModel)]="location"
+                     (ngModelChange)="setBusinessLocation()"
+                     class="form-control"
+                     id="dashboard-business-location"
+                     name="location"
+                     type="text">
+            </div>
+            <iframe *ngIf="service.location && service.location.includes('www.google.com/maps/embed')" [src]="service.location | safeUrl: 'url'"
+
+                    width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="rounded"></iframe>
+
+            <div  class="alert alert-warning" *ngIf="service.location && !service.location.includes('www.google.com/maps/embed')">
+              <i class="fas fa-info-circle"></i> &nbsp;
+              <label>{{ 'DASHBOARD.BUSINESS.WRONG_LOCATION' | translate }}</label>
+              <app-video-tutorial btnType="tooltip"
+                                  videoSrc="https://www.youtube.com/embed/W4Mi-wfftTU"></app-video-tutorial>
+            </div>
+          </div>
+        </div>
+
+      <br>
+      <br>
+    </form>
+
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid">
+      <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button2">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+          <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+    <button (click)="modalService.open(serviceDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+            placement="bottom">
+      <i class="far fa-trash-alt"></i> {{'DASHBOARD.SERVICE_ITEM.DELETE' | translate}}
+    </button>
+  </div>
+</div>
+
+<ng-template #serviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.SERVICE_ITEM.DELETE_CONFIRM' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}
+      </button>
+      <button class="btn-blue btn btn-sm" (click)="deleteService(service)">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

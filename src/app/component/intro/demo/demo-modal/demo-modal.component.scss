@@ -1,0 +1,116 @@
+.bg {
+  background: url('../../../../../resources/demo/demo-bg-girl-dark.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.notadoIframeDemo {
+  animation: animOpen 0.5s forwards;
+}
+
+@media (max-width: 576px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 90vw;
+  }
+}
+
+@media (min-width: 576px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 90vw;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 90vw;
+  }
+}
+
+@media (min-width: 650px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 90vw;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 90vw;
+  }
+}
+
+@media (min-width: 800px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 70vw;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 70vw;
+  }
+}
+
+@media (min-width: 1000px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 70vw;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 70vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 45vw;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 45vw;
+  }
+}
+
+@media (min-width: 1400px) {
+  @keyframes animOpen {
+    from {
+      width: 0;
+    }
+    to {
+      width: 45vw;
+    }
+  }
+
+  .notadoButtonHideDemo {
+    right: 45vw;
+  }
+}

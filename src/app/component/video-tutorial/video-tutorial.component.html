@@ -1,0 +1,77 @@
+<button
+  (click)="modalService.open(videoModal, { windowClass: 'transparent-modal-content', size: isMobile ? 'lg' : 'md'})"
+  *ngIf="btnType == 'link' && languageService.isCzOrSk()"
+  class="btn btn-link btn-link-blue"
+  style="z-index: 999; padding-left: 0px;">
+  <i aria-hidden="true" class="fa fa-play-circle" style="font-size: 1.2em;"></i> <span class=""
+                                                                                       style="position: relative; bottom: 1px;">
+  {{ label | translate }}
+
+  </span>
+</button>
+
+<button
+  (click)="modalService.open(videoModal, { windowClass: 'transparent-modal-content', size: isMobile ? 'lg' : 'md'})"
+  *ngIf="btnType == 'white' && languageService.isCzOrSk()"
+  class="btn btn-link btn-link-white"
+  style="z-index: 999">
+  <i aria-hidden="true" class="fa fa-play-circle" style="font-size: 1.2em;"></i> <span class=""
+                                                                                       style="position: relative; bottom: 1px;">
+  {{ label | translate }}
+
+  </span>
+</button>
+
+<button *ngIf="btnType == 'blue'  && languageService.isCzOrSk()"
+        (click)="modalService.open(videoModal, { windowClass: 'transparent-modal-content', size: isMobile ? 'lg' : 'md'})"
+        class="btn btn-outline btn-outline-blue btn-sm pull-right">
+  <i aria-hidden="true" class="fa fa-play-circle" style="font-size: 1.2em;"></i> <span class=""
+                                                                                       style="position: relative; bottom: 1px;">
+  {{ label | translate }}
+
+  </span>
+</button>
+
+<a *ngIf="btnType == 'tooltip'  && languageService.isCzOrSk()"
+   (click)="modalService.open(videoModal, { windowClass: 'transparent-modal-content', size: isMobile ? 'lg' : 'md'})"
+   class="btn btn-link"
+   style="padding: 0px 5px; !important; line-height: 0.5; font-size: 0.9em; position: relative; bottom: 1px;">
+  <i aria-hidden="true" class="far fa-question-circle"></i>
+</a>
+
+<a *ngIf="btnType == 'img'  && languageService.isCzOrSk()"
+   (click)="modalService.open(videoModal, { windowClass: 'transparent-modal-content', size: isMobile ? 'lg' : 'md'})"
+   style="padding: 15px;">
+  <img class="rounded img-link" [src]="getImg()" width="220">
+  <i class="far fa-play-circle text-danger btn-for-video"
+     style="opacity: 0.9; position: relative; top: 13px; right: 136px; font-size: 4em;"></i>
+  <br>
+  <h6 class="text-blue" style="padding-left: 13px; margin-top: 3px;">{{ label | translate }}</h6>
+
+</a>
+
+<a *ngIf="btnType == 'imgLg'  && languageService.isCzOrSk()"
+   (click)="modalService.open(videoModal, { windowClass: 'transparent-modal-content', size: isMobile ? 'lg' : 'md'})"
+   style="padding: 15px;">
+  <img class="rounded img-link" [src]="getImg()" width="400">
+  <i class="far fa-play-circle text-danger btn-for-video"
+     style="opacity: 0.9; position: relative; bottom: 210px; left: 185px; font-size: 6em;"></i>
+  <br>
+  <h6 class="text-blue" style="padding-left: 13px; margin-top: 3px;">{{ label | translate }}</h6>
+
+</a>
+
+
+<ng-template #videoModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header">
+    <button type="button" class="close-modal close" (click)="d('Cross click')">
+    </button>
+  </div>
+
+  <div class="modal-body text-center">
+    <iframe width="950" height="556" style="border-radius: 10px;" [src]="videoSrc + '?autoplay=1' | safeUrl: 'url'"
+            frameborder="0"
+            allow="autoplay" allowfullscreen></iframe>
+  </div>
+</ng-template>

@@ -1,0 +1,296 @@
+<div class="offset-0 col-11 edit-card" *ngIf="formService.template">
+  <br>
+  <!--    <div class="row">-->
+  <!--      <div class="col-12">-->
+  <!--        <div class="form-group">-->
+  <!--          <label class="">{{'DASHBOARD.FORM_ADJUSTMENT.FORM_TYPE' | translate}}</label>-->
+  <!--          <br>-->
+  <!--          <br>-->
+  <!--          <div class="row">-->
+  <!--            <div class="col-5">-->
+  <!--              <label class="form-check">-->
+
+  <!--                <input [(ngModel)]="formService.template.type" checked class="form-check-input"-->
+  <!--                       id="formTypeRadios2" name="formTypeRadios2"-->
+  <!--                       type="radio"-->
+  <!--                       value="FULLSCREEN_SIMPLE">-->
+  <!--                <div-->
+  <!--                  style="background-color: rgb(208, 208, 208); width: 50px; height: 35px !important; border-radius: 2px; margin-left: 10px;"></div>-->
+
+  <!--              </label>-->
+  <!--            </div>-->
+  <!--            <div class="col-5">-->
+  <!--              <label class="form-check">-->
+
+  <!--                <input [(ngModel)]="formService.template.type" checked class="form-check-input"-->
+  <!--                       id="formTypeRadios1" name="formTypeRadios1"-->
+  <!--                       type="radio"-->
+  <!--                       value="FULLSCREEN">-->
+  <!--                <div-->
+  <!--                  style="background: linear-gradient(90deg, rgba(208,208,208,1) 0%, rgba(208,208,208,1) 50%, rgba(208,208,208,1) 50%, rgba(180,180,180,1) 50%);-->
+  <!--                   width: 50px; height: 35px !important; border-radius: 2px; margin-left: 10px;"></div>-->
+
+  <!--              </label>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <br>-->
+  <!--&lt;!&ndash;          <div class="row">&ndash;&gt;-->
+  <!--&lt;!&ndash;            <div class="col-5">&ndash;&gt;-->
+  <!--&lt;!&ndash;              <label class="form-check">&ndash;&gt;-->
+
+  <!--&lt;!&ndash;                <input [(ngModel)]="formService.template.type" class="form-check-input"&ndash;&gt;-->
+  <!--&lt;!&ndash;                       id="formTypeRadios3"&ndash;&gt;-->
+  <!--&lt;!&ndash;                       name="formTypeRadios3"&ndash;&gt;-->
+  <!--&lt;!&ndash;                       type="radio"&ndash;&gt;-->
+  <!--&lt;!&ndash;                       value="POPUP">&ndash;&gt;-->
+  <!--&lt;!&ndash;                <div&ndash;&gt;-->
+  <!--&lt;!&ndash;                  style="background-color: rgb(208, 208, 208); width: 45px; height: 25px !important; border-radius: 2px; margin-left: 10px;"></div>&ndash;&gt;-->
+  <!--&lt;!&ndash;              </label>&ndash;&gt;-->
+  <!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+  <!--&lt;!&ndash;          </div>&ndash;&gt;-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <hr>-->
+
+
+  <div class="row" style="height: 80px !important;">
+    <div class="col-6">
+      <div class="form-group" id="componentColorFormGroup">
+        <label class="text-xsm" for="componentColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.BUTTON_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.button = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.button = false"
+          [(colorPicker)]="formService.template.componentColor"
+          [style.background]="formService.template?.componentColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="componentColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="form-group " id="formColorFormGroup">
+        <label class="text-xsm" for="formColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.FORM_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.formBackground = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.formBackground = false"
+          [(colorPicker)]="formService.template.formBackgroundColor"
+          [style.background]="formService.template?.formBackgroundColor"
+          cpAlphaChannel="disabled"
+          class="form-control color-picker input-sm remove-arrow"
+          id="formColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="height: 80px !important;">
+    <div class="col-6" style="">
+      <div class="form-group " id="textButtonColorFormGroup">
+        <label class="text-xsm"
+               for="componentColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.BUTTON_TEXT_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.button = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.button = false"
+          [(colorPicker)]="formService.template.textButtonColor"
+          [style.background]="formService.template?.textButtonColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="textButtonColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+
+    <div class="col-6" style="">
+      <div class="form-group " id="textColorFormGroup">
+        <label class="text-xsm" for="textColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.TEXT_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.text = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.text = false"
+
+          [(colorPicker)]="formService.template.textColor"
+          [style.background]="formService.template?.textColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="textColor"
+          style="width: 75px;"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="height: 80px !important;">
+    <div class="col-6" style="">
+      <div class="form-group " id="backgroundMainColorFormGroup">
+        <label class="text-xsm"
+               for="backgroundMainColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.backgroundMainColor = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.backgroundMainColor = false"
+          [(colorPicker)]="formService.template.backgroundMainColor"
+          [style.background]="formService.template?.backgroundMainColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="backgroundMainColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+    <div class="col-6" style="">
+      <div class="form-group " id="backgroundColorFormGroup">
+        <label class="text-xsm"
+               for="backgroundColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_RESERVATION_DETAIL' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.background = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.background = false"
+          [(colorPicker)]="formService.template.backgroundColor"
+          [style.background]="formService.template?.backgroundColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="backgroundColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="height: 80px !important;">
+    <div class="col-6" style="">
+      <div class="form-group " id="backgroundTextColorFormGroup">
+        <label class="text-xsm"
+               for="backgroundTextColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_TEXT_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.background = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.background = false"
+          [(colorPicker)]="formService.template.backgroundTextColor"
+          [style.background]="formService.template?.backgroundTextColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="backgroundTextColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="height: 80px !important;">
+    <div class="col-6" style="">
+      <div class="form-group " id="serviceCardColorFormGroup">
+        <label class="text-xsm"
+               for="backgroundColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.SERVICE_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.serviceCardColor = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.serviceCardColor = false"
+          [(colorPicker)]="formService.template.serviceCardColor"
+          [style.background]="formService.template?.serviceCardColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="serviceCardColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+
+    <div class="col-6" style="">
+      <div class="form-group " id="serviceCardTextColorFormGroup">
+        <label class="text-xsm"
+               for="backgroundColor">{{ 'DASHBOARD.FORM_ADJUSTMENT.SERVICE_TEXT_COLOR' | translate }}</label>
+        <input
+          (colorPickerOpen)="formService.template.highlightComponentForEditor.serviceCardTextColor = true"
+          (colorPickerClose)="formService.template.highlightComponentForEditor.serviceCardTextColor = false"
+          [(colorPicker)]="formService.template.serviceCardTextColor"
+          [style.background]="formService.template?.serviceCardTextColor"
+          class="form-control color-picker input-sm remove-arrow"
+          id="serviceCardTextColor"
+          style="width: 75px;"/>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-xsm">{{ 'DASHBOARD.FORM_ADJUSTMENT.EDGE' | translate }}</label>
+        <br>
+        <br>
+
+        <div class="row">
+
+          <div class="col-5">
+            <label class="form-check text-xsm">
+              <input [(ngModel)]="formService.template.buttonRadius" checked class="form-check-input"
+                     id="exampleRadios1" name="exampleRadios"
+                     type="radio" value="50px">
+              <div
+                style="background-color: rgb(208, 208, 208); width: 60px; height: 28px !important; border-radius: 50px; margin-left: 10px;"></div>
+            </label>
+          </div>
+
+          <div class="offset-1 col-5">
+            <label class="form-check text-xsm">
+              <input [(ngModel)]="formService.template.buttonRadius" class="form-check-input"
+                     id="exampleRadios2"
+                     name="exampleRadios" type="radio"
+                     value="8px">
+              <div
+                style="background-color: rgb(208, 208, 208); width: 60px; height: 28px !important; border-radius: 8px; margin-left: 10px;"></div>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  <div class="row">-->
+<!--    <div class="col-12">-->
+<!--      <div class="form-group">-->
+<!--        <label class="text-xsm">{{ 'DASHBOARD.FORM_ADJUSTMENT.MARGIN' | translate }}</label>-->
+<!--        <br>-->
+<!--        <br>-->
+
+<!--        <div class="row">-->
+
+<!--          <div class="col-5">-->
+<!--            <label class="form-check text-xsm">-->
+<!--              <input [(ngModel)]="formService.template.margin" checked class="form-check-input"-->
+<!--                     id="marginBIG" name="marginBIG"-->
+<!--                     type="radio" value="BIG">-->
+<!--              <i class="fas fa-expand-arrows-alt"-->
+<!--                 style="font-size: 2.2em; position: relative; left: 10px; top: 4px;"></i>-->
+<!--            </label>-->
+<!--          </div>-->
+
+<!--          <div class="offset-1 col-5">-->
+<!--            <label class="form-check text-xsm">-->
+<!--              <input [(ngModel)]="formService.template.margin" class="form-check-input"-->
+<!--                     id="marginSMALL"-->
+<!--                     name="marginSMALL" type="radio"-->
+<!--                     value="SMALL">-->
+<!--              <i class="fas fa-compress-arrows-alt"-->
+<!--                 style="font-size: 2.2em; position: relative; left: 10px; top: 4px;"></i>-->
+<!--            </label>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <hr>-->
+  <!--  <div class="row">-->
+  <!--    <div class="col-12">-->
+  <!--      <label>-->
+  <!--        {{'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_IMAGE_SELECT' | translate}}-->
+  <!--      </label>-->
+  <!--      <br>-->
+  <!--      <br>-->
+  <!--      <div class="row">-->
+  <!--        <div class="col-6">-->
+  <!--          <button (click)="openImageModal()"-->
+  <!--                  class="btn-sm btn btn-primary"> {{'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_IMAGE' | translate}}-->
+  <!--          </button>-->
+  <!--        </div>-->
+  <!--        <div class="col-6">-->
+  <!--          <button (click)="setBackgroundImageBasedOnBusinessUrl()"-->
+  <!--                  *ngIf="backgroundFromUrl == null || backgroundFromUrl != this.formService.template.backgroundImg"-->
+  <!--                  class="btn-sm btn btn-primary"> {{'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_IMAGE_WEB' | translate}}-->
+  <!--          </button>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <br>
+</div>
+

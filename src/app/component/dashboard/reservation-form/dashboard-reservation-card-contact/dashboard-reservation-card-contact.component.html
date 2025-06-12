@@ -1,0 +1,39 @@
+<div class="form-group offset-2 col-8">
+    <label [style.color]="dashboardService.template.textColor">{{'FORM.NAME' | translate}}</label>
+    <label class="pull-right" [style.color]="dashboardService.template.textColor">({{'FORM.NOT_REQUIRED' | translate}})</label>
+    <input #name="ngModel" [(ngModel)]="demoService.reservation.name"
+           class="form-control"
+           name="name"
+           placeholder="Jan Novak"
+           type="text">
+    <div class="feedback-icon" style=" width: 15px;">
+    </div>
+</div>
+<div class="form-group offset-2 col-8">
+    <label [style.color]="dashboardService.template.textColor">{{'FORM.EMAIL' | translate}}*</label>
+    <input #email="ngModel" [(ngModel)]="demoService.reservation.email"
+           class="form-control"
+           name="email"
+           placeholder="jannovak@seznam.cz"
+           required
+           type="email"
+           [style.border-radius]="dashboardService.template.buttonRadius">
+
+    <div class="invalid-feedback">
+      {{'FORM.REQUIRED' | translate}}
+    </div>
+</div>
+<div *ngIf="window?.config?.phone" class="form-group offset-2 col-8">
+    <label [style.color]="dashboardService.template.textColor">{{'FORM.PHONE' | translate}}*</label>
+    <input #phone="ngModel" [(ngModel)]="demoService.reservation.phone"
+           class="form-control"
+           name="phone"
+           placeholder="+420735063099"
+           required
+           type="tel"
+           [style.border-radius]="dashboardService.template.buttonRadius">
+
+    <div class="invalid-feedback">
+      {{'FORM.REQUIRED' | translate}}
+    </div>
+</div>

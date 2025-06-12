@@ -1,0 +1,65 @@
+<!--========================================================-->
+<button
+  (click)="prevFormWindow()"
+  *ngIf="showBackButton(cardName)"
+  [style.color]="formService.template?.textColor"
+  class="btn btn-link btn-link-gray"
+  id="form-previous"><i class="fas fa-chevron-left"></i> {{ 'FORM.BACK' | translate }} </button>
+
+<button (click)="formEditMode ? doNothing() : nextFormWindow()"
+        *ngIf="formEditMode || showNextButton(cardName)"
+        [style.background]="formService.template?.componentColor"
+        [style.border-radius]="formService.template?.buttonRadius"
+        [style.color]="formService.template?.textButtonColor"
+        [class.highlighted]="formService.template?.highlightComponentForEditor?.button"
+        class="btn-custom text-uppercase"
+        [class.btn-block]="!showBackButton(cardName)"
+        id="form-next"
+        style="border-width: 0;">
+  {{ 'FORM.CONTINUE' | translate }}
+</button>
+
+
+<!--========================================================-->
+
+<span *ngIf="cardName == 'SUMMARY' ">
+        <button *ngIf="formService.getStripeServiceConfig().price"
+                (click)="formService.pay()"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                id="paymentButton"
+                style="border-width: 0px;"
+                class="btn-custom ">
+
+          <span *ngIf="spinnerService.isShowUnstoppable" aria-hidden="true" class="spinner-grow spinner-grow-sm"
+                role="status"
+                style="position: relative; bottom: 0px; right: 4px;"></span>
+              <span *ngIf="!config?.paymentButtonLabel">
+                {{'FORM.PAY' | translate}}
+              </span>
+              <span *ngIf="config?.paymentButtonLabel">
+                {{config.paymentButtonLabel}}
+              </span>
+        </button>
+
+        <button *ngIf="(formService.getStripeServiceConfig().price && !formService.getStripeServiceConfig().paymentMandatory) || owner"
+                [style.border-radius]="formService.template?.buttonRadius"
+                style="color: #fff; background-color: #6c757d; border-color: #6c757d; border: none;"
+                (click)="nextFormWindow()"
+                id="paymentLaterButton"
+                class="btn-custom ">
+
+          {{'FORM.PAY_LATER' | translate}}
+        </button> &nbsp;
+        <button *ngIf="!formService.getStripeServiceConfig().price"
+                (click)="nextFormWindow()"
+                [style.background]="formService.template?.componentColor"
+                [style.border-radius]="formService.template?.buttonRadius"
+                [style.color]="formService.template?.textButtonColor"
+                class="btn-custom "
+                id="form-book-button"
+                style="border-width: 0px;">
+          {{'FORM.CREATE_RESERVATION' | translate}}
+        </button>
+</span>

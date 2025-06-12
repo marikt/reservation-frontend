@@ -1,0 +1,56 @@
+<br class="d-none d-xl-block">
+<br class="d-none d-xl-block">
+<br class="d-none d-xl-block">
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <button [disabled]="!readyToRefresh"
+              [class.disabled]="!readyToRefresh"
+              class="btn btn-lg btn-primary text-uppercase" (click)="deleteCache()"><i
+        class="fas fa-sync-alt"></i> &nbsp; {{'COMMON.DELETE_CACHE' | translate}}</button>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div *ngIf="languageService.language == 'cs' || languageService.language == 'sk'" class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-1 col-10 alert alert-info text-center shadow">
+        <p>
+          Tlačítko, které smaže veškerou cache. Pro snadný přistu si link uložte do bookmarku.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row text-center footer">
+  <div class="col-12" style="position: relative; bottom: 16px;">
+    <hr>
+  </div>
+  <div class="col-12" style="position: relative; bottom: 20px;">
+    <span class="text-grey">powered by </span> <a href="https://www.notado.cz" target="_blank"
+                                                  style="color: rgb(59, 36, 246) !important;"> <img
+    src="../resources/logo-big.png"
+    alt="Notado Logo"
+    style="width:17px;">
+    NOTADO</a>
+  </div>
+</div>
+
+
+<!-- ALERT -->
+<div *ngFor="let alert of alertService.alerts" class="alert-alert col-12 text-center">
+  <ngb-alert [type]="alert.type" (close)="alertService.closeAlert(alert)">
+    <h4 class="alert-heading">
+      <i *ngIf="alert.type === 'success' " class="fas fa-check" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'error' " class="fa fa-close" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'warning' " class="fa fa-warning" aria-hidden="true"></i> {{alert.msg}}
+    </h4>
+  </ngb-alert>
+</div>

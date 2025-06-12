@@ -1,0 +1,39 @@
+<h1><b>{{'FAQ.' + title + '.TITLE' | translate}}</b></h1>
+
+<div *ngFor="let item of [].constructor(labels); let idx = index" class="">
+  <h6 [innerHTML]="'FAQ.' + title + '.LABEL' + idx | translate"></h6>
+  <span *ngFor="let imgIdx of imgs.values();">
+    <img *ngIf="idx == imgIdx" [alt]="'FAQ.' + title + '.ALT' + imgIdx | translate"
+         [src]="'../../../../../../resources/faq/' + title + '/' + imgIdx + '.png'" class="rounded shadow"
+         style="width: 80%">
+  </span>
+  <span *ngFor="let videoItem of videos.values();">
+    <span *ngIf="idx == videoItem.idx">
+    <iframe
+      width="950"
+      height="556"
+      style="border-radius: 10px;"
+      [src]="videoItem.link  | safeUrl: 'url'"
+      [title]="'FAQ.' + title + '.TITLE' | translate"
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+
+    </iframe>
+      </span>
+  </span>
+  <span *ngFor="let linkItem of links.values();">
+    <span *ngIf="idx == linkItem.idx">
+        <a
+          [routerLink]="'/faq/' + languageService.language + '/' + linkItem.link">{{'FAQ.' + linkItem.title + '.TITLE' | translate}}</a>
+        <br>
+        <br>
+      </span>
+  </span>
+
+  <br>
+</div>
+<br>
+<br>
+<br>
+

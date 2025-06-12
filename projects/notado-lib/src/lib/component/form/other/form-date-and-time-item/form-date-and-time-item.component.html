@@ -1,0 +1,19 @@
+<div class="row" style="margin-left: 5px;">
+
+  <span *ngFor="let dateAndTimeAndId of formService.calendarEvent.dateAndTimeAndIds; let idx = index;">
+        <div
+          [style.border-color]="'transparent'"
+          [style.background-color]="formService.template?.componentColor"
+          [style.color]="formService.template?.textButtonColor"
+          style="border-radius: 8px; padding: 5px 10px; margin-right: 5px; margin-bottom: 10px;">
+
+          {{dateAndTimeAndId.date | dateToString}} &nbsp;
+          <span class="text-sm" *ngIf="dateAndTimeAndId.time">{{dateAndTimeAndId.time | timeToString}}</span>
+              <a (click)="removeDateAndTime(idx)"><i class="fas fa-times" style="position: relative; left: 5px; bottom: 5px;"></i></a>
+          </div>
+</span>
+
+</div>
+<div *ngIf="formService.calendarEvent?.dateAndTimeAndIds?.length > 40" class="text-danger row text-center">
+  <div class="col-12">{{ 'FORM.MAX_MULTIPLE_BOOKINGS_REACHED' | translate }}</div>
+</div>

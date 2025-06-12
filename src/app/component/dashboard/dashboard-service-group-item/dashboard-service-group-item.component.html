@@ -1,0 +1,331 @@
+<app-dashboard-card *ngIf="serviceGroup" backLink="/dashboard-service-group">
+
+
+  <app-dashboard-card-label [entityName]="serviceGroup?.name"
+                            label="DASHBOARD.SERVICE_GROUP_ITEM.TITLE">
+    <button (click)="modalService.open(codeForServiceModal, {size: 'lg'})"
+            class="btn btn-outline-blue btn-sm">{{ 'DASHBOARD.SERVICE_ITEM.BUTTON' | translate }} {{ serviceGroup.name }}
+    </button>
+
+  </app-dashboard-card-label>
+
+
+  <div class="row">
+    <!--1 COLUMN ============================================================================================ -->
+    <div class="col-md-4 col-12 ">
+      <img *ngIf="serviceGroup?.fullPathImg" [src]="server.SERVER + serviceGroup.fullPathImg" class="img-fluid rounded"
+           style="">
+      <img *ngIf="!serviceGroup?.fullPathImg" class="img-fluid rounded" src="../../../../resources/default-service.png"
+           style="">
+      <br>
+      <br>
+      <div class="row">
+
+        <!--UPLOAD IMG ========================================================================================= -->
+        <button (click)="openImageModal()" class="btn btn-outline btn-outline-blue btn-sm">
+          {{'DASHBOARD.COMMON.ADD_IMAGE' | translate}}&nbsp; <i aria-hidden="true" class="fa fa-upload"></i>
+        </button>
+        <button *ngIf="serviceGroup?.img"
+                (click)="serviceGroup.img = null; serviceGroup.fullPathImg = null; deleteImg()"
+                class="btn btn-link btn-link-gray btn-sm">
+          <i class="far fa-trash-alt"></i></button>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+
+    <!--2 COLUMN ============================================================================================ -->
+
+    <div class="offset-md-1 col-md-7 col-12">
+      <form #form="ngForm" (ngSubmit)="saveServiceGroup()">
+        <!--NAME ============================================================================================ -->
+        <div class="form-group">
+          <label>{{'DASHBOARD.SERVICE_GROUP_ITEM.GROUP_NAME' | translate}}</label>
+          <!--          <a routerLink="/dashboard/dashboard-service" class="btn btn-sm btn-link"-->
+          <!--             id="add-worker-button">-->
+          <!--            <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.SERVICE.ADD_SERVICE' | translate}}-->
+          <!--          </a>-->
+          <input #name="ngModel" [(ngModel)]="serviceGroup.name"
+                 [class.is-invalid]="name?.invalid && showValidation"
+                 [class.is-valid]="!name?.invalid"
+                 class="form-control"
+                 id="serviceGroup-item-name"
+                 name="serviceGroup-name"
+                 placeholder="{{ 'DASHBOARD.SERVICE_ITEM.SERVICE_NAME_PLACEHOLDER' | translate }}"
+                 required
+                 type="text">
+          <div class="invalid-feedback">
+            {{'COMMON.REQUIRED' | translate}}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>{{'DASHBOARD.SERVICE_ITEM.SERVICE_TECH_NAME' | translate}}
+            <i [ngbTooltip]="'DASHBOARD.SERVICE_GROUP.SERVICE_TECH_NAME_DESC' | translate"
+               class="far fa-question-circle text-primary" style="font-size: 0.9em;">
+            </i>
+          </label>
+          <input #name="ngModel" [(ngModel)]="serviceGroup.techName"
+                 class="form-control"
+                 id="service-item-tech-name"
+                 name="service-tech-name"
+                 type="text">
+        </div>
+
+
+        <!--SERVICES ============================================================================================ -->
+        <div *ngIf="servicesInRelation" class="form-group" style="margin-bottom: -10px;">
+          <label>{{'DASHBOARD.SERVICE_GROUP_ITEM.INTO_GROUP_BELONG' | translate}}</label>
+          <span *ngFor="let serviceGroupService of servicesInRelation">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input
+                    [(ngModel)]="serviceGroupService.active"
+                    [checked]="serviceGroupService.active"
+                    [id]="'serviceActive' + serviceGroupService.service.id"
+                    [name]="serviceGroupService.service.name"
+                    class="form-check-input"
+                    type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; bottom: -3px;">{{serviceGroupService.service.name}}
+                    <span *ngIf="serviceGroupService?.service?.techName"
+                          class="text-grey"><small>({{serviceGroupService.service.techName}})</small>
+                    </span>
+                  </span>
+                  <span>
+                  </span>
+                  <br>
+                </label>
+              </div>
+            </span>
+        </div>
+        <br>
+        <div *ngIf="couponsInRelation" class="form-group" style="margin-bottom: -10px;">
+          <label>{{'DASHBOARD.SERVICE_GROUP_ITEM.INTO_GROUP_BELONG_COUPON' | translate}}</label>
+          <span *ngFor="let couponInRelation of couponsInRelation">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input
+                    [(ngModel)]="couponInRelation.active"
+                    [checked]="couponInRelation.active"
+                    [id]="'serviceActive' + couponInRelation.service.id"
+                    [name]="couponInRelation.service.name"
+                    class="form-check-input"
+                    type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; bottom: -3px;">{{couponInRelation.service.name}}
+                  </span>
+                  <span>
+                  </span>
+                  <br>
+                </label>
+              </div>
+            </span>
+        </div>
+        <br>
+        <br>
+        <div class="form-group" style="margin-bottom: -10px;">
+          <div class="checkbox">
+            <label class="custom-control custom-checkbox">
+              <input [checked]="maxParallelBookingActive"
+                     (click)="setMaxParallelBookingActive();"
+                     class="form-check-input checkbox-lg"
+                     id="maxParallelBookingActive"
+                     name="maxParallelBookingActive"
+                     type="checkbox">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"
+                    style="position: relative; left: 10px; bottom: 0px;">{{'DASHBOARD.SERVICE_GROUP.MAX_PARALLEL_BOOKINGS_ACTIVE' | translate}}
+                <i [ngbTooltip]="'DASHBOARD.SERVICE_GROUP.MAX_PARALLEL_BOOKINGS_DESC' | translate"
+                   class="far fa-question-circle my-tooltip"></i>
+              </span>
+              <br>
+            </label>
+          </div>
+        </div>
+        <br>
+        <div *ngIf="maxParallelBookingActive" class="form-group">
+          <label>{{'DASHBOARD.SERVICE_GROUP.MAX_PARALLEL_BOOKINGS' | translate}}</label>
+          <input [(ngModel)]="serviceGroup.maxParallelBooking"
+                 class="form-control"
+                 id="maxParallelBooking"
+                 name="maxParallelBooking"
+                 type="number">
+        </div>
+      </form>
+      <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+              id="service-group-save-button-invalid">
+        <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+              id="service-group-save-button">
+        <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+              role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+      <button (click)="modalService.open(serviceGroupDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{'DASHBOARD.SERVICE_GROUP_ITEM.DELETE' | translate}}
+      </button>
+    </div>
+
+  </div>
+
+</app-dashboard-card>
+
+<div class="row">
+
+  <div *ngIf="serviceGroup" class="offset-1 col-10 ">
+    <br>
+    <div class="serviceGroup-card">
+      <br>
+      <br>
+      <div class="row">
+        <!--1 COLUMN ============================================================================================ -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--IMAGE UPLOAD modal ==================================================== -->
+<ng-template #serviceGroupImageUpload let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong>{{'DASHBOARD.SERVICE_GROUP_ITEM.ADD_IMAGE' | translate}}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+
+      <span *ngIf="resizeImageService.state === 'IMG_SELECTED'">
+          <app-image-resize></app-image-resize>
+      </span>
+
+      <div *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'" class="text-center offset-1 col-10">
+        <div class="row">
+
+          <div class="offset-2 col-8">
+
+            <div class="">
+              <span class="btn btn-link-blue btn-file"
+                    style="position: relative; right: 18px; bottom: 2px;"> <strong>{{'DASHBOARD.COMMON.SELECT_IMG' | translate}}</strong> &nbsp; <i
+                aria-hidden="true" class="fa fa-upload"></i>
+                    <input [uploader]="uploader" ng2FileSelect type="file">
+                  </span>
+
+              <br>
+              <br>
+
+              <div class="row text-center">
+                <h6><span> {{'COMMON.OR' | translate}}  </span></h6>
+              </div>
+
+
+              <form (submit)="searchForPexelImg()" style="margin-top: 30px;">
+                <div class="row">
+                  <div class="col-12">
+                    <label>{{'DASHBOARD.COMMON.SELECT_IMG_FROM_GALLERY' | translate}}</label>
+                    <div class="input-group">
+                      <input #name="ngModel"
+                             [(ngModel)]="searchKey"
+                             class="form-control"
+                             id="pexelSearchInput"
+                             name="name"
+                             placeholder="Massage"
+                             type="text">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">
+                          <button class="btn btn-link-gray btn-link" style="padding: 1px;">
+                                <i class="fas fa-search"></i>
+                          </button>
+                        </span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 30px;">
+            <div *ngFor="let img of imgs" class="col-3" style="margin-bottom: 30px;">
+              <a (click)="selectPexelImg(img.src.medium)">
+                <img *ngIf="img" [src]="img.src.small" class="img-fluid rounded"
+                     style="max-width: 120px;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #serviceGroupDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.SERVICE_GROUP_ITEM.DELETE_CONFIRM' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}</button>
+      <button class="btn-blue btn btn-sm"
+              (click)="deleteServiceGroup()">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #codeForServiceModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <app-dashboard-button-custom-web [serviceGroup]="serviceGroup"></app-dashboard-button-custom-web>
+    </div>
+  </div>
+</ng-template>
+

@@ -1,0 +1,54 @@
+<div *ngIf="wizardService.business && openingDays" class="col-12">
+    <div class="row" style="height: 100vh; max-height: 100vh; max-width: 100vw; background-color: white;">
+
+        <div class="col-12 col-md-6">
+            <app-business-wizard-left
+                    label="WIZARD.OPENING">
+            </app-business-wizard-left>
+        </div>
+
+        <div class="col-12 col-md-5 " style="overflow: auto; height: 100vh; background: white;">
+            <div class="row" style="height: 5vh"></div>
+            <div class="row d-none d-md-block" style="height: 7.2vh"></div>
+            <div class="row">
+                <div class="offset-lg-1 col-12 col-lg-11">
+                    <form #form="ngForm" style="min-height: 70vh; margin-left: 20px; zoom: 95%;">
+                        <app-opening-item-wizard [openingDay]="openingDays[0]"
+                                                 labelDay="COMMON.MONDAY"></app-opening-item-wizard>
+                        <app-opening-item-wizard [openingDay]="openingDays[1]"
+                                                 labelDay="COMMON.TUESDAY"></app-opening-item-wizard>
+                        <app-opening-item-wizard [openingDay]="openingDays[2]"
+                                                 labelDay="COMMON.WEDNESDAY"></app-opening-item-wizard>
+                        <app-opening-item-wizard [openingDay]="openingDays[3]"
+                                                 labelDay="COMMON.THURSDAY"></app-opening-item-wizard>
+                        <app-opening-item-wizard [openingDay]="openingDays[4]"
+                                                 labelDay="COMMON.FRIDAY"></app-opening-item-wizard>
+                        <app-opening-item-wizard [openingDay]="openingDays[5]"
+                                                 labelDay="COMMON.SATURDAY"></app-opening-item-wizard>
+                        <app-opening-item-wizard [openingDay]="openingDays[6]"
+                                                 labelDay="COMMON.SUNDAY"></app-opening-item-wizard>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                  <button (click)="goToNextScreen()" *ngIf="!form.invalid" class="btn btn-blue text-uppercase "
+                          [class.btn-continue-fix-position]="!isMobile"
+                          [class.btn-continue-fix-position-mobile]="isMobile"
+                          [class.btn-lg]="!isMobile"
+
+                          id="wizard-continue-button "
+                            type="button">
+                        {{ 'COMMON.CONTINUE' | translate }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+

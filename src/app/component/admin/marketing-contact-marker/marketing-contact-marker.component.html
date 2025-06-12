@@ -1,0 +1,42 @@
+<app-dashboard-card>
+
+  <app-dashboard-card-label label="Marketing contact marker">
+    <button (click)="sendEmails()" class="btn btn-outline btn-outline-red btn-sm pull-right text-uppercase"
+            placement="bottom">
+      <i class="fas fa-plus "></i> &nbsp; Send Emails
+    </button>
+    <button (click)="readContacts()" class="btn btn-outline btn-outline-blue btn-sm pull-right text-uppercase"
+            placement="bottom">
+      <i class="fas fa-plus "></i> √Read Contacts
+    </button>
+  </app-dashboard-card-label>
+
+  <div *ngIf="contact" class="container">
+    <div class="row">
+      <div class="col-10">
+        <h4>
+          <a [href]="contact.url" target="_blank" >{{contact.url}}</a>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-10">
+        <h4>
+          {{contact.email}}
+        </h4>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-5">
+        <button class="btn btn-success btn-lg" (click)="setReadyToSendContact()">READY TO SEND :)</button>
+      </div>
+      <div class="col-5">
+        <button class="btn btn-secondary btn-lg" (click)="cancelContact()">CANCEL CONTACT</button>
+      </div>
+    </div>
+
+  </div>
+</app-dashboard-card>

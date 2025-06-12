@@ -1,0 +1,126 @@
+
+
+<div *ngIf="wizardService.business && wizardService.services[idx]" class="col-12">
+
+    <div class="row"
+         style="height: 100vh; max-height: 100vh; max-width: 100vw; background-color: white;">
+
+        <div class="col-12 col-md-6">
+            <app-business-wizard-left
+                    [serviceName]="wizardService.services[idx].name"
+                    label="WIZARD.SERVICE_IMAGE"
+            ></app-business-wizard-left>
+        </div>
+
+        <div class="col-12 col-md-5" style="background: white;">
+
+      <span *ngIf="resizeImageService.state === 'CROPED'">
+        <div class="row" style="height: 50vh; margin-top: 30vh;">
+           <div class="col-12 text-center" style="max-height: 20px;">
+             <img [src]="resizeImageService.cropedImgBase64" class="img-fluid rounded" style="width: 250px;">
+          </div>
+           <div class="col-12 text-center">
+              <button (click)="reset()" class="btn btn-link btn-link-gray">
+                 <i class="far fa-trash-alt"></i> {{ 'WIZARD.SERVICE_DIFF_IMAGE' | translate }}
+              </button>
+           </div>
+        </div>
+
+    </span>
+
+            <span *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'">
+
+        <form #form="ngForm" (ngSubmit)="onSubmit()" class="" style="height: 4vh; margin-top: 6vh;" validate>
+
+          <div class="row">
+            <div class="col text-center">
+              <span class="btn btn-link-blue btn-file"
+                    style="position: relative; right: 18px; bottom: 2px;"> <strong>{{ 'WIZARD.CHOOSE_IMAGE' | translate }}</strong>
+                  <input [uploader]="uploader" ng2FileSelect type="file">
+                </span>
+            </div>
+          </div>
+        <br>
+        </form>
+        <br>
+        <div class="row text-center ">
+          <h6><span> nebo  </span></h6>
+        </div>
+
+        <form (submit)="search()">
+          <div class="row">
+            <div class="col-12">
+              <label>{{ 'WIZARD.CHOOSE_IMAGE_FROM_GALLERY' | translate }}</label>
+              <div class="input-group">
+              <input #name="ngModel"
+                     [(ngModel)]="searchKey"
+                     class="form-control"
+                     id="pexelSearchInput"
+                     name="name"
+                     placeholder="Massage"
+                     type="text">
+               <div class="input-group-append">
+                  <span class="input-group-text" id="">
+                    <button class="btn btn-link-gray btn-link" style="padding: 1px;">
+                          <i class="fas fa-search"></i>
+                    </button>
+                  </span>
+
+              </div>
+            </div>
+          </div>
+
+          </div>
+
+        </form>
+        <br>
+
+        <div class="row" style="height: 51.7vh;">
+          <div *ngFor="let img of imgs" class="col-4 col-md-3">
+            <a (click)="openModal(img.src.medium, {size: 'lg'})">
+            <img *ngIf="img" [src]="img.src.small" class="img-fluid rounded" style="max-width: 120px;">
+            </a>
+          </div>
+
+        </div>
+     </span>
+            <br>
+            <div class="row">
+                <div class="col-sm-12 text-right">
+                    <button (click)="goToNextScreen()"
+                            id="wizard-continue-button"
+                            [class.btn-continue-fix-position]="!isMobile"
+                            [class.btn-continue-fix-position-mobile]="isMobile"
+                            [class.btn-lg]="!isMobile"
+
+                            class="btn btn-blue text-uppercase ">
+                      {{ 'COMMON.CONTINUE' | translate }}
+                    </button>
+                </div>
+            </div>
+            <div class="row d-block d-md-none" style="height: 5vh"></div>
+
+        </div>
+
+    </div>
+</div>
+
+<ng-template #serviceImageCropModal let-c="close" let-d="dismiss">
+
+    <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong>{{ 'WIZARD.EDIT_IMAGE' | translate }}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+    </div>
+
+    <div class="modal-body">
+        <div class="container">
+            <app-image-resize width="170"></app-image-resize>
+        </div>
+    </div>
+</ng-template>
+

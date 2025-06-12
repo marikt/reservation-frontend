@@ -1,0 +1,106 @@
+<div *ngIf="!feedbackOnly" class="section-header text-center mb-4">
+  <h4 class="section-title">{{ 'INTRO.FEEDBACK.LABEL' | translate }}</h4>
+</div>
+
+<div *ngIf="!feedbackOnly" class="client-logos-container text-center mb-5">
+  <div class="client-logo" *ngFor="let feedback of feedbacks; let idx = index;">
+    <a [href]="feedback.url" target="_blank" class="logo-link">
+      <img class="client-logo-img" [src]="'../../../../resources/intro/feedback/' + idx + '.png'" [alt]="feedback.url">
+    </a>
+  </div>
+</div>
+
+<div id="googleReviewsCarousel" class="reviews-carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let googleReview of googleReviews; let i = index"
+         class="carousel-item"
+         [class.active]="i === 0">
+      <div class="reviews-container">
+        <div class="review-card-wrapper" *ngFor="let review of getVisibleReviews()">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="reviewer-avatar">
+                <img [src]="'../../../../resources/intro/review/' + review.img + '.png'" alt="Reviewer">
+              </div>
+              <div class="reviewer-info">
+                <div class="star-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <h6 class="reviewer-name">{{ review.name }}</h6>
+                <p class="review-meta">{{ 'FEEDBACK.' + review.id + '.META' | translate }}</p>
+              </div>
+            </div>
+            <div class="review-content">
+              <p class="review-text">
+                {{ 'FEEDBACK.' + review.id + '.TEXT' | translate | textShort: 150 }} ...
+                <a class="read-more-link"
+                   (click)="selectedGoogleReview = review; modalService.open(reviewModal, {size: 'lg'})">
+                  {{ 'BLOG.MORE' | translate }}
+                </a>
+              </p>
+              <p class="review-date">{{ 'FEEDBACK.' + review.id + '.DATE' | translate }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="carousel-nav carousel-nav-prev" type="button" (click)="previousSlide()">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button class="carousel-nav carousel-nav-next" type="button" (click)="nextSlide()">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+</div>
+
+<ng-template #reviewModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-12">
+          <div class="card shadow-on-hover" style="margin: 15px; padding: 15px;">
+            <div class="row">
+              <div class="col-3 col-md-1">
+                <img [src]="'../../../../resources/intro/review/' + selectedGoogleReview.img + '.png'" alt="Reviewer"
+                     width="50" height="50">
+              </div>
+
+              <div class="col-9">
+          <span class="text-warning">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+            class="fas fa-star"></i>
+            </span>
+                <h6 class="card-title">{{ selectedGoogleReview.name }}</h6>
+                <p class="card-text" style="position: relative; bottom: 18px;"><small
+                  class="text-muted">{{ 'FEEDBACK.' + selectedGoogleReview.id + '.META' | translate }}</small></p>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text "
+                 style="white-space:pre-wrap;">{{ 'FEEDBACK.' + selectedGoogleReview.id + '.TEXT' | translate }}</p>
+<!--              <p class="card-text"><small-->
+<!--                class="text-muted">{{ 'FEEDBACK.' + selectedGoogleReview.id + '.DATE' }}</small></p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

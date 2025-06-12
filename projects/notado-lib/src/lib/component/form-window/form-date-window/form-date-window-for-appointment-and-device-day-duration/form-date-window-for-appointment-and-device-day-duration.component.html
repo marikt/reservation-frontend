@@ -1,0 +1,113 @@
+<script src="form-date.component.ts"></script>
+
+
+<!-- ================================================================================================== -->
+<!-- ============================================= APPOINTMENT ======================================== -->
+<!-- ============================================= DEVICE ============================================= -->
+<!-- ================================================================================================== -->
+
+<span *ngIf="formService.calendarEvent.service.type === serviceType.APPOINTMENT ||
+             formService.calendarEvent.service.type === serviceType.DEVICE">
+  <div [class.text-center]="isMobile" class="row">
+
+    <!--    JUST SKELETON ------------------------------------------------------ -->
+    <div *ngIf="!date" class="offset-1 col-10 offset-md-4 col-md-4 " style="margin-right: 25px;">
+       <ngb-datepicker #dp
+                       *ngIf="!isMobile"
+                       [dayTemplate]="dtcustom"
+                       [startDate]="date"
+                       class="first-call custom-datepicker notranslate "
+       ></ngb-datepicker>
+
+      <form *ngIf="isMobile" class="row row-cols-sm-auto">
+          <div class="col-12">
+            <div class="input-group">
+              <input class="form-control input-calendar" placeholder="dd-mm-yyyy"
+                     [dayTemplate]="dtcustom"
+                     name="dp"
+                     ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary btn-calendar "
+                          [style.background]="formService.template?.componentColor"
+                          [style.color]="formService.template?.textButtonColor"
+                          (click)="d.toggle()" type="button">
+                    <i class="fas fa-calendar"></i>
+                  </button>
+                </div>
+            </div>
+          </div>
+        </form>
+
+
+      <ng-template #dtcustom let-currentMonth="currentMonth" let-date="date" let-disabled="disabled"
+                   let-selected="selected">
+        <div
+          [class.current-month-cell]="date.month === currentMonth"
+          [class.selected-cell]="selected"
+          [style.background-color]="selected ? this.formService.template.componentColor : 'transparent'"
+          class="cell"
+        >
+          {{ date.day }}
+        </div>
+
+      </ng-template>
+    </div>
+    <!--    END OF SKELETON ------------------------------------------------------ -->
+
+    <div *ngIf="date"
+         class="offset-1 col-10 offset-md-4 col-md-4 notranslate" style="margin-right: 25px;">
+      <ngb-datepicker #dp
+                      class="custom-datepicker notranslate"
+                      (navigate)="onMonthChange($event)"
+                      [(ngModel)]="selectedDate"
+                      (click)="tryToPushDateAndTimes()"
+                      [maxDate]="maxDate"
+                      [dayTemplate]="dtcustom"
+                      [minDate]="today"
+                      [startDate]="date">
+      </ngb-datepicker>
+      <ng-template #dtcustom
+                   let-currentMonth="currentMonth"
+                   let-date="date"
+                   let-disabled="disabled"
+                   let-selected="selected">
+        <div
+          [class.current-month-cell]="date.month === currentMonth"
+          [class.selected-cell]="selected"
+          [class.selenium-disabled]="eventsLoaded && isDayDisabledForWholeDay(date)"
+          [style.background-color]="selected ? this.formService.template.componentColor : 'transparent'"
+          [style.color]="selected ? this.formService.template.textButtonColor : this.formService.template.textColor | addAlphaColor: ((eventsLoaded && isDayDisabledForWholeDay(date) || date.month !== currentMonth) ? 0.5 : 1)"
+          [id]="date.day + '-' + date.month"
+          class="cell"
+        >
+          {{ date.day }}
+        </div>
+
+      </ng-template>
+
+    </div>
+
+    <div class="col-12">
+      <br class="d-block d-md-none">
+
+      <div *ngIf="!isValid()" class="text-error text-center">
+        <br>
+        {{ 'FORM.SELECT_DATE' | translate }}
+      </div>
+      <br *ngIf="isValid()">
+
+
+    </div>
+
+
+  </div>
+  <div *ngIf="formService.calendarEvent.service.allowMultipleBooking">
+    <app-form-date-and-time-item></app-form-date-and-time-item>
+  </div>
+  <br>
+  <app-form-worker-window
+    *ngIf="formService.calendarEvent.service.type === serviceType.APPOINTMENT"></app-form-worker-window>
+  <app-form-device-window
+    *ngIf="formService.calendarEvent.service.type === serviceType.DEVICE"></app-form-device-window>
+
+</span>

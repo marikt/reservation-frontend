@@ -1,0 +1,26 @@
+
+/*img {*/
+  /*-webkit-filter: drop-shadow(3px 3px 3px rgb(70, 33, 233));*/
+  /*filter: drop-shadow(3px 3px 3px rgb(70, 33, 233));*/
+/*}*/
+
+.text-small {
+  font-size: 0.85em !important;
+}
+
+.bg {
+  background:  transparent !important;
+  /*background: rgb(255, 255, 255);*/
+  /*background: linear-gradient(90deg, rgba(255, 255, 255, 1) 45%, rgba(244, 244, 255, 1) 45%, rgba(244, 244, 255, 1) 100%);*/
+}
+
+.bg-circle {
+
+  background: url('../../../../../../resources/integration/circle.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  height: 250px;
+}

@@ -1,0 +1,11 @@
+<div class="row border">
+  <a class="col-12" (click)="open = !open" style="">
+    <h5 class="text-black"> {{faqOnBottomPage.question}} </h5>
+  </a>
+  <br>
+  <br>
+  <div *ngIf="open" class="col-12">
+    <h6>{{faqOnBottomPage.answer}}</h6>
+  </div>
+</div>
+<br>

@@ -1,0 +1,12 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.INTEGRATION.TITLE">
+  </app-dashboard-card-label>
+  <div class="container">
+    <div class="row">
+      <span *ngFor="let integrationData of integrationDataArray" class="col-4">
+        <app-integration-card [integrationData]="integrationData"></app-integration-card>
+      </span>
+    </div>
+  </div>
+</app-dashboard-card>

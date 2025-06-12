@@ -1,0 +1,6 @@
+export enum FormType {
+  WIDGET = 'WIDGET',
+  FULLSCREEN = 'FULLSCREEN',
+
+  FULLSCREEN_SIMPLE = 'FULLSCREEN_SIMPLE'
+}

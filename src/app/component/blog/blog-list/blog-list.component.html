@@ -1,0 +1,21 @@
+<div *ngIf="blogPosts" class="container">
+  <div class="blog-header">
+    <h1 *ngIf="blogService.selectedTag">{{blogService.selectedTag}}</h1>
+    <h1 *ngIf="!blogService.selectedTag">{{'BLOG.TITLE' | translate}}</h1>
+    
+    <div class="blog-filters">
+      <!-- You can add filter buttons here if needed -->
+    </div>
+  </div>
+  
+  <div class="row g-4">
+    <div *ngFor="let blogPost of blogPosts" class="col-12 col-md-6 col-lg-4 mb-4">
+      <app-blog-card *ngIf="!blogPost.title" [blogPost]="blogPost"></app-blog-card>
+      <app-blog-card-cs
+        *ngIf="blogPost.title && (languageService.language == 'cs' || languageService.language == 'sk')"
+        [blogPost]="blogPost"></app-blog-card-cs>
+    </div>
+  </div>
+</div>
+
+

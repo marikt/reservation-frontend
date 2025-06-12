@@ -1,0 +1,31 @@
+<div class="container" style="position: relative;">
+  <br>
+  <div class="row">
+    <div class="col-12 col-md-11 col-lg-11 mx-auto rounded overlap-element frame-shadow feature-background"
+         [ngClass]="selectedFeature"
+         style="height: 580px; max-width: 1400px; position: relative;">
+      <div class="frame-overlay"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-0 col-12 glass-frame text-center rounded" style="padding: 15px;">
+      <h5 style="margin-top: 10px;">{{'TRY_BUTTON_CONFIG.TITLE' | translate}}:</h5>
+      <div class="row justify-content-center" style="margin-top: 10px;">
+        <div *ngFor="let configFeature of configFeatures" class="col-6 col-md-4 col-lg-2">
+          <app-try-button-feature-config-checkbox
+            (checkAction)="featureSelected($event)"
+            [icon]="configFeature.icon" [label]="configFeature.label">
+          </app-try-button-feature-config-checkbox>
+        </div>
+      </div>
+      <a [routerLink]="'/intro/' + languageService.language + '/signup'"
+         class="btn btn-blue-gradient" [class]="biggerButton" style="border-radius: 10px !important; margin-top: 15px; margin-bottom: 15px;">
+        <span class="text-uppercase"> {{ 'COMMON.TRY_FREE' | translate }} &nbsp; <i class="fas fa-long-arrow-alt-right"></i></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>

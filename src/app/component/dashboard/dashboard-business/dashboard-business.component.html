@@ -1,0 +1,296 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.BUSINESS.TITLE"
+                            [faqItems]="[
+  {name: 'GOOGLE_CALENDAR', link: 'google-calendar'},
+  {name: 'MULTIPLE_BUSINESS', link: 'multiple-business'},
+  {name: 'SHARE', link: 'share'},
+  {name: 'SPECIFIC_CLOSE_DAYS', link: 'specific-close-days'},
+  {name: 'VOUCHER', link: 'voucher'}
+  ]"
+  >
+  </app-dashboard-card-label>
+
+  <div class="row">
+    <div class="col-12 ">
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='BASIC'" [class.active]="activeCard =='BASIC'" aria-current="page"
+             class="nav-link text-sm"><i class="fas fa-wrench"></i> {{'DASHBOARD.COMMON.BASIC' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='OPENING_HRS'" [class.active]="activeCard =='OPENING_HRS'"
+             class="nav-link text-sm"><i class="far fa-clock"></i> {{'DASHBOARD.BUSINESS.OPENING_HRS' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='LOCATION'" [class.active]="activeCard =='LOCATION'"
+             id="location-tab"
+             class="nav-link text-sm"> <i class="fas fa-map-marker-alt"></i>
+            &nbsp; {{'DASHBOARD.SERVICE_ITEM.LOCATION.TITLE' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="dashboardService.business && activeCard =='BASIC'" class="row">
+    <div class="col-md-7 col-12">
+      <span class="d-block d-md-none">
+        <app-google-calendar-connect-business-item></app-google-calendar-connect-business-item>
+        <br>
+      </span>
+      <form #form="ngForm" class="form-group">
+
+        <div *ngIf="userConfigService.features?.multipleBusiness" class="form-group">
+          <label>{{'DASHBOARD.BUSINESS.NAME' | translate}}</label>
+          <input
+            [(ngModel)]="dashboardService.business.name"
+            class="form-control"
+            id="business-item-name"
+            name="business-name"
+            type="text">
+        </div>
+        <label>{{'DASHBOARD.BUSINESS.URL' | translate}}</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div [class.is-invalid]="url.invalid"
+                 [class.is-valid]="!url.invalid"
+                 [class.text-del]="!dashboardService.business.active"
+                 class="input-group-text text-grey"
+                 style="padding-right: 2px; padding-bottom: 4px; margin-bottom: 0px;">www.
+            </div>
+          </div>
+          <input #url="ngModel"
+                 (ngModelChange)="
+                    dashboardService.business.url ? dashboardService.business.url = '' : dashboardService.business.url  = dashboardService.business.url.toLocaleLowerCase();
+                    urlWasEdited($event);"
+                 [(ngModel)]="dashboardService.business.url"
+                 [class.is-invalid]="url.invalid"
+                 [class.is-valid]="!url.invalid"
+                 [class.text-del]="!dashboardService.business.active"
+                 class="form-control radius-left-none"
+                 id="dashboard-business-url-input"
+                 name="url"
+                 pattern="^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$"
+                 placeholder="{{'WIZARD.URL_PLACEHOLDER' | translate}}"
+                 required
+                 style="border-left: 0px; padding-left: 2px;"
+                 type="text">
+
+          <div class="invalid-feedback">
+            {{'DASHBOARD.BUSINESS.VALID_URL' | translate}}
+          </div>
+          <div *ngIf="url.valid" class="feedback-icon" style="width: 15px;">
+            <i class="fas fa-check"></i>
+          </div>
+          <div *ngIf="!url.valid" class="feedback-icon" style=" width: 15px;">
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label>{{'DASHBOARD.BUSINESS.RESERVATION_URL' | translate}}</label>
+          <a [href]="(dashboardService.business.url | formUrl)" class="form-control disabled"
+             target="_blank">{{dashboardService.business.url | formUrl}}</a>
+          <div *ngIf="urlChanged" class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> {{'DASHBOARD.BUSINESS.CHANGED_URL' | translate}}.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>{{'DASHBOARD.BUSINESS.CURRENCY' | translate}}</label>
+          <div class="input-group">
+            <input [ngModel]="dashboardService.business.currency"
+                   [placeholder]="dashboardService.business.currency"
+                   class="form-control text-right radius-right-none"
+                   disabled
+                   id="currencyName"
+                   name="currencyName"
+                   type="text">
+
+            <div class="input-group-append" ngbDropdown>
+              <button class="btn btn-outline-secondary btn-sm" id="dropdownMenuLinkToSelectCurrency" ngbDropdownToggle
+                      placement="bottom"
+                      style="margin-left: 4px;"
+                      type="button">
+
+              </button>
+              <div aria-labelledby="dropdownMenuLinkToSelectCurrency" ngbDropdownMenu>
+                  <span *ngFor="let currency of currencies">
+                    <button (click)="selectCurrency(currency);" class="dropdown-item" ngbDropdownItem
+                            type="button">{{currency}}</button>
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="timezone" class="form-group">
+          <label>{{'DASHBOARD.BUSINESS.TIMEZONE' | translate}}</label>
+          <div class="input-group">
+            <input #timezoneComponent="ngModel"
+                   (click)="typeaheadService.showDropDown($event)"
+                   (focus)="typeaheadService.showDropDown($event)"
+                   (selectItem)="timezone = $event.item"
+                   [ngModel]="timezone"
+                   [ngbTypeahead]="typeaheadService.searchTimezone"
+                   class="form-control"
+                   id="dashboard-business-timezone"
+                   name="timezone"
+                   required
+                   type="text">
+          </div>
+        </div>
+        <app-calendar-dropdown-with-refresh
+          (reloadCalendarsAction)="loadCalendars()"
+          (deleteCalendarsAction)="deleteBusinessCalendars()"
+          (selectCalendarAction)="selectCalendar($event)"
+          deletable="true"
+          [calendar]="calendar"
+          [calendars]="calendars"
+          label="DASHBOARD.BUSINESS.CALENDAR_ID">
+        </app-calendar-dropdown-with-refresh>
+
+        <app-calendar-dropdown-with-refresh
+          (reloadCalendarsAction)="loadCalendars()"
+          (selectCalendarAction)="selectCalendarForPublicHoliday($event)"
+          *ngIf="!publicHolidayOpen"
+          [calendar]="publicHolidayCalendar"
+          [calendars]="holidayCalendars"
+          [class.greyout]="publicHolidayOpen"
+          label="DASHBOARD.BUSINESS.CALENDAR_HOLIDAY_ID">
+        </app-calendar-dropdown-with-refresh>
+
+        <div *ngIf="dashboardService.business.googleCalendarConnected" class="form-group"
+             style="margin-bottom: -10px;">
+          <div class="checkbox">
+            <label class="custom-control custom-checkbox">
+              <input
+                (change)="publicHolidayCloseChange($event)"
+                [(ngModel)]="publicHolidayOpen"
+                class="form-check-input checkbox-lg"
+                id="public-holiday-close"
+                name="publicHolidayOpenActive"
+                type="checkbox">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"
+                    style="position: relative; left: 10px; top: 3px;">{{'DASHBOARD.BUSINESS.CALENDAR_HOLIDAY_CLOSE' | translate}}
+                <app-video-tutorial btnType="tooltip"
+                                    videoSrc="https://www.youtube.com/embed/Q7KaJW1Pcac"></app-video-tutorial>
+              </span>
+            </label>
+          </div>
+        </div>
+
+      </form>
+      <br>
+      <button (click)="showValidation = true" *ngIf="form.invalid" class="btn-blue btn-sm">
+        <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+      <button (click)="saveBusiness()" *ngIf="!form.invalid" class="btn-blue btn-sm"
+              id="dashboard-business-save-business">
+              <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+    </div>
+    <div class="offset-1 col-4 d-md-block d-none">
+      <app-google-calendar-connect-business-item></app-google-calendar-connect-business-item>
+      <br>
+<!--      <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;-->
+<!--        {{'DASHBOARD.BUSINESS.CALENDAR_CONNECT_INFO' | translate}}.-->
+<!--      </div>-->
+<!--      <br>-->
+<!--      <a *ngIf="dashboardService.business?.googleCalendarConnected" class="btn-link-blue"-->
+<!--         href="https://calendar.google.com" target="_blank">{{'DASHBOARD.BUSINESS.CALENDAR_ENTER' | translate}}</a>-->
+    </div>
+  </div>
+
+  <div *ngIf="dashboardService.business && activeCard =='OPENING_HRS'" class="row">
+    <div class="col-md-10 col-12">
+      <form #form="ngForm" class="form-group">
+        <br>
+        <br>
+        <span
+          *ngIf="openingDays && openingDays.length > 0"
+          class="d-md-block d-none"
+          style="position: relative; left: 20px;">
+          <app-opening-item [openingDay]="openingDays[0]"
+                            labelDay="COMMON.MONDAY" uniqueId="monday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[1]"
+                            labelDay="COMMON.TUESDAY" uniqueId="tuesday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[2]"
+                            labelDay="COMMON.WEDNESDAY" uniqueId="wednesday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[3]"
+                            labelDay="COMMON.THURSDAY" uniqueId="thursday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[4]"
+                            labelDay="COMMON.FRIDAY" uniqueId="friday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[5]"
+                            labelDay="COMMON.SATURDAY" uniqueId="saturday"></app-opening-item>
+          <app-opening-item [openingDay]="openingDays[6]"
+                            labelDay="COMMON.SUNDAY" uniqueId="sunday"></app-opening-item>
+          </span>
+        <br>
+      </form>
+      <br>
+      <button (click)="showValidation = true" *ngIf="form.invalid" class="btn-blue btn-sm">
+        <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+      <button (click)="saveBusiness()" *ngIf="!form.invalid" class="btn-blue btn-sm"
+              id="dashboard-business-save-business">
+              <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="dashboardService.business && activeCard =='LOCATION'" class="row">
+    <div class="col-md-10 col-12">
+      <form #form="ngForm" class="form-group">
+        <div class="form-group">
+          <label>{{'DASHBOARD.BUSINESS.LOCATION' | translate}}
+            <app-video-tutorial btnType="tooltip"
+                                videoSrc="https://www.youtube.com/embed/W4Mi-wfftTU"></app-video-tutorial>
+          </label>
+          <div class="input-group">
+            <input #locationComponent="ngModel"
+                   [(ngModel)]="location"
+                   (ngModelChange)="setBusinessLocation()"
+                   class="form-control"
+                   id="dashboard-business-location"
+                   name="location"
+                   type="text">
+          </div>
+          <iframe *ngIf="dashboardService.business.location  && dashboardService.business.location.includes('www.google.com/maps/embed')" [src]="dashboardService.business.location | safeUrl: 'url'"
+                  width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade" class="rounded"></iframe>
+          <div  class="alert alert-warning" *ngIf="dashboardService.business.location && !dashboardService.business.location.includes('www.google.com/maps/embed')">
+            <i class="fas fa-info-circle"></i> &nbsp;
+            <label>{{ 'DASHBOARD.BUSINESS.WRONG_LOCATION' | translate }}</label>
+            <app-video-tutorial btnType="tooltip"
+                                videoSrc="https://www.youtube.com/embed/W4Mi-wfftTU"></app-video-tutorial>
+          </div>
+
+        </div>
+
+      </form>
+      <br>
+      <button (click)="showValidation = true" *ngIf="form.invalid" class="btn-blue btn-sm">
+        <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+      <button (click)="saveBusiness()" *ngIf="!form.invalid" class="btn-blue btn-sm"
+              id="dashboard-business-save-business">
+              <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+    </div>
+    </div>
+
+</app-dashboard-card>
+
+
+

@@ -1,0 +1,18 @@
+<!--<button (click)="toggleState()" class="animate-btn" color="primary" mat-stroked-button>Toggle *ngIf</button>-->
+
+<div class="bg-frame" style="width: 35vw; max-width: 600px; height: 85vh">
+
+  <div style="position: relative; left: 42%; top: 16%;">
+
+    <span *ngFor="let event of events">
+      <div *ngIf="event.show" [@bounceInOnEnter]="{ value: '', params: { duration: 1000 } }"
+           [@bounceOutOnLeave]>
+        <app-animation-reservation-event [introAnimationEvent]="event">
+        </app-animation-reservation-event>
+      </div>
+
+
+    </span>
+
+  </div>
+</div>

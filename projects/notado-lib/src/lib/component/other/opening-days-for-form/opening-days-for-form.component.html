@@ -1,0 +1,23 @@
+<div class="opening-days" style="line-height: 1.9em">
+  <div class="row" *ngFor="let day of openingDays">
+    <div class="col-2 day-header">
+      <label [style.color]="formService.template?.backgroundTextColor"
+             style="opacity: 0.8; position: relative; bottom: 3px;">{{ 'COMMON.' + day.dayOfWeek | translate }}</label>
+    </div>
+    <div class="col-6">
+      <ng-container *ngIf="day.close; else openTimes">
+        <h6 [style.color]="formService.template?.backgroundTextColor"
+            [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+          {{ 'COMMON.CLOSE' | translate }}
+        </h6>
+      </ng-container>
+      <ng-template #openTimes>
+        <h6 *ngFor="let range of day.openingDayRanges"
+            [style.color]="formService.template?.backgroundTextColor"
+            [ngStyle]="formService.template?.fontSizeServiceLabel ? {'font-size': formService.template.fontSizeServiceLabel + 'em'} : {}">
+          {{ range.from | timeToString }} - {{ range.till | timeToString }}
+        </h6>
+      </ng-template>
+    </div>
+  </div>
+</div>

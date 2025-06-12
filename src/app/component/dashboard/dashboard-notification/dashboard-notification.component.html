@@ -1,0 +1,110 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label [faqItems]="[
+  {name: 'NOTIFICATION', link: 'notification'},
+  {name: 'NOTIFICATION_FROM_OWN_EMAIL', link: 'notification-from-own-email'},
+  {name: 'ZOOM', link: 'zoom'},
+  {name: 'CANCEL_EVENT', link: 'cancel-event'}
+  ]"
+                            label="DASHBOARD.NOTIFICATION.TITLE"
+  >
+    <button (click)="addNotification()" class="btn btn-outline-blue btn-sm pull-right text-uppercase"
+            id="add-notification-button">
+      <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.NOTIFICATION.ADD_NOTIFICATION' | translate}}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="container">
+
+    <div class="row">
+      <a class="btn-sm text-blue" routerLink="/dashboard/dashboard-message"><i class="fas fa-envelope-open-text"></i>
+        &nbsp;
+        <span
+          style="">{{'DASHBOARD.MENU.EMAIL' | translate}}</span>
+      </a>
+    </div>
+
+    <div class="row text-mono">
+      <div *ngFor="let notification of notificationService.notifications; let idx = index;"
+           class="col-11 text-center form-check "
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+
+        <a [routerLink]="['/dashboard/dashboard-notification-item', idx]">
+          <div [class.gray-bg]="!notification.active"
+               [class.gray-filter]="
+               notification.status == notificationStatus.INVALID ||
+               notification.status == notificationStatus.SMS_MANAGER_NOT_CONNECTED ||
+               notification.status == notificationStatus.TWILIO_NOT_CONNECTED
+                "
+               [class.white-bg]="notification.active"
+               class="card-item shadow" style="padding-left: 1.5em;">
+
+            <div class="row">
+              <div class="col-md-1 col-12 text-center">
+                <div [style.background-color]="notification.color" class="shadow frame" style=" margin: 22px auto;">
+                  <span class="helper"></span>
+                  <img [src]="'../../../../../resources/integration/small-icon/' + notification.name + '.png'"
+                       width="30">
+                </div>
+              </div>
+
+              <div class="col text-left" style="margin-top: 35px; margin-left: 20px;">
+
+                <h6 class="text-grey">
+                  <b>
+                    <span [class.text-cross]="
+                             notification.status == notificationStatus.INVALID ||
+                             notification.status == notificationStatus.SMS_MANAGER_NOT_CONNECTED ||
+                             notification.status == notificationStatus.TWILIO_NOT_CONNECTED">
+                          {{'NOTIFICATION.SEND' | translate}}
+                      <span *ngIf="notification.type !=  notificationType.SLACK" class="text-success">
+                        {{'NOTIFICATION.' + notification.recipient | translate}} </span>
+
+                          <span class="text-black">
+                        {{'NOTIFICATION.' + notification.type | translate }} </span>
+
+                          <span
+                            *ngIf="notification.type ==  notificationType.SMS">
+                          {{'NOTIFICATION.VIA' | translate}}
+                        </span>
+
+                          <span
+                            *ngIf="notification.type == notificationType.SMS" class="text-danger">
+                          {{'NOTIFICATION.' + notification.provider | translate }}
+                        </span>
+
+                          <span class="text-blue"> {{'NOTIFICATION.' + notification.when | translate }}
+                          </span>
+                    </span>
+                    <span *ngIf="
+                     notification.status == notificationStatus.INVALID ||
+                     notification.status == notificationStatus.SMS_MANAGER_NOT_CONNECTED ||
+                     notification.status == notificationStatus.TWILIO_NOT_CONNECTED" class="text-danger">
+                      <i [ngbTooltip]="'TOOLTIP.' + notification.status | translate" class="fas fa-exclamation-triangle"
+                         style="font-size: 0.8em;"></i>
+                    </span>
+
+                  </b>
+                </h6>
+                <br>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div *ngIf="notification.status == notificationStatus.SMS_MANAGER_NOT_CONNECTED ||
+                     notification.status == notificationStatus.TWILIO_NOT_CONNECTED" class="row">
+          <div class="alert alert-danger col-12 text-sm" role="alert">
+            {{ 'NOTIFICATION.ALERT.' + notification.status | translate }}
+            <a routerLink="/dashboard/dashboard-integration" class="btn btn-sm btn-link-blue" > <i class="fas fa-plug "></i> &nbsp; {{'DASHBOARD.MENU.INTEGRATE' | translate}} </a>
+
+            <iframe class="rounded" width="560" height="315" src="https://www.youtube.com/embed/d3I0SlqXYtQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</app-dashboard-card>
+

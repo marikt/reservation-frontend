@@ -1,0 +1,118 @@
+<span *ngIf="languageService.language != 'cs' && languageService.language != 'sk'">
+  <div class="row bg-contact">
+    <div class="overlay"></div>
+  </div>
+</span>
+
+<div class="contact-container">
+  <div class="container">
+    <!-- Company Info Section -->
+    <div class="section company-info">
+      <div class="info-card">
+        <div class="info-item">
+          <span class="label">{{ 'INTRO.CONTACT.CEO' | translate }}:</span>
+          <span class="value">Tomáš Mařík</span>
+        </div>
+        <div class="info-item">
+          <span class="label">{{ 'INTRO.CONTACT.IC' | translate }}:</span>
+          <span class="value">04675860</span>
+        </div>
+        <div class="info-item">
+          <span class="label">{{ 'INTRO.CONTACT.ADDRESS' | translate }}:</span>
+          <span class="value">Stochovská 74, Praha 6</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Methods Section -->
+    <div class="section contact-methods">
+      <div class="contact-links">
+        <a href="tel:+420735063099" class="contact-link">
+          <div class="icon-wrapper">
+            <i class="fas fa-phone"></i>
+          </div>
+          <span>+420 735 063 099</span>
+        </a>
+        
+        <div class="contact-link">
+          <div class="icon-wrapper">
+            <i class="far fa-envelope"></i>
+          </div>
+          <span>info&#64;notado.cz</span>
+        </div>
+        
+        <a href="https://m.me/notadoRezervace" target="_blank" class="contact-link">
+          <div class="icon-wrapper">
+            <i class="fab fa-facebook-messenger"></i>
+          </div>
+          <span>messenger</span>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/tomas-marik-571bb022/" target="_blank" class="contact-link">
+          <div class="icon-wrapper">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <span>linkedin</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="section team-section" *ngIf="languageService.language == 'cs' || languageService.language == 'sk'">
+      <h2 class="section-title">NOTADO tým</h2>
+      
+      <div class="row team-members">
+        <div class="col-md-4">
+          <div class="team-card">
+            <div class="profile-image-container">
+              <img class="profile-img" src="../../../../resources/contact/tomas.jpg" alt="Tomáš Mařik">
+            </div>
+            <div class="team-info">
+              <h3 class="member-name">Tomáš Mařik</h3>
+              <p class="member-role">Jednatel & Programátor</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="team-card">
+            <div class="profile-image-container">
+              <img class="profile-img" src="../../../../resources/contact/rita.png" alt="Margarita Antsifirova">
+            </div>
+            <div class="team-info">
+              <h3 class="member-name">Margarita Antsifirova</h3>
+              <p class="member-role">UX designer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="team-card">
+            <div class="profile-image-container">
+              <img class="profile-img" src="../../../../resources/contact/desika.png" alt="Desika Moodley">
+            </div>
+            <div class="team-info">
+              <h3 class="member-name">Desika Moodley</h3>
+              <p class="member-role">Business Analyst & Programátor</p>
+            </div>
+          </div>
+        </div>
+
+        <!--
+        <div class="col-md-4">
+          <div class="team-card">
+            <div class="profile-image-container">
+              <img class="profile-img" src="../../../../resources/contact/lili.png" alt="Lili">
+            </div>
+            <div class="team-info">
+              <h3 class="member-name">Lili</h3>
+              <p class="member-role">Morální podpora</p>
+            </div>
+          </div>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+

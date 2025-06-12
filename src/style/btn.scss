@@ -1,0 +1,324 @@
+/* ============================================================ */
+/* BUTTON */
+/* ============================================================ */
+
+/* ============================================================ */
+/* LINK */
+.btn-circle-gray {
+  color: rgb(158, 158, 158);
+  background-color: rgb(221, 221, 221);
+  /*border-color: none;*/
+  border-radius: 50%;
+  padding: 6px 12px !important;
+}
+
+.btn-nav,
+.btn-nav:hover,
+.btn-nav:focus,
+.btn-nav:active {
+  color: #20515B;
+  background: #9FEAF9;
+
+}
+
+.btn-blue-gradient,
+.btn-blue-gradient:visited {
+  color: #fff;
+  background: linear-gradient(243deg, #6841D7 0%,#9D6ADF 97%);;
+  //border-color: rgb(105, 59, 218);
+}
+
+.btn-blue-gradient:active,
+.btn-blue-gradient:hover {
+  color: #fff;
+  background: linear-gradient(243deg, #6841D7 0%,#9D6ADF 97%);
+  //border-color: rgb(105, 59, 218);
+  -webkit-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+  -moz-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+  box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+}
+
+.btn-blue,
+.btn-blue:visited {
+  color: #fff;
+  background-color: rgb(105, 59, 218);
+  border-color: rgb(105, 59, 218);
+}
+
+.btn-blue:active,
+.btn-blue:hover {
+  color: #fff;
+  background-color: rgb(105, 59, 218);
+  border-color: rgb(105, 59, 218);
+  -webkit-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+  -moz-box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+  box-shadow: 0px 0px 21px 0px rgb(105, 59, 218);
+}
+
+.nav-link-blue {
+  color: rgb(105, 59, 218) !important;
+}
+
+.nav-link-blue:hover {
+  color: rgb(250, 59, 102) !important;
+}
+
+
+.nav-link-warn {
+  color: #FFC107 !important;
+}
+
+.nav-link-warn:hover {
+  color: #d9a700 !important;
+}
+
+.btn-link-header,
+.btn-link-header:hover,
+.btn-link-header:focus,
+.btn-link-header:active {
+  color: #20515B;
+}
+
+.btn-link-white,
+.btn-link-white:hover,
+.btn-link-white:focus,
+.btn-link-white:active {
+  color: white;
+
+}
+
+.btn-link-black,
+.btn-link-black:hover,
+.btn-link-black:focus,
+.btn-link-black:active {
+  color: rgb(89, 89, 89);
+  text-decoration: underline;;
+}
+
+.btn-link-blue {
+  color: rgb(105, 59, 218);
+  text-decoration: underline;
+}
+
+.btn-link-blue:active {
+  color: rgb(105, 59, 218) !important;
+  -webkit-box-shadow: 0px 0px 10px 2px rgba(105,59,218,1);
+  -moz-box-shadow: 0px 0px 10px 2px rgba(105,59,218,1);
+  box-shadow: 0px 0px 10px 2px rgba(105,59,218,1);
+}
+
+.btn-link-blue:hover,
+.btn-link-blue:focus {
+  color: rgb(250, 59, 102);
+  text-decoration: underline;
+}
+
+.btn-link-danger,
+.btn-link-danger:hover,
+.btn-link-danger:focus,
+.btn-link-danger:active {
+  color: rgb(220, 52, 69);
+  text-decoration: underline;
+}
+
+.btn-link-danger,
+.btn-link-danger:hover,
+.btn-link-danger:focus,
+.btn-link-danger:active {
+  color: rgb(220, 52, 69);
+  text-decoration: underline;
+}
+
+.btn-link-muted,
+.btn-link-muted:hover,
+.btn-link-muted:focus,
+.btn-link-muted:active {
+  color: #777;
+}
+
+.btn-link-gray {
+  color: #777;
+  text-decoration: underline;
+}
+
+.btn-link-gray:hover,
+.btn-link-gray:focus,
+.btn-link-gray:active,
+.btn-link-gray.selected {
+  color: #333333;
+  text-decoration: underline;
+
+}
+
+
+/* ============================================================ */
+/* OUTLINE */
+
+.btn-outline-blue,
+.btn-outline-blue:visited {
+  color: rgb(105, 59, 218);
+  background-image: none;
+  background-color: transparent;
+  border-color: rgb(105, 59, 218);
+}
+
+.btn-outline-blue:active,
+.btn-outline-blue:hover {
+  color: #fff;
+  background-color: rgb(105, 59, 218);
+  border-color: rgb(105, 59, 218);
+}
+
+
+.btn-outline-white,
+.btn-outline-white:visited {
+  color: white;
+  background-image: none;
+  background-color: transparent;
+  border-color: white;
+}
+
+.btn-outline-white:active,
+.btn-outline-white:hover {
+  color: #3d3533;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-white,
+.btn-white:visited {
+  color: #3d3533;
+  background-color: white;
+  border-color: white;
+}
+
+.btn-white:active,
+.btn-white:hover {
+  color: #3d3533;
+  background-color: white;
+  border-color: white;
+
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 5px 3px rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-red,
+.btn-outline-red:visited {
+  color: rgb(250, 59, 102);
+  background-image: none;
+  background-color: transparent;
+  border-color: rgb(250, 59, 102);
+}
+
+.btn-outline-red:active,
+.btn-outline-red:hover {
+  color: #fff;
+  background-color: rgb(224, 6, 55);
+  border-color: rgb(224, 6, 55);
+}
+
+.btn-outline-gray,
+.btn-outline-gray:visited {
+  color: #777;
+  background-image: none;
+  background-color: transparent;
+  border-color: #777;
+}
+
+.btn-outline-gray:active,
+.btn-outline-gray:hover {
+  color: white;
+  background-color: #333333;
+  border-color: #333333;
+}
+
+/* ============================================================ */
+/* CLASSIC */
+
+.btn-red,
+.btn-red:visited {
+  color: white;
+  background-image: none;
+  background-color: rgb(250, 59, 102);
+  border-color: rgb(250, 59, 102);
+}
+
+.btn-red:active,
+.btn-red:hover {
+  color: #fff;
+  background-color: rgb(224, 6, 55);
+  border-color: rgb(224, 6, 55);
+}
+
+.btn-green,
+.btn-green:visited {
+  color: white;
+  background-image: none;
+  background-color: rgb(8, 207, 174);
+  border-color: rgb(8, 207, 174);
+}
+
+.btn-green:active,
+.btn-green:hover {
+  color: #fff;
+  background-color: rgb(51, 204, 153);
+  border-color: rgb(51, 204, 153);
+}
+
+
+/* ============================================================ */
+/* OTHER */
+.btn {
+  cursor: pointer !important;
+  /*border-radius: 50px !important;*/
+  /*padding: 15px 10px;*/
+  padding: 0.475rem 2.25rem;
+}
+
+.btn-custom {
+  cursor: pointer !important;
+  /*border-radius: 50px;*/
+  /*padding: 15px 10px;*/
+  padding: 0.475rem 1.25rem;
+  opacity: 0.8;
+}
+
+.btn-custom:hover {
+  opacity: 1;
+}
+
+.btn-outline {
+  font-size: 0.85em;
+  line-height: 0.8;
+  border-radius: 8px;
+
+  padding: 15px 30px;
+  border: 2px solid;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+  font-size: 1em;
+  line-height: 0.8;
+  border-radius: 8px;
+
+  padding: 15px 30px;
+}
+
+.btn-sm {
+  font-size: 0.8em;
+  line-height: 0.8;
+  border-radius: 8px;
+
+  padding: 10px 20px;
+}
+
+.input-with-element-right {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.button-with-element-left {
+  border-radius: 0 8px 8px 0 !important;
+
+}

@@ -1,0 +1,212 @@
+<div class="col-12 footer-section" id="footer" style="background: rgba(34, 41, 57, 0.8);">
+
+  <div class="container">
+    <div class="row text-left" style="padding-top: 4%;">
+
+
+      <div class="col-md-3 d-none d-md-block">
+        <span style="font-family: bariol; font-size: 1.6em; font-weight: 700; color: white;">
+      <img src="../../../resources/logo-big.png"
+           alt="Notado Logo"
+           style="width:30px; filter: grayscale(100%) invert(100%);"> NOTADO</span>
+        <br>
+        <br>
+        <h5 class="text-white ">
+          {{ 'INTRO.CONTACT.ADDRESS' | translate }}:</h5>
+        <h6 class="text-white">Stochovská 74a, Praha 6 <br> Czech Republic</h6>
+
+      </div>
+
+      <div class="col-sm-12 col-md-3">
+        <br>
+        <br>
+        <br>
+        <h6 class="text-white ">
+          <a [routerLink]="'/intro/' + languageService.language + '/contact'" class="text-white">
+            <i class="fas fa-id-card"></i> &nbsp; {{'FOOTER.CONTACT' | translate}}
+          </a>
+        </h6>
+        <h6 class="text-white ">
+          <a [routerLink]="'/intro/' + languageService.language + '/licence'" class="text-white">
+            <i class="fa fa-file-text"></i> &nbsp; {{'FOOTER.LICENCE' | translate}}
+          </a>
+        </h6>
+
+        <h6 class="text-white ">
+          <a [routerLink]="'/intro/' + languageService.language + '/privacy-policy'" class="text-white">
+            <i class="fas fa-user-shield"></i> &nbsp; {{'FOOTER.GDPR' | translate}}
+          </a>
+        </h6>
+
+
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <br>
+        <br>
+        <br>
+        <h6 class="text-white"><i class="fa fa-envelope-o"></i> &nbsp; info&#64;notado.cz</h6>
+        <h6 class="text-white"><i class="fa fa-mobile"></i> &nbsp; <a href="tel:+420735063099"
+                                                                      style="color: white !important;">+420 735 063
+          099</a></h6>
+        <h6 class="text-white"><i class="fab fa-facebook-messenger"></i> &nbsp; <a href="https://m.me/notadoRezervace"
+                                                                                   style="color: white !important;"
+                                                                                   target="_blank">messenger</a></h6>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <br>
+        <br>
+        <br>
+
+        <h6 class="text-white"><i class="fab fa-facebook"></i> &nbsp;
+          <a href="https://www.facebook.com/notadoRezervace"
+             style="color: white !important;"
+             target="_blank">facebook</a></h6>
+      </div>
+
+    </div>
+    <hr style="border-color: white !important;">
+    <br>
+    <div class="row text-left" style="">
+      <div class="col-md-3 d-none d-md-block">
+        <h5 class="text-white ">
+          <i class="fas fa-globe"></i> {{ 'DASHBOARD.PROFILE.LANGUAGE' | translate }}:
+        </h5>
+
+      </div>
+
+      <div class="col-sm-12 col-md-3">
+        <h6 class="text-white ">
+          <button (click)="languageService.setLanguageAndRedirectToUrlLang('cs')" class="text-white button-clean">
+            Čeština
+          </button>
+        </h6>
+        <h6 class="text-white ">
+          <button (click)="languageService.setLanguageAndRedirectToUrlLang('en')" class="text-white button-clean">
+            English
+          </button>
+        </h6>
+
+      </div>
+
+      <div class="col-sm-12 col-md-3">
+        <h6 class="text-white ">
+          <button (click)="languageService.setLanguageAndRedirectToUrlLang('sk')" class="text-white button-clean">
+            Slovensky
+          </button>
+        </h6>
+
+                <h6 class="text-white ">
+                  <a (click)="languageService.setLanguageAndRedirectToUrlLang('pl')" class="text-white">
+                    Polskie
+                  </a>
+                </h6>
+
+      </div>
+      <div class="col-sm-12 col-md-3">
+<!--        <h6 class="text-white ">-->
+<!--          <button (click)="languageService.setLanguageAndRedirectToUrlLang('es')" class="text-white button-clean">-->
+<!--            Español-->
+<!--          </button>-->
+<!--        </h6>-->
+        <!--        <h6 class="text-white ">-->
+        <!--          <a (click)="languageService.setLanguage('de')" class="text-white">-->
+        <!--            Deutsch-->
+        <!--          </a>-->
+        <!--        </h6>-->
+
+
+      </div>
+
+
+    </div>
+    <hr style="border-color: white !important;">
+    <br>
+    <div class="row text-left">
+
+      <div class="col-sm-12 col-md-3">
+        <h6>
+          <a [routerLink]="'/faq/' + languageService.language + '/intro'" class="text-white">
+            <i class="far fa-question-circle"></i> &nbsp; {{ 'MENU_WHAT_WE_KNOW.FAQ' | translate }}
+          </a>
+        </h6>
+
+        <h6 *ngIf="false">
+          <a [routerLink]="'/intro/' + languageService.language + '/public-api'" class="text-white">
+            <i class="fas fa-code"></i> &nbsp; API
+          </a>
+        </h6>
+
+        <h6>
+          <a class="text-white" [routerLink]="'/blog/' + languageService.language + '/blog-list'" target="_blank">
+            <i class="fab fa-blogger-b"></i> &nbsp; Blog
+          </a>
+        </h6>
+        <h6>
+          <a class="text-white" routerLink="/intro/release-notes">
+            <i class="fas fa-project-diagram"></i> &nbsp; Notado version v{{environment.version}}
+          </a>
+        </h6>
+      </div>
+
+
+      <div class="col-sm-12 col-md-3">
+        <h6>
+          <a [routerLink]="'/intro/' + languageService.language + '/management-on-google'" class="text-white">
+            <i class="fab fa-google"></i> &nbsp; {{ 'MENU_WHAT_WE_KNOW.GOOGLE' | translate }}
+          </a>
+        </h6>
+        <h6>
+          <a [routerLink]="'/intro/' + languageService.language + '/online-reservation'" class="text-white">
+            <i class="far fa-calendar-check"></i> &nbsp; {{ 'MENU_WHAT_WE_KNOW.ONLINE_BOOKING' | translate }}
+          </a>
+        </h6>
+
+
+      </div>
+
+      <div class="col-sm-12 col-md-3">
+        <h6>
+          <a [routerLink]="'/intro/' + languageService.language + '/intro-google-integration'" class="text-white">
+            <i class="fas fa-cogs"></i> &nbsp; {{ 'MENU_WHAT_WE_KNOW.HOW_IT_WORKS' | translate }}
+          </a>
+        </h6>
+        <h6>
+          <a [routerLink]="'/intro/' + languageService.language + '/integration'" class="text-white">
+            <i class="fas fa-plug "></i> &nbsp; {{ 'MENU_WHAT_WE_KNOW.INTEGRATE' | translate }}
+          </a>
+        </h6>
+        <h6>
+          <a [routerLink]="'/intro/' + languageService.language + '/intro-google-contacts'" class="text-white">
+            <i class="fas fa-users"></i> &nbsp; {{ 'MENU_WHAT_WE_KNOW.CUSTOMER' | translate }}
+          </a>
+        </h6>
+      </div>
+
+      <br>
+      <br>
+    </div>
+    <hr style="border-color: white !important;">
+    <br>
+    <div class="row text-left" style="">
+      <div class="col-md-3 d-none d-md-block">
+        <h5 class="text-white ">
+          <i class="fas fa-link"></i> Reviews:
+        </h5>
+
+      </div>
+
+      <div class="col-sm-12 col-md-3">
+        <h6 class="text-white ">
+          <a href="https://stackopera.com/aplikace/notado" target="_blank" class="text-white">
+            Notado review on stackopera
+          </a>
+        </h6>
+      </div>
+
+
+    </div>
+  </div>
+
+  <br>
+
+</div>

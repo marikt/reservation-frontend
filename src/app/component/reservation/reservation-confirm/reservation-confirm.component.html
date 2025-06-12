@@ -1,0 +1,44 @@
+<br class="d-none d-xl-block">
+<br class="d-none d-xl-block">
+<br class="d-none d-xl-block">
+
+
+<div class="container">
+  <div class="row">
+    <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-1 col-10">
+      <div *ngIf="!confirmed" class="alert alert-info text-center shadow" role="alert">
+        <br>
+        <h4 class="alert-heading">{{ 'RESERVATION_CONFIRM.TITLE0' | translate}}</h4>
+        <br>
+        <button class="btn btn-primary" (click)="cancelReservation()">{{'RESERVATION_CONFIRM.BUTTON_LABEL' | translate}}</button>
+        <br>
+        <br>
+      </div>
+    </div>
+
+    <div class="offset-md-2 col-md-8 offset-lg-3 col-lg-6 offset-1 col-10">
+      <div *ngIf="confirmed" class="alert alert-success shadow" role="alert">
+        <h4 class="alert-heading">{{ 'RESERVATION_CONFIRM.TITLE1' | translate}} <i class="far fa-smile"></i></h4>
+        <p>{{ 'RESERVATION_CONFIRM.LABEL1' | translate}}</p>
+        <hr>
+        <p class="mb-0">
+        <p style="font-size: 0.8em;">{{ 'RESERVATION_CONFIRM.LABEL_CLOSE' | translate}}</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<div  class="row text-center footer">
+  <div class="col-12" style="position: relative; bottom: 16px;">
+    <hr>
+  </div>
+  <div class="col-12" style="position: relative; bottom: 20px;">
+    <span class="text-grey">powered by </span> <a href="https://www.notado.cz" target="_blank" style="color: rgb(59, 36, 246) !important;"> <img
+    src="../resources/logo-big.png"
+    alt="Notado Logo"
+    style="width:17px;">
+    NOTADO</a>
+  </div>
+</div>

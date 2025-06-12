@@ -1,0 +1,66 @@
+<div
+  style="min-height: 100vh; overflow-x: hidden;"
+  [style.width]="formEditMode ? 'auto' : '100vw'"
+  [class.rounded]="formEditMode"
+  [class.shadow]="formEditMode">
+
+  <div  [style.background]="formService.template?.formBackgroundColor">
+    <div class="row margin-sm">
+      <div class="col-12">
+        <app-form-header-widget [cardName]="cardName"></app-form-header-widget>
+      </div>
+      <div class="offset-0 col-12 offset-lg-2 col-lg-8 offset-xl-0 col-xl-12" style="min-height: 100vh;">
+        <div class="container">
+          <span *ngIf="!todoItems || todoItems.length == 0">
+            <br>
+            <br *ngIf="formService.template?.margin == 'BIG'">
+
+           <div class="row text-center">
+             <div class="col-12">
+                <h4 [style.color]="formService.template?.textColor"
+                    class="">{{formService.template?.windows[this.formService.idx]?.label}}
+                </h4>
+                <h6 *ngIf=" formService.mode== formMode.DEMO" class="text-grey"
+                    style="font-size: 0.7em;"> ( {{'DEMO.SHOW' | translate}} )</h6>
+               </div>
+            </div>
+          <br>
+          <ng-content></ng-content>
+
+            <div class="container">
+                <div class="row">
+                  <div class="offset-2 col-8 text-center">
+                    <app-button-config-widget [cardName]="cardName"></app-button-config-widget>
+                    <br>
+                    <br>
+                    <br>
+                  </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </span>
+
+          <!--validation problems ============================================================ -->
+          <app-form-todo-items [todoItems]="todoItems"></app-form-todo-items>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-form-footer-widget [formEditMode]="formEditMode"></app-form-footer-widget>
+
+<a *ngIf="formService.mode == formMode.DEMO && !formEditMode"
+   (click)="formService.finishReservation()"
+   style="position: fixed; bottom: 20px; right: 30px;">
+  <i class="fas fa-compress white" style="font-size: 1.8em"></i>
+</a>
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<div class="card shadow">
+  <div class="card-image-wrapper">
+    <img [alt]="'BLOG.' + blogPost.id + '.TITLE' | translate"
+         [src]="'../../../../resources/blog/' + blogPost.id + '-mb.png'"
+         class="card-img-top">
+  </div>
+  <div class="card-body">
+    <div class="tag-badge">{{blogPost.tag}}</div>
+    <a [routerLink]="'/blog/' + languageService.language + '/' + blogPost.link">
+      <h2>{{'BLOG.' + blogPost.id + '.TITLE' | translate}}</h2>
+      <p>
+        <span [innerHTML]="'BLOG.' + blogPost.id + '.P1' | translate"></span> ...
+        <span class="text-blue">{{'BLOG.MORE' | translate }}</span>
+      </p>
+
+      <div class="card-footer-info">
+        <div class="date">
+          <i class="fa fa-calendar-alt"></i> {{blogPost.date}}
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+

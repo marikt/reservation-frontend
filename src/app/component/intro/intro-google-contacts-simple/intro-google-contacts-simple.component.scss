@@ -1,0 +1,13 @@
+.bg-frame {
+  background: url('../../../../resources/intro/intro-animation/frame-top.png') rgb(208, 208, 208) no-repeat top center;
+  /*background: linear-gradient(0deg, rgba(241,241,241,1) 0%, rgba(240,240,240,1) 93%, rgba(208,208,208,1) 100%);*/
+/*rgb(208, 208, 208)*/
+-webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background-attachment: scroll;
+
+  min-height: 38px;
+  overflow-x: hidden;
+}

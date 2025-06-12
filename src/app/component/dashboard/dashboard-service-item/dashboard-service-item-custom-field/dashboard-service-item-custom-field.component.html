@@ -1,0 +1,54 @@
+<!--====================================================================================================-->
+<!-- CUSTOM FIELDS -->
+<!--====================================================================================================-->
+
+
+<div class="row">
+  <div class="alert alert-info">
+    {{'DASHBOARD.SERVICE_ITEM.CUSTOM_FIELDS.DESCRIPTION' | translate}}
+  </div>
+
+
+</div>
+<div class="row">
+
+  <div class="col-10">
+    <app-custom-field-manager
+      [addFieldLabel]="'DASHBOARD.SERVICE_ITEM.CUSTOM_FIELDS.ADD_NEW' | translate">
+    </app-custom-field-manager>
+  </div>
+  <div class="col-2">
+    <a [ngbPopover]="previewPopover"
+       placement="left"
+       popoverClass="preview-popover"
+       [autoClose]="'outside'"
+       type="button"
+       class="pull-right">
+      <i class="far fa-eye text-blue preview-icon"></i>
+    </a>
+
+  </div>
+</div>
+<br>
+<br>
+<button (click)="saveTemplate()" class="btn btn-blue btn-sm"
+        id="service-save-button">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+  <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+  &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+</button>
+
+
+<ng-template #previewPopover>
+  <div class="shadow" style="background: white; min-width: 700px;">
+    <div class="card shadow-sm rounded">
+      <div class="card-body p-4">
+        <app-dashboard-reservation-card-custom [window]="formConfigService.window">
+        </app-dashboard-reservation-card-custom>
+      </div>
+    </div>
+  </div>
+</ng-template>

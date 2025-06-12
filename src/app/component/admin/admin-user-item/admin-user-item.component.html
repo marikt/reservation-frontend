@@ -1,0 +1,78 @@
+<app-dashboard-card backLink="/admin-active-user">
+
+  <app-dashboard-card-label label="User detail">
+  </app-dashboard-card-label>
+
+  <div class="container">
+
+    <br>
+    <h6>name: <b>{{user.name}}</b></h6>
+    <h6>username: <b>{{user.username}}</b></h6>
+    <h6>email: <b>{{user.email}}</b></h6>
+    <!--<h6>valid-till: <b>{{user.validity}}</b></h6>-->
+    <!--<h6>state: <b>{{user.state}}</b></h6>-->
+    <h6>p: <b>{{password}}</b></h6>
+    <h6>login url: https://www.notado.cz/intro/cs/join/{{user.email ? user.email : user.username}}/{{password}}</h6>
+    <h6>login url: <a [href]="'https://www.notado.cz/intro/cs/join/' + (user.email ? user.email : user.username) + '/' + password">login</a></h6>
+
+    <br>
+    <button (click)="modalService.open(userDelete)"
+            class="btn btn-outline btn-outline-blue btn-sm text-uppercase">
+      Delete
+    </button>
+    <br>
+    <br>
+
+    <div *ngIf="businesses.length > 0" class="row">
+
+      <div *ngFor="let business of businesses"
+           class="col-5 text-center card-item"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+        <h6>id: <b>{{business.id}}</b></h6>
+        <h6>url: <a target="_blank" [href]="'http://www.' + business.url">{{business.url}}</a></h6>
+        <h6>{{timezone}}</h6>
+<!--        <button (click)="recreateTemplate(business.id)"-->
+<!--                class="btn btn-outline btn-outline-blue btn-sm text-uppercase">-->
+<!--          Recreate Template-->
+<!--        </button>-->
+<!--        <button (click)="recreateTemplateBackground(business.id)"-->
+<!--                class="btn btn-outline btn-outline-blue btn-sm text-uppercase">-->
+<!--          Recreate Template Background-->
+<!--        </button>-->
+      </div>
+    </div>
+  </div>
+</app-dashboard-card>
+
+<ng-template #userDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h6><strong>Opravdu chcete smazat uzivatele?</strong></h6>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm" (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}</button>
+      <button class="btn-blue btn btn-sm" (click)="deleteUser()">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

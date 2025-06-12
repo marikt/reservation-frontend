@@ -1,0 +1,65 @@
+<div
+  style="position: fixed; height: 100vh; right: 0vw; bottom: 0vh;
+   box-shadow: 5px 10px 8px 10px #888888; border-top-left-radius: 30px; border-bottom-left-radius: 30px; background: white;
+  z-index: 999999"
+  class="row notadoIframeDemo">
+
+  <div style="background: #f7f7f7;" class="col-12">
+    <div class="container">
+      <br>
+      <br>
+      <div class="row text-center">
+        <div class="col-12">
+          <h4 class="text-center text-primary">{{'DEMO.SHOW' | translate}}</h4>
+          <h5 class="text-center"><strong>
+            {{ demoService.label | translate }}
+          </strong></h5>
+        </div>
+      </div>
+      <br>
+
+      <span [ngSwitch]="demoService.modalState">
+
+      <app-demo-modal-contact *ngSwitchCase="'CONTACT'">
+      </app-demo-modal-contact>
+
+      <app-demo-modal-service *ngSwitchCase="'SERVICE'" [demoType]="demoType">
+      </app-demo-modal-service>
+
+      <app-demo-modal-date *ngSwitchCase="'DATE'">
+      </app-demo-modal-date>
+
+      <app-demo-modal-summary *ngSwitchCase="'SUMMARY'">
+      </app-demo-modal-summary>
+
+      <app-demo-modal-thanks *ngSwitchCase="'THANKS'">
+      </app-demo-modal-thanks>
+    </span>
+
+      <div class="container">
+        <div class="row">
+          <div class="offset-2 col-8 text-center">
+
+          <span *ngIf="demoService.modalState != 'THANKS'">
+
+            <button *ngIf="demoService.modalState != 'SERVICE'" (click)="demoService.previousState()"
+                    class="btn btn-link btn-link-gray"> <i class="fas fa-chevron-left"></i>  {{ 'COMMON.BACK' | translate }}</button>
+            <button (click)="demoService.nextState()"
+                    *ngIf="demoService.modalState != 'SERVICE'"
+                    class="btn btn-pink text-uppercase"> {{ 'COMMON.CONTINUE' | translate }}</button>
+          </span>
+
+            <span *ngIf="demoService.modalState == 'THANKS'">
+            <button (click)="resetAndClose()" class="btn btn-pink text-uppercase btn-block"
+                    style="padding: 8px 50px;"> OK</button>
+          </span>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,107 @@
+<div class="bg" style="white-space: pre-line;">
+
+
+  <!--  <img *ngIf="languageService.language == 'cs' || languageService.language == 'sk'"-->
+  <!--       alt="Reservacni system - show case of the application"-->
+  <!--       class="d-none d-md-block"-->
+  <!--       src="../../../resources/intro/app-show-case/home-cs.png" style="width:100%;">-->
+  <!--  <img *ngIf="!(languageService.language == 'cs' || languageService.language == 'sk')"-->
+  <!--       alt="Reservacni system - show case of the application"-->
+  <!--       class="d-none d-md-block"-->
+  <!--       src="../../../resources/intro/app-show-case/home-en.png" style="width:100%;">-->
+
+  <!--  <img *ngIf="languageService.language == 'cs' || languageService.language == 'sk'"-->
+  <!--       alt="Reservacni system - show case of the application"-->
+  <!--       class="d-block d-md-none"-->
+  <!--       src="../../../resources/intro/app-show-case/home-cs-mob.png" style="width:100%;">-->
+  <!--  <img *ngIf="!(languageService.language == 'cs' || languageService.language == 'sk')"-->
+  <!--       alt="Reservacni system - show case of the application"-->
+  <!--       class="d-block d-md-none"-->
+  <!--       src="../../../resources/intro/app-show-case/home-en-mob.png" style="width:100%;">-->
+  <div
+    class="text-center col-12 content-visibility d-none d-xl-block" style="background:white;
+background: linear-gradient(180deg, white 0%, rgba(104,66,215,1) 100%);"
+  >
+    <br>
+    <br>
+  <app-try-button-with-config></app-try-button-with-config>
+  </div>
+
+  <div
+    class="text-center col-12 bg-blue  content-visibility text-white"
+    style=" position: relative; bottom: 1px;"
+  >
+    <div class="container">
+      <br>
+      <br>
+      <h2 [class.display-3]="!isMobile">{{'INTRO.TITLE.MAIN3' | translate}}</h2>
+      <br>
+      <h3 style="opacity: 0.4;">{{'INTRO.TITLE.MAIN4' | translate}}</h3>
+      <br>
+      <br>
+    </div>
+  </div>
+
+    <div *ngIf="languageService.language === 'cs' ||
+    languageService.language === 'sk' ||
+    languageService.language === 'pl' ||
+    languageService.language === 'en'"
+       class="text-left col-12  intro-cell content-visibility" id="feedback">
+    <div class="container">
+      <app-feedback></app-feedback>
+    </div>
+  </div>
+
+  <div
+    class="text-left col-12 bg-blue intro-cell content-visibility" id="for-who-we-are">
+    <div class="container">
+      <app-audience></app-audience>
+    </div>
+  </div>
+
+  <!--  <app-booking-channels class="d-none d-md-block"></app-booking-channels>-->
+
+  <!--  <div-->
+  <!--    class="text-left col-12 bg intro-cell d-none d-md-block content-visibility" id="demo">-->
+  <!--    <div class="container">-->
+  <!--      <app-demo></app-demo>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  <app-why-us></app-why-us>
+
+  <app-intro-google-contacts-simple></app-intro-google-contacts-simple>
+
+  <app-form-adjustment-simple></app-form-adjustment-simple>
+
+  <app-payment-while-booking-simple></app-payment-while-booking-simple>
+
+  <app-notification-simple></app-notification-simple>
+
+  <app-intro-calendar-availability-simple></app-intro-calendar-availability-simple>
+
+  <app-integration-simple class="d-none d-md-block"></app-integration-simple>
+
+  <div  class="bg-blue-bottom">
+    <app-features simple="true"></app-features>
+  </div>
+
+  <app-what-we-know-list></app-what-we-know-list>
+
+  <app-loosing-customer></app-loosing-customer>
+
+  <app-faq-home></app-faq-home>
+
+</div>
+
+<app-cookie-disclaimer></app-cookie-disclaimer>
+
+<app-demo-modal *ngIf="demoService.showFrame" [demoType]="demoTypeEnum.BARBER"
+                style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;"></app-demo-modal>
+
+<button (click)="demoService.showFrame = false"
+        *ngIf="demoService.showFrame"
+        class="notadoButtonHideDemo form-widget-close">
+</button>
+
+<app-footer></app-footer>

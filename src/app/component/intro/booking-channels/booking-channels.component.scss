@@ -1,0 +1,77 @@
+
+a:hover {
+  text-decoration: none;
+
+}
+.bg-frame {
+  background: url('../../../../resources/demo/top-frame.png') rgb(208, 208, 208) no-repeat top center;
+
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background-attachment: scroll;
+
+  min-height: 38px;
+  overflow-x: hidden;
+}
+
+
+.bg-small {
+  background: url('../../../../resources/dashboard/small-form-2.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  overflow-x: hidden;
+}
+.bg-big {
+  background: url('../../../../resources/dashboard/big-form.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  overflow-x: hidden;
+}
+.bg-iframe {
+  background: url('../../../../resources/dashboard/demo-bg-girl-iframe.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  overflow-x: hidden;
+}
+.bg-button {
+  background: url('../../../../resources/dashboard/demo-button.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  overflow-x: hidden;
+}
+.bg-qr {
+  background: url('../../../../resources/dashboard/demo-qr.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  overflow-x: hidden;
+}
+.bg-calendar-availability {
+  background: url('../../../../resources/dashboard/demo-bg-girl-calendar-availability.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 450px;
+  overflow-x: hidden;
+}
+
+.hide {
+  opacity: 0;
+}

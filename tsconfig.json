@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": "tsconfig",
+    "declaration": false,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "lib": [
+      "es2021",
+      "dom"
+    ],
+    "module": "es2020",
+    "moduleResolution": "node",
+    "outDir": "../dist/out-tsc",
+    "sourceMap": true,
+    "target": "esnext",
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "notado-lib": [
+        "dist/notado-lib"
+      ]
+    }
+  }
+}

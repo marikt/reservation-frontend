@@ -1,0 +1,57 @@
+<div class="img-shadow rounded-bottom" style="width: 100%; height: 43vh; background-color: white; ">
+
+  <div class="row" style="position: relative; left: 15px;">
+    <div class="col-2 rounded-bottom" style="background-color: rgb(47, 26, 54); height: 43vh;">
+      <br>
+      <br>
+      <br>
+      <div class="rounded fake-menu" style=" width: 50px;"></div>
+      <div class="rounded fake-menu" style=" width: 60px; "></div>
+      <div class="rounded fake-menu" style=" width: 55px; "></div>
+      <div class="rounded fake-menu" style=" width: 50px; "></div>
+      <div class="rounded fake-menu" style=" width: 65px; "></div>
+      <div class="rounded fake-menu" style=" width: 60px; "></div>
+      <div class="rounded fake-menu" style=" width: 64px; "></div>
+    </div>
+
+    <div class="col-7 offset-1 " style="position: relative; left: 7%; top: 2%;">
+
+      <br>
+      <h6 class="text-left text-blue">{{'DASHBOARD.CUSTOMER.TITLE' | translate}}</h6>
+      <br>
+      <span *ngFor="let event of events">
+      <div *ngIf="event.show" [@bounceInOnEnter]="{ value: '', params: { duration: 1000 } }"
+           [@bounceOutOnLeave] class="row">
+          <span [style.background-color]="event.color" class="rounded text-white text-center row"
+                style="position: relative; margin-bottom: 5px; height: 23px; font-size: 0.6em;">
+    <div class="col-1">
+      <img [src]="'../../../../../resources/intro/intro-animation/' + event.fullPathImg"
+           class="rounded-circle"
+           style="position: relative; top: 0px; right: 25px;"
+           width="23">
+    </div>
+
+    <div class="col-2 top-border text-left">
+      {{event.name}}
+    </div>
+    <div class="col-8 top-border text-left">
+      <i class="far fa-envelope"></i> {{event.email}}
+    </div>
+            <!--<div class="col-5 top-border text-left">-->
+            <!--<i class="fas fa-phone"></i> {{event.phone}}-->
+            <!--</div>-->
+
+  </span>
+
+
+        <!--<app-customer-management-animated-item [customer]="event">-->
+        <!--</app-customer-management-animated-item>-->
+      </div>
+
+
+    </span>
+
+    </div>
+  </div>
+
+</div>

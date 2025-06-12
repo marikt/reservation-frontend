@@ -1,0 +1,24 @@
+<div class="text-center">
+
+  <h1><i class="far fa-paper-plane"></i></h1>
+  <h4 [style.color]="dashboardService.template.textColor"> {{ 'FORM.RESERVATION_CREATED' | translate }}</h4>
+
+  <div class="row">
+    <div class="col-12">
+      <p [style.color]="dashboardService.template.textColor">{{'FORM.RESERVATION_CONFIRM' | translate}}
+        <br>
+        <strong>{{demoService.reservation.email}}</strong></p>
+    </div>
+  </div>
+  <div class="row" *ngIf="window?.config?.alertItems">
+    <div class="offset-1 col-10" *ngFor="let alertItem of window?.config?.alertItems">
+      <div [class]="'alert-' + alertItem.type" class="alert" role="alert">
+        <h6 *ngIf="alertItem.label">{{alertItem.label}}</h6>
+        <p style="white-space: pre-line;" *ngIf="alertItem.msg">{{alertItem.msg}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>

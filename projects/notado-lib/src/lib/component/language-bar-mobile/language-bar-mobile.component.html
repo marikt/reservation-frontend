@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-12 text-right">
+  <div class="col-12 text-right">
+    <a (click)="setLanguage(lang)" *ngFor="let lang of languageService.languages;" style="margin-right: 20px;">
+      <img [src]="'../resources/lang/' + lang + '.png'" width="25px;">
+    </a>
+  </div>
+  </div>
+</div>

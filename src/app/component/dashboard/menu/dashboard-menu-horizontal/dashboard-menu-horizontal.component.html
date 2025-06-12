@@ -1,0 +1,355 @@
+<div class="row">
+  <div class="col-2 site-menu-background text-center">
+      <span class="text-white navbar-brand"
+            style="font-family: bariol; font-size: 1.1em; font-weight: 700; margin-top: 15px; margin-left: 20px;">
+      <img alt="Notado Logo" src="../resources/logo-big.png" style="width:20px; filter: grayscale(100%) invert(100%);"> NOTADO
+      </span>
+  </div>
+
+  <div class="col-10" style="background-color: white;">
+    <nav class="navbar navbar-expand-lg container" style="background-color: white;">
+
+
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+          <a class="nav-link-blue nav-link"
+             routerLink="/dashboard/dashboard-integration"
+             style="margin-top: 6px; margin-right: 20px;">
+            <i class="fas fa-plug "></i> &nbsp; {{'DASHBOARD.MENU.INTEGRATE' | translate}}
+          </a>
+
+        </li>
+      </ul>
+      <ng-template #warningTooltipContent>
+        <div *ngFor="let todoItemName of todoItemService.todoItemWarnOrErrorNames;">
+          <span>{{todoItemName | translate}}</span>
+        </div>
+      </ng-template>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a *ngIf="dashboardService.business?.googleCalendarConnected"
+            (click)="modalService.open(addHoliday,  {size: 'lg'})"
+            [ngbTooltip]="'DASHBOARD.BUSINESS.CALENDAR_ENTER' | translate"
+             class="nav-link-blue nav-link"
+             style="margin-top: 6px; margin-right: 20px;">
+            <i class="far fa-calendar-alt"></i>
+          </a>
+        </li>
+
+<!--        <li class="nav-item">-->
+<!--          <a *ngIf="todoItemService.todoItemWarnOrErrorNames?.length === 0"-->
+<!--             class="nav-link-warn nav-link"-->
+<!--             style="margin-top: 6px; margin-right: 20px;"-->
+<!--             (click)="modalService.open(this.ratingModal, {size: 'md'})">-->
+<!--            <i class="fas fa-star"></i>-->
+<!--          </a>-->
+<!--        </li>-->
+        <li *ngIf="todoItemService.todoItemWarnOrErrorNames.length > 0" class="nav-item">
+          <a
+            [ngbTooltip]="warningTooltipContent"
+            class="nav-link-blue nav-link"
+            routerLink="/dashboard/dashboard-landing"
+            style="margin-top: 6px; margin-right: 20px;">
+            <i class="fas fa-exclamation-circle text-red"></i>
+          </a>
+        </li>
+
+        <!--        <li class="nav-item">-->
+        <!--          <a *ngIf="languageService.language === 'cs' || languageService.language === 'sk'"-->
+        <!--             class="nav-link-blue nav-link"-->
+        <!--             (click)="modalService.open(newsModal, {size: 'md'})"-->
+        <!--             placement="bottom" type="button"-->
+        <!--             style="margin-top: 6px; margin-right: 20px;">-->
+        <!--            <i class="fas fa-rocket"></i>-->
+        <!--            <span class="badge badge-danger">5</span>-->
+        <!--          </a>-->
+        <!--        </li>-->
+
+        <!--        <li class="nav-item">-->
+        <!--          <a *ngIf="dashboardService.business?.url"-->
+        <!--             [ngbTooltip]="('DASHBOARD.MENU.ADD_FORM' | translate) + ' ' + dashboardService.business?.url"-->
+        <!--             class="nav-link-blue nav-link"-->
+        <!--             routerLink="/dashboard/dashboard-button-platform"-->
+        <!--             style="margin-top: 6px; margin-right: 20px;">-->
+        <!--            <i class="fas fa-laptop-code"></i>-->
+        <!--          </a>-->
+        <!--        </li>-->
+        <!--        [href]="dashboardService.business.url | formUrl"-->
+
+        <!--             (click)="showFrame = true"-->
+        <li class="nav-item">
+          <a *ngIf="dashboardService.business?.url"
+             [href]="dashboardService.business.url | formUrl"
+             [ngbTooltip]="('DASHBOARD.MENU.SHOW_ME_FORM' | translate) + ' ' + dashboardService.business?.url"
+             class="nav-link-blue nav-link"
+             style="margin-top: 6px; margin-right: 20px;"
+             target="_blank">
+            <i class="fas fa-eye "></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link-blue nav-link"
+             target="_blank"
+             [routerLink]="'/faq/' + languageService.language + '/intro'"
+             style="margin-top: 6px; margin-right: 20px;">
+            <i class="far fa-question-circle"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-blue btn-sm pull-right text-uppercase rounded-circle nav-link"
+             (click)="addItemMenuCollapsed = !addItemMenuCollapsed;"
+             style="margin-top: 6px; margin-right: 20px; padding-left: 11px; padding-right: 11px; border-radius: 50px; ">
+            <i class="fas fa-plus"></i>
+          </a>
+        </li>
+        <div
+          [@popupMenu]="addItemMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+          (mouseleave)="addItemMenuCollapsed = true"
+          [ngbCollapse]="addItemMenuCollapsed" class="collapse overlay-menu">
+          <app-dashboard-menu-add-item></app-dashboard-menu-add-item>
+        </div>
+        <li *ngIf="userConfigService.features?.multipleBusiness" class="nav-item">
+          <a
+            class="nav-link-blue nav-link"
+            routerLink="/dashboard/dashboard-business">
+            <div *ngIf="dashboardService.business" class="input-group col-10">
+              <input
+                [ngModel]="dashboardService.business.name ? dashboardService.business.name : dashboardService.business.url"
+                class="form-control text-right radius-right-none input-sm"
+                disabled
+                id="business-selection-menu"
+                name="business-selection-menu"
+                type="text">
+
+              <div class="input-group-append" ngbDropdown>
+                <button class="btn btn-outline-secondary btn-sm" id="dropdownMenuLinkToSelectCurrency" ngbDropdownToggle
+                        placement="bottom"
+                        style="margin-left: 4px;"
+                        type="button">
+                </button>
+                <div aria-labelledby="dropdownMenuLinkToSelectCurrency" ngbDropdownMenu>
+                  <span *ngFor="let business of dashboardService.businesses; let idx = index;">
+                    <button (click)="goToBusinessDetail(idx);" class="dropdown-item" ngbDropdownItem
+                            type="button">{{business.name ? business.name : business.url}}</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="dashboardService.payment &&
+      (
+      dashboardService.payment.plan == paymentPlan.FREE ||
+      dashboardService.payment.plan == paymentPlan.TRIAL ||
+      dashboardService.payment.plan == paymentPlan.CANCELED
+      )">
+          <button *ngIf="!isDiscountApplicable()"
+                  class="btn btn-blue-gradient btn-sm"
+                  style="position: relative; top: 5px;"
+                  routerLink="/dashboard/payment">
+            <i class="fas fa-rocket"></i> &nbsp; {{'DASHBOARD.MENU.SUBSCRIPTION' | translate}}
+          </button>
+          <button *ngIf="isDiscountApplicable()"
+                  class="btn btn-blue-gradient btn-sm"
+                  style="position: relative; top: 5px;"
+                  routerLink="/dashboard/payment/discount">
+            <i class="fas fa-rocket"></i> &nbsp; {{'DASHBOARD.MENU.SUBSCRIPTION' | translate}}
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+</div>
+
+
+<ng-template #ratingModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header">
+
+    <div class="text-secondary">
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <div class="bg-feedback" style="position: relative; bottom: 100px;"></div>
+
+      <div class="row text-center">
+        <div class="col-12">
+          <h5 class="text-grey">{{'DASHBOARD.FEEDBACK.HOW_ARE_YOU_SATISFIED' | translate}}</h5>
+          <br>
+          <img src="../../../../resources/feedback.png" width="300">
+          <br>
+          <br>
+          <a class="btn btn-warning btn-lg"
+             href="https://g.page/r/CTRk4pwsnzltEAI/review"
+             target="_blank">{{'DASHBOARD.FEEDBACK.GIVE_US_FEEDBACK' | translate}}</a>
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #newsModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header">
+
+    <div class="text-secondary">
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <div>
+
+        <blockquote class="blockquote mb-0">
+          <p>Vážení klienti,<br> přináším vám přehled novinek v naší aplikaci za měsíce září a říjen.</p>
+          <footer class="blockquote-footer">
+            <img class="img-fluid rounded-circle profile-img"
+                 src="../../../../resources/contact/tomas.jpg"
+                 width="30"
+                 height="30"
+                 style="position: relative; bottom: 1px;"> &nbsp; Tomáš Mařík, péče o
+            zákazníky
+          </footer>
+        </blockquote>
+        <br>
+        <br>
+
+        <h6> Štítke pro služby </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid02iqZVpgugF7CWw1KBT4Tzvrd3HcdgKT3bu3Yfuvk5xrB8TEUgEzQD6unukuWZEWQCl&show_text=true&width=500"
+          width="100%" height="534" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Intuitivní rozhraní pro kurzy a lekce </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid02Zu2kqBneWKrtHbJB5hbizyoXgVu5S9zW8FSaeyzY447n4qUUGDunpNkfaB6qJjVol&show_text=true&width=500"
+          width="100%" height="635" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Vlastní barva pro každou službu zvlášť </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid0ASbrhmxHEcWG9Q5sbXsgBeuH8qsVjaRUeWtRZLDfesbzBUzSwQA2tey7JgRz3GdXl&show_text=true&width=500"
+          width="100%" height="282" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Vlastní oznámení po vytvorění rezervace </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid0S4HGJVyGCvRqtxc4ccLubHan2is6WM4KsyqABcARG2yeCmFHe416KBwrnnSGLpiTl&show_text=true&width=500"
+          width="100%" height="506" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Již není nutné mazat cache </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid02BJHoYJBNXzxSzikbh2Aqbv6qTUwrqKbMWxH6ZmsCwa5BCrUZYpTe5VHpyvJszh24l&show_text=true&width=500"
+          width="100%" height="652" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Nastavení přesčasů <a class="btn btn-link-blue btn-sm"
+                                   [routerLink]="'/faq/' + languageService.language + '/overtime'">
+          <i class="fas fa-external-link-alt"></i></a>
+        </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid02t9H2D3AnQaB2mfoGz6pveZZBaR7zbgCPD4qb73bpmVRgr4STiPGJLkFgkAKtB9tVl&show_text=true&width=500"
+          width="100%" height="775" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Archivace zrušených událostí </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid0zcrNaUEzLc8PydV7cGK7eL3hXC8iQHj5T4NRBXBUr5dwPjbhvde8Dqxfbzyz4Phsl&show_text=true&width=500"
+          width="100%" height="322" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+        <h6> Automatické přejmenování události při naplnění kapacity </h6>
+        <iframe
+          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FnotadoRezervace%2Fposts%2Fpfbid02gzRfHsWmWo6WtaKeQ9tEdda1GwjZPTkg55QgPduY3kzD6pLP5q29dqYWS341fkcNl&show_text=true&width=500"
+          width="100%" height="536" style="border:none;overflow:hidden; border-radius: 8px;" scrolling="no"
+          frameborder="0"
+          allowfullscreen="true"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+        <br>
+        <br>
+
+
+        <hr>
+        <a href="https://www.facebook.com/notadoRezervace" target="_blank">
+          Vice o novinkách se dozvíte zde &nbsp; <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<iframe id="notadoIframe" *ngIf="showFrame"
+        [src]="dashboardService.business.url | formUrl | safeUrl: 'url'"
+        [width]="computeFormSize()"
+        height="100%"
+        style="z-index: 99999; position: fixed; right: 0vw; bottom: 0vh;  box-shadow: 5px 10px 8px 10px #888888; border-top-left-radius: 30px; border-bottom-left-radius: 30px;"
+        frameborder="0"></iframe>
+<button (click)="showFrame = false"
+        *ngIf="showFrame"
+        [style.right]="computeCloseButtonPosition()"
+        class="form-widget-close">
+</button>
+<ng-template #addHoliday let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <add-holiday-modal></add-holiday-modal>
+    </div>
+  </div>
+</ng-template>
+

@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /wizard/*
+Disallow: /blog/en/*
+Disallow: /blog/es/*
+Disallow: /blog/de/*
+Disallow: /blog/pl/*
+Disallow: /licence
+Disallow: /join
+Disallow: /public-api
+
+Sitemap: https://www.notado.cz/seo/sitemap.xml

@@ -1,0 +1,79 @@
+<br>
+
+<div>
+
+  <div class="row" style="max-height: 500px; overflow: scroll;">
+    <div *ngFor="let template of templateGallery"
+         class="col-2 text-center form-check"
+         style="padding: 10px 0px; margin-right: 0px; margin-left: 20px;">
+      <a (click)="userTemplate(template)">
+        <div class="card-item white-bg" style="">
+          <img [src]="template.backgroundPreviewVideoSm" class="img-fluid rounded">
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <br>
+  <button (click)="openVideoSearchModal()"
+          class="btn btn-link-gray"><i class="fas fa-plus" style="font-size: 1em;"></i>
+    {{'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_VIDEO' | translate}}
+  </button>
+  <br>
+
+</div>
+
+<ng-template #templateVideoSearch let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <strong>{{'DASHBOARD.FORM_ADJUSTMENT.ADD_VIDEO' | translate}}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <div class="text-center offset-1 col-10">
+        <div class="row">
+          <div class="offset-0 col-12">
+            <form (submit)="searchForPexelVideos()" style="margin-top: 30px;">
+              <div class="row">
+                <div class="col-12">
+                  <label>{{'DASHBOARD.FORM_ADJUSTMENT.ADD_VIDEO_FROM_GALLERY' | translate}}</label>
+                  <div class="input-group">
+                    <input #name="ngModel"
+                           [(ngModel)]="searchKey"
+                           class="form-control"
+                           id="pexelSearchInput"
+                           name="name"
+                           placeholder="Nature"
+                           type="text">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="">
+                        <button class="btn btn-link-gray btn-link" style="padding: 1px;">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row" style="margin-top: 30px;">
+            <div *ngFor="let video of videos" class="col-2" style="margin-bottom: 30px;">
+              <a (click)="selectPexelVideo(video)">
+                <img *ngIf="video" [src]="video.video_pictures[0]?.picture" class="img-fluid rounded"
+                     style="max-width: 120px;">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

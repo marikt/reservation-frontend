@@ -1,0 +1,455 @@
+<app-dashboard-card *ngIf="worker" backLink="/dashboard-worker">
+
+
+  <app-dashboard-card-label [entityName]="worker?.name"
+                            [faqItems]="[
+  {name: 'VACATION', link: 'vacation'}
+  ]"
+  >
+<!--    <button (click)="modalService.open(addHoliday,  {size: 'lg'})"-->
+<!--            class="btn btn-outline btn-outline-blue btn-sm">{{ 'DASHBOARD.WORKER_ITEM.HOLIDAY' | translate }}</button>-->
+
+  </app-dashboard-card-label>
+  <div class="row">
+    <div class="col-12 ">
+
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='BASIC'" [class.active]="activeCard =='BASIC'" aria-current="page"
+             class="nav-link text-sm"><i class="fas fa-user-cog"></i> {{'DASHBOARD.COMMON.BASIC' | translate}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='ADVANCE'" [class.active]="activeCard =='ADVANCE'"
+             class="nav-link text-sm"><i
+            class="fas fa-sliders-h"></i> {{'DASHBOARD.COMMON.ADVANCE' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='NOTIFICATION'" [class.active]="activeCard =='NOTIFICATION'"
+             id="notification-tab"
+             class="nav-link text-sm"><i class="fas fa-sms"></i> {{'DASHBOARD.SERVICE_ITEM.NOTIFICATION' | translate}}</a>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+  <br>
+  <div class="row">
+
+    <app-dashboard-worker-item-notification *ngIf="activeCard === 'NOTIFICATION'"
+                                          [worker]="worker"></app-dashboard-worker-item-notification>
+
+    <!--1 COLUMN ============================================================================================ -->
+
+    <div *ngIf="activeCard =='BASIC'" class="col-md-4 col-12 text-center">
+
+      <img *ngIf="worker?.fullPathImg" [src]="server.SERVER + worker?.fullPathImg"
+           class="img-fluid rounded-circle"
+           style=""
+           width="130">
+      <img *ngIf="!worker?.fullPathImg" class="img-fluid rounded-circle"
+           src="../../../../resources/default-worker.png"
+           width="130">
+      <br>
+      <br>
+      <div class="row">
+        <button (click)="modalService.open(workerImageUpload,  {size: 'lg'})"
+                class="offset-1  btn btn-outline btn-outline-blue btn-sm">
+          {{'DASHBOARD.COMMON.ADD_IMAGE' | translate}} &nbsp; <i aria-hidden="true" class="fa fa-upload"></i>
+        </button>
+
+        <button *ngIf="worker?.img"
+                (click)="worker.img = null; worker.fullPathImg = null; deleteImg()"
+                class="btn btn-link btn-link-gray btn-sm">
+          <i class="far fa-trash-alt"></i></button>
+      </div>
+      <br>
+      <br>
+      <br>
+
+    </div>
+
+    <!--2 COLUMN ============================================================================================ -->
+
+    <!--NAME EMAIL ============================================================================================ -->
+
+    <div *ngIf="activeCard =='BASIC'" class="offset-md-1 col-md-7 col-12">
+      <form #form="ngForm" (ngSubmit)="saveWorker()">
+
+        <div class="form-group">
+          <label>{{'DASHBOARD.WORKER_ITEM.NAME' | translate}}</label>
+          <input #name="ngModel"
+                 [(ngModel)]="worker.name"
+                 [class.is-invalid]="name?.invalid && showValidation"
+                 [class.is-valid]="!name?.invalid"
+                 class="form-control"
+                 id="worker-item-name"
+                 name="worker-name"
+                 placeholder="Jana Stastna"
+                 required
+                 type="text">
+          <div class="invalid-feedback">
+            {{'COMMON.REQUIRED' | translate}}
+          </div>
+        </div>
+      </form>
+
+
+      <div class="form-group">
+        <label>{{'DASHBOARD.WORKER_ITEM.EMAIL' | translate}}</label>
+        <label class="pull-right">({{'DASHBOARD.WORKER_ITEM.EMAIL_LABEL' | translate}})</label>
+        <input [(ngModel)]="worker.email"
+               class="form-control"
+               id="worker-email"
+               name="email"
+               placeholder="jana.stastna@seznam.cz"
+               type="email">
+
+      </div>
+      <div class="form-group">
+        <label>{{'DASHBOARD.WORKER_ITEM.PHONE' | translate}}</label>
+        <input [(ngModel)]="worker.phone"
+               class="form-control"
+               id="worker-phone"
+               name="phone"
+               placeholder="+420735963099"
+               type="tel">
+
+      </div>
+      <app-loading-progress *ngIf="spinnerService.loadingProgress > 0" label="DASHBOARD.WORKER_ITEM.CALENDAR_LOADING">
+      </app-loading-progress>
+      <app-calendar-dropdown-with-refresh
+        *ngIf="showCalendar"
+        (reloadCalendarsAction)="loadCalendars()"
+        (selectCalendarAction)="selectCalendar($event)"
+        [calendar]="calendar"
+        [calendars]="calendars"
+        label="DASHBOARD.WORKER_ITEM.CALENDAR_ID">
+      </app-calendar-dropdown-with-refresh>
+
+      <!--SERVICES ============================================================================================ -->
+      <div *ngIf="servicesInRelation" class="form-group" style="margin-bottom: -10px;">
+        <label>{{'DASHBOARD.WORKER_ITEM.SERVICES' | translate}}</label>
+        <a class="btn btn-sm btn-link" id="add-worker-button"
+           routerLink="/dashboard/dashboard-service">
+          <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.SERVICE.ADD_SERVICE' | translate}}
+        </a>
+        <br *ngIf="!servicesInRelation || servicesInRelation.length === 0 || noServiceForWorker">
+        <label *ngIf="!servicesInRelation || servicesInRelation.length === 0 || noServiceForWorker"
+               routerLink="/dashboard/dashboard-service" class="text-danger">
+          <i class="fas fa-exclamation-triangle "></i> {{'DASHBOARD.WORKER_ITEM.NO_SERVICE' | translate}}
+        </label>
+
+        <span *ngFor="let workerService of servicesInRelation">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input #serviceActive
+                         (change)="evaluateNoServiceForWorker()"
+                         [(ngModel)]="workerService.active"
+                         [checked]="workerService?.active"
+                         [id]="'serviceActive' + workerService.service.id"
+                         [name]="workerService.service.name"
+                         class="form-check-input"
+                         type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; top: 5px;">{{workerService?.service?.name}}
+                    <span *ngIf="workerService?.service?.techName" class="text-grey"><small>({{workerService.service.techName}})</small>
+                    </span>
+                    <span class="text-grey"><small>{{workerService?.service?.duration | daysHoursMinutes}}</small>
+
+                    <a [routerLink]="['/dashboard/dashboard-service-item', workerService?.service?.id]"
+                       style="margin-left: 10px;">
+                        <small><i class="fas fa-sign-in-alt"></i></small></a>
+                    </span>
+
+                  </span>
+                  <br>
+                </label>
+              </div>
+            </span>
+      </div>
+      <br>
+
+      <!--SCHEDULE ========================================================================================== -->
+      <br>
+      <button (click)="showValidation = true" *ngIf="name.invalid" class="btn btn-blue btn-sm"
+      >
+        <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="form.ngSubmit.emit()" *ngIf="!name.invalid" class="btn btn-blue btn-sm"
+              id="worker-save-button"
+      >
+              <span *ngIf="preventDoubleClickService.clickInProgress"
+                    class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="modalService.open(workerDelete,  {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{'DASHBOARD.WORKER_ITEM.DELETE' | translate}}
+      </button>
+      <br>
+      <br>
+    </div>
+    <div *ngIf="activeCard =='ADVANCE'" class="col-md-7 col-12">
+
+      <div class="form-group">
+        <label>Zoom link
+          <app-video-tutorial btnType="tooltip"
+                              videoSrc="https://www.youtube.com/embed/Gv6WsTd6yMI"></app-video-tutorial>
+        </label>
+        <label class="pull-right text-lowercase"> <a class="" routerLink="/dashboard/dashboard-message"> <span
+          style="">{{'DASHBOARD.MENU.EMAIL' | translate}} <i class="fas fa-arrow-right"
+                                                             style="font-size: 0.8em;"></i></span>
+        </a></label>
+        <input [(ngModel)]="worker.zoomLink"
+               class="form-control"
+               id="worker-zoom-link"
+               name="zoomLink">
+
+      </div>
+<!--      <div class="form-group">-->
+<!--        <label>{{'DASHBOARD.WORKER_ITEM.TECH_NAME' | translate}}</label>-->
+<!--        <input #name="ngModel"-->
+<!--               [(ngModel)]="worker.techName"-->
+<!--               class="form-control"-->
+<!--               id="worker-item-tech-name"-->
+<!--               name="worker-tech-name"-->
+<!--               type="text">-->
+<!--      </div>-->
+      <hr/>
+
+      <!--SCHEDULE ========================================================================================== -->
+      <span class="d-md-block d-none">
+      <label>{{'DASHBOARD.WORKER_ITEM.TIME_SCHEDULE' | translate}}</label>
+      <div class="form-group" style="margin-bottom: 0px;">
+        <label class="custom-control custom-checkbox">
+          <input
+            (click)="removeOpeningDays()"
+            [(ngModel)]="scheduleType"
+            [checked]="scheduleType === 'defaultSchedule'"
+            class="form-check-input checkbox-lg"
+            id="defaultSchedule"
+            name="defaultSchedule"
+            style="position: relative; left: 0px;"
+            type="radio"
+            value="defaultSchedule">
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; bottom: 4px;">{{'DASHBOARD.WORKER_ITEM.TIME_SCHEDULE_SAME' | translate}}</span>
+        </label>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 0px;">
+        <label class="custom-control custom-checkbox">
+          <input
+            (click)="addOpeningDays()"
+            [(ngModel)]="scheduleType"
+            [checked]="scheduleType === 'customeSchedule'"
+            class="form-check-input checkbox-lg"
+            id="customeSchedule"
+            name="customeSchedule"
+            style="position: relative; left: 0px;"
+            type="radio"
+            value="customeSchedule">
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; bottom: 4px;">{{'DASHBOARD.WORKER_ITEM.TIME_SCHEDULE_DIFF' | translate}}</span>
+        </label>
+      </div>
+
+      <br>
+      <span *ngIf="scheduleType === 'customeSchedule' && openingDays && openingDays?.length > 0"
+            style="position: relative; left: 20px;">
+
+                <app-opening-item [openingDay]="openingDays[0]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.MONDAY"
+                                  uniqueId="monday"></app-opening-item>
+                <app-opening-item [openingDay]="openingDays[1]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.TUESDAY"
+                                  uniqueId="tuesday"></app-opening-item>
+                <app-opening-item [openingDay]="openingDays[2]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.WEDNESDAY"
+                                  uniqueId="wednesday"></app-opening-item>
+                <app-opening-item [openingDay]="openingDays[3]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.THURSDAY"
+                                  uniqueId="thursday"></app-opening-item>
+                <app-opening-item [openingDay]="openingDays[4]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.FRIDAY"
+                                  uniqueId="friday"></app-opening-item>
+                <app-opening-item [openingDay]="openingDays[5]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.SATURDAY"
+                                  uniqueId="saturday"></app-opening-item>
+                <app-opening-item [openingDay]="openingDays[6]"
+                                  closeLabel="DASHBOARD.WORKER_ITEM.NON_WORKING_DAY" labelDay="COMMON.SUNDAY"
+                                  uniqueId="sunday"></app-opening-item>
+           </span>
+        </span>
+      <hr>
+      <br>
+      <div class="form-group" style="margin-bottom: -10px;">
+        <div class="checkbox">
+          <label class="custom-control custom-checkbox">
+            <input #active="ngModel"
+                   [(ngModel)]="worker.active"
+                   [checked]="worker?.active"
+                   class="form-check-input checkbox-lg"
+                   id="workerActive"
+                   name="active"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 0px;">{{'DASHBOARD.SERVICE_ITEM.ACTIVE' | translate}}</span>
+            <br>
+            <label *ngIf="worker?.active"
+                   style="position: relative; left: 10px; bottom: 8px;">({{'DASHBOARD.WORKER_ITEM.SHOW' | translate}}
+              )</label>
+            <label *ngIf="!worker?.active"
+                   style="position: relative; left: 10px; bottom: 8px;">({{'DASHBOARD.WORKER_ITEM.NOT_SHOW' | translate}}
+              <i class="fas fa-exclamation-triangle text-warning"></i> ) </label>
+          </label>
+        </div>
+      </div>
+      <br>
+      <br>
+
+      <button (click)="saveWorker()" class="btn btn-blue btn-sm" id="worker-save-button2">
+              <span *ngIf="preventDoubleClickService.clickInProgress"
+                    class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="modalService.open(workerDelete,  {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{'DASHBOARD.WORKER_ITEM.DELETE' | translate}}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</app-dashboard-card>
+
+
+<!--IMG UPLOAD MODAL ================================== -->
+<ng-template #workerImageUpload let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong>{{'DASHBOARD.WORKER_ITEM.ADD_IMAGE' | translate}}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <span *ngIf="resizeImageService.state === 'IMG_SELECTED'">
+          <app-image-resize width="150" height="150"></app-image-resize>
+      </span>
+
+      <div *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'" class="text-center offset-1 col-10">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+
+          <div class="offset-0 col-12">
+            <div class="alert alert-danger"><i class="fas fa-info-circle"></i> &nbsp;
+              {{'DASHBOARD.OPTIMIZE_IMG' | translate}} <a href="https://tinypng.com" target="_blank">tinypng.com</a>
+            </div>
+            <br>
+
+            <ngx-file-drop (onFileDrop)="dropped($event)"
+                       (onFileLeave)="fileLeave($event)"
+                       (onFileOver)="fileOver($event)">
+                <span class="text-uppercase text-center"
+                      style="margin-top: 20px; color: rgb(105, 59, 218);">{{'DASHBOARD.WORKER_ITEM.ADD_IMAGE_HERE' | translate}}
+                  <br>
+                <br>
+                  <i aria-hidden="true" class="fa fa-upload"></i>
+                <br>
+                <br>
+              </span>
+            </ngx-file-drop>
+
+            {{'DASHBOARD.WORKER_ITEM.OR' | translate}}
+
+            <span class="btn btn-link-blue btn-file"
+                  style="position: relative; right: 18px; bottom: 2px;"> <strong>{{'DASHBOARD.WORKER_ITEM.FROM_YOUR_FILE' | translate}} </strong> &nbsp;
+            <i aria-hidden="true" class="fa fa-upload"></i>
+                    <input [uploader]="uploader" ng2FileSelect type="file">
+          </span>
+
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #workerDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.WORKER_ITEM.DO_DELETE' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}</button>
+      <button class="btn-blue btn btn-sm"
+              (click)="workerService.deleteWorker(worker)">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #addHoliday let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <add-holiday-modal></add-holiday-modal>
+    </div>
+  </div>
+</ng-template>
+

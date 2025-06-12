@@ -1,0 +1,34 @@
+<br>
+
+<div class="row">
+
+
+    <div class="offset-5 col-4">
+        <label>{{ 'FORM.SERVICE' | translate }}:</label>
+        <h6>{{demoService.reservation.service | translate}} <span
+                style="font-size: 0.9em; color: rgb(174, 174, 174);">({{demoService.getDuration()}})</span></h6>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="offset-5 col-4">
+        <label>{{ 'FORM.WORKER' | translate }}:</label>
+        <h6>{{demoService.reservation.worker | translate}}</h6>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="offset-5 col-4">
+        <label>{{ 'FORM.DATE' | translate }}</label>
+        <h6>{{demoService.reservation.date.day}}.{{demoService.reservation.date.month}}
+            .{{demoService.reservation.date.year}}</h6>
+        <h6>{{demoService.reservation.time}}</h6>
+    </div>
+</div>
+
+<br>
+<br>

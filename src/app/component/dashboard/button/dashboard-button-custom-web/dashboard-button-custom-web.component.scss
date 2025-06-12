@@ -1,0 +1,110 @@
+.bg-dot {
+  background: rgb(245, 246, 248);
+  background-image: radial-gradient(rgb(205, 206, 208) 1.2px, transparent 0);
+  background-size: 35px 35px;
+  background-position: -19px -19px;
+  box-shadow: inset 0 0 10px rgba(104,77,212,0.3);
+}
+
+.bg-01 {
+  background: url('../../../../../resources/dashboard/01.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.bg-02 {
+  background: url('../../../../../resources/dashboard/02.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow-x: hidden;
+  height: 100%;
+
+}
+.bg-03 {
+  background: url('../../../../../resources/dashboard/03.png') no-repeat top center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+
+  overflow-x: hidden;
+}
+
+
+/* Adding background image over the iframe */
+.bg-overlay-widget {
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  width: 100%;  /* 100% of the container */
+  height: 100%;  /* 100% of the container */
+  background-image: url('../../../../../resources/dashboard/widget.png');
+  background-size: 100% 100%;  /* Fit the background image to the size of the overlay */
+  z-index: 2;
+  pointer-events: none;  /* Making the overlay read-only */
+}
+
+/*.demo-font {*/
+/*font-family: 'Pacifico', cursive;*/
+/*}*/
+
+.demo {
+  background: rgba(39, 62, 84, 0.82);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.code-frame {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.card {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.btn-link {
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.btn-link-gray {
+    color: rgb(198, 198, 198);
+}
+
+.color-picker {
+    position: inherit;
+    /*border-buttonRadius: 40px !important;*/
+    /*line-height: 24px !important;;*/
+    width: 70px !important;;
+    cursor: pointer;
+}
+
+.glow {
+    -webkit-box-shadow: 0px 0px 21px 0px rgb(71, 48, 229);
+    -moz-box-shadow: 0px 0px 21px 0px rgb(71, 48, 229);
+    box-shadow: 0px 0px 21px 0px rgb(71, 48, 229);
+}
+
+textarea::selection {
+  background-color: transparent;
+}
+
+.buttonEditor {
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+}

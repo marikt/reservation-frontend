@@ -1,0 +1,20 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="Admin Cache">
+  </app-dashboard-card-label>
+  <div class="container">
+   <span *ngFor="let cn of cacheKeys">
+      <button (click)="showCache(cn)" class="btn btn-outline-blue">{{cn}}</button>
+   </span>
+    <br>
+    <br>
+    <div class="row" *ngIf="cache">
+      <div class="col-12">
+      <pre>
+      {{cache | json}}
+      </pre>
+      </div>
+    </div>
+  </div>
+
+</app-dashboard-card>

@@ -1,0 +1,116 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.WORKER.TITLE">
+    <button (click)="workerService.addWorker()" class="btn btn-outline-blue btn-sm pull-right text-uppercase"
+            id="add-worker-button">
+      <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.WORKER.ADD_WORKER' | translate}}
+    </button>
+  </app-dashboard-card-label>
+  <div class="row">
+    <button *ngIf="workers && workers.length > 1" (click)="modalService.open(workerOrderModal, {size: 'sm'})"
+            class="btn btn-link-blue btn-sm pull-left"
+            id="sort-service-btn"
+            placement="bottom">
+      <i class="fas fa-sort-alpha-down"></i>&nbsp; {{'DASHBOARD.WORKER.ORDER' | translate}}
+    </button>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+
+
+      <div *ngFor="let worker of workers; let idx = index;"
+           class="col-md-2 col-4 text-center form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+
+        <a [routerLink]="['/dashboard/dashboard-worker-item', worker.id]" [id]="'worker-item-' + worker.id">
+          <div [class.gray-bg]="!worker.active"
+               [class.gray-filter]="!worker.active"
+               [class.white-bg]="worker.active"
+               class="card-item">
+
+            <img *ngIf="worker.fullPathImg"
+                 [src]="server.SERVER + worker.fullPathImg"
+                 (error)="handleImageNotLoaded(worker)"
+                 class="img-fluid"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+            <img *ngIf="!worker.fullPathImg"
+                 class="img-fluid"
+                 src="../../../../resources/default-worker.png"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;"
+                 width="350">
+
+            <div class="row">
+              <div class="col text-center">
+                <br>
+                <br>
+                <h6>{{worker.name}}</h6>
+                <p *ngIf="worker.techName" class="text-secondary text-sm">({{worker.techName}})</p>
+                <br *ngIf="worker.active">
+                <p *ngIf="!worker.active" class="text-grey text-uppercase"
+                   [ngbTooltip]="'TOOLTIP.WORKER_DISABLED' | translate"
+                   style="font-size: 1.1em">
+                  <i class="far fa-eye-slash"></i>
+                </p>
+                <br *ngIf="worker.active">
+              </div>
+            </div>
+          </div>
+        </a>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+    {{'DASHBOARD.WORKER.ADD_YOUR_SELF' | translate}}
+  </div>
+
+</app-dashboard-card>
+
+<ng-template #workerOrderModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="container">
+      <h5>Drag & Drop</h5>
+      <br>
+      <br>
+      <div>
+        <div class="wrapper">
+          <div dragula="DRAGULA_FACTS" [(dragulaModel)]="workers">
+            <div *ngFor="let worker of workers; let idx = index;" class="card grab"
+                 style="padding: 10px; margin-bottom: 10px;">
+              <h6><i class="text-blue fas fa-ellipsis-v"></i><i class="text-blue fas fa-ellipsis-v"></i>&nbsp;
+                &nbsp; {{worker.name}} &nbsp; &nbsp;</h6>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <button (click)="saveOrder()" class="btn-blue btn btn-sm">
+
+        <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+        &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

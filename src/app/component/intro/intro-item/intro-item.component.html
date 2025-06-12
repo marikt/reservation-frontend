@@ -1,0 +1,124 @@
+<div
+  [class.bg-blue]="bgType == getBGType.BLUE"
+  [class.bg-grey]="bgType == getBGType.GREY"
+  [class.bg-white]="bgType == getBGType.WHITE"
+  class="text-left col-12 intro-cell content-visibility"
+  style="white-space: pre-line;">
+  <div class="container">
+
+    <div class="row">
+      <br>
+      <br>
+    </div>
+
+    <div [class.text-white]="bgType == getBGType.BLUE" class="row">
+      <div class="col-12 text-center d-block d-md-none">
+        <img
+          *ngIf="img"
+          [alt]="alt | translate"
+          [class]="imgClass"
+          [class.img-size]="!isMobile"
+          [class.img-size-mb]="isMobile"
+          [src]="img"
+        >
+        <br>
+        <br>
+        <br>
+      </div>
+
+      <div
+        class="col-md-6 col-11 offset-0 offset-md-1" [style]="'margin-top:' + getTopMargin() + 'px;'" >
+<!--        <h2 *ngIf="title1" class="text-uppercase" style="font-size: 0.85em">-->
+<!--          <b>  {{ title1 | translate }} </b>-->
+<!--        </h2>-->
+        <h3 *ngIf="title2">
+          <b> {{ title2 | translate }}</b>
+        </h3>
+        <br>
+
+        <p *ngIf="label1">
+          {{ label1 | translate }}
+        </p>
+        <p *ngIf="label2">
+          {{ label2 | translate }}
+        </p>
+        <p *ngIf="label3">
+          {{ label3 | translate }}
+        </p>
+
+        <ul *ngIf="linkItem1 || linkItem2 || linkItem3 || linkItem4 || linkItem5 || linkItem6" class="fa-ul">
+          <li *ngIf="linkItem1">
+            <h5><a target="_blank" [routerLink]="linkItem1.url">{{linkItem1.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem2">
+            <h5><a target="_blank" [routerLink]="linkItem2.url">{{linkItem2.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem3">
+            <h5><a target="_blank" [routerLink]="linkItem3.url">{{linkItem3.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem4">
+            <h5><a target="_blank" [routerLink]="linkItem4.url">{{linkItem4.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem5">
+            <h5><a target="_blank" [routerLink]="linkItem5.url">{{linkItem5.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem6">
+            <h5><a target="_blank" [routerLink]="linkItem6.url">{{linkItem6.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem7">
+            <h5><a target="_blank" [routerLink]="linkItem7.url">{{linkItem7.label | translate}}</a></h5>
+          </li>
+          <li *ngIf="linkItem8">
+            <h5><a target="_blank" [routerLink]="linkItem8.url">{{linkItem8.label | translate}}</a></h5>
+          </li>
+        </ul>
+
+        <ul *ngIf="item1 || item2 || item3|| item4" class="fa-ul">
+          <li *ngIf="item1">
+            <app-what-we-know-list-item
+              [label]="item1"></app-what-we-know-list-item>
+          </li>
+          <li *ngIf="item2">
+            <app-what-we-know-list-item
+              [label]="item2"></app-what-we-know-list-item>
+          </li>
+          <li *ngIf="item3">
+            <app-what-we-know-list-item
+              [label]="item3"></app-what-we-know-list-item>
+          </li>
+          <li *ngIf="item4">
+            <app-what-we-know-list-item
+              [label]="item4"></app-what-we-know-list-item>
+          </li>
+        </ul>
+        <br>
+        <button *ngIf="link"
+                [class]="linkClass"
+                [routerLink]="link"
+                style="padding:.5rem 0;"> {{ linkLabel | translate }}</button>
+
+        <button (click)="action.emit('button click');"
+                *ngIf="actionBtn"
+                [class]="linkClass"> {{ linkLabel | translate }}</button>
+
+      </div>
+      <br>
+      <div class="col-md-5 col-10 text-center d-none d-md-block">
+        <img
+          *ngIf="img"
+          [alt]="alt | translate"
+          [class.img-size]="!isMobile"
+          [class.img-size-mb]="isMobile"
+          [class]="imgClass"
+          [src]="img">
+        <br>
+        <br>
+      </div>
+    </div>
+    <div class="row">
+      <br>
+      <br>
+    </div>
+
+  </div>
+</div>

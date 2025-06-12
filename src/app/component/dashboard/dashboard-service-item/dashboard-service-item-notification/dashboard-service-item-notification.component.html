@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-10 col-12">
+    <form #form="ngForm" (ngSubmit)="saveService()">
+      <div class="form-group">
+        <label>{{ 'DASHBOARD.SERVICE_ITEM.SERVICE_NOTIFICATION_MSG' | translate }}
+          <app-video-tutorial btnType="tooltip"
+                              videoSrc="https://www.youtube.com/embed/VrbsQgZYMKg"></app-video-tutorial>
+        </label>
+        <div *ngIf="service">
+          <app-keyword-highlighter
+            [height]="150"
+            [message]="service.notificationMsg"
+            (messageChange)="service.notificationMsg = $event"
+          ></app-keyword-highlighter>
+        </div>
+
+        <div class="col-12 alert alert-info ">
+          {{'DASHBOARD.SERVICE_ITEM.SERVICE_NOTIFICATION_MSG_INFO' | translate}}
+          <a class=""
+             routerLink="/dashboard/dashboard-message"> <span
+            style="">{{'DASHBOARD.MENU.EMAIL' | translate}} <i class="fas fa-arrow-right"
+                                                               style="font-size: 0.8em;"></i></span>
+          </a>
+
+<!--          <br>-->
+<!--          <br>-->
+
+<!--          {{'DASHBOARD.EMAIL.KEY_WORDS' | translate}}-->
+<!--          <br>-->
+<!--          <br>-->
+<!--          <ul>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.SERVICE' | translate}}-->
+<!--              <i [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.SERVICE' | translate" class="far fa-question-circle"-->
+<!--                 style="font-size: 0.6em"></i></li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.EMPLOYEE' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE_EMAIL' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.EMPLOYEE_EMAIL' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.EMPLOYEE_PHONE' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.EMPLOYEE_PHONE' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.DATE' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.DATE' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.TIME' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.TIME' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.PRICE' | translate}} </li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.RESERVATION_CANCEL' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.RESERVATION_CANCEL' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+<!--            <li>#{{'DASHBOARD.EMAIL.KEYWORDS.RESERVATION_CONFIRM' | translate}} <i-->
+<!--              [ngbTooltip]="'DASHBOARD.EMAIL.TOOLTIP.RESERVATION_CONFIRM' | translate" class="far fa-question-circle"-->
+<!--              style="font-size: 0.6em"></i></li>-->
+<!--            <li>#zoom-->
+<!--              <a class="btn btn-link-blue btn-sm"-->
+<!--                 href="https://www.notado.cz/faq/en/zoom"-->
+<!--                 style="position: relative; right: 20px; bottom: 1px;"-->
+<!--                 target="_blank">-->
+<!--                <i class="fas fa-question-circle"></i></a>-->
+<!--            </li>-->
+<!--          </ul>-->
+        </div>
+      </div>
+
+      <br>
+      <button (click)="form.ngSubmit.emit()" class="btn btn-blue btn-sm" id="notification-save-button">
+        <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+              role="status">
+              <span class="sr-only">Loading...</span>
+        </span>
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save"></i>
+        &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+      </button>
+    </form>
+  </div>
+</div>

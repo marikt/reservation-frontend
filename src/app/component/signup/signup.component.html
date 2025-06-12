@@ -1,0 +1,115 @@
+<div class="row "
+     style="background-color: #7a7adb; background-image: linear-gradient(315deg, #6841D7 0%, #170e13 74%);">
+  <div class="col-12 text-center text-white">
+    <h5 style="margin-bottom: 10px; margin-top: 10px;">🎁 &nbsp; {{ 'DISCOUNT_MENU.ACTIVATED' | translate }}</h5>
+  </div>
+</div>
+
+<div *ngIf="authService.user" class="container text-center">
+  <br>
+  <br>
+  <h2 class="text-primary">
+    {{ 'JOIN.LABEL1' | translate }}
+  </h2>
+  <h5 class="text-secondary">
+    {{ 'JOIN.LABEL1' | translate }}
+  </h5>
+  <br>
+  <br>
+  <button class="col-xs-offset-1 col-sm-offset-3 col-md-offset-3 btn btn-lg btn-link"
+          routerLink="/dashboard/dashboard-landing">
+    {{ 'JOIN.LABEL2' | translate }}
+  </button>
+</div>
+
+<div *ngIf="!authService.user" class="bg" style="height: 100vh;">
+  <!-- ALERT -->
+  <div *ngFor="let alert of alertService.alerts" class="alert-alert col-12 text-center">
+    <ngb-alert [type]="alert.type" (close)="alertService.closeAlert(alert)">
+      <i *ngIf="alert.type === 'success' " class="fas fa-check" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'error' " class="fa fa-close" aria-hidden="true"></i>
+      <i *ngIf="alert.type === 'warning' " class="fa fa-warning" aria-hidden="true"></i> {{ alert.msg }}
+    </ngb-alert>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="container text-center">
+    <div class="col-lg-7 col-md-8 col-12 img-shadow rounded glass-frame text-white" style="margin: 0 auto;">
+      <button routerLink="/home" class="close-modal" >
+      </button>
+      <br>
+      <br>
+      <h4 class="text-black">
+        {{ 'SIGNUP.LABEL' | translate }}
+      </h4>
+      <p class="text-secondary">
+        {{ 'SIGNUP.LABEL2' | translate }}
+      </p>
+      <br>
+      <div class=" offset-lg-2 col-lg-8 offset-md-1 col-md-10 offset-0 col-12">
+
+        <form #form="ngForm" (ngSubmit)="signup()">
+
+          <!-- has-success -->
+          <div class="form-group has-success">
+            <input #email="ngModel"
+                   [(ngModel)]="user.email" [class.form-control-success]="!email.invalid"
+                   class="form-control" email
+                   id="wizard-user-email" name="email" placeholder="Email "
+                   required
+                   type="text"/>
+          </div>
+          <div class="form-group has-success">
+            <input #password="ngModel" [(ngModel)]="user.password"
+                   [class.form-control-success]="!password.invalid"
+                   class="form-control " id="wizard-user-password" minlength="5" name="password"
+                   placeholder="{{ 'TOOLTIP.PASSWORD' | translate }}"
+                   required type="password"/>
+          </div>
+          <p *ngIf="accountAlreadyExists" class="text-danger text-center"> {{ 'WIZARD.EMAIL_EXISTS' | translate }} <a
+            [routerLink]="'/intro/' + languageService.language + '/join'">{{ 'WIZARD.LOGIN' | translate }}.</a></p>
+
+          <!--<label class="custom-control custom-checkbox" style="padding-left: 0rem;">-->
+          <!--<input [(ngModel)]="licenceAgree" class="custom-check-input" id="wizard-licence"-->
+          <!--name="licence"-->
+          <!--required type="checkbox">-->
+          <!--<span class="custom-control-description"-->
+          <!--style="position: relative; left: 10px; bottom: 2px;">Souhlasím se smluvními podmínkami*-->
+          <!--<a (click)="modalService.open(licenceModal, {size: 'lg'})"-->
+          <!--class="text-primary custom-control-description">-->
+          <!--(přečíst)</a>-->
+          <!--</span>-->
+          <!--</label>-->
+
+          <button [disabled]="form.invalid" class="btn btn-blue-gradient btn-block text-uppercase " id="wizard-join-button"
+                  type="submit">
+            {{ 'WIZARD.CREATE_ACCOUNT' | translate }}
+          </button>
+          <br>
+          <div class="row text-center ">
+            <h6><span> {{ 'COMMON.OR' | translate }}  </span></h6>
+          </div>
+          <br>
+          <div class="row text-center ">
+            <div class="container-fluid" style="padding: 0; margin-bottom: 10px;">
+
+              <a type="button" (click)="signUpWithGoogle()" class="googleButton text-center"
+                 aria-disabled="false" aria-busy="false" aria-label="Continue with Google">
+                <img class="Q2rN3" alt="Continue with Google" width="17" height="17"
+                     src="https://dapulse-res.cloudinary.com/image/upload/remote_logos/995426/google-icon.svg">
+                <span
+                  style="font-size: 1.2em; position: relative; top: 2px;">&nbsp; {{ 'SIGNUP.LABEL_GOOGLE' | translate }}</span></a>
+
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>

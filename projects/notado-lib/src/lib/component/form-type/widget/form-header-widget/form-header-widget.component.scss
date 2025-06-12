@@ -1,0 +1,15 @@
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.btn-circle.btn-sm {
+  width: 25px;
+  height: 25px;
+  padding: 0px 8px;
+  border-radius: 25px;
+  font-size: 20px;
+  text-align: center;
+}

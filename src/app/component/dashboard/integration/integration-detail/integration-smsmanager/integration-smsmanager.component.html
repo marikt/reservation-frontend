@@ -1,0 +1,41 @@
+<app-integration-template [integrationData]="integrationData">
+  <br>
+  <br>
+  <form #form="ngForm" (ngSubmit)="connect(); modalService.close();" class="text-left col-8">
+    <div class="form-group">
+      <label>API key &nbsp;
+        <i class="fas fa-info-circle"
+           ngbTooltip="Go To smsmanager.cz > API > API klíč"></i>
+      </label>
+      <input #apiKey="ngModel"
+             [(ngModel)]="integrationData.config.apiKey"
+             [class.is-invalid]="apiKey?.invalid && showValidation"
+             [class.is-valid]="!apiKey?.invalid"
+             class="form-control"
+             id="apiKey"
+             name="apiKey"
+             required
+             type="text">
+      <div class="invalid-feedback">
+        {{'COMMON.REQUIRED' | translate}}
+      </div>
+    </div>
+    <button (click)="showValidation = true" type="button" *ngIf="form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.CONNECT_BUTTON' | translate}}
+    </button>
+    &nbsp;
+    <button type="button" (click)="disconnect(); modalService.close()" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-plug"></i> &nbsp; {{'DASHBOARD.INTEGRATION.DISCONNECT_BUTTON' | translate}}
+    </button>
+
+  </form>
+
+  <br>
+  <br>
+  <iframe class="rounded" width="560" height="315" src="https://www.youtube.com/embed/d3I0SlqXYtQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+</app-integration-template>

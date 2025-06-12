@@ -1,0 +1,22 @@
+.worker-img {
+  width: 45px;
+}
+
+.service-img {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.map {
+  filter: saturate(30%);
+  /*filter: grayscale(100%);*/
+}
+
+.glass-frame {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.39);
+}

@@ -1,0 +1,116 @@
+<br>
+
+<div>
+
+  <div class="row" style="max-height: 500px; overflow: scroll;">
+    <div *ngFor="let template of templateGallery"
+         class="col-2 text-center form-check"
+         style="padding: 10px 0px; margin-right: 0px; margin-left: 20px;">
+      <a (click)="userTemplate(template)">
+        <div class="card-item white-bg" style="">
+          <img *ngIf="template.backgroundImg" [src]="getImagePath(template)" class="img-fluid rounded">
+          <div *ngIf="!template.backgroundImg" [style.background]="template.backgroundMainColor" class="rounded" style="width: 100%; height: 65px;">
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <br>
+  <button (click)="openImageModal()"
+          class="btn btn-link-gray"><i class="fas fa-plus" style="font-size: 1em;"></i>
+    {{'DASHBOARD.FORM_ADJUSTMENT.BACKGROUND_IMAGE' | translate}}
+  </button>
+  <br>
+
+</div>
+
+
+<ng-template #templateImageUpload let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong>{{'DASHBOARD.FORM_ADJUSTMENT.ADD_IMAGE' | translate}}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+
+      <span *ngIf="resizeImageService.state === 'IMG_SELECTED'">
+          <app-image-resize width="150" height="180"></app-image-resize>
+      </span>
+
+      <div *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'" class="text-center offset-1 col-10">
+        <div class="row">
+
+          <div class="offset-0 col-12">
+
+            <div class="alert alert-danger"><i class="fas fa-info-circle"></i> &nbsp;
+              {{'DASHBOARD.OPTIMIZE_IMG' | translate}} <a href="https://tinypng.com" target="_blank">tinypng.com</a>
+            </div>
+            <br>
+
+            <div class="">
+              <span class="btn btn-link-blue btn-file"
+                    style="position: relative; right: 18px; bottom: 2px;"> <strong>{{'DASHBOARD.FORM_ADJUSTMENT.SELECT_IMAGE' | translate}}</strong> &nbsp;
+                <i aria-hidden="true" class="fa fa-upload"></i>
+                    <input [uploader]="uploader" ng2FileSelect type="file">
+                  </span>
+
+              <br>
+              <br>
+
+              <div class="row text-center">
+                <h6><span> {{'COMMON.OR' | translate}}  </span></h6>
+              </div>
+
+
+              <form (submit)="searchForPexelImg()" style="margin-top: 30px;">
+                <div class="row">
+                  <div class="col-12">
+                    <label>{{'DASHBOARD.FORM_ADJUSTMENT.ADD_IMAGE_FROM_GALLERY' | translate}}</label>
+                    <div class="input-group">
+                      <input #name="ngModel"
+                             [(ngModel)]="searchKey"
+                             class="form-control"
+                             id="pexelSearchInput"
+                             name="name"
+                             placeholder="Massage"
+                             type="text">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">
+                          <button class="btn btn-link-gray btn-link" style="padding: 1px;">
+                                <i class="fas fa-search"></i>
+                          </button>
+                        </span>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 30px;">
+            <div *ngFor="let img of imgs" class="col-2" style="margin-bottom: 30px;">
+              <a (click)="selectPexelImg(img.src.portrait)">
+                <img *ngIf="img" [src]="img.src.small" class="img-fluid rounded"
+                     style="max-width: 120px;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+

@@ -1,0 +1,25 @@
+
+.input-group-append {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.input-group-text {
+    background: transparent;
+    border: 1px solid #ced4da;
+    border-top-left-radius: 8px !important;
+    border-bottom-left-radius: 8px !important;
+    border-right: 0px;
+}
+
+.input-group-text.is-valid {
+    border-color: rgb(69, 0, 237) !important;
+    border: 2px solid;
+    box-shadow: none !important;
+    border-right: 0px;
+}
+
+.text-del {
+  text-decoration: line-through;
+}
+

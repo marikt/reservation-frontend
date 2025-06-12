@@ -1,0 +1,284 @@
+<!--====================================================================================================-->
+<!-- FORM CONFIG -->
+<!--====================================================================================================-->
+<br>
+<div class="row" *ngIf="formConfigService.window">
+  <div class="offset-1 col-10">
+
+    <h5
+      class="text-left ">
+      <strong>{{ 'DASHBOARD.FORM_ADJUSTMENT.WINDOWS.' + formConfigService.window.name | translate }}</strong></h5>
+    <br>
+    <span *ngIf="!formConfigService.window.active && !formConfigService.window.required">
+            <ng-toggle *ngIf="!formConfigService.window.active && !formConfigService.window.required "
+                       (change)="formConfigService.window.active = !formConfigService.window.active"
+                       [value]="false"
+                       [width]="50"
+                       [height]="25"
+                       [margin]="3"
+                       [id]="formConfigService.window.active ? 'hide' + formConfigService.window.name : 'show' + formConfigService.window.name "
+                       [color]="{    unchecked: '#939da2',    checked: 'rgb(105, 59, 218)'  }"> </ng-toggle> &nbsp;
+      {{ 'DASHBOARD.FORM_WINDOW.ADD_FORM' | translate }}
+    </span>
+    <span *ngIf="formConfigService.window.active && !formConfigService.window.required">
+          <ng-toggle
+            (change)="formConfigService.window.active = !formConfigService.window.active"
+            [value]="true"
+            [width]="50"
+            [height]="25"
+            [margin]="3"
+            [id]="formConfigService.window.active ? 'hide' + formConfigService.window.name : 'show' + formConfigService.window.name "
+            [color]="{    unchecked: '#939da2',    checked: 'rgb(105, 59, 218)'  }"> </ng-toggle> &nbsp;
+      {{ 'DASHBOARD.FORM_WINDOW.REMOVE_FORM' | translate }}
+    </span>
+    <br>
+    <br>
+
+    <span *ngIf="formConfigService.window.active">
+
+  <label>{{ 'DASHBOARD.FORM_WINDOW.LABEL' | translate }}</label>
+
+  <div class="input-group">
+  <input [(ngModel)]="formConfigService.window.label"
+         class="form-control form-control-sm" name="name" type="text">
+  </div>
+
+  <br>
+
+      <!--2. Adding / removing phone input ====================================================================================================-->
+    <button
+      *ngIf="formConfigService.window.name == 'CONTACT' && (!formConfigService.window.config || !formConfigService.window.config?.phone)"
+      (click)="addPhoneInput(formConfigService.window)"
+      class="btn-link btn btn-link-blue edit-btn btn-sm">
+      <i class="fas fa-plus"></i> {{ 'DASHBOARD.FORM_WINDOW.ADD_PHONE' | translate }}
+    </button>
+    <button *ngIf="formConfigService.window.name == 'CONTACT' && formConfigService.window.config?.phone"
+            (click)="formConfigService.window.config.phone = false"
+            class="btn-link btn btn-link-blue edit-btn btn-sm">
+      <i class="fas fa-minus"></i> {{ 'DASHBOARD.FORM_WINDOW.REMOVE_PHONE' | translate }}
+    </button>
+
+      <!--3. Adding / removing service duration & price ====================================================================================================-->
+    <button
+      *ngIf="formConfigService.window.name == 'SERVICE' && (!formConfigService.window.config || !formConfigService.window.config?.hideDuration)"
+      (click)="hideServiceDuration(formConfigService.window)"
+      class="btn-link btn btn-link-blue edit-btn btn-sm">
+      <i class="fas fa-minus"></i> {{ 'DASHBOARD.FORM_WINDOW.SERVICE_DURATION_HIDE' | translate }}
+    </button>
+    <button *ngIf="formConfigService.window.name == 'SERVICE' && formConfigService.window.config?.hideDuration"
+            (click)="formConfigService.window.config.hideDuration = false"
+            class="btn-link btn btn-link-blue edit-btn  btn-sm">
+      <i class="fas fa-plus"></i> {{ 'DASHBOARD.FORM_WINDOW.SERVICE_DURATION_SHOW' | translate }}
+    </button>
+    <br>
+    <button
+      *ngIf="formConfigService.window.name == 'SERVICE' && (!formConfigService.window.config || !formConfigService.window.config?.hidePrice)"
+      (click)="hideServicePrice(formConfigService.window)"
+      class="btn-link btn btn-link-blue edit-btn  btn-sm">
+      <i class="fas fa-minus"></i> {{ 'DASHBOARD.FORM_WINDOW.SERVICE_PRICE_HIDE' | translate }}
+    </button>
+    <button *ngIf="formConfigService.window.name == 'SERVICE' && formConfigService.window.config?.hidePrice"
+            (click)="formConfigService.window.config.hidePrice = false"
+            class="btn-link btn btn-link-blue edit-btn btn-sm">
+      <i class="fas fa-plus"></i> {{ 'DASHBOARD.FORM_WINDOW.SERVICE_PRICE_SHOW' | translate }}
+    </button>
+
+      <!--4. Service currency ====================================================================================================-->
+    <br>
+      <!--    <button *ngIf="formConfigService.window.name == 'SERVICE'"-->
+      <!--            routerLink="/dashboard/dashboard-business"-->
+      <!--            class="btn-link btn btn-link-blue edit-btn btn-sm">-->
+      <!--      <i class="fas fa-money-bill-alt"></i> {{ 'DASHBOARD.FORM_WINDOW.CHANGE_CURRENCY' | translate }}-->
+      <!--    </button>-->
+
+    <div *ngIf="formConfigService.window.name == 'VOUCHER' && formConfigService.window.active" class="alert alert-info">
+      <i class="fas fa-info-circle"></i>
+      &nbsp;
+      {{ 'DASHBOARD.FORM_WINDOW.VOUCHER_INFO' | translate }}
+      <a class="btn btn-link-blue btn-sm"
+         [href]="'https://www.notado.cz/faq/' + languageService.language + '/voucher'" target="_blank">
+        {{ 'DASHBOARD.FORM_WINDOW.HOW_VOUCHER_STRIPE' | translate }} <i class="fas fa-external-link-alt"></i></a>
+    </div>
+
+    <div *ngIf="formConfigService.window.name == 'SERVICE_DURATION'" class="alert alert-info">
+      <i class="fas fa-info-circle"></i>
+      &nbsp;
+      {{ 'DASHBOARD.FORM_WINDOW.SERVICE_DURATION_INFO' | translate }}
+    </div>
+
+      <!--X. Service duration ====================================================================================================-->
+      <!--    <div *ngIf="formConfigService.window.name == 'SERVICE_DURATION'" class="col-12 alert alert-info">-->
+      <!--      {{'DASHBOARD.FORM_WINDOW.SERVICE_DURATION_DESC' | translate}}-->
+      <!--    </div>-->
+
+      <!--5. Custom card ====================================================================================================-->
+    <span *ngIf="formConfigService.window.name == 'CUSTOM'">
+           <div class="row">
+
+      <div *ngIf="services && services.length > 1" class="col-8 " ngbDropdown>
+        <button class="btn btn-sm btn-blue" id="dropdownMenuCustomWindowServices" ngbDropdownToggle
+                placement="bottom">
+          {{ this.formConfigService.serviceForCustomWindow.name }}
+        </button>
+
+        <div aria-labelledby="dropdownMenuCustomWindowServices" ngbDropdownMenu>
+            <span *ngFor="let service of services">
+              <button (click)="selectService(service, formConfigService.window)" class="dropdown-item"
+                      [id]="'custom-window-for-' + service.id" ngbDropdownItem>{{ service.name }}</button>
+            </span>
+        </div>
+      </div>
+     </div>
+      <br>
+    <app-custom-field-manager
+      [addFieldLabel]="('DASHBOARD.FORM_WINDOW.ADD_CUSTOM_FIELD' | translate) + ' ' + formConfigService.serviceForCustomWindow.name">
+    </app-custom-field-manager>
+    </span>
+
+      <!--  ====================    THANKS ==================== -->
+    <span *ngIf="formConfigService.window.name == 'THANKS'">
+      <div class="form-group">
+
+     <div class="checkbox" style="margin-bottom: 10px;">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="showRedirectOnReservationFinInbox"
+               (click)="formConfigService.window.config.redirectOnReservationFin = null"
+               class="form-check-input checkbox-lg"
+               id="showRedirectOnReservationFinInbox"
+               name="showRedirectOnReservationFinInbox"
+               type="checkbox">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.FORM_WINDOW.REDIRECT_URL_ON_RESERVATION_FIN_LABEL' | translate }}
+        </span>
+            <br>
+          <label
+            style="position: relative; left: 10px; bottom: 0px;">
+            ({{ 'DASHBOARD.FORM_WINDOW.REDIRECT_URL_ON_RESERVATION_FIN_LABEL_DESC' | translate }})
+          </label>
+
+        <br>
+      </label>
+    </div>
+      <span *ngIf="showRedirectOnReservationFinInbox">
+              <label class=""
+                     for="redirectOnReservationFin">{{ 'DASHBOARD.FORM_WINDOW.REDIRECT_URL_ON_RESERVATION_FIN' | translate }}</label>
+            <input [(ngModel)]="formConfigService.window.config.redirectOnReservationFin"
+                   #redirectUrl="ngModel"
+                   placeholder="https://muj-podnik.cz/uspasna-rezervace"
+                   pattern="https?://.+"
+                   [class.is-invalid]="redirectUrl.invalid"
+                   [class.is-valid]="!redirectUrl.invalid"
+                   class="form-control form-control-sm" name="name" type="text" id="redirectOnReservationFin">
+                   <div class="invalid-feedback">
+                     {{ 'DASHBOARD.BUSINESS.VALID_URL_HTTP' | translate }}
+                </div>
+      </span>
+      </div>
+      <hr>
+
+
+      <button (click)="addAlertItems(formConfigService.window)"
+              class="btn-link btn btn-link-blue edit-btn btn-sm">
+          <i class="fas fa-plus"></i> {{ 'DASHBOARD.FORM_WINDOW.ADD_ALERT_ITEM' | translate }}
+      </button>
+      <br>
+       <div class="row" *ngIf="formConfigService.window?.config?.alertItems">
+        <div class="col-12" *ngFor="let alertItem of formConfigService.window.config.alertItems;  let idx = index;">
+             <div class="input-group">
+                <input [(ngModel)]="alertItem.label" placeholder="Podmínky rezervace"
+                       class="form-control form-control-sm" name="name" type="text">
+              </div>
+             <div class="input-group">
+               <textarea [(ngModel)]="alertItem.msg" class="form-control form-control-sm"
+                         placeholder="Vyčkejte prosím na potvrzovací zprávu. Rezervaci je možné zrušit nejpozději 1 den před rezervací."
+                         name="name" type="text"
+                         rows="3">
+               </textarea>
+            </div>
+
+
+          <button class="btn btn-sm btn-link btn-color" (click)="alertItem.type = 'primary'">
+              <i class="fas fa-circle text-primary"></i>
+            </button>
+
+          <button class="btn btn-sm btn-link btn-color" (click)="alertItem.type = 'secondary'">
+              <i class="fas fa-circle text-secondary"></i>
+            </button>
+
+            <button class="btn btn-sm btn-link btn-color" (click)="alertItem.type = 'success'">
+              <i class="fas fa-circle text-success"></i>
+            </button>
+
+            <button class="btn btn-sm btn-link btn-color" (click)="alertItem.type = 'light'">
+              <i class="fas fa-circle text-light" style="border-radius: 50px; border: 1px solid grey !important;"></i>
+            </button>
+
+            <button class="btn btn-sm btn-link btn-color" (click)="alertItem.type = 'danger'">
+              <i class="fas fa-circle text-danger"></i>
+            </button>
+
+            <button class="btn btn-sm btn-link btn-color" (click)="alertItem.type= 'warning'">
+              <i class="fas fa-circle text-warning"></i>
+            </button>
+
+            <button class="btn btn-sm btn-link-blue pull-right"
+                    (click)="formConfigService.window.config.alertItems.splice(idx, 1)">
+               <i class="far fa-trash-alt"></i>
+            </button>
+           <br>
+           <br>
+        </div>
+      </div>
+    </span>
+
+    <span *ngIf="formConfigService.window.name == 'SUMMARY'">
+
+    <!-- Form payment ====================================================================================================-->
+      <span *ngIf="formConfigService.window.config">
+            <label>{{ 'DASHBOARD.FORM_WINDOW.PAYMENT_BUTTON_LABEL' | translate }}</label>
+            <div class="input-group">
+            <input [(ngModel)]="formConfigService.window.config.paymentButtonLabel"
+                   class="form-control form-control-sm" name="name" type="text">
+            </div>
+             <div class="alert alert-info"><i class="fas fa-exclamation-triangle"></i> &nbsp;
+               {{ 'DASHBOARD.FORM_WINDOW.PAYMENT_BUTTON_DESC' | translate }} &nbsp;
+               <a class="btn btn-link-blue btn-sm"
+                  [href]="'https://www.notado.cz/faq/' + languageService.language + '/payment'" target="_blank">
+        {{ 'DASHBOARD.SERVICE_ITEM.PAYMENT.HOW' | translate }} <i class="fas fa-external-link-alt"></i></a>
+            </div>
+      </span>
+      <!-- END Form payment ====================================================================================================-->
+      <br>
+      <!-- Licence agreement ===================================================================================================-->
+      <button *ngIf="(!formConfigService.window.config || !formConfigService.window.config?.licenceAgreement)"
+              (click)="addLicenceAgreement(formConfigService.window)"
+              class="btn-link btn btn-link-blue edit-btn btn-sm">
+          <i class="fas fa-plus"></i> {{ 'DASHBOARD.FORM_WINDOW.ADD_LICENCE_AGREEMENT' | translate }}
+      </button>
+
+      <span
+        *ngIf="formConfigService.window.config?.licenceAgreement && formConfigService.window.config?.licenceAgreementConf">
+          <button
+            (click)="formConfigService.window.config.licenceAgreement = false"
+            class="btn-link btn btn-link-blue edit-btn btn-sm">
+            <i class="fas fa-minus"></i> {{ 'DASHBOARD.FORM_WINDOW.REMOVE_AGREEMENT' | translate }}
+          </button>
+          <br>
+          <label>{{ 'DASHBOARD.FORM_WINDOW.LICENCE_AGREEMENT_LABEL' | translate }}</label>
+          <input [(ngModel)]="formConfigService.window.config.licenceAgreementConf.label"
+                 class="form-control form-control-sm" name="name" type="text">
+          <br>
+          <label>{{ 'DASHBOARD.FORM_WINDOW.LICENCE_AGREEMENT_URL' | translate }}
+          </label>
+          <input [(ngModel)]="formConfigService.window.config.licenceAgreementConf.value"
+                 placeholder="https://www.my-licence.cz/licence"
+                 class="form-control form-control-sm" name="name" type="text">
+      </span>
+      <!-- END Licence agreement ===================================================================================================-->
+
+    </span>
+  </span>
+  </div>
+</div>
+<br>

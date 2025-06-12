@@ -1,0 +1,88 @@
+<div
+  style="min-height: 100vh;" class="row"
+  [style.width]="formEditMode ? 'auto' : '100vw'"
+  [class.rounded]="formEditMode"
+  [class.shadow]="formEditMode">
+
+  <div class="col-1" [style.background]="formService.template?.formBackgroundColor">
+    <app-vertical-booking-progress></app-vertical-booking-progress>
+  </div>
+  <div [style.background]="formService.template?.formBackgroundColor"
+       [class.highlighted]="formService.template?.highlightComponentForEditor?.formBackground" class="col-6">
+    <div class="row">
+      <div class="offset-0 col-12 offset-lg-2 col-lg-8 offset-xl-0 col-xl-12">
+        <div class="container">
+
+          <br *ngIf="formService.template?.margin == 'BIG'">
+          <br>
+          <span *ngIf="!todoItems || todoItems.length == 0">
+          <br>
+           <div class="row text-center" id="mainContainer">
+             <div class="col-12">
+                  <h4 *ngIf="formService.template?.windows[this.formService.idx]?.label"
+                      [style.color]="formService.template?.textColor"
+                      [class.highlighted-text]="formService.template?.highlightComponentForEditor?.text"
+                      [ngStyle]="formService.template?.fontSizeMainLabel ? {'font-size': formService.template.fontSizeMainLabel + 'em'} : {}"
+                      id="mainLabel">{{ formService.template?.windows[this.formService.idx]?.label }}
+                  </h4>
+                <h6 *ngIf=" formService.mode== formMode.DEMO" class="text-error"
+                    style="font-size: 0.7em;"> ( {{ 'DEMO.SHOW' | translate }} )</h6>
+               </div>
+            </div>
+          <br>
+          <ng-content></ng-content>
+
+            <div class="container">
+                <div class="row">
+                  <div class="offset-2 col-8 text-center">
+                    <app-button-config-fullscreen [formEditMode]="formEditMode"
+                                                  [cardName]="cardName"></app-button-config-fullscreen>
+                  </div>
+                </div>
+            </div>
+            <br>
+            <br>
+        </span>
+
+          <!--validation problems ============================================================ -->
+          <app-form-todo-items [todoItems]="todoItems"></app-form-todo-items>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [class.fix-right-site]="!formEditMode"
+       [style.background]="formService.template?.backgroundMainColor ? formService.template?.backgroundMainColor : (backgroundImage() | safeUrlStyle)"
+       class="col-5 bg" style="max-width: 43% !important;">
+
+    <video id="backgroundVideo" *ngIf="formService.template?.backgroundVideo && showVideo" [muted]="true" autoplay  loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+      <source [src]="formService.template?.backgroundVideo" type="video/mp4">
+    </video>
+
+    <div class="row"  >
+      <div class="col-1"
+           style="height: 100vh; width: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; position: relative; right: 15px;"
+           [style.background]="formService.template?.formBackgroundColor"></div>
+      <div   id="backgroundColorComponent2" class="offset-1 col-9" [class.highlighted]="formService.template?.highlightComponentForEditor?.background" style="height: 100vh;">
+        <span id="backgroundColorComponent1" ></span>
+        <app-booking-detail-fullscreen [formEditMode]="formEditMode"></app-booking-detail-fullscreen>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<a *ngIf="formService.mode == formMode.DEMO && !formEditMode"
+   (click)="formService.finishReservation()" class="form-widget-close">
+</a>
+
+<span *ngIf="!formEditMode" style="position: fixed; bottom: 20px; right: 40px;">
+  <span [style.color]="formService.template?.backgroundTextColor" style="opacity: 0.7;">powered by </span> <a
+  href="https://www.notado.cz" target="_blank" [style.color]="formService.template?.backgroundTextColor"> NOTADO</a>
+</span>
+
+
+
+
+
+

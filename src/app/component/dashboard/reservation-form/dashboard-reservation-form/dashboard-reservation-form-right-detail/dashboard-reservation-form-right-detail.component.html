@@ -1,0 +1,46 @@
+<div class="offset-0 col-11 edit-card" *ngIf="formService.template">
+  <br>
+
+  <div class="form-group" style="">
+    <div class="checkbox">
+      <label class="custom-control custom-checkbox">
+        <input #showOpeningHours="ngModel"
+               [(ngModel)]="formService.template.showOpeningHours"
+               class="form-check-input checkbox-lg"
+               id="showOpeningHours"
+               name="showOpeningHours"
+               type="checkbox">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; bottom: -5px;">{{ 'DASHBOARD.FORM_ADJUSTMENT.SHOW_OPENING_HRS' | translate }}</span>
+        <br>
+      </label>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <label class="text-xsm"
+             for="rightCustomMsg">{{ 'DASHBOARD.FORM_ADJUSTMENT.CUSTOM_MESSAGE' | translate }}
+      </label>
+      <div class="input-group">
+
+        <textarea [(ngModel)]="formService.template.rightCustomMsg" class="form-control form-control-sm"
+                         placeholder="Vyčkejte prosím na potvrzovací zprávu. Rezervaci je možné zrušit nejpozději 1 den před rezervací."
+                         name="name" type="text"
+                  id="rightCustomMsg"
+                         rows="3">
+               </textarea>
+      </div>
+
+      <br>
+      <br>
+    </div>
+  </div>
+
+
+
+
+</div>
+

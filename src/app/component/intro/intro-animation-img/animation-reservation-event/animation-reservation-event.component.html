@@ -1,0 +1,10 @@
+<div [style.background-color]="introAnimationEvent.color" class="rounded text-white text-center"
+     [style.height]="introAnimationEvent.height + 'px'"
+     style="position: relative; width: 130px; margin-bottom: 60px; ">
+
+  <h5 [style.padding-top]="introAnimationEvent.paddingTop + 'px'"><b>{{'INTRO.ANIMATION.' + introAnimationEvent.label | translate}}</b></h5>
+  <img [src]="'../../../../../resources/intro/intro-animation/' + introAnimationEvent.person"
+       class="rounded-circle"
+       style="position: relative; left: 80px; bottom: 30px; "
+       width="85">
+</div>

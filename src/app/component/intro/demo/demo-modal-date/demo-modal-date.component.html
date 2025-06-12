@@ -1,0 +1,107 @@
+<br>
+<br>
+<div class="row">
+    <div class="offset-2 col-8 offset-md-1 col-md-4" style="zoom: 84%">
+
+        <ngb-datepicker #dp
+                        [(ngModel)]="demoService.reservation.date"
+                        (navigate)="date = $event.next"
+                        [dayTemplate]="dtcustom"
+                        [minDate]="today"
+                        [startDate]="date"
+        ></ngb-datepicker>
+
+        <ng-template #dtcustom let-date="date" let-currentMonth="currentMonth" let-selected="selected"
+                     let-disabled="disabled">
+            <div
+                    [class.selected-cell]="selected"
+                    [class.current-month-cell]="date.month === currentMonth"
+                    class="cell"
+            >
+                {{ date.day }}
+            </div>
+        </ng-template>
+
+    </div>
+
+
+    <div class="offset-1 col-5">
+
+        <div class="row" style="zoom: 90%;">
+            <div class="col-4">
+                <app-demo-form-time [times]="timesMorning" label="FORM.MORNING"></app-demo-form-time>
+            </div>
+            <div class="col-4">
+                <app-demo-form-time [times]="timesNoon" label="FORM.NOON"></app-demo-form-time>
+            </div>
+            <div class="col-4">
+                <app-demo-form-time [times]="timesAfternoon" label="FORM.AFTERNOON"></app-demo-form-time>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<br>
+
+<div class="row">
+
+  <div class="col-3 offset-1 text-center form-check" style="padding: 20px 0px; margin-right: 5px; ">
+    <label class="form-check-label" for="inlineRadio1">
+      <img class="rounded-circle worker-img "
+           src="../../../../../resources/demo/worker/Screenshot%202019-03-08%20at%2011.52.36.png"
+      >
+      <div class="worker-label">{{'DEMO.W_1' | translate}}</div>
+    </label>
+    <br>
+    <input class="form-check-input checkbox-lg"
+           id="inlineRadio1"
+           name="inlineRadioOptions"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="DEMO.W_1"
+           [(ngModel)]="demoService.reservation.worker"
+           [checked]="demoService.reservation.worker === 'DEMO.W_1'">
+
+  </div>
+
+  <div class="col-3 text-center" style="padding: 20px 0px;  margin-right: 5px; margin-left: 5px;">
+    <label class="form-check-label" for="inlineRadio2">
+      <img class="rounded-circle worker-img"
+           src="../../../../../resources/demo/worker/Screenshot%202019-03-08%20at%2011.52.26.png">
+
+      <div class="worker-label">{{'DEMO.W_2' | translate}}</div>
+    </label>
+    <br>
+    <input class="form-check-input checkbox-lg"
+           id="inlineRadio2"
+           name="inlineRadioOptions"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="DEMO.W_2"
+           [(ngModel)]="demoService.reservation.worker"
+           [checked]="demoService.reservation.worker === 'DEMO.W_2'">
+
+  </div>
+
+  <div class="col-3 text-center" style="padding: 20px 0px; margin-right: 5px; margin-left: 5px;">
+    <label class="form-check-label" for="inlineRadio3">
+      <img class="rounded-circle worker-img"
+           src="../../../../../resources/demo/worker/Screenshot%202019-03-08%20at%2011.53.36.png">
+      <div class="worker-label">{{'DEMO.W_3' | translate}}</div>
+    </label>
+    <br>
+    <input class="form-check-input checkbox-lg"
+           id="inlineRadio3"
+           name="inlineRadioOptions"
+           style="position: relative; left: 11px;"
+           type="radio"
+           value="DEMO.W_3"
+           [(ngModel)]="demoService.reservation.worker"
+           [checked]="demoService.reservation.worker === 'DEMO.W_3'">
+  </div>
+
+</div>
+<br>

@@ -1,0 +1,18 @@
+<span *ngFor="let item of todoItems; let idx = index;">
+  <div class="row text-center">
+    <div class="col-12">
+      <div class="row">
+        <div class="offset-3 col-6">
+
+          <app-integration-card></app-integration-card>
+<!--          <app-integration-card [todoItem]="item"></app-integration-card>-->
+          <span *ngIf="idx != (todoItems.length - 1)">
+          <br>
+          <hr>
+          <br>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>

@@ -1,0 +1,13 @@
+.edit-card {
+  border-radius: 10px;
+  border: 2px dashed lightgrey;
+  padding-left: 20px;
+}
+
+.edit-btn {
+  padding: 0.475rem 0.25rem !important;
+}
+
+.disabled {
+  filter: grayscale(100);
+}

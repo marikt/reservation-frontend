@@ -1,0 +1,25 @@
+<label style="position: relative; right: 0px; opacity: 0.8; margin-bottom: 10px;"
+       [style.color]="formService.template?.textColor">{{ label | translate }}</label>
+
+<span *ngFor="let minutes of times">
+
+        <label [for]="minutes" class="form-check-label">
+            <input
+              (ngModelChange)="setCalendarEventTime(minutes)"
+              [ngModel]="formService.calendarEvent.timeMinutes"
+              [checked]="minutes == formService.calendarEvent.timeMinutes"
+              [id]="minutes"
+              [name]="minutes"
+              [value]="minutes"
+              type="radio">
+            <span
+              [style.border-color]="minutes == formService.calendarEvent.timeMinutes ? 'transparent' : formService.template?.textColor"
+              [style.background-color]="minutes == formService.calendarEvent.timeMinutes ? formService.template?.componentColor : 'transparent'"
+              [style.color]="minutes == formService.calendarEvent.timeMinutes ? formService.template?.textButtonColor : formService.template?.textColor"
+              class="time-label" style="position: relative; top: 3px; padding: 7px 12px; font-size: 0.9em;">
+              {{minutes | minutesToTime}}
+            </span>
+          </label>
+        <br>
+</span>
+

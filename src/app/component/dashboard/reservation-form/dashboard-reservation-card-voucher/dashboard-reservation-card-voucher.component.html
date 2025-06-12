@@ -1,0 +1,27 @@
+<br>
+<div class="form-group offset-3 col-6">
+    <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+            <input #active="ngModel" [(ngModel)]="demoService.reservation.voucherActive"
+                   class="form-check-input checkbox-lg"
+                   name="active"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 15px; top: 4px;" [style.color]="dashboardService.template.textColor">{{'FORM.VOUCHER_OPTION' | translate}}</span>
+        </label>
+    </div>
+</div>
+
+<div class="form-group offset-3 col-6">
+    <label [style.color]="dashboardService.template.textColor">{{'FORM.VOUCHER_CODE' | translate}}</label>
+    <input #name="ngModel" [(ngModel)]="demoService.reservation.voucher"
+           [disabled]="!demoService.reservation.voucherActive"
+           class="form-control"
+           name="voucher"
+           placeholder="12345"
+           type="text">
+    <div class="feedback-icon" style=" width: 15px;">
+    </div>
+</div>
+<br>

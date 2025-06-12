@@ -1,0 +1,341 @@
+<div class="row">
+  <div class="col-md-8 col-12">
+    <form #form="ngForm" (ngSubmit)="saveService()">
+
+      <div class="form-group">
+        <br>
+        <div class="checkbox">
+          <label class="custom-control custom-checkbox">
+            <input #durationNotSpecified="ngModel"
+                   [(ngModel)]="service.durationNotSpecified"
+                   class="form-check-input checkbox-lg"
+                   id="durationNotSpecified"
+                   name="durationNotSpecifiedActive"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.DURATION_NOT_SPECIFIED' | translate}}</span>
+            <br>
+          </label>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="checkbox">
+          <label class="custom-control custom-checkbox">
+            <input #durationInDaysItem="ngModel"
+                   [(ngModel)]="durationInDays"
+                   (click)="deleteUnusedDurationParts()"
+                   class="form-check-input checkbox-lg"
+                   id="durationInDays"
+                   name="durationInDaysActive"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; top: 5px;">{{'DASHBOARD.SERVICE_ITEM.DURATION_IN_DAYS' | translate}}</span>
+            <br>
+          </label>
+        </div>
+      </div>
+      <!--DURATION ============================================================================================ -->
+      <div *ngIf="!service.durationNotSpecified" class="form-group">
+
+        <label>
+          {{'DASHBOARD.SERVICE_ITEM.SERVICE_DURATION' | translate}}
+        </label>
+        <div *ngIf="durationInDays" class="row">
+          <div class="input-group col-5">
+            <input #daysCmp="ngModel"
+                   [(ngModel)]="service.duration.days"
+                   class="form-control text-right"
+                   id="daysCmp"
+                   name="daysCmp"
+                   placeholder="1"
+                   style=""
+                   type="number">
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.DAYS' | translate}}</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div *ngIf="!durationInDays" class="row">
+          <div class="input-group col-5">
+            <input #hoursCmp="ngModel"
+                   [(ngModel)]="service.duration.hours"
+                   [class.is-invalid]="service.duration.hours > 23"
+                   class="form-control text-right"
+                   id="hoursCmp"
+                   name="hoursCmp"
+                   placeholder="1"
+                   style=""
+                   min="0"
+                   max="23"
+                   type="number">
+
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.HOURS' | translate}}</span>
+            </div>
+
+            <div *ngIf="service.duration.hours > 23" class="invalid-feedback">max 23</div>
+          </div>
+          <div class="input-group col-5">
+            <input #minutesCmp="ngModel"
+                   [(ngModel)]="service.duration.minutes"
+                   [class.is-invalid]="service.duration.minutes > 59"
+                   class="form-control text-right"
+                   id="minutesCmp"
+                   name="minutesCmp"
+                   placeholder="30"
+                   style=""
+                   min="0"
+                   max="59"
+                   type="number">
+
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.MINUTES' | translate}}</span>
+            </div>
+
+            <div class="invalid-feedback">max 59</div>
+          </div>
+        </div>
+      </div>
+      <span *ngIf="service.durationNotSpecified">
+        <div  *ngIf="!durationInDays" class="form-group">
+              <label>
+                {{'DASHBOARD.SERVICE_ITEM.SERVICE_DURATION_MIN' | translate}}
+              </label>
+              <div class="row">
+                <div class="input-group col-5">
+                  <input #durationMinHrs="ngModel"
+                         [(ngModel)]="service.durationMin.hours"
+                         [class.is-invalid]="service.durationMin.hours > 23"
+                         class="form-control text-right"
+                         id="durationMinHrs"
+                         name="durationMinHrs"
+                         placeholder="1"
+                         style=""
+                         min="0"
+                         max="23"
+                         type="number">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.HOURS' | translate}}</span>
+                  </div>
+
+                  <div *ngIf="service.durationMin.hours > 23" class="invalid-feedback">max 23 h</div>
+                </div>
+                <div class="input-group col-5">
+                  <input #durationMinMins="ngModel"
+                         [(ngModel)]="service.durationMin.minutes"
+                         [class.is-invalid]="service.durationMin.minutes > 59"
+                         class="form-control text-right"
+                         id="durationMinMins"
+                         name="durationMinMins"
+                         placeholder="30"
+                         style=""
+                         min="0"
+                         max="59"
+                         type="number">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.MINUTES' | translate}}</span>
+                  </div>
+
+                  <div class="invalid-feedback">max 59 min</div>
+                </div>
+              </div>
+            </div>
+        <div  *ngIf="!durationInDays" class="form-group">
+            <label>
+                {{'DASHBOARD.SERVICE_ITEM.SERVICE_DURATION_MAX' | translate}}
+              </label>
+              <div class="row">
+                <div class="input-group col-5">
+                  <input #durationMaxHrs="ngModel"
+                         [(ngModel)]="service.durationMax.hours"
+                         [class.is-invalid]="service.durationMax.hours > 23"
+                         class="form-control text-right"
+                         id="durationMaxHrs"
+                         name="durationMaxHrs"
+                         placeholder="1"
+                         style=""
+                         min="0"
+                         max="23"
+                         type="number">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.HOURS' | translate}}</span>
+                  </div>
+
+                  <div *ngIf="service.durationMax.hours > 23" class="invalid-feedback">max 23 h</div>
+                </div>
+                <div class="input-group col-5">
+                  <input #durationMaxMins="ngModel"
+                         [(ngModel)]="service.durationMax.minutes"
+                         [class.is-invalid]="service.durationMax.minutes > 59"
+                         class="form-control text-right"
+                         id="durationMaxMins"
+                         name="durationMaxMins"
+                         placeholder="30"
+                         style=""
+                         min="0"
+                         max="59"
+                         type="number">
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.MINUTES' | translate}}</span>
+                  </div>
+                <div class="invalid-feedback">max 59 min</div>
+              </div>
+          </div>
+        </div>
+        <div  *ngIf="durationInDays" class="form-group">
+              <label>
+                {{'DASHBOARD.SERVICE_ITEM.SERVICE_DURATION_MIN' | translate}}
+              </label>
+              <div class="row">
+                <div class="input-group col-5">
+                  <input #durationMinDays="ngModel"
+                         [(ngModel)]="service.durationMin.days"
+                         class="form-control text-right"
+                         id="durationMinDays"
+                         name="durationMinDays"
+                         placeholder="1"
+                         style=""
+                         type="number">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.DAYS' | translate}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div  *ngIf="durationInDays" class="form-group">
+            <label>
+                {{'DASHBOARD.SERVICE_ITEM.SERVICE_DURATION_MAX' | translate}}
+              </label>
+              <div class="row">
+                <div class="input-group col-5">
+                  <input #durationMaxDays="ngModel"
+                         [(ngModel)]="service.durationMax.days"
+                         class="form-control text-right"
+                         id="durationMaxDays"
+                         name="durationMaxDays"
+                         placeholder="1"
+                         style=""
+                         type="number">
+                  <div class="input-group-append">
+                    <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.DAYS' | translate}}</span>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </span>
+
+      <div  *ngIf="!durationInDays"  class="form-group">
+        <label>{{'DASHBOARD.SERVICE_ITEM.PAUSE' | translate}}</label>
+        <div class="row">
+          <div class="input-group col-5">
+            <input #hoursBreak="ngModel"
+                   [(ngModel)]="service.pause.hours"
+                   class="form-control text-right"
+                   id="hoursBreak"
+                   name="hoursBreak"
+                   placeholder="1"
+                   style=""
+                   min="0"
+                   max="23"
+                   [class.is-invalid]="service.pause?.hours > 23 || service.pause?.hours < 0"
+                   type="number">
+
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.HOURS' | translate}}</span>
+            </div>
+            <div class="invalid-feedback">
+              max 23 h
+            </div>
+          </div>
+
+          <div class="input-group col-5">
+            <input #minutesBreak="ngModel"
+                   [(ngModel)]="service.pause.minutes"
+                   class="form-control text-right"
+                   id="minutesBreak"
+                   name="minutesBreak"
+                   placeholder="10"
+                   [class.is-invalid]="service.pause?.minutes > 59 || service.pause?.minutes < 0"
+                   type="number">
+
+
+            <div class="input-group-append">
+              <span class="input-group-text">{{'DASHBOARD.SERVICE_ITEM.MINUTES' | translate}}</span>
+            </div>
+            <div class="invalid-feedback">
+              max 59 min
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <br>
+
+    </form>
+    <br>
+    <br>
+    <button (click)="showValidation = true" *ngIf="form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button-invalid2">
+      <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+
+    <button (click)="form.ngSubmit.emit()" *ngIf="!form.invalid" class="btn btn-blue btn-sm"
+            id="service-save-button">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+        <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+      &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+    </button>
+    <button (click)="modalService.open(serviceDelete, {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+            placement="bottom">
+      <i class="far fa-trash-alt"></i> {{'DASHBOARD.SERVICE_ITEM.DELETE' | translate}}
+    </button>
+  </div>
+</div>
+
+<ng-template #serviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.SERVICE_ITEM.DELETE_CONFIRM' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}
+      </button>
+      <button class="btn-blue btn btn-sm" (click)="deleteService(service)">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

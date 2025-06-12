@@ -1,0 +1,42 @@
+<div class="col-12">
+  <div class="row" style="height: 100vh; max-height: 100vh; max-width: 100vw; background-color: white;
+overflow: hidden;">
+
+    <div class="col-12 col-md-6">
+      <app-business-wizard-left
+        label="WIZARD.START"></app-business-wizard-left>
+    </div>
+
+    <div class="col-12 col-md-5">
+
+      <div class="row d-none d-md-block " style="height: 20vh"></div>
+      <img src="../../../../resources/wizard-start.png" [width]="isMobile ? '200' : '400'">
+
+      <br>
+      <br>
+      <br>
+      <div class="row">
+
+        <div class="col-4 col-md-6 offset-0 offset-md-2 text-right">
+        </div>
+        <div class="col-8 col-md-2 text-right">
+
+        <button (click)="wizardService.next('business-wizard-url')"
+                  class="btn btn-blue text-uppercase"
+                  [class.btn-continue-fix-position]="!isMobile"
+                  [class.btn-continue-fix-position-mobile]="isMobile"
+                  [class.btn-lg]="!isMobile"
+
+                id="wizard-continue-button"
+                  type="button">
+            {{ 'WIZARD.START_BTN' | translate }}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

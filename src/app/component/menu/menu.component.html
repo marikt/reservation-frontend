@@ -1,0 +1,171 @@
+<nav class="navbar navbar-expand-xl" id="home" style="padding-right: 2vw; padding-left: 2vw;">
+
+  <a [routerLink]="'/' + languageService.language + '/home'" class="navbar-brand" id="intro-screen"
+     style="position: relative; bottom: 0px;">
+    &nbsp;&nbsp;
+    <span class="text-blue" style="font-family: bariol, serif; font-size: 1.3em; font-weight: 700;">
+      <img src="../resources/logo-big.png" style="width:30px;" alt="Notado Logo">
+      NOTADO <span *ngIf="navbarService.showBlogLabel" class="text-primary" > blog</span>
+    </span>
+
+  </a>
+
+  <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+  class="navbar-toggler"
+  data-target="#navbarSupportedContent"
+  data-toggle="collapse"
+  type="button"
+   (click)="showMobileMenu = !showMobileMenu">
+    <i class="fas fa-bars text-blue" style="font-size:28px;"></i>
+  </button>
+
+  <div class="collapse navbar-collapse text-blue" [class.show]="showMobileMenu" id="navbarSupportedContent">
+
+    <!--LEFT ======================================================== -->
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item" style="margin-right: 25px;">
+        <button (click)="audienceMenuCollapsed = !audienceMenuCollapsed; whatWeKnowMenuCollapsed = true;"
+                aria-expanded="false" aria-haspopup="true"
+                class="nav-link-blue nav-link nav-link-clean">
+          {{ 'INTRO.MENU.AUDIENCE' | translate }}
+          <i class="fas fa-caret-down"></i>
+        </button>
+
+      </li>
+
+      <li class="nav-item" style="margin-right: 25px;">
+        <a
+          [routerLink]="'/intro/' + languageService.language + '/features'"
+          class="nav-link nav-link-blue ">{{ 'INTRO.MENU.WHAT_WE_KNOW' | translate }}</a>
+      </li>
+
+      <li class="nav-item" style="margin-right: 25px;">
+        <a
+          [routerLink]="'/intro/' + languageService.language + '/price-menu'"
+          class="nav-link nav-link-blue ">{{ 'INTRO.MENU.PRICE' | translate }}</a>
+      </li>
+
+      <li class="nav-item" style="margin-right: 25px;">
+        <a
+          [routerLink]="'/intro/' + languageService.language + '/contact'"
+          class="nav-link nav-link-blue ">{{ 'FOOTER.CONTACT' | translate }}</a>
+      </li>
+
+      <li *ngIf="languageService.language == 'cs' || languageService.language == 'sk' || languageService.language == 'pl'" class="nav-item" style="margin-right: 25px;">
+        <a
+          [routerLink]="'/blog/' + languageService.language + '/blog-list'"
+          class="nav-link nav-link-blue ">Blog</a>
+      </li>
+      <li class="nav-item" style="margin-right: 25px;">
+        <a
+          [routerLink]="'/faq/' + languageService.language + '/intro'"
+          class="nav-link nav-link-blue ">FAQ</a>
+      </li>
+    </ul>
+
+    <!--RIGHT ======================================================== -->
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item" style="margin-right: 25px;">
+        <a *ngIf="!authService.user" [routerLink]="'/intro/' + languageService.language + '/join'"
+           class="nav-link nav-link-blue"
+           id="intro-my-account-button"
+           routerLinkActive="active">{{ 'INTRO.MENU.LOGIN' | translate }}
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a *ngIf="!authService.user" [routerLink]="'/intro/' + languageService.language + '/signup'"
+           class="btn btn-blue-gradient navbar-button text-uppercase btn-sm nav-link"
+           style="margin-top: 6px;">&nbsp; {{ 'COMMON.TRY_FREE' | translate }} &nbsp;
+        </a>
+      </li>
+
+      <li class="nav-item" style="margin-right: 25px;">
+        <button (click)="modalService.open(languageSwitchModal, {size: 'sm'})"
+                class="nav-link nav-link-blue nav-link-clean"
+                id="language-switch"
+                routerLinkActive="active">
+          <img
+            [src]="'../../../../resources/lang/' + languageService.language+  '.png'" style="width: 22px;"
+            alt="language flag">
+
+        </button>
+      </li>
+
+      <!-- DROPDOWN -->
+      <li *ngIf="authService.user" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle "
+           data-toggle="dropdown"
+           id="navbarDropdownMenuLink">
+          <i class="fa fa-user-o" style="font-size: 1.1em;"></i>&nbsp;&nbsp; {{userService.user?.email}}
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/dashboard/dashboard-business"
+             routerLinkActive="subActive">
+            <i class="fa fa-cogs"></i> &nbsp; {{ 'INTRO.MENU.MY_BUSINESS' | translate }}
+          </a>
+          <a class="dropdown-item" routerLink="/dashboard/dashboard-profile"
+             routerLinkActive="subActive">
+            <i class="fa fa-edit"></i> &nbsp; {{ 'INTRO.MENU.PROFILE' | translate }}
+          </a>
+          <div class="dropdown-divider"></div>
+          <a (click)="authService.logout()" class="dropdown-item text-danger" href="#">
+            <i class="fa fa-close"></i> &nbsp; {{ 'INTRO.MENU.LOGOUT' | translate }}
+          </a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+<div [@audienceMenu]="audienceMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+     (mouseleave)="audienceMenuCollapsed = true"
+     *ngIf="navbarService.showMainBar"
+     [ngbCollapse]="audienceMenuCollapsed" class="collapse overlay-menu"
+     id="audienceDropdownMenuLink">
+  <app-menu-audiance></app-menu-audiance>
+</div>
+<div [@audienceMenu]="whatWeKnowMenuCollapsed ? menuStateEnum.CLOSE : menuStateEnum.OPEN"
+     (mouseleave)="whatWeKnowMenuCollapsed = true"
+     *ngIf="navbarService.showMainBar"
+     [ngbCollapse]="whatWeKnowMenuCollapsed"
+     class="collapse overlay-menu" id="whatWeKnowMenuCollapsed">
+  <app-menu-what-we-know></app-menu-what-we-know>
+</div>
+
+
+<ng-template #languageSwitchModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <span *ngFor="let lang of languageService.languages;">
+        <div class="row ">
+          <div class="offset-4 col-8">
+            <a (click)="languageService.setLanguageAndRedirectToUrlLang(lang); d('Cross click')">
+                    <span class="fi flag-circle" style="width: 20px;" [class]="'fi-' + getFlagPostfix(lang)"></span> &nbsp;
+              <span style="position: relative; top: 2px;"> {{languageService.getLabel(lang)}} </span> &nbsp;
+              <i *ngIf="lang == languageService.language" style="position: relative; top: 7px;" class="fas fa-check">
+              </i>
+
+            </a>
+            <br>
+            <br>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</ng-template>
+

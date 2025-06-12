@@ -1,0 +1,48 @@
+.card-item {
+  background-color: white;
+  border-radius: 8px;
+  border-color: rgb(231, 231, 231) !important;
+  border: 1px solid;
+}
+
+.card-item:hover {
+  background: #eff7ff !important;
+}
+
+a,
+a:hover,
+a:active {
+  color: rgb(89, 89, 89);
+  text-decoration: none;
+
+}
+
+.gray-filter {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.gray-bg {
+  background-color: rgb(242, 242, 242);
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.rating {
+  color: rgb(254, 209, 113);
+}
+
+.disabled {
+  opacity: 0.4;
+  color: #777777 !important;
+}
+
+.btn-link-danger {
+  color: #dc3545;
+}
+
+.btn-link-danger:hover {
+  color: #bd2130;
+}

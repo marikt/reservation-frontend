@@ -1,0 +1,56 @@
+.remove-arrow {
+  background-image: none !important;
+}
+
+.dashboard-card-padding {
+  padding: 10px;
+}
+
+.dashboard-inner-card {
+  border: 1px solid #D5D8D9;
+  border-radius: 10px;
+}
+
+.gray-filter {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.icon-border {
+  display: inline-flex; /* Centering the icon horizontally */
+  align-items: center; /* Centering the icon vertically */
+  justify-content: center; /* Centering the icon horizontally */
+  width: 30px; /* Adjust width to desired size */
+  height: 30px; /* Adjust height to desired size */
+  border-radius: 50%; /* Makes the border circular */
+  border: 0.8px solid #DFDFDF; /* Adjust color and thickness of the border */
+  font-size: 18px; /* Adjust icon size */
+  background: white;
+}
+
+
+.add-card-border {
+  border: 1.5px dotted #D5D8D9;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.no-padding {
+ padding: 0px 4px;
+}
+
+.landing-card-no-padding {
+  padding: 0 !important;
+}
+
+.first-letter-upper-case::first-letter {
+  text-transform: uppercase;
+}
+
+
+@media (min-width: 768px) { // md breakpoint in Bootstrap
+  .container-padding {
+    padding-right: 40px !important;
+    padding-left: 15px !important;
+  }
+}

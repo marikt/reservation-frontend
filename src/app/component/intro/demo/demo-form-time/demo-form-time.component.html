@@ -1,0 +1,24 @@
+<label style="position: relative; right: 6px;">{{ label | translate }}</label>
+<br>
+<span *ngFor="let minutes of times">
+        <label [for]="minutes" class="form-check-label"
+               style="position: relative; right: 5px; top: 8px;">
+          <div class="time-label">{{minutes}}</div>
+        </label>
+        <br>
+        <input
+                (ngModelChange)="setCalendarEventTime(minutes)"
+                [ngModel]="selectedTime"
+                [checked]="minutes == selectedTime"
+                [id]="minutes"
+                [name]="minutes"
+                [value]="minutes"
+                class="form-check-input checkbox-lg"
+                style="position: relative; left: 22px;"
+                type="radio">
+        <br>
+        <br>
+</span>
+
+
+

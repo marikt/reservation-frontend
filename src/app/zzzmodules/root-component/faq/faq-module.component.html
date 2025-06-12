@@ -1,0 +1,60 @@
+<div class="row" style="min-height: 100vh;">
+
+  <div [class.col-2]="!bigMenu" [class.col-4]="bigMenu"
+       style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(69,39,79,1) 0%, rgba(47,26,54,1) 100%);">
+
+    <button (click)="bigMenu = !bigMenu" class="btn-link-white btn offset-9 ">
+      <i *ngIf="!bigMenu" class="fas fa-angle-right" style="font-size: 1em;"></i>
+      <i *ngIf="bigMenu" class="fas fa-angle-left" style="font-size: 1em;"></i>
+      <i *ngIf="bigMenu" class="fas fa-angle-left" style="font-size: 1em;"></i>
+    </button>
+
+    <div class="col-9 text-center">
+      <a [routerLink]="userService.user ? '/dashboard/dashboard-landing' : '/home'">
+          <span class="text-white navbar-brand"
+                style="font-family: bariol; font-size: 1.4em; font-weight: 700; margin-top: 15px;">
+             <img alt="Notado Logo" src="../resources/logo-big.png"
+                  style="width:20px; filter: grayscale(100%) invert(100%);"> NOTADO - FAQ
+          </span>
+      </a>
+    </div>
+
+    <br>
+    <br>
+    <div *ngFor="let item of items;" class="">
+
+      <a [routerLink]="'/faq/' + languageService.language + '/' + item.link"
+         class="hideOverflow btn-link-white btn text-left "
+         style="font-size: 0.9em;">
+        <i class="fas fa-circle" style="font-size: 0.5em; position: relative; bottom: 2px;"></i>
+        &nbsp; {{ 'FAQ.' + item.name + '.TITLE' | translate }}
+      </a>
+    </div>
+    <br>
+    <br>
+    <br>
+  </div>
+  <div [class.col-10]="!bigMenu" [class.col-8]="bigMenu">
+    <div class="container">
+      <br>
+      <a [routerLink]="userService.user ? '/dashboard/dashboard-landing' : '/home'" class="form-widget-close">
+      </a>
+
+      <div style="margin-top: 130px;"></div>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
+
+<a href="https://m.me/notadoRezervace" target="_blank"
+   style="position: fixed; bottom: 13px; right: 30px;">
+  <img class="img-fluid rounded-circle messenger-img shadow-on-hover"
+       src="../../../../resources/contact/tomas.jpg"
+       style="">
+  <i class="fab fa-facebook-messenger" style=" font-size: 1.4em; color: #2E9A49; position: relative; top: 22px; right: 13px;"></i>
+</a>
+
+
+

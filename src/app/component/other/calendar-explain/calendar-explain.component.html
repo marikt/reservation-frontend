@@ -1,0 +1,85 @@
+{{'FAQ.FAQ_1' | translate}}
+<br>
+<br>
+
+<div class="row text-left">
+  <div class="col-3 d-none d-md-block ">
+    <div class="text-img-desc"
+         style="position: relative; top: 30px; left: 60px; ">   {{ 'INTRO.GOOGLE_INTEGRATION.IMG_DESC' | translate }}
+    </div>
+    <img
+      src="../../../../resources/demo/arrow.png"
+      alt="arrow"
+      style="width: 80px; position: relative; top: 50px; left: 100px;">
+
+  </div>
+
+  <div class=" col-md-9 col-10 d-none d-md-block">
+    <br>
+    <br>
+    <img class="rounded img-shadow" src="../../../../../resources/faq/calendar.png">
+    <br>
+  </div>
+</div>
+
+<br>
+<br>
+
+
+<div class="row text-left">
+
+  <div class="col-3 d-none d-md-block ">
+    <div class="text-img-desc"
+         style="position: relative; top: 0px; left: 50px; "> {{ 'INTRO.GOOGLE_INTEGRATION.IMG_DESC2' | translate }}
+    </div>
+    <img
+      src="../../../../resources/demo/arrow.png"
+      alt="arrow"
+      style="width: 80px; position: relative; top: 0px; left: 90px;">
+
+  </div>
+
+  <div class=" col-md-6 col-12">
+    <br class="d-none d-md-block">
+    <br class="d-none d-md-block">
+    <br class="d-none d-md-block">
+    <img class="rounded img-shadow" src="../../../../../resources/faq/calendar2.png">
+    <br>
+    <br>
+    <br>
+    <br>
+
+  </div>
+  <div class="col-3  d-none d-md-block">
+    <div class="text-img-desc"
+         style="position: relative; top: 20px; left: 10px; ">   {{ 'INTRO.GOOGLE_INTEGRATION.IMG_DESC3' | translate }}
+    </div>
+    <img
+      src="../../../../resources/demo/arrow-left.png"
+      style="width: 80px; position: relative; top: 20px; right: 20px;">
+
+  </div>
+
+</div>
+
+<ng-template #calendarExpDetail let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <br>
+      <img class="img-border" src="../../../../resources/faq/calendar-expl.png" style="width: 100%; ">
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

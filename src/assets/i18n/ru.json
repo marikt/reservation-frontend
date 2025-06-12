@@ -1,0 +1,915 @@
+{
+  "META": {},
+  "INTRO": {
+    "MENU": {
+      "AUDIENCE": "Для кого наши услуги",
+      "WHAT_WE_KNOW": "Наши предложения",
+      "PRICE": "Цены",
+      "LOGIN": "Войти",
+      "MY_BUSINESS": "Мой бизнес",
+      "PROFILE": "Профиль",
+      "LOGOUT": "Выйти",
+      "BACK_TO_DASHBOARD": "Вернуться к панели управления",
+      "BACK_TO_NOTADO": "Вернуться на notado.cz"
+    },
+    "MENU_AUDIENCE": {
+      "HAIR_CUT": "Стилисты-парикмахеры",
+      "HAIR_CUT_DESC": "Notado облегчит работу Вашим парикмахерам",
+      "SALON": "Массажные и остальные салонов",
+      "SALON_DESC": "Настойте Notado для Вашего салона",
+      "DENTIST": "Стоматологи и врачи",
+      "DENTIST_DESC": "Стоматологам не придётся отвлекаться от своей работы, так как Notado обработает все Ваши телефонные заказы",
+      "CAR": "Автосервисы и велосипедные мастерские",
+      "CAR_DESC": "Notado поможет водителям беспрепятственно заказывать Ваши услуги",
+      "OTHER": "Другие услуги",
+      "OTHER_DESC": "Студии татуировки, йоги и многое другое ...",
+      "YOGA": "Студия йоги",
+      "COURSE": "Для онлайн-сервисов",
+      "DEVICE ": "Устройство"
+    },
+    "WHAT_WE_KNOW_PAGE": {
+      "SIMPLE": "О Notado просто",
+      "SYNC": "Автосинхронизация",
+      "LABEL1": "Notado добавляет в календарь бронирования сделанные Вашими клиентами, в ваш календарь, и в то же время сохраняет все Ваши операции, благодаря синхронизации данных",
+      "LABEL2": "Вы можете вручную добавлять в календарь корпоративные мероприятия, праздники, отпуски по болезни или резервации по телефону. Notado учтёт все эти данные при расчёте доступности Ваших услуг.",
+      "FORM_STYLE": "Индивидуальная форма бронирования Вашего веб-сайта",
+      "LABEL3": "Хотите, чтобы кнопка на вашем сайте и форма бронирования соответствовали Вашему стилю? Это не проблема!",
+      "LABEL4": "Notado дает Вам возможность изменять дизайн кнопок и формы бронирования, чтобы он соответствовал вашим идеям.",
+      "LABEL5": "Также можно настроить форму так, чтобы у Вашего клиента была возможность ввести номер ваучера и / или добавить примечания для своего бронирования."
+    },
+    "TITLE": {
+      "MAIN": "Управление бронированием \n в Google Календарь",
+      "SUB": "Клиенты будут делать заказы на Вашем веб-сайте. Об остальном Вы сможете позаботиться из своего Календаря Google"
+    },
+    "BUTTON_TRY": "Попробуйте бесплатно",
+    "BUTTON_TRY_3": "на 3 месяца",
+    "DEMO_LABEL": "Вот так это будет выглядеть на Вашем сайте",
+    "AUDITION": {
+      "TITLE": "Для кого мы?",
+      "LABEL": "Notado - это система бронирования для малых предприятий, состоящая из 1-30 сотрудников, которые хотят позволить клиентам бронировать свои услуги онлайн."
+    },
+    "WHY_US": {
+      "TITLE1": "Управление всеми резервациями",
+      "TITLE2": "Календарь Google",
+      "MORE": "Я хочу узнать больше >",
+      "RESERVATION_1": "Бронирования \n созданые notado",
+      "RESERVATION_2": "Ваши бронирования \n  отпуска"
+    },
+    "CUSTOMER": {
+      "TITLE1": "Управление клиентами с интеграцией через",
+      "TITLE2": "Google Контакты",
+      "TITLE3": "Notado интегрирован с",
+      "LABEL1": "Автоматически добавлять новых клиентов в контакты",
+      "LABEL2": "Редактирование и добавление сведений о Ваших клиентах",
+      "LABEL3": "Обращение ко всем Вашим клиентам одним письмом",
+      "LABEL4": "Отслеживание метаданных: последнее посещение клиентами, их любимые услуги и частота посещаемости Вашего салона",
+      "IMG1": "Notado отслеживает последнее посещение ваших клиентов, избранные услуги и частоту посещений",
+      "IMG2": "Вы можете редактировать данные своих клиентов и отправлять им сообщение"
+    },
+    "WHAT_WE_KNOW": {
+      "LABEL1": "Поддержка служб с различным часовым лимитом",
+      "LABEL2": "Учитывание перерывов между службами",
+      "LABEL3": "Сочетание бронирования по телефону и онлайн",
+      "LABEL4": "Безлимитное бронирование",
+      "LABEL5": "Ваучерная поддержка",
+      "LABEL6": "Учёт праздников, больничных дней и корпоративных мероприятий",
+      "LABEL8": "Поддержка многих платформ: WordPress, Facebook и др.",
+      "LABEL9": "Индивидуальные часы работы для отдельных сотрудников",
+      "LABEL10": "Настройка формы бронирования в соответствии со стилем Вашего веб-сайта",
+      "LABEL11": "Новые клиенты сохраняются автоматически"
+    },
+    "PRICE": {
+      "LABEL1": "Notado в течение 3 месяцев",
+      "LABEL2": ", в дальнейшем",
+      "LABEL3": "/ ежемесячно",
+      "LABEL4": "Ваш бизнес помогает другим? Расскажите нам, как, и Notado будет для вас полностью бесплатным.",
+      "VALUE": "420 рублей",
+      "FREE": "бесплатно"
+    },
+    "LOOSING_CUSTOMER": {
+      "TITLE": "Хватит терять клиентов!",
+      "LABEL": "Более 50% клиентов предпочитают бронировать онлайн, а не по телефону \n\nNotado может бронировать как онлайн, так и по телефону"
+    },
+    "NOTADO_IS_HELPING": {
+      "TITLE": "Notado помогает",
+      "LABEL": "Ваша компания помогает другим? Например, малоимущим людям? Напишите нам по адресу info@notado.cz, и Notado будет для Вас полностью бесплатным"
+    },
+    "CONTACT": {
+      "CEO": "Генеральный директор",
+      "IC": "ID",
+      "ADDRESS": "Адрес"
+    },
+    "FORM_ADJUSTMENT": {
+      "TITLE": "Форма бронирования, которая адаптируется к Вам",
+      "LABEL1": "Оформить форму бронирования в стиле Вашего сайта",
+      "LABEL2": "Настроить отдельные окна формы бронирования.",
+      "LABEL3": "Создать настраиваемое поле в форме бронирования."
+    },
+    "GOOGLE_INTEGRATION": {
+      "LABEL1": "При регистрации укажите услуги, которые Вы предоставляете, их продолжительность, количество мест, сотрудников и их доступность.",
+      "LABEL2": "Notado создаст кнопку бронирования для копирования на Ваш веб-сайт. \n\nВсего один щелчок, и Notado подключится к Вашему Календарю Google. \n\nГотово!",
+      "LABEL3": "Календари и бизнес-календарь Ваших сотрудников будут автоматически созданы в Вашем Календаре Google. \n\nКогда клиент выполняет бронирование на Вашем веб-сайте, бронирование отображается в календаре выбранных сотрудников, с которых Вы сможете управлять бронированием. Например, если Вы удалите бронирование, клиент получит электронное письмо о том, что резервирование отменено. Вы же имеете возможность указать причину отмены резервации и предложить клиенту другой свободный термин",
+      "LABEL4": "Если один из Ваших сотрудников заболеет или уйдет в отпуск - все, что им нужно сделать, это внести это в свой календарь, и Notado заблокирует возможность бронирования на данный период",
+      "IMG_DESC": "Календари, созданные notadо",
+      "IMG_DESC2": "Бронирование удалено нотадом",
+      "IMG_DESC3": "Указанные Вами выходные дни"
+    },
+    "MANAGE_ON_GOOGLE": {
+      "LABEL1": " Подавляющее большинство систем бронирования - это просто другие календари планирования, с которыми Вам нужно научиться обращаться. \n \n Мы наоборот: мы выбрали лучший календарь на рынке и адаптировали его.",
+      "LABEL2": "Посмотрим правде в глаза: мы выбрали лучший календарь на рынке и адаптировали его."
+    },
+    "PAYMENT": {
+      "LABEL": "Возможность оплаты при бронировании услуг"
+    },
+    "INTEGRATION": {
+      "LABEL": "Интегрируйте с вашими любимыми инструментами",
+      "LABEL2": "Интегрируйте ваши любимые приложения за несколько шагов",
+      "TWILIO": {
+        "DESC": "Популярный инструмент для отправки вашим клиентам не только SMS-уведомлений."
+      },
+      "SMS_MANAGER": {
+        "DESC": "SMS Manager - популярный чешский инструмент для отправки SMS-уведомлений вашим клиентам. В отличие от Twilio, низкая цена на SMS для Чешской и Словацкой республик вас порадует."
+      },
+      "STRIPE": {
+        "DESC": "Подключив notado к приложению Stripe, вы разрешите оплату при бронировании услуги. Stripe позволит вам продвигать свой бизнес с помощью скидок и ваучеров."
+      },
+      "CONTACTS": {
+        "DESC": "Идеальный инструмент для управления клиентами. Вы можете сортировать клиентов по любому типу, писать массовые сообщения или добавлять важную информацию в свой контакт."
+      },
+      "GOOGLE_CALENDAR": {
+        "DESC": "Популярный инструмент для планирования вашего времени, который станет надежной системой бронирования при подключении к нотадо."
+      },
+      "GMAIL": {
+        "DESC": "Отправьте клиенту уведомление по электронной почте о созданном или предстоящем бронировании."
+      },
+      "SLACK": {
+        "DESC": "Если вы работаете в команде, это идеальный инструмент для оповещения всей команды о новых или предстоящих заказах."
+      }
+    },
+    "NOTIFICATION": {
+      "TITLE": "Сообщите клиенту об их бронировании"
+    }
+  },
+  "DEMO": {
+    "TITLE": "Парикмахер в Праге",
+    "TITLE_2": "Идеальная кожа, волосы и ногти? Да!",
+    "MAKE_RESERVATION": "Забронировать",
+    "LABEL2": "Попробуйте нажать.",
+    "S_1": "Маникюр",
+    "S_2": "Педикюр",
+    "S_3": "Стрижка",
+    "W_1": "Анастасия",
+    "W_2": "Роман",
+    "W_3": "Арина",
+    "D_1": "Ногти - это ваше собственное полотно. Даже один цвет поднимает вашу мотивацию, как цветотерапия.",
+    "D_2": "Идеальный сеанс ухода за руками и ногами! Чаевые не включены в стоимость бронирования.",
+    "D_3": "Включает шампунь и обдувку. Цена и время обработки зависят от длины и толщины волос.",
+    "SHOW": "Образец бронирования"
+  },
+  "COMMON": {
+    "TRY_FREE": "Попробовать бесплатно",
+    "REQUIRED": "Пожалуйста, заполните",
+    "BACK": "Назад",
+    "OK": "ОК",
+    "CONTINUE": "Продолжить",
+    "MONDAY": "Понедельник",
+    "TUESDAY": "Вторник",
+    "WEDNESDAY": "Среда",
+    "THURSDAY": "Четверг",
+    "FRIDAY": "Пятница",
+    "SATURDAY": "Суббота",
+    "SUNDAY": "Воскресенье",
+    "OR": "или",
+    "CLOSE": "Закрыто"
+  },
+  "JOIN": {
+    "LABEL1": "Вы вошли в систему.",
+    "LABEL2": "Перейти к моей учетной записи >>",
+    "LABEL3": "Войдите в notado.cz",
+    "PASSWORD_REQ": "Пожалуйста, создайте пароль. (Минимум 5 символов)",
+    "WRONG_EMAIL": "Неверный адрес электронной почты или пароль",
+    "EMAIL_EXISTS": "Аккаунт с этим адресом электронной почты не существует",
+    "LOGIN": "Войти",
+    "PASSWORD_FORGOT": "Я забыл свой пароль",
+    "FILL_EMAIL": "(сначала укажите свой адрес электронной почты)",
+    "OR": "или"
+  },
+  "WIZARD": {
+    "ENTER_URL": "Введите свой веб-адрес",
+    "ENTER_VALID_URL": "Пожалуйста, введите действительный веб-адрес",
+    "URL_ALREADY_EXISTS": "Компания с этим URL уже существует, если это Ваша компания ",
+    "LOGIN": "Войти",
+    "OPENING": "Когда Вы открыты?",
+    "NEXT_SERVICE_FIRST": "Укажите одну из предоставляемых Вами услуг",
+    "NEXT_SERVICE": "Укажите другую услугу, которую Вы предоставляете",
+    "SERVICE_NO_OTHER": "Не предоставляю другие услуги",
+    "SERVICE_DURATION": "Укажите продолжительность обслуживания",
+    "HOUR": "часы",
+    "MINUTE": "минуты",
+    "SERVICE_IMAGE": "Добавить иллюстрацию к услуге",
+    "SERVICE_DIFF_IMAGE": "Я хочу загрузить другое изображение.",
+    "CHOOSE_IMAGE": "Выберите фото из Ваших файлов",
+    "CHOOSE_IMAGE_FROM_GALLERY": "Найти изображение в галерее Notado (поиск на английском языке)",
+    "EDIT_IMAGE": "Редактировать изображение службы",
+    "ADD_WORKER_FIRST": "Укажите сотрудника",
+    "ADD_WORKER": "Укажите ещё одного сотрудника",
+    "ADD_YOURSELF": "Если Вы также предоставляете услуги в своем бизнесе, добавьте себя.",
+    "DONT_HAVE_OTHER_WORKER": "У меня больше нет сотрудников",
+    "EMAIL_EXISTS": "Аккаунт с этим адресом электронной почты уже существует.",
+    "JOIN_TITLE": "Последним этапом создайте Вашу учётную запись",
+    "CREATE_ACCOUNT": "Создать учетную запись",
+    "LICENSE": "Условия использования"
+  },
+  "AUDIENCE": {
+    "RESERVATION_SYSTEM": "Система бронирования для",
+    "SETTING_EXAMPLE": "Пример настроек Notado для",
+    "PROFESSION": {
+      "HAIR": {
+        "LABEL": "hairdressers and barbershops",
+        "DESC": "Notado is an online booking system designed for hairdressers and barbershops. \n \n Ladies' cut, men's cut, shaving, all of these services will be offered to your clients for online booking from your website.",
+        "DESC1": "If you as a barber had website in 2000, it was a rather exception. Today it is taken for granted and a salon without a website and customer reviews looks suspicious. \n \nIn 2022 a hair salon or barbershop allowing online booking is rather an exception ..... But over 50% of customers prefer this option and this trend is growing every day. \n \n Customer wants book his haircut appointment on the way home from work or directly at the office, where telephoning is quite unsuitable. ",
+        "LABEL2": "Keep in touch with the customer",
+        "DESC2": "The booking system is integrated with google contacts. Your customers will be automatically saved. \n \n You will have an overview of how often they visit the company and what their favorite services are. \n \nYou can notify all or selected customers for existing events in their business. \n ",
+        "LABEL3": "Payment when booking the service",
+        "DESC3": "You've just finished a beautiful hairstyle and you need to let the client know it's time to pay. \" How much will it be? \"\" Are you accepting card? \"Meanwhile, another client is stepping on your back. The payment procedure may have been resolved ain a few clicks long ago. \n \n Does the client cancel your reservation and want the money back? We can revert the payment in order. \n\n Do you want to promote your business with a voucher and discounts? No problem we can do it all. "
+      },
+      "COURSE": {
+        "LABEL": "online courses",
+        "DESC": "",
+        "DESC1": "\n \n Online courses have become lately extremely popular, one of the reasons is that its so simple - you don't have to go anywhere, you just need a phone or a laptop. \n \n Let's make it even easier - let clients book your courses directly from your site. ",
+        "LABEL2": "Don't lose touch with your customer",
+        "DESC2": "The customer will be pleasantly surprised if you remember him after a year. Notado will save the customer to your Google Contacts under your tag. \n \nYou will know what courses he has attended and you can add notes to specific customer. ",
+        "LABEL3": "\n \n Payment when booking a course",
+        "DESC3": "Online payment during booking is a matter of course. \n \n Notado will also help you promote your business by supporting discounts and vouchers."
+      },
+      "DEVICE": {
+        "LABEL": "whirlpools, saunas and equipment",
+        "DESC": "",
+        "DESC1": "\n \n You run sauna studio, whirlpool or other facilities and you don't want to waste time making phone reservations. Leave your online booking to us. \n \nIs your business specific and need additional information about the client? Set your custom fields in the booking form. We will save all this information directly in the created reservation. ",
+        "LABEL2": "Managing your customers",
+        "DESC2": "We will automatically add your customers to your contacts under the tag of your choice. \n \n Do you want to write to one or all of them at once? No problem.",
+        "LABEL3": "\n \n Payment during booking",
+        "DESC3": "Save both your and your customers' time by making a payment during the booking process. \n \nYou want to promote your business with discounts or coupons? Do it in notado in a few clicks."
+      },
+      "CAR": {
+        "LABEL": "car repair shops and bicycle repair shops",
+        "DESC": "General diagnostics, oil change or tyre check, allow your clients to book all these services online from your site.",
+        "DESC1": "The phone rings, you drop everything to answer the phone. A client wants to book an oil change. \n\n Use your time efficiently and leave the reservation to us. \n \n Do you want to know what type of car, how old or other details? Customize your booking form in few clicks.",
+        "LABEL2": "Remember your customers",
+        "DESC2": "The booking system is integrated with google contacts. Your customers will be automatically saved in your contacts. \n\n You will have an overview of how often they visit your garage and what their favorite services are. \n\n You can add notifications like what type of car customer own. You can notify all or selected customers. \n All that from your mobile. ",
+        "LABEL3": "Payment when booking the service",
+        "DESC3": "Did you know that if a client pays during a reservation, the probability of canceling that reservation is drastically reduced? \n \n The client has changed his mind and wants his money back? You can revert the payment in one click. \n \n Do you want to promote your business with a voucher and discounts? It's not a problem we can do it all. "
+      },
+      "YOGA": {
+        "LABEL": "yoga studies and sports activities",
+        "DESC": "Reservation system for yoga, karate, judo and other sports activities.",
+        "DESC1": "You have just finished a yoga class and you have 3 missed calls on your phone - new clients wanted to book. When you call them back, they have already found another yoga studio a few blocks away. Instead of processing telephone bookings, you can focus on your business. \n \n Do you want to know how advanced the client is, how old he or she is and other information? Set your own custom fields in the booking form. ",
+        "LABEL2": "Keep in touch with your client",
+        "DESC2": "The customer relationship is extremely important in your industry. Notado will remember all your clients. \n \n You can write to them with a single click from your mobile phone.",
+        "LABEL3": "Leave payments to us",
+        "DESC3": "One-time payment or regular monthly / weekly payments? We can do all that. \n \n Do you want to promote your studio with discounts or vouchers? No problem."
+      },
+      "DOCTOR": {
+        "LABEL": "dentists and doctors",
+        "DESC": "Thanks to Notad, you won't have to deal with phone reservations when you're prescribing.",
+        "DESC1": "\n \nYou know it: You are in the office, you have a patient and your phone is constantly rumbling on your desk. You don't know if it's urgent so you'd better pick it up ... \n \n Google Calendar is the most popular tool for managing reservations and appointments among dentists and healthcare professionals. You can take this management to the next level and automate significant part of your work",
+        "LABEL2": "Automatic management of your patients",
+        "DESC2": "Your patients will be automatically saved to your Google Contacts. \n\n You can send them a message or add an important note from your mobile phone with a single click. \n\n Adding important notest to them or sorting them under specific tags.",
+        "LABEL3": "\n \n Payment on Booking",
+        "DESC3": "Instead of wasting time processing the payment, leave it to us, you can pay full attention to your patient instead. \n \n The client has canceled your reservation and wants a refund? No problem."
+      },
+      "OTHER": {
+        "LABEL": "services, experiences and entertainment",
+        "DESC": "",
+        "DESC1": "\nAre you running a VR room, escape room, tourist guide or fixing electrical appliance? Allow your customers to book your services online.",
+        "LABEL2": "Managing your customers",
+        "DESC2": "Your customers will be automatically saved to your contacts. \n \n You can send them a message or add an important note to them with a single click.",
+        "LABEL3": "\n Payment on booking",
+        "DESC3": "Instead of wasting time processing the payment, leave it to us, you can devote yourself fully to your business instead. \n \n The client has canceled your reservation and wants a refund? Do it in single click."
+      },
+      "SALON": {
+        "LABEL": "massage and beauty salons",
+        "DESC": "Do you offer massages, manicures or makeup? Allow your clients to book these services online from your website.",
+        "DESC1": "If a massage or beauty salon had a website in 2000, it was a rather exception. Today it is taken for granted and a salon without a website and customer reviews looks suspicious. \n \nIn 2022 a massage or beauty salon allowing online booking is rather a exception ..... But over 50% of customers prefer this option and this trend is growing every day. \n \n Today, the customer does not find the time to sit down and call all massages in the area - he/she will book massage on the way from work or directly at the office, where calls are often out of the question. ",
+        "LABEL2": "Keep track of all your clients",
+        "DESC2": "Notado automatically saves new customers to your contacts. It remembers how often they visit and what services they prefer. \n \n You have the option to add a note to the customer or send a message to them with a single click.",
+        "LABEL3": "We will make payments for you",
+        "DESC3": "You've just completed a 2-hour relaxing massage with your client, and now the harsh reality is coming up: \" What do I owe you? \", \" Are you accepting a card? \"Let's change it and allow your client to pay when booking. \n \n Your client has canceled your reservation and wants your money back? Revert the payment in few clicks. \n \n Do you want to promote your business with a voucher and discounts? It's not a problem we can do it all. "
+      },
+      "LABEL4": "More than 7 000 000 businesses",
+      "DESC4": "Google Calendar is by far the best tool on the market for online booking management and job planning. That's why more than 7,000,000 businesses around the world use it every day. \n \n Notado is a powerful extension to the Google Calendar that use all great features of this tool and creates a comprehensive reservation system. "
+    }
+  },
+  "MENU_WHAT_WE_KNOW": {
+    "GOOGLE": "Управление бронированием в Календаре Google",
+    "GOOGLE_DESC": "Узнайте подробности",
+    "RESERVATION_CONFIG": "Конфигурация формы бронирования",
+    "RESERVATION_CONFIG_DESC": "Настройте форму бронирования в соответствии со своим стилем",
+    "HOW_IT_WORKS": "Как работает Notado",
+    "HOW_IT_WORKS_DESC": "Узнайте, как настроить свои параметры",
+    "FAQ": "FAQ",
+    "FAQ_DESC": "Мы отвечаем на ваши наиболее часто задаваемые вопросы",
+    "CUSTOMER": "Управление клиентами",
+    "CUSTOMER_DESC": "Узнайте предпочтения своих клиентов",
+    "INTEGRATE": "Интеграция"
+  },
+  "DASHBOARD": {
+    "COMMON": {
+      "DONT_DELETE": "Не удалять",
+      "DELETE": "Удалить",
+      "CANCEL": "Отменить",
+      "ADD_IMAGE": "Загрузить изображение",
+      "SELECT_IMG": "Выберите фото из Ваших файлов",
+      "SELECT_IMG_FROM_GALLERY": "Найти изображение в галерее Notado (поиск на английском языке)",
+      "SAVE": "Сохранить"
+    },
+    "BUTTON": {
+      "WHAT_PLATFORM": "На какой платформе у Вас есть веб-сайт",
+      "OTHER_PLATFORM": "другая платформа",
+      "OTHER_PLATFORM_PAGE": "Создайте новую кнопку на своем веб-сайте, скопировав следующую ссылку",
+      "CREATE_BUTTON": {
+        "OWN_WEB": "У меня есть собственный веб-сайт",
+        "I_WANT_DESIGN": "и я хочу создать стильную кнопку бронирования",
+        "CREATE_BUTTON": "создать кнопку",
+        "I_USE_PLATFORM": "Мой сайт размещен на платформе",
+        "OTHER": "или другое ...",
+        "INTEGRATE_WITH_PLATFORM": "Интегрировать с платформой"
+      },
+      "CUSTOM": {
+        "THIS_HOW_IT_LOOKS": "Вот как будет выглядеть Ваша кнопка",
+        "DO_YOU_LIKE_IT": "Вам это нравится или Вы хотите отредактировать?",
+        "BUTTON_COLOR": "Цвет кнопки",
+        "TEXT_COLOR": "Цвет текста",
+        "EDGE": "Края кнопки",
+        "BUTTON_LABEL": "Текст кнопки",
+        "BUTTON_CODE": "Ссылка кнопки для копирования на Ваш сайт",
+        "COPY_CODE": "Копировать ссылку",
+        "ORDER": "Книга",
+        "HELP1": "Нравится ли вам дизайн вашей кнопки? Отлично! Теперь скопируйте ссылку и вставьте ее на свой сайт.",
+        "HELP2": "Все еще не знаете, что делать? Не волнуйтесь! Если у Вас есть кто-то, кто создал для Вас веб-сайт, свяжитесь с ним и отправьте им ссылку на Вашу кнопку. Если у Вас нет такого человека, свяжитесь с нашей командой и мы будем рады помочь Вам "
+      },
+      "FACEBOOK": {
+        "IF_YOU_HAVE": "Если у Вас есть страница в Facebook, выполните следующие действия",
+        "STEP1": "На странице Вашей компании в Facebook нажмите",
+        "STEP2": "Выбрать тип из меню кнопок",
+        "STEP3": "На следующей странице выберите",
+        "STEP4": "Вставьте ссылку ниже"
+      },
+      "WIX": {
+        "IF_YOU_HAVE": "Если у Вас есть свой веб-сайт на платформе wix, выполните следующие действия",
+        "STEP1A": "Перейдите на свой сайт",
+        "STEP1B": "и войдите в свою учётную запись",
+        "STEP2": "Войдите в раздел редактирования Вашего сайта",
+        "STEP3": "Добавьте новую кнопку на свой веб-сайт, используя левое вертикальное меню",
+        "STEP4": "Добавьте ссылку ниже к Вашей вновь созданной кнопке"
+      },
+      "WORDPRESS": {
+        "IF_YOU_HAVE": "Если у Вас есть свой веб-сайт в wordpress, выполните следующие действия",
+        "STEP1A": "Перейдите на свой сайт",
+        "STEP1B": "и войдите в свою учётную запись",
+        "STEP2": "Войдите в раздел редактирования Вашего сайта",
+        "STEP3": "Используйте кнопку \"плюс\" (вверху), чтобы добавить новую кнопку на свой сайт.",
+        "STEP4": "Добавьте ссылку ниже к Вашей вновь созданной кнопке"
+      },
+      "GOOD_WORK": ".... готово. Отличная работа!"
+    },
+    "BUSINESS": {
+      "TITLE": "Предприятие",
+      "URL": "веб-адрес Вашей компании",
+      "VALID_URL": "Пожалуйста, введите действительный веб-адрес",
+      "RESERVATION_URL": "адрес для создания резервирования",
+      "CHANGED_URL": "Если Вы уже добавили кнопку бронирования на свой веб-сайт, не забудьте изменить новый адрес бронирования",
+      "VOUCHER": "Я использую ваучеры",
+      "VOUCHER_LABEL": "установите флажок, чтобы разрешить клиентам вводить код ваучера",
+      "OPENING_HRS": "Часы работы",
+      "CALENDAR_CONNECT_INFO": "Notado создаст календарь для каждого сотрудника в Вашем Календаре Google",
+      "CALENDAR_ENTER": "Войти в календарь"
+    },
+    "CUSTOMER": {
+      "TITLE": "Клиент",
+      "CALENDAR_CONNECT": "Notado должен быть связан с Вашим Календарем Google для этой настройки",
+      "SYNC1": "Синхронизировать Notado с",
+      "SYNC2": "Google Контакты",
+      "SYNC_LABEL": "при установленном флажке каждый новый клиент будет автоматически добавляться в Ваши контакты",
+      "TAG": "Название тега",
+      "TAG_LABEL": "Маркировка позволяет отличать Ваших клиентов от других контактов",
+      "LAST_VISIT": "Последнее посещение",
+      "VISIT_COUNT": "Вашу фирму посетили",
+      "TIMES": "раз",
+      "INFO": "Notado будет автоматически добавлять новых клиентов в Ваши контакты под выбранным вами тегом. Он будет хранить информацию об услугах, которые они бронируют, и о том, как часто они бронируют"
+    },
+    "FEEDBACK": {
+      "THANKS": "Спасибо!",
+      "HOW_ARE_YOU_SATISFIED": "Насколько вас устраивает Notado?",
+      "GIVE_US_FEEDBACK": "Поделитесь с нами своими комментариями и идеями.",
+      "SEND": "Отправить"
+    },
+    "FORM_WINDOW": {
+      "SET_WINDOWS": "Установить отдельные окна формы",
+      "ADJUST_WINDOW": "Окно редактирования формы:",
+      "WINDOW_TITLE": "Заголовок окна",
+      "ADD_FORM": "Добавить в форму",
+      "REMOVE_FORM": "Удалить из формы",
+      "ADD_PHONE": "Добавить телефон",
+      "REMOVE_PHONE": "Удалить телефон",
+      "SERVICE_DURATION_HIDE": "Скрыть продолжительность обслуживания",
+      "SERVICE_DURATION_SHOW": "Показать продолжительность обслуживания",
+      "SERVICE_PRICE_HIDE": "Скрыть стоимость услуги",
+      "SERVICE_PRICE_SHOW": "Показать стоимость услуги",
+      "CHANGE_CURRENCY": "Изменить валюту",
+      "ADD_PAYMENT": "Добавить платеж",
+      "REMOVE_PAYMENT": "Удалить платеж",
+      "PAYMENT_MANDATORY": "Оплата обязательна"
+    },
+    "FORM_ADJUSTMENT": {
+      "LABEL": "Настройте форму в соответствии со стилем Вашего веб-сайта.",
+      "RESERVATION": "Бронирование",
+      "BUTTON_COLOR": "Цвет кнопки",
+      "FORM_COLOR": "Цвет формы",
+      "BUTTON_TEXT_COLOR": "Цвет текста кнопки",
+      "TEXT_COLOR": "Цвет текста",
+      "EDGE": "Края кнопки",
+      "BACKGROUND_IMAGE_SELECT": "Выбрать фоновое изображение",
+      "BACKGROUND_IMAGE": "Пользовательское изображение",
+      "BACKGROUND_IMAGE_WEB": "Ваш веб-сайт в качестве фона",
+      "BACKGROUND_COLOR": "Цвет фона",
+      "ADD_IMAGE": "Загрузить фоновое изображение для формы бронирования",
+      "SELECT_IMAGE": "Выберите изображение из Ваших файлов",
+      "ADD_IMAGE_FROM_GALLERY": "Найти изображение в галерее Notado (поиск на английском языке)",
+      "GALLERY": "Галерея",
+      "CUSTOM_DESIGN": "Индивидуальный дизайн"
+    },
+    "IMG": {
+      "SERVICE_NAME": "Название службы",
+      "SEARCH": "Поиск"
+    },
+    "LANDING": {
+      "TITLE": "Три шага и всё!",
+      "TITLE1A": "Бизнес",
+      "TITLE1B": "полностью установлено",
+      "FOLLOW_STEPS": "Чтобы завершить настройку, выполните следующие действия:"
+    },
+    "EMAIL": {
+      "TITLE": "Настройки текста электронной почты & cmc",
+      "CUSTOMER_EMAIL": "При бронировании Ваш клиент получит следующее электронное email:",
+      "CUSTOMER_SMS": "При бронировании Ваш клиент получит следующее электронное sms:",
+      "KEY_WORDS": "Ключевые слова:",
+      "WILL_BE_REPLACED": "будут заменены фактическими значениями. Введите эти ключевые слова без диакритических знаков.",
+      "HOW_TO_SET": "Узнайте, как настроить оповещения о бронировании в",
+      "FAQ": "FAQ: 10. Настройки уведомлений о событиях."
+    },
+    "3STEPS": {
+      "SET_BUSINESS": "Установить бизнес",
+      "BUSINESS_CONNECT": "Подключите свой бизнес \nс Календарем Google",
+      "ADD_BUTTON": "Добавить кнопку бронирования \nна свой сайт"
+    },
+    "SERVICE": {
+      "TITLE": "Услуги",
+      "ADD_SERVICE": "Добавить службу"
+    },
+    "SERVICE_ITEM": {
+      "TITLE": "Сведения о службе",
+      "INDIVIDUAL": "Индивидуальное обслуживание",
+      "INDIVIDUAL_LABEL": "пример: маникюр",
+      "MULTIPLE": "Групповая услуга",
+      "MULTIPLE_LABEL": "пример: занятия йогой",
+      "MAX_CAPACITY": "Максимальная пропускная способность",
+      "DEVICE_COUNT": "Количество устройств",
+      "PEOPLE": "люди",
+      "SERVICE_NAME": "Название службы",
+      "SERVICE_DURATION": "Продолжительность обслуживания",
+      "HOURS": "часы",
+      "MINUTES": "минуты",
+      "PAUSE": "Перерыв между службами",
+      "PRICE": "Цена",
+      "WORKERS": "Сотрудники, предоставляющие услугу",
+      "TURN_OFF": "Включение / выключение услуги",
+      "ACTIVE": "Активно",
+      "VISIBLE": "Услуга отображается клиентам",
+      "NOT_VISIBLE": "услуга не отображается клиентам",
+      "DELETE": "Удалить службу",
+      "DELETE_CONFIRM": "Вы уверены, что хотите удалить службу?",
+      "ADD_IMAGE": "Загрузить иллюстрацию службы",
+      "TYPE_LABEL": "Тип услуги",
+      "CALENDAR_ID_TOOLTIP": "Идентификатор календаря, в который вы добавите свои курсы.",
+      "SERVICE_EVENT_NAME": "Название события в календаре",
+      "SERVICE_EVENT_NAME_TOOLTIP": "В календаре Google создайте событие / события для этого курса. Notado во время бронирования будет искать событие по названию, которое вы здесь ввели.",
+      "TYPE": {
+        "APPOINTMENT": "Назначение",
+        "APPOINTMENT_LABEL": "(массаж, стрижка и т. Д.)",
+        "COURSE": "Курс",
+        "COURSE_LABEL": "(йога, курс рисования)",
+        "DEVICE ": "Устройство",
+        "DEVICE_LABEL": "(джакузи, сауна)"
+      }
+    },
+    "SERVICE_GROUP": {
+      "TITLE": "Группы услуг",
+      "ADD_GROUP": "Добавить группу",
+      "ADD_TO_FORM": "Добавить в форму бронирования",
+      "ADD_TO_FORM_LABEL": "отметьте, чтобы добавить \"группу услуг\" в Вашу форму",
+      "INFO": "Создание групп Ваших услуг упрощает управление, если Вы предлагаете большее количество услуг. Например, если Вы предлагаете ряд массажных и косметических услуг, рекомендуется разделить эти услуги на 2 группы: массаж и косметика. При этом Ваш клиент не будет перегружен формой бронирования "
+    },
+    "SERVICE_GROUP_ITEM": {
+      "TITLE": "Сведения о группе услуг",
+      "GROUP_NAME": "Название группы услуг",
+      "INTO_GROUP_BELONG": "В группу входят следующие службы:",
+      "DELETE": "Удалить группу",
+      "ADD_IMAGE": "Загрузить иллюстрацию группы услуг",
+      "DELETE_CONFIRM": "Вы уверены, что хотите удалить группу?"
+    },
+    "WORKER": {
+      "TITLE": "Сотрудники",
+      "ADD_WORKER": "Добавить сотрудника",
+      "ADD_YOUR_SELF": "Если Вы также предоставляете услуги в своей компании, добавьте себя"
+    },
+    "WORKER_ITEM": {
+      "NAME": "Имя сотрудника",
+      "EMAIL": "Электронный адрес сотрудника",
+      "EMAIL_LABEL": "введите для отправки уведомлений о бронировании",
+      "SERVICES": "Услуги предоставлены",
+      "TIME_SCHEDULE": "Параметры расписания сотрудников",
+      "TIME_SCHEDULE_SAME": "График сотрудников такой же, как и часы работы",
+      "TIME_SCHEDULE_DIFF": "График работы сотрудников специфичен",
+      "SHOW": "видно клиентам",
+      "NOT_SHOW": "невидимо для клиентов",
+      "DELETE": "Удалить сотрудника",
+      "ADD_IMAGE": "Загрузить изображение сотрудника",
+      "ADD_IMAGE_HERE": "Перетащите изображение сюда",
+      "OR": "или выберите",
+      "FROM_YOUR_FILE": "из Ваших файлов",
+      "DO_DELETE": "Вы уверены, что хотите удалить сотрудников?",
+      "NON_WORKING_DAY": "Выходной"
+    },
+    "FAQ": {
+      "HELP1": "Не нашли ответа на свой вопрос? Не отчаивайтесь, отправьте свой вопрос по адресу",
+      "HELP2": "или позвоните нам по телефону"
+    },
+    "GOOGLE_CALENDAR": {
+      "CONNECT_WITH": "Свяжите бронирования с Календарем Google.",
+      "CONNECT": "Подключиться",
+      "CONNECTED": "Подключено",
+      "RESET": "Сброс",
+      "REALLY": "Вы действительно хотите сбросить соединение с календарем?",
+      "INFO": "Это позволит Вам подключиться к другому календарю, но удалит существующие бронирования!"
+    },
+    "MENU": {
+      "BUSINESS_TITLE": "Бизнес",
+      "BUSINESS": "Настройки предприятия",
+      "BUSINESS_DESC": "Свяжите свою компанию с календарем, настройте часы работы и многое другое",
+      "SERVICE": "Услуги",
+      "SERVICE_DESC": "Настройте отдельные услуги, предоставляемые Вашим бизнесом",
+      "SERVICE_GROUP": "Группы услуг",
+      "SERVICE_GROUP_DESC": "Организуйте свои службы в группы",
+      "WORKER": "Сотрудники",
+      "WORKER_DESC": "Настройте отдельных сотрудников в своей компании",
+      "FORM_TITLE": "Форма бронирования",
+      "FORM_STYLE": "Стиль формы",
+      "FORM_STYLE_DESC": "Отрегулируйте стиль Вашей формы, чтобы он соответствовал стилю Вашего веб-сайта",
+      "FORM_WINDOW": " Окна форм ",
+      "FORM_WINDOW_DESC": "Добавить номер телефона, включение / выключение ваучера и другие настройки",
+      "FORM_PAYMENT": "Настройки оплаты",
+      "FORM_PAYMENT_DESC": "Размещение фотографий Ваших клиентов в форме бронирования",
+      "SHOW_ME_FORM": "Покажи мне форму для",
+      "SUBSCRIPTION": "Подписка",
+      "OTHER_FUNCTION": "Другие функции и настройки",
+      "CUSTOMER": "Клиенты",
+      "CUSTOMER_DESC": "Настройте интеграцию с Google Контактами и следите за своими клиентами",
+      "EMAIL": "Текст электронной почты & cmc",
+      "EMAIL_DESC": "Задайте текст сообщения,который получат Ваши клиенты после бронирования услуги",
+      "ADD_BUTTON": "Добавить кнопку на свой веб-сайт",
+      "ADD_BUTTON_DESC": "Добавьте запасную кнопку бронирования на свой сайт",
+      "FAQ": "FAQ",
+      "FAQ_DESC": "Мы отвечаем на Ваши наиболее часто задаваемые вопросы",
+      "CONTACT": "Контакт",
+      "CONTACT_DESC": "Свяжитесь с нами",
+      "FEEDBACK": "Оцените нас",
+      "FEEDBACK_DESC": "Сообщите нам, что вы хотели бы улучшить в Notado",
+      "DASHBOARD": "Панель управления",
+      "BUSINESS_MENU": "Бизнес",
+      "RESERVATION_FORM": "Форма бронирования",
+      "OTHER": "Другое",
+      "NOTIFICATION": "Уведомление",
+      "INTEGRATE": "Интегрировать"
+    },
+    "PROFILE": {
+      "TITLE": "Профиль пользователя",
+      "NAME": "Имя и фамилия",
+      "EMAIL": "Электронная почта",
+      "LANGUAGE": "Язык",
+      "CHANGE_PASSWORD": "Изменить пароль",
+      "PAYMENT": "Управление платежами",
+      "PAYMENT_INFO": "Изменить / отменить подписку и историю платежей.",
+      "LOGOUT": "Выйти",
+      "MY_PROFILE": "Мой профиль"
+    },
+    "ACCOUNT_VALIDITY": {
+      "LABEL_1": "Срок действия Вашей учетной записи истек",
+      "LABEL_2": "Оформить подписку"
+    },
+    "PAYMENT": {
+      "TITLE": "Настройки оплаты при создании бронирования",
+      "INFO": "Разрешить клиентам платить напрямую при бронировании. Notado интегрирован с сервисом stripe.com.",
+      "STEP": "Шаг",
+      "STEP1": "Начните с создания учетной записи на этой платформе (обслуживание учетной записи бесплатное.)",
+      "STEP2": "После создания учетной записи stripe.com скопируйте сюда необходимые ключи, чтобы подключить Notado к stripe.com. (В целях безопасности Notado будет отображать только часть \"Секретный ключ\".)",
+      "STEP3": "Создайте продукт на strip.com для каждой из Ваших услуг. Скопируйте сюда код цены.",
+      "ADD_PAYMENT": "Добавить способ оплаты в форму бронирования",
+      "MANDATORY": "Оплата при бронировании обязательна",
+      "MANDATORY_DESC": "Клиент не может создать бронирование, не заплатив за него",
+      "INSERT_KEY": "API ключи Stripe",
+      "INSERT_SERVICE_PRICE": "Код цены услуги Stripe",
+      "STEP4": "Настройте внешний вид платежного портала в соответствии со стилем Вашего сайта",
+      "TOUR": "Как настроить оплату"
+    },
+    "INTEGRATION": {
+      "TITLE": "Подключите Notado к вашим любимым инструментам",
+      "CALENDAR": {
+        "TITLE": "Интеграция с GoogleCalendar",
+        "DESCRIPTION": "Интеграция с GoogleCalendar обязательна"
+      },
+      "CONTACT": {
+        "TITLE": "Интеграция с GoogleContacts",
+        "DESCRIPTION": "Интеграция с GoogleContact для простого управления вашими клиентами"
+      },
+      "STRIPE": {
+        "TITLE": "Интеграция с Stripe",
+        "DESCRIPTION": "Разрешить клиенту оплатить в форме бронирования"
+      },
+      "TWILIO": {
+        "TITLE": "Интеграция с Twilio",
+        "DESCRIPTION": "Сообщите клиенту о предстоящем бронировании по SMS"
+      },
+      "SMS_MANAGER": {
+        "TITLE": "Интеграция с SMS Manager",
+        "DESCRIPTION": "Чешский инструмент для уведомления вашего клиента о предстоящем бронировании через SMS"
+      },
+      "SLACK": {
+        "TITLE": "Интеграция со Slack",
+        "DESCRIPTION": "Сообщите своей команде о предстоящем резервировании на канале Slack"
+      },
+      "GMAIL": {
+        "TITLE": "Интеграция с Gmail",
+        "DESCRIPTION": "Уведомить клиента о предстоящем бронировании по электронной почте"
+      },
+      "ENTER_SETTINGS": "Настройки подключения",
+      "TURN_OFF": "Отключено",
+      "DONE": "Подключено",
+      "TODO": "Интеграция не настроена",
+      "VISIT_SITE": "Посетить веб-сайт",
+      "CONNECT_BUTTON": "Подключиться",
+      "DISCONNECT_BUTTON": "Отключить"
+    },
+    "NOTIFICATION": {
+      "TITLE": "Уведомление о предстоящих бронированиях",
+      "ADD_NOTIFICATION": "Добавить уведомление"
+    }
+  },
+  "PAYMENT": {
+    "TYPE": "Выберите тип подписки",
+    "LABEL1": "Подписку можно изменить или отменить в любое время",
+    "LABEL2": "Платите безопасно. Мы не храним Ваши платежные реквизиты и не отправляем их через наши серверы. Платежи обрабатываются напрямую посредником:",
+    "MONTHLY": "Ежемесячно",
+    "MONTHLY_PRICE": "486 ₽ / месяц",
+    "3MONTH": "3 месяца",
+    "3MONTH_PRICE": "451 ₽ / месяц",
+    "YEARLY": "Годовой",
+    "YEARLY_PRICE": "416 ₽ / месяц",
+    "SELECT": "Выбрать"
+  },
+  "FAQ": {
+    "FAQ_1_TITLE": "1. Как Notado работает с моим Календарем Google?",
+    "FAQ_1": "После того, как вы свяжете Notado с Календарем Google, Notado создаст календарь для каждого из Ваших сотрудников, а также бизнес-календарь для входа в корпоративные мероприятия.\n\n И Вы, и Notado будете вносить события в эти календари. В Вашем случае это включает в себя ввод праздников, больничных и телефонных бронирований. В случае Notado это включает онлайн-бронирования, сделанные Вашими клиентами. \n\nNotado читает календарные события всех сотрудников и компании перед каждым бронированием. На основе этой информации Notado рассчитывает возможное время бронирования для каждой услуги и персонала",
+    "FAQ_2_TITLE": "2. Где я могу найти детали ваучера клиентов и их комментарии?",
+    "FAQ_2": "Щелкните мероприятие в своем Календаре Google. Ваучер и примечание клиента обведены на изображении ниже.",
+    "FAQ_3_TITLE": "3. Как совместить телефонное и электронное бронирование?",
+    "FAQ_3": "Если клиент звонит Вам, чтобы сделать заказ, создайте бронирование в календаре Google соответствующего сотрудника. Notado получит автоматическое уведомление и учтет это бронирование при последующих электронных бронированиях. \n\n Если клиент хочет заказать групповую услугу для существующего бронирования, Вы можете добавить этого клиента в качестве другого участника. Notado снова выполнит автоматическую синхронизацию. (Пример на картинке показывает добавление Евгения на уроке йоги) ",
+    "FAQ_4_TITLE": "4. Как предоставить сотрудникам отпуск, отпуск по болезни или другой отпуск?",
+    "FAQ_4": "Создайте отпуск / болезнь в своем Календаре Google (название события не имеет значения) для соответствующего сотрудника. Для этого повториет все шаги, как показано на изображении ниже. Notado узнает об этом автоматически. ",
+    "FAQ_5_TITLE": "5. Как разрешить сотрудникам управлять бронированием?",
+    "FAQ_5": "Чтобы сотрудник мог управлять бронированием, он должен иметь учетную запись Google. Затем Вам нужно предоставить доступ к Календарю Google своему сотруднику. Сотрудник увидит календарь в своей учетной записи Google и сможет для создания и редактирования отдельных событий. \n\nТаким образом, он сможет предоставить себе или своим коллегам отпуск по болезни, а также изменить или удалить существующие бронирования.",
+    "FAQ_6_TITLE": "6. Как мне указать конкретные дни, когда моя компания закрыта?",
+    "FAQ_6": "Внесите в календарь всей компании события, которые касаются всех Ваших сотрудников (например, обновление бизнеса). Notado не позволит вам делать какие-либо бронирования в этот период.",
+    "FAQ_7_TITLE": "7. Как перенести или удалить бронирование?",
+    "FAQ_7": "Просто перенесите или удалите бронирование в своем Календаре Google. При редактировании бронирований Календарь Google позволяет добавлять примечания о причинах изменения. Это примечание будет автоматически отправлено вашему клиенту вместе с деталями бронирования. ",
+    "FAQ_8_TITLE": "8. Что делать, если у меня ненормированный рабочий день?",
+    "FAQ_8": "Предположим, Вы берете детей на тренировку по футболу каждый вторник в 15:00. Создайте повторяющееся мероприятие \"Дети - футбол\" в своем Календаре Google во вторник (название мероприятия не имеет значения). Notado будет знать, что в это время Вы заняты, и не позволит делать какие-либо бронирования.",
+    "FAQ_9_TITLE": "9. Как отправить своему клиенту сообщение?",
+    "FAQ_9": "Самый быстрый способ отправить сообщение Вашему клиенту - это выбрать событие в Вашем календаре, а нажать на иконку сообщений. Инструкции на картинке",
+    "FAQ_10_TITLE": "10. Настройки уведомлений о событиях",
+    "FAQ_10": "При создании мероприятия Notado автоматически отправит Вашему клиенту электронное письмо о бронировании. Вы можете изменить текст электронного письма в разделе \" Текст электронного письма\" \n\n Календарь Google позаботится о дополнительных настройках уведомлений. Щелкните ссылку, чтобы получить дополнительные сведения:",
+    "FAQ_10B": "Здесь",
+    "FAQ_11_TITLE": "11. Подтверждение бронирования",
+    "FAQ_11": "Notado автоматически распознает каждое созданное бронирование как подтвержденное. Однако для большего контроля над Вашими бронированиями Вы можете подтвердить каждое бронирование вручную. \n\nЭтого можно добиться следующим образом: В разделе \"Текст электронного письма\" измените текст электронного письма, чтобы клиенту было ясно, что ему нужно дождаться подтверждения вашего бронирования. \n\nНапример:",
+    "FAQ_11B": "\" Ваш заказ на сеаанс массажа создан, ждите подтверждения. \"",
+    "FAQ_11C": "Затем Вы подтвердите созданное событие в Календаре Google и в то же время отправите сообщение своему клиенту о подтверждении / отмене (см .: FAQ 9. Как отправить сообщение клиенту?)"
+  },
+  "FOOTER": {
+    "CONTACT": "Контакт",
+    "LICENCE": "Условия использования",
+    "GDPR": "Политика конфиденциальности"
+  },
+  "NOT_FOR_MOBILE": {
+    "LABEL_1": "К сожалению, конфигурация Notado не идеальна для мобильных телефонов. Используйте устройство с большим дисплеем.",
+    "LABEL_2": "Вы устанавливаете Notado только один раз, после чего вы можете управлять всеми бронированиями из своего Календаря Google"
+  },
+  "LICENCE": {
+    "TITLE": "Условия пользовательского соглашения",
+    "DATE": "Состояние на осень 2021",
+    "LABEL_1": "К сожалению, конфигурация Notado не идеальна для мобильных телефонов. Используйте устройство с большим дисплеем.",
+    "LABEL_2": "Вы устанавливаете Notado только один раз, после чего Вы можете управлять всеми бронированиями из своего Календаря Google"
+  },
+  "FORM": {
+    "NOT_REQUIRED": "Необязательно",
+    "MORNING": "Утро",
+    "NOON": "Полдень",
+    "AFTERNOON": "Вечер",
+    "SERVICE": "Сервис",
+    "WORKER": "Сотрудник",
+    "DATE": "Дата и время",
+    "THANKS": "Спасибо",
+    "RESERVATION_CREATED": "Резервирование было успешно создано.",
+    "RESERVATION_CONFIRMATION1": "Мы отправили подтверждение Вашего бронирования по электронной почте",
+    "RESERVATION_CONFIRMATION2": "Адрес",
+    "NAME": "Имя",
+    "EMAIL": "Электронная почта",
+    "PHONE": "Телефон",
+    "MANICURE": "Маникюр",
+    "PEDICURE": "Педикюр",
+    "CUT": "Стрижка",
+    "COSMETIC": "Косметические услуги",
+    "HAIRCUT": "Парикмахерские услуги",
+    "MASSAGE": "Массажи",
+    "DATE_TIME": "Дата и время",
+    "RESERVATION_COMPLETED": "Резервирование было успешно создано.",
+    "RESERVATION_CONFIRM": "Мы отправили подтверждение бронирования на Ваш адрес электронной почты",
+    "VOUCHER_OPTION": "Я хочу воспользоаться ваучером",
+    "VOUCHER_CODE": "Код ваучера",
+    "CARD": {
+      "CONTACT": "Введите свои контактные данные",
+      "SERVICE_GROUP": "Выберите тип услуги",
+      "SERVICE": "Выбрать услугу",
+      "DATE": "Выберите дату и время",
+      "VOUCHER": "Если Вы используете ваучер, введите номер ваучера",
+      "NOTE": "Введите примечание",
+      "SUMMARY": "Сводка бронирования",
+      "THANKS": "Спасибо!"
+    },
+    "CONTINUE": "Продолжить",
+    "CANT_CREATE_RESERVATION": "Чтобы закончить резервирование, отредактируйте следующее:",
+    "REQUIRED": "Пожалуйста, заполните",
+    "BACK": "Назад",
+    "WORKER_NOT_AVAILABLE": "недоступен в этот день.",
+    "SERVICE_NOT_AVAILABLE": "недоступна в этот день.",
+    "SELECT_TIME": "Выберите время бронирования",
+    "PLEASE_SELECT_WORKER": "Выберите сотрудника",
+    "CREATE_RESERVATION": "Зарезервировать",
+    "PAY": "Заплатить",
+    "PAY_LATER": "Оплатить позже"
+  },
+  "ALERT": {
+    "EMAIL_ERROR": "Нам не удалось отправить Вам электронное письмо. Убедитесь, что Вы ввели правильный адрес электронной почты.",
+    "BUSINESS_URL_REQUIRED": "Укажите свой служебный адрес и сохраните изменения.",
+    "FORGOTTEN_PASSWORD_UNKNOWN_EMAIL": "Введенный Вами адрес электронной почты не существует",
+    "FORGOTTEN_PASSWORD_GOOGLE_SIGNUP": " Войти через кнопку Google ",
+    "BUTTON_CODE": "Код кнопки скопирован",
+    "URL_COPY": "Ссылка скопирована",
+    "BUSINESS_SAVED": "Бизнес успешно сохранен",
+    "FORM_SAVED": "Форма бронирования сохранена",
+    "PAYMENT_SUCCESS": "Платеж прошел успешно",
+    "GROUP_DELETED": "Группа успешно удалена",
+    "GROUP_UPDATED": "Группа успешно сохранена",
+    "SERVICE_DELETED": "Служба успешно удалена",
+    "SERVICE_UPDATED": "Служба успешно сохранена",
+    "WORKER_DELETED": "Сотрудник успешно удален",
+    "WORKER_UPDATED": "Сотрудник успешно сохранен",
+    "PASSWORD_SENT": "Пароль отправлен на Вашу электронную почту",
+    "STRIPE_INTEGRATION_ERROR": "Управление треком не установлено"
+  },
+  "VIDEO_LABEL": {
+    "SHOW": "Показать видео",
+    "TUTORIAL": "Показать инструкции"
+  },
+  "CALENDAR": {
+    "MONTH": {
+      "JAN": "Январь",
+      "FEB": "Февраль",
+      "MARCH": "Март",
+      "APR": "Апрель",
+      "MAY": "Май",
+      "JUN": "Июнь",
+      "JUL": "Июль",
+      "AUG": "Август",
+      "SEP": "Сентябрь",
+      "OCT": "Октябрь",
+      "NOV": "Ноябрь",
+      "DEC": "Декабрь"
+    },
+    "MONTH_SHORT": {
+      "JAN": "Янв",
+      "FEB": "Фев",
+      "MARCH": "Мар",
+      "APR": "Апр",
+      "MAY": "Май",
+      "JUN": "Июнь",
+      "JUL": "Июл",
+      "AUG": "Авг",
+      "SEP": "Сен",
+      "OCT": "Окт",
+      "NOV": "Ноя",
+      "DEC": "Дек"
+    },
+    "DAY": {
+      "MO": "Пн",
+      "TUE": "Вт",
+      "WE": "Ср",
+      "TH": "Чт",
+      "FR": "Пт",
+      "SA": "Сб",
+      "SUN": "Вс"
+    }
+  },
+  "TOOLTIP": {
+    "PASSWORD": "Пароль (мин. 5 символов)",
+    "SERVICE_DISABLED": "Эта услуга невидима для клиентов",
+    "SERVICE_GROUP_DISABLED": "Группа услуги невидима для клиентов",
+    "WORKER_DISABLED": "Этот сотрудник невидим для клиентов"
+  },
+  "TOTO_ITEM": {
+    "WORKER_IMG": "Установите картинки для своих сотрудников.",
+    "SERVICE_IMG": "Настройте изображения для своих услуг.",
+    "GOOGLE_CONNECT": "Подключите свою компанию к Календарю Google.",
+    "ADD_RESERVATION_BUTTON": "Добавьте кнопку бронирования на свой веб-сайт.",
+    "NOT_PAID": "Ваш аккаунт не оплачен.",
+    "NOT_PAID_AFTER_LIMIT": "Ваша учетная запись не была оплачена. Невозможно создать бронирование.",
+    "NO_WORKER": "Назначьте хотя бы одного сотрудника для Вашего бизнеса.",
+    "NO_SERVICE": "Настройте хотя бы одну службу для Вашего бизнеса.",
+    "NO_WORKER_FOR_SERVICE": "Нет сотрудников для Ваших услуг.",
+    "NO_DOMAIN": "Убедитесь, что у Вас правильно настроен домен в конфигурации Notado.",
+    "PAID_NOT_CONFIGURED": "Платежи не установлены"
+  },
+  "NOTIFICATION": {
+    "SEND": "Отправить",
+    "VIA": "через",
+    "PLACEHOLDER": {
+      "WHO": "+ кто",
+      "WHAT": "+ что",
+      "WHEN": "+ когда",
+      "PROVIDER": "+ провайдер"
+    },
+    "EMPLOYEE": "сотруднику",
+    "CUSTOMER": "клиенту",
+    "ME": "Мне самому",
+    "SMS": "смс",
+    "EMAIL": "е-мейл",
+    "SLACK": "slack сообщение",
+    "ON_RESERVATION_CREATE": "при создании резервирования",
+    "ONE_DAY_BEFORE": "накануне",
+    "FIVE_HOURS_BEFORE": "5 часов перед",
+    "SMS_MANAGER": "смс-менеджер",
+    "TWILIO": "twilio",
+    "ALERT": {
+      "SMS_MANAGER_NOT_CONNECTED": "Sms-менеджер должен быть интегрирован с Notado",
+      "TWILIO_NOT_CONNECTED": "Twilio необходимо интегрировать с Notado"
+    }
+  },
+  "TUTORIAL": {
+    "Z": {
+      "TITLE": "Привет! \n Позвольте мне показать вам, как работает notado."
+    },
+    "A": {
+      "TITLE": "После регистрации \n подключите notado к календарю Google"
+    },
+    "B": {
+      "TITLE": "Notado создаст календарь \n для каждого сотрудника"
+    },
+    "C": {
+      "TITLE": "Когда клиент создает бронирование, \nnotado запишет событие в календарь"
+    },
+    "D": {
+      "TITLE": "Вы можете указать в том же календаре: \nотпуск \nдневный день \n или любое другое событие \n \n Notado будет читать ваши события автоматически"
+    },
+    "E": {
+      "TITLE": "И все! \n Вы можете найти больше в разделе FAQ."
+    }
+  },
+  "IMG_ALT": {
+    "INTRO_IMG": "Пример системы бронирования на мобильном",
+    "HAIRCUT": "Система онлайн-бронирования салонов стрижек",
+    "DENTIST": "Система онлайн-бронирования стоматологов",
+    "CAR": "Система онлайн-бронирования авторемонта",
+    "SALON": "Система онлайн-бронирования салонов",
+    "YOGA": "Система онлайн-бронирования студий йоги",
+    "COURSE": "Система онлайн-бронирования онлайн-курсов",
+    "OTHER": "Система онлайн-бронирования других услуг",
+    "DEVICE": "Система бронирования гидромассажных ванн, саун и солнечных студий",
+    "MANAGE_ON_GOOGLE": "Управление резервированием в календаре Google",
+    "PAYMENT": "Оплата при онлайн-бронировании",
+    "INTEGRATION": "Notado интегрирован с календарем Google, полосой, Slack и контактами Google.",
+    "WHY_ONLINE_RESERVATION": "Молодые люди предпочитают онлайн-бронирование"
+  },
+  "COOKIE": {
+    "LABEL": "Мы используем файлы cookie, чтобы вам было удобнее работать с нашим сайтом и анализировать трафик",
+    "BUTTON": "Принять все файлы cookie"
+  }
+}

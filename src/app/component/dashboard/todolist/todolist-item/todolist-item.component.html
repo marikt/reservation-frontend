@@ -1,0 +1,49 @@
+<div [id]="todoItem.type + '_' + todoItem.state" [class.todo-item-border]="showBottomBorder" class="row todo-item">
+  <div class="col-1" style="padding: 0 30px;">
+    <i *ngIf="isDone(todoItem)" class="fas fa-check text-grey"
+       style="font-size: 1.5em; position: relative; bottom: 1px;"></i>
+    <i *ngIf="todoItem.level == 'WARN' && !isDone(todoItem)" [ngbTooltip]="todoItem.description"
+       class="fa fa-warning text-warning"
+       style="font-size: 0.9em; position: relative; top:0px;">
+    </i>
+    <!--    <i *ngIf="todoItem.type == 'TUTORIAL' && !isDone(todoItem)" [ngbTooltip]="todoItem.description"-->
+    <!--       class="far fa-play-circle text-success"-->
+    <!--       style="font-size: 1.5em; position: relative; top:3px;">-->
+    <!--    </i>-->
+    <i *ngIf="todoItem.level == 'ERROR' && !isDone(todoItem)" [ngbTooltip]="todoItem.description"
+       class="fas fa-exclamation-circle text-red"
+       style="font-size: 0.9em; position: relative; top:0px;">
+    </i>
+  </div>
+
+  <div class="col-10"
+       *ngIf="todoItem.type != getTodoItemType.TUTORIAL && todoItem.type != getTodoItemType.INVALID_GRANT">
+    <span *ngIf="isDone(todoItem)" class="text-grey text-cross">
+        {{ todoItem.name | translate }}
+    </span>
+    <span *ngIf="!isDone(todoItem)" class="">
+      <a [routerLink]="getLink(todoItem)" class="btn btn-link btn-link-blue pull-left"
+         style="padding: 0; text-decoration: none !important;">
+        {{ todoItem.name | translate }}
+        </a>
+    </span>
+  </div>
+
+  <div class="col-10"
+       *ngIf="todoItem.type == getTodoItemType.INVALID_GRANT">
+    <span *ngIf="isDone(todoItem)" class="text-grey text-cross">
+        {{ todoItem.name | translate }}
+    </span>
+    <span *ngIf="!isDone(todoItem)" class="">
+      <app-google-calendar-connect-business-item [label]="todoItem.name"></app-google-calendar-connect-business-item>
+    </span>
+  </div>
+
+  <div class="col-10" *ngIf="todoItem.type == 'TUTORIAL'">
+    <app-video-tutorial
+      btnType="link"
+      [label]="todoItem.name"
+      [videoSrc]="todoItem.link"></app-video-tutorial>
+  </div>
+</div>
+

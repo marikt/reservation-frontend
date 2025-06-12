@@ -1,0 +1,33 @@
+<div style="background: white;">
+  <div class="container">
+    <div class="row">
+
+
+      <div class="col-md-4 offset-2 text-center">
+        <div class="row">
+          <img [alt]="'IMG_ALT.INTEGRATION' | translate"
+               src="../../../../resources/intro/integration.png" style="width:240px;">
+
+        </div>
+      </div>
+      <br>
+
+      <div class="col-md-4 col-12">
+        <br class="d-none d-md-block">
+        <br class="d-none d-md-block">
+        <br class="d-none d-md-block">
+        <br class="d-none d-md-block">
+        <h2>
+          {{ 'INTRO.INTEGRATION.LABEL' | translate }}
+        </h2>
+        <br>
+        <a [routerLink]="'/intro/' + languageService.language + '/integration'" class="btn btn-link btn-link-shine"
+           style="padding:.5rem 0;">{{ 'INTRO.WHY_US.MORE' | translate }}</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

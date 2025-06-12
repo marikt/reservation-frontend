@@ -1,0 +1,12 @@
+<br>
+
+<div class="container">
+  <br>
+  <h2>Často kladené dotazy</h2>
+  <br>
+  <div *ngFor="let faqItem of this.faqOnBottomPages">
+    <app-faq-on-bottom-page-item [faqOnBottomPage]="faqItem"></app-faq-on-bottom-page-item>
+  </div>
+</div>
+
+<br>

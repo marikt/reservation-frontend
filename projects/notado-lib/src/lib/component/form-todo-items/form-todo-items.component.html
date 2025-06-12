@@ -1,0 +1,32 @@
+<!--validation problems ============================================================ -->
+<span *ngIf="todoItems && todoItems.length > 0">
+
+  <div class="container">
+    <h1 class="text-center text-grey">
+      <i class="fas fa-exclamation-triangle"></i>
+    </h1>
+    <br>
+    <h5 class="text-center text-grey">
+      {{ 'FORM.CANT_CREATE_RESERVATION' | translate }}
+    </h5>
+    <br>
+    <br>
+    <div class="row">
+      <div *ngFor="let todoItem of todoItems" class="col-12 text-center">
+          <a [href]="'https://www.notado.cz/' + todoItem.link" class="btn btn-link btn-link-blue">
+            {{todoItem.name | translate}}
+            </a>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-12 text-center">
+          <button (click)="formService.finishReservation()"
+                  class="btn btn-outline-blue btn-outline"> OK</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</span>

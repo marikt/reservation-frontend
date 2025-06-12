@@ -1,0 +1,173 @@
+<app-dashboard-card backLink="/dashboard-notification">
+
+  <app-dashboard-card-label label="">
+  </app-dashboard-card-label>
+
+  <div class="container">
+
+    <div class="row">
+
+
+      <div class="col-11 text-center form-check text-mono"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+
+        <div [class.gray-bg]="!notification.active"
+             [class.gray-filter]="!notification.active"
+             [class.white-bg]="notification.active"
+             class="card-item">
+          <div class="row">
+            <div class="col text-center">
+              <form #form="ngForm" (ngSubmit)="saveNotification()">
+                <br>
+                <h3 class="text-grey">
+                  <b>{{'NOTIFICATION.SEND' | translate}}
+                    <!--{{'NOTIFICATION.CUSTOMER' | translate}}-->
+                    <input (click)="typeaheadService.showDropDown($event)"
+                           (focus)="typeaheadService.showDropDown($event)"
+                           (selectItem)="notification.recipientString = $event.item; notificationService.setNotificationKeys(notification)"
+                           *ngIf="notification.type !=  notificationType.SLACK"
+                           [ngModel]="notification.recipientString"
+                           [ngbTypeahead]="typeaheadService.searchRecipients"
+                           [placeholder]="'NOTIFICATION.PLACEHOLDER.WHO' | translate "
+                           [style.width]="((recipientLength(notification) + 2) * whiteSpace) + 'ch'"
+                           class="input-for-notification text-success"
+                           editable="false"
+                           id="typeahead-recipient"
+                           name="recipient"
+                           required
+                           type="text"/>
+
+                    <input (click)="typeaheadService.showDropDown($event)"
+                           (focus)="typeaheadService.showDropDown($event)"
+                           (selectItem)="notification.typeString = $event.item; notificationService.setNotificationKeys(notification)"
+                           [ngModel]="notification.typeString"
+                           [ngbTypeahead]="typeaheadService.searchNotificationTypes"
+                           [placeholder]="'NOTIFICATION.PLACEHOLDER.WHAT' | translate "
+                           [style.width]="((notification.typeString ? notification.typeString.length : translate.instant('NOTIFICATION.PLACEHOLDER.WHAT').length + 2) * whiteSpace) + 'ch'"
+                           class="input-for-notification "
+                           editable="false"
+                           id="typeahead-type"
+                           name="type"
+                           required
+                           type="text"/>
+
+                    <span
+                      *ngIf="notification.type ==  notificationType.SMS">&nbsp;{{'NOTIFICATION.VIA' | translate}} </span>
+
+                    <input (click)="typeaheadService.showDropDown($event)"
+                           (focus)="typeaheadService.showDropDown($event)"
+                           (selectItem)="notification.providerString = $event.item; notificationService.setNotificationKeys(notification)"
+                           *ngIf="notification.type ==  notificationType.SMS"
+                           [ngModel]="notification.providerString"
+                           [ngbTypeahead]="typeaheadService.searchProviderTypes"
+                           [placeholder]="'NOTIFICATION.PLACEHOLDER.PROVIDER' | translate"
+                           [style.width]="((notification.providerString ? notification.providerString.length : translate.instant('NOTIFICATION.PLACEHOLDER.PROVIDER').length + 2) * whiteSpace) + 'ch'"
+                           class="input-for-notification text-danger"
+                           editable="false"
+                           id="typeahead-provider"
+                           name="provider"
+                           required
+                           type="text"/>
+
+                    <input (click)="typeaheadService.showDropDown($event)"
+                           (focus)="typeaheadService.showDropDown($event)"
+                           (selectItem)="notification.whenString = $event.item; notificationService.setNotificationKeys(notification)"
+                           [ngModel]="notification.whenString"
+                           [ngbTypeahead]="typeaheadService.searchNotificationWhen"
+                           [placeholder]="'NOTIFICATION.PLACEHOLDER.WHEN' | translate "
+                           [style.width]="((notification.whenString ? notification.whenString.length : translate.instant('NOTIFICATION.PLACEHOLDER.WHEN').length + 2) * whiteSpace) + 'ch'"
+                           class="input-for-notification text-blue"
+                           editable="false"
+                           id="typeahead-when"
+                           name="when"
+                           required
+                           type="text"/>
+                  </b>
+                </h3>
+                <br>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div *ngIf="notification.status == notificationStatus.SMS_MANAGER_NOT_CONNECTED ||
+                     notification.status == notificationStatus.TWILIO_NOT_CONNECTED" class="row">
+      <div class="alert alert-danger col-12" role="alert">
+        {{ 'NOTIFICATION.ALERT.' + notification.status | translate }}
+        <a routerLink="/dashboard/dashboard-integration"> <i class="fas fa-plug "></i> </a>
+
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <br>
+      <br>
+
+      <button (click)="form.ngSubmit.emit()" [disabled]="form.invalid" class="btn btn-blue btn-sm"
+              id="notification-save-button"> <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="modalService.open(notificationDelete,  {size: 'lg'})" *ngIf="notification.id"
+              class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{'DASHBOARD.COMMON.DELETE' | translate}}
+      </button>
+      <button *ngIf="!notification.id"
+              routerLink="/dashboard/dashboard-notification"
+              class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="fas fa-times-circle"></i> {{'DASHBOARD.COMMON.CANCEL' | translate}}
+      </button>
+      <br>
+      <br>
+    </div>
+
+  </div>
+
+</app-dashboard-card>
+
+
+<ng-template #notificationDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h6><strong>{{'DASHBOARD.NOTIFICATION.DELETE_NOTIFICATION' | translate}}</strong></h6>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm" (click)="d('Cross click')">
+        {{'DASHBOARD.COMMON.CANCEL' | translate}}
+      </button>
+      <button class="btn-blue btn btn-sm"
+              (click)="deleteNotification()">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

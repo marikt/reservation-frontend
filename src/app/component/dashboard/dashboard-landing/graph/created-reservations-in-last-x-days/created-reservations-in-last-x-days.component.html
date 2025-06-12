@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-12">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a (click)="activeTab='LAST_30_DAYS'" [class.active]="activeTab =='LAST_30_DAYS'"
+           class="nav-link text-sm"><i
+          class="far fa-clock"></i> {{ 'DASHBOARD.STATISTIC.LAST_30_DAYS' | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="reservationsByWorker && reservationsByWorker.length > 1">
+        <a (click)="activeTab='BY_WORKER'" [class.active]="activeTab =='BY_WORKER'"
+           class="nav-link text-sm"><i
+          class="far fa-user"></i> {{ 'DASHBOARD.STATISTIC.BY_WORKER' | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="reservationsByService && reservationsByService.length > 1">
+        <a (click)="activeTab='BY_SERVICE'" [class.active]="activeTab =='BY_SERVICE'"
+           class="nav-link text-sm"><i
+          class="fas fa-cut"></i> {{ 'DASHBOARD.STATISTIC.BY_SERVICE' | translate }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<br>
+<div *ngIf="activeTab === 'LAST_30_DAYS'">
+  <div style="padding: 20px;">
+
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [scheme]="last30DaysColorScheme"
+      [results]="single"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>
+
+<div *ngIf="activeTab === 'BY_WORKER'">
+  <div style="padding: 20px;" *ngIf="reservationsByWorker && reservationsByWorker.length > 1">
+
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [scheme]="byWorkerColorScheme"
+      [results]="reservationsByWorker"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [yAxisLabel]="'Reservations'"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>
+
+<div *ngIf="activeTab === 'BY_SERVICE'">
+  <div style="padding: 20px;" *ngIf="reservationsByService && reservationsByService.length > 1">
+
+    <ngx-charts-bar-vertical
+      [view]="view"
+      [scheme]="byServiceColorScheme"
+      [results]="reservationsByService"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [yAxisLabel]="'Reservations'"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>

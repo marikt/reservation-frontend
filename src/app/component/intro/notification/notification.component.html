@@ -1,0 +1,105 @@
+<br>
+<br>
+
+<br>
+<div class="container" style="white-space: pre-line;">
+  <h1 class=" text-center"> {{ 'INTRO.NOTIFICATION.TITLE1' | translate }}</h1>
+
+  <div class="row">
+    <br>
+    <br>
+    <h6>{{'INTRO.NOTIFICATION.LABEL3' | translate}}</h6>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6 d-none d-md-block">
+      <div class="row">
+
+        <img *ngIf="(languageService.language == 'cs' || languageService.language == 'sk')"
+             src="../../../../resources/intro/notifikation-cs.png" class="img-responsive-half"
+             [alt]="'IMG_ALT.NOTIFICATION' | translate"
+             style="width:500px;">
+        <img *ngIf="!(languageService.language == 'cs' || languageService.language == 'sk')"
+             src="../../../../resources/intro/notifikation-en.png" class="img-responsive-half"
+             [alt]="'IMG_ALT.NOTIFICATION' | translate"
+             style="width:500px;">
+      </div>
+    </div>
+    <br>
+
+    <div class="col-md-5 col-12">
+      <h2>
+        {{ 'INTRO.NOTIFICATION.TITLE2' | translate }}
+
+      </h2>
+      <ul class="fa-ul">
+        <li>
+          <app-what-we-know-list-item
+            label="INTRO.NOTIFICATION.TAG1"></app-what-we-know-list-item>
+        </li>
+        <li>
+          <app-what-we-know-list-item
+            label="INTRO.NOTIFICATION.TAG2"></app-what-we-know-list-item>
+        </li>
+        <li>
+          <app-what-we-know-list-item
+            label="INTRO.NOTIFICATION.TAG3"></app-what-we-know-list-item>
+        </li>
+        <li>
+          <app-what-we-know-list-item
+            label="INTRO.NOTIFICATION.TAG4"></app-what-we-know-list-item>
+        </li>
+      </ul>
+      <br>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <br>
+    <br>
+    <br>
+  </div>
+
+  <div class="row ">
+
+
+    <div class="col-3">
+      <br>
+      <h2>
+        {{ 'INTRO.NOTIFICATION.TITLE3' | translate }}
+      </h2>
+    </div>
+    <div class="col-9 text-center">
+      <br>
+      <p class="text-grey text-mono" style="font-size: 2.5em; min-height: 200px;">
+        <b>
+          {{ 'NOTIFICATION.SEND' | translate }}
+          <span class="tw1"></span>
+          <span class="tw2"></span>
+          <br>
+          <span class="tw3"></span>
+        </b>
+      </p>
+      <br>
+    </div>
+    <br>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <app-try-button></app-try-button>
+  <br>
+  <br>
+  <br>
+
+</div>
+

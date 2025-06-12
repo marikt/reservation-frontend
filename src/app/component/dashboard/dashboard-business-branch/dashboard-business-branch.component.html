@@ -1,0 +1,89 @@
+<app-dashboard-card backLink="/dashboard-landing">
+
+  <app-dashboard-card-label label="DASHBOARD.BUSINESS_BRANCH.TITLE">
+    <button (click)="addBusinessBranch()" class="btn btn-outline-blue btn-sm pull-right text-uppercase"
+            id="add-business-branch-button"
+            placement="bottom">
+      <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.BUSINESS_BRANCH.ADD_GROUP' | translate}}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="container">
+    <div class="row">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #businessBranchActive="ngModel"
+                 (change)="dashboardService.saveTemplate()"
+                 [(ngModel)]="dashboardService.getBusinessBranchWindow().active"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-business-branch-active"
+                 name="businessBranchActive"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; bottom: 0px;">{{'DASHBOARD.BUSINESS_BRANCH.ADD_TO_FORM' | translate}}</span>
+          <br>
+          <label
+            style="position: relative; left: 10px; bottom: 8px;">({{'DASHBOARD.BUSINESS_BRANCH.ADD_TO_FORM_LABEL' | translate}}
+            )</label>
+        </label>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+      <div *ngFor="let businessBranch of businessBranches; let idx = index;"
+           class="col-3 text-center form-check"
+           style="padding: 20px 0px; margin-right: 50px; margin-left: 0px;">
+        <a [routerLink]="['/dashboard/dashboard-business-branch-item', businessBranch.id]"
+           [id]="businessBranch.name + businessBranch.id">
+          <div [class.gray-bg]="!businessBranch.active"
+               [class.gray-filter]="!businessBranch.active"
+               [class.white-bg]="businessBranch.active"
+               class="card-item">
+
+            <img *ngIf="businessBranch.fullPathImg"
+                 [src]="server.SERVER + businessBranch.fullPathImg"
+                 class="img-fluid"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+            <img *ngIf="!businessBranch.fullPathImg"
+                 class="img-fluid"
+                 src="../../../../resources/default-service.png"
+                 style="border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;">
+
+            <div class="row">
+              <div class="col text-center">
+                <br>
+                <br>
+                <h6>{{businessBranch.name}}</h6>
+                <p *ngIf="businessBranch.techName" class="text-secondary text-sm">({{businessBranch.techName}})</p>
+                <br *ngIf="businessBranch.active">
+                <p *ngIf="!businessBranch.active" class="text-grey text-uppercase"
+                   [ngbTooltip]="'TOOLTIP.BUSINESS_BRANCH_DISABLED' | translate"
+                   style="font-size: 1.1em">
+                  <i class="far fa-eye-slash"></i>
+                </p>
+                <br *ngIf="businessBranch.active">
+              </div>
+            </div>
+          </div>
+        </a>
+        <br>
+      </div>
+      <br>
+      <br>
+
+    </div>
+    <br>
+    <br>
+    <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+      {{'DASHBOARD.BUSINESS_BRANCH.INFO' | translate}}
+    </div>
+
+  </div>
+</app-dashboard-card>
+

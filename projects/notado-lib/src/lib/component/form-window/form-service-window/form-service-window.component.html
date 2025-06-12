@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+    <div *ngFor="let service of getServicesForReservation()"
+         class="text-center form-check col-11"
+         [class.big-padding]="formService.template?.margin == serviceSizeEnum.BIG"
+         style="margin-right: 5px; ">
+      <app-form-service-item-with-description-window
+        *ngIf="service && service.active"
+        [window]="window"
+        [serviceSize]="serviceSize"
+        [service]="service"
+        [formEditMode]="formEditMode"
+      ></app-form-service-item-with-description-window>
+    </div>
+  </div>
+
+  <div *ngIf="formService.template?.rightCustomMsg" class="row justify-content-center d-block d-sm-none">
+    <div class="col-11">
+      <p
+        [style.color]="formService.template?.serviceCardTextColor | addAlphaColor: 0.8"
+         [ngStyle]="formService.template?.fontSizeServiceDescription ? {'font-size': formService.template.fontSizeServiceDescription + 'em'} : {}">
+        {{ formService.template.rightCustomMsg }}
+      </p>
+    </div>
+  </div>
+  <br>

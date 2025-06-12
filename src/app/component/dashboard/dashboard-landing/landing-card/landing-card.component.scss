@@ -1,0 +1,15 @@
+.dashboard-card {
+  -webkit-box-shadow: -1px -1px 28px 0px rgba(223,223,223,0.45);
+  -moz-box-shadow: -1px -1px 28px 0px rgba(223,223,223,0.45);
+  box-shadow: -1px -1px 28px 0px rgba(223,223,223,0.45);
+  border: 1px solid rgba(223,223,223,0.45);
+  border-radius: 10px;
+  //margin: 15px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.dashboard-card-padding {
+  padding-top: 10px;
+  padding-bottom: 10px;
+padding-left: 20px;
+}

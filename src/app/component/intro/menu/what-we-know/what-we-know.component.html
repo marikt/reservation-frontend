@@ -1,0 +1,20 @@
+<div
+  class="text-left col-12 intro-cell content-visibility">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let item of whatWeKnowItems" class="col-md-4 col-6">
+        <a
+          [routerLink]="item.link"
+          class="nav-link-blue nav-link text-center img-border "
+          style="font-size: 2.3em; padding: 15px; margin: 15px; line-height: 12px;">
+          <br>
+          <i [class]="item.icon"></i>
+          <br>
+          <br>
+          <h2 style="font-size: 0.8em;">{{item.label | translate}}</h2>
+          <h6>{{item.description | translate}}</h6>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

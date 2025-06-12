@@ -1,0 +1,33 @@
+<div class="row">
+
+  <div class="">
+    <h5 *ngIf="serviceGroupName">{{'DASHBOARD.SERVICE_ITEM.BUTTON' | translate}}  <strong>{{serviceGroupName}}</strong></h5>
+    <div class="row">
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='WIDGET'" [class.active]="activeCard =='WIDGET'" aria-current="page"
+             class="nav-link">{{'DASHBOARD.BUTTON.CUSTOM.WIDGET' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='BUTTON'" [class.active]="activeCard =='BUTTON'"
+             class="nav-link">{{'DASHBOARD.BUTTON.CUSTOM.BUTTON' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='LINK'" [class.active]="activeCard =='LINK'"
+             class="nav-link">{{'DASHBOARD.BUTTON.CUSTOM.LINK' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <br>
+      <div class="form-group">
+          <p *ngIf="activeCard =='WIDGET'"  class="code-frame">{{widgetCode | textShort: 400}}</p>
+        <p *ngIf="activeCard =='BUTTON'"  class="code-frame">{{buttonCode}}</p>
+        <p *ngIf="activeCard =='LINK'"  class="code-frame">{{linkCode}}</p>
+        <br>
+        <button (click)="copyButtonLink()"
+                class="btn btn-outline-blue btn-sm"><i class="far fa-copy"></i> {{'DASHBOARD.BUTTON.CUSTOM.COPY_CODE' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

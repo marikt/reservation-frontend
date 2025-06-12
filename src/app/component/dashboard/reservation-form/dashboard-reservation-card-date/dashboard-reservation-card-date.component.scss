@@ -1,0 +1,60 @@
+
+ngb-datepicker {
+    border: 0px solid #dfdfdf;
+    border-radius: .25rem;
+    display: inline-block;
+}
+
+.cell {
+    color: #C6C6C6;
+    text-align: center;
+    padding: 7px 10px;
+    display: inline-block;
+}
+
+.current-month-cell {
+    color: rgb(89, 89, 89) !important;
+}
+
+.selected-cell {
+    background-color: rgb(68, 33, 237) !important;
+    color: white !important;
+    border-radius: 50px;
+}
+
+.time-label {
+    font-size: 1.2em;
+    color: rgb(89, 89, 89);
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.btn-link {
+    color: #C6C6C6 !important;
+}
+
+.ngb-dp-day, .ngb-dp-week-number, .ngb-dp-weekday {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+}
+
+
+.worker-offset-1 {
+  margin-left: 10.4% !important;
+}
+
+.worker-label {
+  font-size: 1.2em;
+  color: rgb(89, 89, 89);
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+
+:focus {
+  outline: none;
+}
+
+.worker-img {
+  width: 90px;
+}
+

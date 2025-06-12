@@ -1,0 +1,269 @@
+<div style="white-space: pre-line;">
+
+  <!--INTRO xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+  <div [class.intro-section]="!isMobile" class="intro-section col-12 bg content-visibility" id="intro">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-11 col-lg-6">
+          <br>
+          <br>
+          <br class="d-none d-xl-block">
+          <br class="d-none d-xl-block">
+          <br class="d-none d-ml-block">
+          <br class="d-none d-ml-block">
+          <h1 [class.display-4]="!isMobile"
+              [class.font-mobile]="isMobile"
+              [class.text-center]="isMobile"
+              [class.text-left]="!isMobile"
+              class="text-black"
+          >
+            <b>
+            {{ 'AUDIENCE.RESERVATION_SYSTEM' | translate }}
+            <br>{{ getTranslationKeyWithPrefix('LABEL')| translate }}</b>
+
+          </h1>
+          <br>
+          <h3
+            [class.text-center]="isMobile"
+            [class.text-left]="!isMobile"
+            style="margin: 10px 0px 15px 0px; font-size: 1.3em">
+            {{ 'INTRO.TITLE.SUB' | translate }}
+          </h3>
+          <br>
+          <app-try-and-video-button></app-try-and-video-button>
+        </div>
+
+        <div class="col-md-6 offset-md-0 d-none d-lg-block">
+          <br>
+          <app-demo [demoType]="demoType"></app-demo>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+  </div>
+</div>
+
+<div *ngIf="languageService.language === 'cs' || languageService.language === 'sk'"
+     class="text-left col-12  intro-cell content-visibility" id="feedback">
+  <div class="container">
+    <app-feedback></app-feedback>
+  </div>
+</div>
+
+<div class="bg-blue-big" style="white-space: pre-line;">
+
+  <img *ngIf="demoType != 'HIDE' && (languageService.language == 'cs' || languageService.language == 'sk')"
+       [alt]="imgAlt | translate"
+       [src]="'../../../resources/intro/app-show-case/' + demoType + '-cs.png'"
+       class="d-none d-md-block" style="width:100%;">
+  <img *ngIf="demoType != 'HIDE' && !(languageService.language == 'cs' || languageService.language == 'sk')"
+       [alt]="imgAlt | translate"
+       [src]="'../../../resources/intro/app-show-case/' + demoType + '-en.png'"
+       class="d-none d-md-block" style="width:100%;">
+
+
+  <img *ngIf="demoType != 'HIDE' && (languageService.language == 'cs' || languageService.language == 'sk')"
+       [alt]="imgAlt | translate"
+       [src]="'../../../resources/intro/app-show-case/' + demoType + '-cs-mob.png'"
+       class="d-block d-md-none" style="width:100%;">
+  <img *ngIf="demoType != 'HIDE' && !(languageService.language == 'cs' || languageService.language == 'sk')"
+       [alt]="imgAlt | translate"
+       [src]="'../../../resources/intro/app-show-case/' + demoType + '-en-mob.png'"
+       class="d-block d-md-none" style="width:100%;">
+
+  <div class="bg-blue">
+    <div class="container intro-cell  ">
+      <div class="row">
+        <div class="col-md-7  col-10 offset-1 text-white ">
+          <br>
+          <h5>
+            {{ getTranslationKeyWithPrefix(label) | translate}}
+            <br>
+            <br>
+            <br>
+            <a [routerLink]="'/intro/' + languageService.language + '/signup'"
+               class="btn btn-outline-white">
+              <span class="text-uppercase"> {{ 'COMMON.TRY_FREE' | translate }} </span>
+            </a>
+          </h5>
+        </div>
+        <div class="text-center col-4 d-none d-md-block ">
+          <br>
+          <br>
+          <img
+            [alt]="imgAlt | translate"
+            [src]="img" style="width:250px; position: relative; bottom: 60px;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <span *ngIf="lazyLoad">
+
+
+      <app-features simple="true"></app-features>
+
+      <app-booking-channels></app-booking-channels>
+
+
+      <app-intro-item-revert
+        [alt]="getTranslationKeyWithPrefix(imgAlt1) | translate"
+        [img]="img1"
+        [item1]="getTranslationKeyWithPrefix(item11)"
+        [item2]="getTranslationKeyWithPrefix(item12)"
+        [item3]="getTranslationKeyWithPrefix(item13)"
+        [label1]="getTranslationKeyWithPrefix(desc1)"
+        [link]="link1"
+        [title1]="getTranslationKeyWithPrefix(title1)"
+        [title2]="getTranslationKeyWithPrefix(title11)"
+        imgClass="rounded img-responsive"
+        imgSize="330"
+        linkClass="btn btn-link btn-link-shine"
+        linkLabel="INTRO.WHY_US.MORE">
+      </app-intro-item-revert>
+
+      <app-intro-item
+        [alt]="getTranslationKeyWithPrefix(imgAlt2) | translate"
+        [img]="img2"
+        [item1]="getTranslationKeyWithPrefix(item21)"
+        [item2]="getTranslationKeyWithPrefix(item22)"
+        [item3]="getTranslationKeyWithPrefix(item23)"
+        [label1]="getTranslationKeyWithPrefix(desc2)"
+
+        [link]="link2"
+        [title1]="getTranslationKeyWithPrefix(title2)"
+        [title2]="getTranslationKeyWithPrefix(title22)"
+        imgClass="rounded img-responsive"
+        imgSize="330"
+        linkClass="btn btn-link btn-link-shine"
+        linkLabel="INTRO.WHY_US.MORE"
+      >
+      </app-intro-item>
+
+      <app-intro-item-revert
+        [alt]="getTranslationKeyWithPrefix(imgAlt3) | translate"
+        [img]="img3"
+        [item1]="getTranslationKeyWithPrefix(item31)"
+        [item2]="getTranslationKeyWithPrefix(item32)"
+        [item3]="getTranslationKeyWithPrefix(item33)"
+        [label1]="getTranslationKeyWithPrefix(desc3)"
+        [link]="link3"
+        [title1]="getTranslationKeyWithPrefix(title3)"
+        [title2]="getTranslationKeyWithPrefix(title33)"
+        imgClass="rounded img-responsive"
+        imgSize="330"
+        linkClass="btn btn-link btn-link-shine"
+      >
+      </app-intro-item-revert>
+
+
+      <app-intro-item
+        *ngIf="title4"
+        [alt]="getTranslationKeyWithPrefix(imgAlt4) | translate"
+        [img]="img4"
+        [label1]="getTranslationKeyWithPrefix(desc4)"
+        [link]="link4"
+        [title1]="getTranslationKeyWithPrefix(title4)"
+        [title2]="getTranslationKeyWithPrefix(title44)"
+        imgClass="rounded img-responsive"
+        imgSize="330"
+        linkClass="btn btn-link btn-link-shine"
+        linkLabel="INTRO.WHY_US.MORE"
+      >
+      </app-intro-item>
+
+
+      <app-intro-item-revert
+        *ngIf="title5"
+
+        [alt]="getTranslationKeyWithPrefix(imgAlt5) | translate"
+        [img]="img5"
+        [item1]="getTranslationKeyWithPrefix(item51)"
+        [item2]="getTranslationKeyWithPrefix(item52)"
+        [item3]="getTranslationKeyWithPrefix(item53)"
+        [label1]="getTranslationKeyWithPrefix(desc5)"
+        [link]="link5"
+        [title1]="getTranslationKeyWithPrefix(title5)"
+        [title2]="getTranslationKeyWithPrefix(title55)"
+        imgClass="rounded img-responsive"
+        imgSize="330"
+        linkClass="btn btn-link btn-link-shine"
+        linkLabel="INTRO.WHY_US.MORE"
+      >
+      </app-intro-item-revert>
+
+    <app-intro-item-revert
+      *ngIf="title6"
+      [label1]="getTranslationKeyWithPrefix(desc6)"
+      [title1]="getTranslationKeyWithPrefix(title6)"
+      [title2]="getTranslationKeyWithPrefix(title66)"
+    >
+      </app-intro-item-revert>
+  <div class="container">
+
+
+    <div class="row ">
+        <div class="col-12 ">
+          <br>
+          <br>
+        </div>
+          <div class="col-12 ">
+              <h2 class="text-center" style="">
+                {{'INTRO.CALENDAR_AVAILABILITY.TITLE2' | translate}}
+                <b>  {{ getTranslationKeyWithPrefix('LABEL') | translate }} </b>
+              </h2>
+
+            <p>
+               {{getTranslationKeyWithPrefix('CALENDAR_AVAILABILITY_LABEL') | translate}}
+            </p>
+          </div>
+        <div class="col-12 ">
+          <br>
+          <br>
+        </div>
+          <iframe style="width: 100%; height: 70vh; border-radius: 10px;"
+                  src="https://www.youtube.com/embed/Z8nRzHw-Br8?si=ezT9j0L4vhRHeMFl"
+                  title="Kalendář dostupnosti"
+                  frameborder="0"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen></iframe>
+
+        </div>
+        <div class="col-12 ">
+          <br>
+          <br>
+        </div>
+      </div>
+      <app-intro-item
+        [link]="'/intro/' + languageService.language + '/management-on-google'"
+        alt="IMG_ALT.WHY_ONLINE_RESERVATION"
+        img="../../../../resources/intro/audience/img4.png"
+        imgClass="rounded img-responsive"
+        imgSize="380"
+        label1="AUDIENCE.PROFESSION.DESC4"
+        linkClass="btn btn-link btn-link-shine"
+        linkLabel="INTRO.WHY_US.MORE"
+        title1="INTRO.MANAGE_ON_GOOGLE.TITLE"
+        title2="AUDIENCE.PROFESSION.LABEL4"
+      >
+      </app-intro-item>
+  </span>
+</div>
+
+<span *ngIf="faqOnBottomPages && (languageService.language === 'cs' || languageService.language === 'sk')">
+    <app-faq-on-bottom-page [faqOnBottomPages]="faqOnBottomPages"></app-faq-on-bottom-page>
+  </span>
+
+<app-try-button></app-try-button>
+
+
+<app-demo-modal *ngIf="demoService.showFrame"
+                [demoType]="demoType"
+                style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;"></app-demo-modal>
+
+<button (click)="demoService.showFrame = false"
+        *ngIf="demoService.showFrame"
+        class="notadoButtonHideDemo form-widget-close">
+</button>

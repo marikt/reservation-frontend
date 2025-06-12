@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+
+
+  <div *ngFor="let businessBranch of formService.getBusinessBranches()"
+       class="text-center form-check col-11"
+       [class.big-padding]="formService.template?.margin == 'BIG'"
+       style="margin-right: 5px;">
+
+    <app-form-business-branch-item-window
+      [businessBranch]="businessBranch"
+    ></app-form-business-branch-item-window>
+
+  </div>
+
+</div>
+
+<br>

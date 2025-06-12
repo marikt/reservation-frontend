@@ -1,0 +1,10 @@
+.bg-frame {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background: url('../../../../../resources/intro/intro-animation/mobile-frame.png') no-repeat scroll top center;
+
+  min-height: 35vh;
+  overflow-x: hidden;
+}

@@ -1,0 +1,429 @@
+<app-dashboard-card *ngIf="reservationConfig" backLink="/dashboard-landing" style="white-space: pre-line;">
+
+  <app-dashboard-card-label label="DASHBOARD.RESERVATION_CONFIG.TITLE">
+    <button (click)="saveReservationConfig()" class="btn btn-blue btn-sm"
+            id="dashboard-reservation-config-save">
+      <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light"
+            role="status">
+          <span class="sr-only">Loading...</span>
+      </span>
+      <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i>
+      &nbsp; {{ 'DASHBOARD.COMMON.SAVE' | translate }}
+    </button>
+  </app-dashboard-card-label>
+
+  <div class="row">
+    <div class="col-12">
+
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='TIME_LIMIT'" [class.active]="activeCard =='TIME_LIMIT'"
+             id="TIME_LIMIT"
+             class="nav-link text-sm"><i
+            class="far fa-clock"></i> {{ 'DASHBOARD.RESERVATION_CONFIG.TABS.TIME_LIMIT' | translate }}
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a (click)="activeCard='OVERTIME'" [class.active]="activeCard =='OVERTIME'"
+             aria-current="page"
+             id="GALLERY"
+             class="nav-link text-sm"><i
+            class="far fa-calendar-plus"></i> {{ 'DASHBOARD.RESERVATION_CONFIG.TABS.OVERTIME' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='CANCEL'" [class.active]="activeCard =='CANCEL'"
+             aria-current="page"
+             id="VIDEO_GALLERY"
+             class="nav-link text-sm"><i
+            class="far fa-calendar-times"></i> {{ 'DASHBOARD.RESERVATION_CONFIG.TABS.CANCEL' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='OTHER'"
+             [class.active]="activeCard =='OTHER'"
+             id="CUSTOM_FORM"
+             class="nav-link text-sm"><i
+            class="fas fa-cogs"></i> {{ 'DASHBOARD.RESERVATION_CONFIG.TABS.OTHER' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="col-md-9 col-12">
+    <!--    TIME_LIMIT ========================================================================  -->
+    <span *ngIf="activeCard == 'TIME_LIMIT'">
+      <div class="form-group">
+      <label>{{ 'DASHBOARD.RESERVATION_CONFIG.RESERVATION_TIME_PREFIX' | translate }}</label>
+      <div class="row">
+        <div class="input-group">
+          <input #hoursCmp="ngModel"
+                 [(ngModel)]="reservationConfig.reservationTimePrefix"
+                 class="form-control text-right"
+                 id="dashboard-business-time-prefix"
+                 name="dashboard-business-time-prefix"
+                 placeholder="0"
+                 type="number">
+
+          <div class="input-group-append">
+          <span style="border: none !important;"
+                class="input-group-text">{{ 'DASHBOARD.RESERVATION_CONFIG.HOURS' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ 'DASHBOARD.RESERVATION_CONFIG.RESERVATION_TIME_POSTFIX' | translate }}</label>
+      <div class="row">
+        <div class="input-group">
+          <input #hoursCmp="ngModel"
+                 [(ngModel)]="reservationConfig.reservationTimePostfix"
+                 class="form-control text-right"
+                 id="dashboard-business-time-postfix"
+                 name="dashboard-business-time-postfix"
+                 placeholder="365"
+                 type="number">
+
+          <div class="input-group-append">
+          <span style="border: none !important;"
+                class="input-group-text">{{ 'DASHBOARD.RESERVATION_CONFIG.DAYS' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label> {{ 'DASHBOARD.RESERVATION_CONFIG.TIME_WINDOW_SIZE' | translate }}</label>
+
+      <div class="row">
+        <div *ngIf="!timeWindowAdaptToServiceDuration" class="input-group">
+          <input [(ngModel)]="reservationConfig.timeWindowSize"
+                 [ngbTypeahead]="typeaheadService.searchTimeWindowSize"
+                 class="form-control text-right"
+                 id="dashboard-reservation-config-time-window-size"
+                 name="dashboard-reservation-config-time-window-size"
+                 placeholder="30"
+                 min="30"
+                 type="number">
+
+          <div *ngIf="!timeWindowAdaptToServiceDuration" class="input-group-append">
+          <span style="border: none !important;"
+                class="input-group-text">{{ 'DASHBOARD.RESERVATION_CONFIG.MINUTES' | translate }}</span>
+          </div>
+        </div>
+      </div>  </div>
+
+    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #timeWindowAdaptToServiceDurationCheckbox="ngModel"
+                 [(ngModel)]="timeWindowAdaptToServiceDuration"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-time-window-size-adapt-service-duration-checkbox"
+                 name="timeWindowAdaptToServiceDurationCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 3px;">{{ 'DASHBOARD.RESERVATION_CONFIG.TIME_WINDOW_SIZE_TO_SERVICE_SIZE' | translate }}
+            <app-dashboard-popover-help img="../../../../../resources/dashboard/time-window.png"></app-dashboard-popover-help>
+          </span>
+          <br>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #timeWindowFromToServiceDurationCheckbox="ngModel"
+                 [(ngModel)]="timeWindowFrom"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-time-window-from-checkbox"
+                 name="timeWindowFromToServiceDurationCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 3px;">{{ 'DASHBOARD.RESERVATION_CONFIG.TIME_WINDOW_FROM' | translate }}</span>
+          <br>
+          <label
+            style="position: relative; left: 10px; bottom: 8px;">
+            ({{ 'DASHBOARD.RESERVATION_CONFIG.TIME_WINDOW_FROM_INFO' | translate }})
+          </label>
+
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ 'DASHBOARD.RESERVATION_CONFIG.TIME_ROUNDING_INTERVAL' | translate }}</label>
+      <select [(ngModel)]="reservationConfig.timeRoundingInterval"
+              class="form-control"
+              id="dashboard-reservation-config-time-rounding-interval">
+        <option value="QUARTER_HOUR">{{ 'DASHBOARD.RESERVATION_CONFIG.TIME_ROUNDING_INTERVAL_15' | translate }}</option>
+        <option value="HALF_HOUR">{{ 'DASHBOARD.RESERVATION_CONFIG.TIME_ROUNDING_INTERVAL_30' | translate }}</option>
+        <option value="HOUR">{{ 'DASHBOARD.RESERVATION_CONFIG.TIME_ROUNDING_INTERVAL_60' | translate }}</option>
+      </select>
+    </div>
+    </span>
+    <!--  OVERTIME  ========================================================================  -->
+    <span *ngIf="activeCard == 'OVERTIME'">    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #overtimeEnabledCheckbox="ngModel"
+                 [(ngModel)]="reservationConfig.overtimeEnabled"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-overtime-enabled"
+                 name="overtimeEnabledCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 3px;">{{ 'DASHBOARD.RESERVATION_CONFIG.ENABLE_OVERTIME' | translate }}
+            <a class="btn btn-link"
+               [routerLink]="'/faq/' + languageService.language + '/overtime'"
+               style="padding: 0px 5px; !important; line-height: 0.5; font-size: 0.9em; position: relative; bottom: 1px;">  <i
+              aria-hidden="true" class="far fa-question-circle"></i>
+            </a>
+          </span>
+          <br>
+        </label>
+        <br>
+        <div *ngIf="reservationConfig.overtimeEnabled" class="alert alert-warning"><i
+          class="fas fa-exclamation-triangle"></i> &nbsp;
+          {{ 'DASHBOARD.RESERVATION_CONFIG.ENABLE_OVERTIME_WARN' | translate }} &nbsp;
+        </div>
+        <div class="alert alert-info"><i class="fas fa-exclamation-triangle"></i> &nbsp;
+          {{ 'DASHBOARD.RESERVATION_CONFIG.ENABLE_OVERTIME_INFO' | translate }} &nbsp;
+          <br>
+          <br>
+          <img src="../../../../resources/dashboard/free-bussy.png" style="width: 320px;"/>
+        </div>
+      </div>
+      <br>
+    </div></span>
+    <!--  CANCEL  ========================================================================  -->
+    <span *ngIf="activeCard == 'CANCEL'">    <div class="form-group">
+      <label>{{ 'DASHBOARD.RESERVATION_CONFIG.RESERVATION_TIME_CANCEL_PREFIX' | translate }}</label>
+      <div class="row">
+        <div class="input-group">
+          <input #hoursCmp="ngModel"
+                 [(ngModel)]="reservationConfig.cancelReservationTimePrefix"
+                 class="form-control text-right"
+                 id="dashboard-business-time-cancel-prefix"
+                 name="dashboard-business-time-cancel-prefix"
+                 placeholder="0"
+                 style=""
+                 type="number">
+
+          <div class="input-group-append">
+          <span style="border: none !important;"
+                class="input-group-text">{{ 'DASHBOARD.RESERVATION_CONFIG.HOURS_BEFORE_EVENT' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" style="margin-bottom: -10px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #deleteReservationOnCancel="ngModel"
+                 [(ngModel)]="reservationConfig.deleteReservationOnCancel"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-business-vouched-checkbox"
+                 name="deleteReservationOnCancel"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; bottom: 0px;">{{ 'DASHBOARD.RESERVATION_CONFIG.DELETE_RESERVATION' | translate }}</span>
+          <br>
+          <label
+            style="position: relative; left: 10px; bottom: 8px;">
+            ({{ 'DASHBOARD.RESERVATION_CONFIG.DELETE_RESERVATION_LABEL' | translate }})
+          </label>
+        </label>
+      </div>
+    </div>
+
+    <br>
+    <div class="checkbox" style="margin-bottom: 10px;">
+      <label class="custom-control custom-checkbox">
+        <input #archiveReservationOnCancel="ngModel"
+               (click)="clearSwitchCalendar()"
+               [(ngModel)]="reservationConfig.archiveReservationOnCancel"
+               class="form-check-input checkbox-lg"
+               id="archiveReservationOnCancel"
+               name="archiveReservationOnCancel"
+               type="checkbox">in dashboard-reservation-config.component.html bellow setting timeWindowFrom add combobox allowing to set reservation-config.ts timeRoundingInterval dont add translation
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.RESERVATION_CONFIG.ARCHIVE_RESERVATION' | translate }}
+          <app-dashboard-popover-help img="../../../../resources/dashboard/archive-calendar.png"></app-dashboard-popover-help>
+        </span>
+        <br>
+      </label>
+    </div>
+    <app-calendar-dropdown-with-refresh
+      hideExternalRefreshButtons="true"
+      *ngIf="reservationConfig.archiveReservationOnCancel && dashboardService.business.googleCalendarConnected"
+      (reloadCalendarsAction)="loadCalendars()"
+      (selectCalendarAction)="selectSwitchCalendar($event)"
+      [calendar]="archiveCalendar"
+      [calendars]="calendars">
+    </app-calendar-dropdown-with-refresh>
+    <br>
+      <div class="checkbox" style="margin-bottom: 10px;">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="reservationConfig.showCancelReservationReason"
+               class="form-check-input checkbox-lg"
+               id="showCancelReservationReason"
+               name="showCancelReservationReason"
+               type="checkbox">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"
+              style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.RESERVATION_CONFIG.SHOW_CANCEL_RESERVATION_REASON' | translate }}
+        </span>
+            <br>
+          <label
+            style="position: relative; left: 10px; bottom: 4px;">
+            ({{ 'DASHBOARD.RESERVATION_CONFIG.SHOW_CANCEL_RESERVATION_REASON_LABEL' | translate }})
+          </label>
+
+        <br>
+      </label>
+    </div>
+
+    <br>
+    <br>
+    <div class="alert alert-info"><i class="fas fa-info-circle"></i> &nbsp;
+      {{ 'DASHBOARD.RESERVATION_CONFIG.INFO' | translate }} &nbsp;
+      <a class="" routerLink="/dashboard/dashboard-message"><i class="fas fa-envelope-open-text"></i> &nbsp;
+        <span style="">{{ 'DASHBOARD.MENU.EMAIL' | translate }}</span>
+      </a>
+    </div>
+    <br></span>
+    <!--    ========================================================================  -->
+
+    <span *ngIf="activeCard == 'OTHER'">
+
+    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #includeAttendeeNameCheckbox="ngModel"
+                 [(ngModel)]="reservationConfig.includeAttendeeName"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-include-attendee-name"
+                 name="includeAttendeeNameCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.RESERVATION_CONFIG.INCLUDE_ATTENDEE_NAME' | translate }}</span>
+          <br>
+        </label>
+      </div>
+    </div>
+    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #includeAttendeeNameCheckbox="ngModel"
+                 [(ngModel)]="reservationConfig.includeAttendeeEmail"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-include-attendee-email"
+                 name="includeAttendeeNameCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 3px;">{{ 'DASHBOARD.RESERVATION_CONFIG.INCLUDE_ATTENDEE_EMAIL' | translate }}
+            <app-dashboard-popover-help img="../../../../resources/reservation-config/include-email.png"></app-dashboard-popover-help>
+          </span>
+          <br>
+        </label>
+      </div>
+    </div>
+      <!--    <div class="form-group" style="position: relative; bottom: 15px;">-->
+      <!--      <div class="checkbox">-->
+      <!--        <label class="custom-control custom-checkbox">-->
+      <!--          <input #addEventDescriptionCheckbox="ngModel"-->
+      <!--                 [(ngModel)]="reservationConfig.addEventDescription"-->
+      <!--                 class="form-check-input checkbox-lg"-->
+      <!--                 id="dashboard-reservation-config-addEventDescription"-->
+      <!--                 name="addEventDescriptionCheckbox"-->
+      <!--                 type="checkbox">-->
+      <!--          <span class="custom-control-indicator"></span>-->
+      <!--          <span class="custom-control-description"-->
+      <!--                style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.RESERVATION_CONFIG.ADD_EVENT_DESCRIPTION' | translate }}-->
+      <!--          </span>-->
+      <!--          <br>-->
+      <!--        </label>-->
+      <!--      </div>-->
+      <!--    </div>-->
+
+    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #hideEventNameForCalendarAvailCheckbox="ngModel"
+                 [(ngModel)]="reservationConfig.hideEventNameForCalendarAvail"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-hideEventNameForCalendarAvail"
+                 name="hideEventNameForCalendarAvailCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.RESERVATION_CONFIG.HIDE_EVEN_NAME' | translate }}
+          </span>
+          <br>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group" style="position: relative; bottom: 15px;">
+      <div class="checkbox">
+        <label class="custom-control custom-checkbox">
+          <input #showNotificationButtonCheckbox="ngModel"
+                 [(ngModel)]="reservationConfig.showNotificationButton"
+                 class="form-check-input checkbox-lg"
+                 id="dashboard-reservation-config-show-notification-button"
+                 name="showNotificationButtonCheckbox"
+                 type="checkbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description"
+                style="position: relative; left: 10px; top: 5px;">{{ 'DASHBOARD.RESERVATION_CONFIG.SHOW_NOTIFICATION_BUTTON' | translate }}
+            <app-dashboard-popover-help img="../../../../resources/reservation-config/allowClientToRegisterAsSubstitute.png"></app-dashboard-popover-help>
+          </span>
+
+          <br>
+          <label
+            style="position: relative; left: 10px; bottom: 4px;">
+            ({{ 'DASHBOARD.RESERVATION_CONFIG.SHOW_NOTIFICATION_BUTTON_DESC' | translate }})
+
+          </label>
+        </label>
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group">
+      <label>{{ 'DASHBOARD.RESERVATION_CONFIG.NO_DATE_AVAILABLE_MSG' | translate }}
+        <app-dashboard-popover-help img="../../../../resources/reservation-config/no-date-avail.png"></app-dashboard-popover-help></label>
+      <textarea
+        [(ngModel)]="reservationConfig.noDateAvailableMessage"
+        rows="3"
+        class="form-control"
+        id="dashboard-no-date-available-message"
+        name="dashboard-no-date-available-message"
+      ></textarea>
+    </div>
+    <br>
+    <br>
+
+    </span>
+
+
+  </div>
+
+</app-dashboard-card>
+
+
+
+
+

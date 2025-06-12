@@ -1,0 +1,99 @@
+<br>
+<br>
+<div class="row">
+
+  <div class="offset-1">
+    <button class="btn btn-link btn-link-blue" routerLink="/dashboard/dashboard-button-platform">
+      <img src="../../../../resources/icon/back-blue.svg" class="" style="margin-right: 10px; width: 19px;">
+      <span style="">{{ 'COMMON.BACK' | translate }}</span>
+    </button>
+  </div>
+</div>
+<br>
+<br>
+<div class="row">
+
+  <div class="offset-1 col-10 card text-center" style="min-height: 10vh;">
+
+    <br>
+    <br>
+    <h5 class="text-blue">{{ 'DASHBOARD.BUTTON.WHAT_PLATFORM' | translate }}? </h5>
+    <br>
+
+    <div class="row">
+      <div class="col-12 text-center zoom">
+        <ul class=" nav nav-tabs">
+          <li class="nav-item">
+            <a (click)="platform='wix'" [class.active]="platform =='wix'"
+               id="wix"
+               class="nav-link text-sm"><i class="fab fa-wix"></i> wix.com
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a (click)="platform='wordpress'" [class.active]="platform =='wordpress'"
+               id="wordpress"
+               class="nav-link text-sm"><i class="fab fa-wordpress-simple"></i> wordpress
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a (click)="platform='facebook'" [class.active]="platform =='facebook'"
+               id="facebook"
+               class="nav-link text-sm"><i class="fab fa-facebook"></i> facebook
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a (click)="platform='webnode'" [class.active]="platform =='webnode'"
+               id="webnode"
+               class="nav-link text-sm">
+<!--              <img src="../../../../../resources/brand/webnode.png" id="webnodeLogo"-->
+<!--                                              width="80px;"> -->
+              webnode
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a (click)="platform='weebly'" [class.active]="platform =='weebly'"
+               id="weebly"
+               class="nav-link text-sm"><i class="fab fa-weebly"></i> weebly
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a (click)="platform='squarespace'" [class.active]="platform =='squarespace'"
+               id="squarespace"
+               class="nav-link text-sm"><i class="fab fa-squarespace"></i> squarespace
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a (click)="platform='other'" [class.active]="platform =='other'"
+               id="other"
+               class="nav-link text-sm"><i class="fas fa-cloud"></i> {{ 'DASHBOARD.BUTTON.OTHER_PLATFORM' | translate }}
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+    <br>
+  </div>
+
+
+</div>
+<br>
+<br>
+<span [ngSwitch]="platform">
+  <app-dashboard-button-wix *ngSwitchCase="'wix'"></app-dashboard-button-wix>
+  <app-dashboard-button-wordpress *ngSwitchCase="'wordpress'"></app-dashboard-button-wordpress>
+  <app-dashboard-button-facebook *ngSwitchCase="'facebook'"></app-dashboard-button-facebook>
+  <app-dashboard-button-webnode *ngSwitchCase="'webnode'"></app-dashboard-button-webnode>
+  <app-dashboard-button-weebly *ngSwitchCase="'weebly'"></app-dashboard-button-weebly>
+  <app-dashboard-button-squarespace *ngSwitchCase="'squarespace'"></app-dashboard-button-squarespace>
+  <app-dashboard-button-other *ngSwitchCase="'other'"></app-dashboard-button-other>
+</span>
+
+

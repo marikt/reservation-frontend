@@ -1,0 +1,130 @@
+<app-dashboard-card *ngIf="service" backLink="/dashboard-service">
+  <app-dashboard-card-label [entityName]="service?.name" [faqItems]="[
+    {name: 'BUTTON_FOR_EACH_SERVICE', link: 'button-for-each-service'},
+    {name: 'NOTIFICATION', link: 'notification'},
+    {name: 'COURSE', link: 'course'}
+  ]"
+                            label="DASHBOARD.SERVICE_ITEM.TITLE">
+<!--    <button (click)="modalService.open(codeForServiceModal, {size: 'lg'})"-->
+<!--            class="btn btn-outline-blue btn-sm">{{ 'DASHBOARD.SERVICE_ITEM.BUTTON' | translate }} {{ service.name }}-->
+<!--    </button>-->
+  </app-dashboard-card-label>
+
+  <div class="row">
+    <div class="offset-1 col-10 " id="preview-service">
+      <app-form-service-item-with-description-window
+        *ngIf="service && service.active && formService.template"
+        [window]="dashboardService.getServiceWindow()"
+        serviceSize="BIG"
+        [service]="service"
+        style="cursor: not-allowed !important;"
+        [formEditMode]="true"
+      ></app-form-service-item-with-description-window>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-12 ">
+      <ul class=" nav nav-tabs">
+        <li class="nav-item">
+          <a (click)="activeCard='BASIC'" [class.active]="activeCard =='BASIC'" aria-current="page"
+             class="nav-link text-sm"><i class="fas fa-wrench"></i> {{ 'DASHBOARD.COMMON.BASIC' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='ADVANCE'" [class.active]="activeCard =='ADVANCE'"
+             class="nav-link text-sm"><i class="fas fa-cogs"></i> {{ 'DASHBOARD.COMMON.ADVANCE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='NOTIFICATION'" [class.active]="activeCard =='NOTIFICATION'"
+             id="notification-tab"
+             class="nav-link text-sm"><i class="fas fa-sms"></i> {{ 'DASHBOARD.SERVICE_ITEM.NOTIFICATION' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='DURATION'" *ngIf="service.type !== serviceType.COURSE"
+             [class.active]="activeCard =='DURATION'"
+             class="nav-link text-sm"><i class="fas fa-clock"></i> {{ 'DASHBOARD.COMMON.DURATION' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="service.type === serviceType.COURSE">
+          <a (click)="activeCard='AUTOMATION'" [class.active]="activeCard =='AUTOMATION'"
+             class="nav-link text-sm"> <i class="fas fa-robot"></i>
+            &nbsp; {{ 'DASHBOARD.SERVICE_ITEM.AUTOMATION' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='PAYMENT'" [class.active]="activeCard =='PAYMENT'"
+             id="payment-tab"
+             class="nav-link text-sm"> <i class="far fa-credit-card"></i>
+            &nbsp; {{ 'DASHBOARD.SERVICE_ITEM.PAYMENT.TITLE' | translate }}</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='LOCATION'" [class.active]="activeCard =='LOCATION'"
+             id="location-tab"
+             class="nav-link text-sm"> <i class="fas fa-map-marker-alt"></i>
+            &nbsp; {{ 'DASHBOARD.SERVICE_ITEM.LOCATION.TITLE' | translate }}</a>
+        </li>
+        <li *ngIf="keyguruIntegrationService.isKeyguruConnectedAndValid()" class="nav-item">
+          <a (click)="activeCard='KEYGURU'" [class.active]="activeCard =='KEYGURU'"
+             id="keyguru-tab"
+             class="nav-link text-sm"> <i class="fas fa-key"></i>
+            &nbsp; Keyguru</a>
+        </li>
+        <li class="nav-item">
+          <a (click)="activeCard='CUSTOM_FIELDS'" [class.active]="activeCard =='CUSTOM_FIELDS'"
+             id="custom-fields-tab"
+             class="nav-link text-sm"> <i class="fas fa-list-alt"></i>
+            &nbsp; {{ 'DASHBOARD.SERVICE_ITEM.CUSTOM_FIELDS.TAB' | translate }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <br>
+
+
+  <app-dashboard-service-item-basic *ngIf="activeCard === 'BASIC'"
+                                    [service]="service"></app-dashboard-service-item-basic>
+
+  <app-dashboard-service-item-advance *ngIf="activeCard === 'ADVANCE'"
+                                      [service]="service"></app-dashboard-service-item-advance>
+
+  <app-dashboard-service-item-notification *ngIf="activeCard === 'NOTIFICATION'"
+                                          [service]="service"></app-dashboard-service-item-notification>
+
+  <app-dashboard-service-item-automation *ngIf="activeCard =='AUTOMATION' && service.type === serviceType.COURSE"
+                                         [service]="service"></app-dashboard-service-item-automation>
+
+  <app-dashboard-service-item-payment
+    *ngIf="activeCard =='PAYMENT' && stripeIntegrationService.stripeIntegrationBusinessConfig"
+    [service]="service"></app-dashboard-service-item-payment>
+
+  <app-dashboard-service-item-location *ngIf="activeCard =='LOCATION'"
+                                       [service]="service"></app-dashboard-service-item-location>
+
+  <app-dashboard-service-item-duration *ngIf="activeCard =='DURATION' && service.type !== serviceType.COURSE"
+                                       [service]="service"></app-dashboard-service-item-duration>
+  <app-dashboard-service-item-keyguru
+    *ngIf="activeCard =='KEYGURU' && keyguruIntegrationService.isKeyguruConnectedAndValid()"
+    [service]="service"></app-dashboard-service-item-keyguru>
+
+  <app-dashboard-service-item-custom-field *ngIf="activeCard =='CUSTOM_FIELDS'"
+                                           [service]="service"></app-dashboard-service-item-custom-field>
+
+</app-dashboard-card>
+
+
+<ng-template #codeForServiceModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <app-dashboard-button-custom-web [service]="service"></app-dashboard-button-custom-web>
+    </div>
+  </div>
+</ng-template>

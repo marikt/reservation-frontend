@@ -1,0 +1,264 @@
+<app-dashboard-card *ngIf="device" backLink="/dashboard-device">
+
+
+  <app-dashboard-card-label [entityName]="device?.name">
+  </app-dashboard-card-label>
+
+  <div class="row">
+
+    <!--1 COLUMN ============================================================================================ -->
+
+    <div class="col-md-4 col-12  text-center">
+
+      <img *ngIf="device?.fullPathImg" [src]="server.SERVER + device?.fullPathImg" class="img-fluid rounded-circle"
+           style=""
+           width="130">
+      <img *ngIf="!device?.fullPathImg" class="img-fluid rounded-circle"
+           src="../../../../resources/default-worker.png"
+           width="130">
+      <br>
+      <br>
+      <div class="row">
+
+      <button (click)="modalService.open(deviceImageUpload,  {size: 'lg'})"
+              class="offset-1 btn btn-outline btn-outline-blue btn-sm">
+        {{'DASHBOARD.COMMON.ADD_IMAGE' | translate}} &nbsp; <i aria-hidden="true" class="fa fa-upload"></i></button>
+        <button *ngIf="device?.img"
+                (click)="device.img = null; device.fullPathImg = null; deleteImg()"
+                class="btn btn-link btn-link-gray btn-sm">
+          <i class="far fa-trash-alt"></i></button>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+
+    <!--2 COLUMN ============================================================================================ -->
+
+    <!--NAME EMAIL ============================================================================================ -->
+
+    <div class="offset-md-1 col-md-7 col-12">
+      <form #form="ngForm" (ngSubmit)="saveDevice()">
+
+        <div class="form-group">
+          <label>{{'DASHBOARD.DEVICE_ITEM.NAME' | translate}}</label>
+          <input #name="ngModel"
+                 [(ngModel)]="device.name"
+                 [class.is-invalid]="name?.invalid && showValidation"
+                 [class.is-valid]="!name?.invalid"
+                 class="form-control"
+                 id="device-item-name"
+                 name="device-name"
+                 placeholder="Jana Stastna"
+                 required
+                 type="text">
+          <div class="invalid-feedback">
+            {{'COMMON.REQUIRED' | translate}}
+          </div>
+        </div>
+
+<!--        <div class="form-group">-->
+<!--          <label>{{'DASHBOARD.DEVICE_ITEM.TECH_NAME' | translate}}</label>-->
+<!--          <input #name="ngModel"-->
+<!--                 [(ngModel)]="device.techName"-->
+<!--                 class="form-control"-->
+<!--                 id="device-item-tech-name"-->
+<!--                 name="device-tech-name"-->
+<!--                 type="text">-->
+<!--        </div>-->
+      </form>
+      <app-loading-progress *ngIf="spinnerService.loadingProgress > 0"  label="DASHBOARD.WORKER_ITEM.CALENDAR_LOADING" >
+      </app-loading-progress>
+      <app-calendar-dropdown-with-refresh
+        *ngIf="showCalendar"
+        label="DASHBOARD.WORKER_ITEM.CALENDAR_ID"
+        [calendar]="calendar"
+        [calendars]="calendars"
+        (selectCalendarAction)="selectCalendar($event)"
+        (reloadCalendarsAction)="loadCalendars()">
+      </app-calendar-dropdown-with-refresh>
+
+      <!--SERVICES ============================================================================================ -->
+      <div *ngIf="servicesInRelation" class="form-group" style="margin-bottom: -10px;">
+        <label> {{'DASHBOARD.WORKER_ITEM.SERVICES' | translate}}</label>
+        <a routerLink="/dashboard/dashboard-service" class="btn btn-sm btn-link"
+           id="add-worker-button">
+          <i class="fas fa-plus "></i> &nbsp; {{'DASHBOARD.SERVICE.ADD_SERVICE' | translate}}
+        </a>
+        <br *ngIf="!servicesInRelation || servicesInRelation.length === 0 || noServiceForDevice">
+        <label *ngIf="!servicesInRelation || servicesInRelation.length === 0 || noServiceForDevice"
+               routerLink="/dashboard/dashboard-service" class="text-danger">
+          <i class="fas fa-exclamation-triangle "></i> {{'DASHBOARD.DEVICE_ITEM.NO_SERVICE' | translate}}
+        </label>
+
+
+        <span *ngFor="let deviceService of servicesInRelation">
+              <div class="checkbox">
+                <label class="custom-control custom-checkbox">
+                  <input #serviceActive
+                         (change)="evaluateNoServiceForDevice()"
+                         [(ngModel)]="deviceService.active"
+                         [checked]="deviceService?.active"
+                         [id]="'serviceActive' + deviceService.service.id"
+                         [name]="deviceService.service.name"
+                         class="form-check-input"
+                         type="checkbox">
+                  <span class="custom-control-description"
+                        style="position: relative; left: 10px; bottom: -3px;">{{deviceService?.service?.name}}</span>
+                  <br>
+                </label>
+              </div>
+            </span>
+      </div>
+      <br>
+
+
+      <br>
+      <div class="form-group" style="margin-bottom: -10px;">
+        <div class="checkbox">
+          <label class="custom-control custom-checkbox">
+            <input #active="ngModel"
+                   [(ngModel)]="device.active"
+                   [checked]="device?.active"
+                   class="form-check-input checkbox-lg"
+                   id="deviceActive"
+                   name="active"
+                   type="checkbox">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"
+                  style="position: relative; left: 10px; bottom: 0px;">{{'DASHBOARD.SERVICE_ITEM.ACTIVE' | translate}}</span>
+            <br>
+            <label *ngIf="device?.active"
+                   style="position: relative; left: 10px; bottom: 8px;">({{'DASHBOARD.WORKER_ITEM.SHOW' | translate}}
+              )</label>
+            <label *ngIf="!device?.active"
+                   style="position: relative; left: 10px; bottom: 8px;">({{'DASHBOARD.WORKER_ITEM.NOT_SHOW' | translate}}
+              <i class="fas fa-exclamation-triangle text-warning"></i> ) </label>
+          </label>
+        </div>
+      </div>
+      <br>
+      <br>
+      <button (click)="showValidation = true" *ngIf="name.invalid" class="btn btn-blue btn-sm"
+      >
+        <i class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="form.ngSubmit.emit()" *ngIf="!name.invalid" class="btn btn-blue btn-sm"
+              id="device-save-button"
+      >  <span *ngIf="preventDoubleClickService.clickInProgress" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+              </span>
+
+        <i *ngIf="!preventDoubleClickService.clickInProgress" class="far fa-save "></i> &nbsp; {{'DASHBOARD.COMMON.SAVE' | translate}}
+      </button>
+
+      <button (click)="modalService.open(deviceDelete,  {size: 'lg'})" class="btn btn-link btn-link-gray btn-sm"
+              placement="bottom">
+        <i class="far fa-trash-alt"></i> {{'DASHBOARD.DEVICE_ITEM.DELETE' | translate}}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</app-dashboard-card>
+
+
+<!--IMG UPLOAD MODAL ================================== -->
+<ng-template #deviceImageUpload let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <strong>{{'DASHBOARD.DEVICE_ITEM.ADD_IMAGE' | translate}}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container">
+      <span *ngIf="resizeImageService.state === 'IMG_SELECTED'">
+          <app-image-resize width="150" height="150"></app-image-resize>
+      </span>
+
+      <div *ngIf="resizeImageService.state === 'WAITING_TO_IMG_SELECT'" class="text-center offset-1 col-10">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+
+          <div class="offset-0 col-12">
+            <div class="alert alert-danger"><i class="fas fa-info-circle"></i> &nbsp;
+              {{'DASHBOARD.OPTIMIZE_IMG' | translate}} <a href="https://tinypng.com" target="_blank">tinypng.com</a>
+            </div>
+            <br>
+
+            <ngx-file-drop (onFileDrop)="dropped($event)"
+                       (onFileLeave)="fileLeave($event)"
+                       (onFileOver)="fileOver($event)">
+                <span class="text-uppercase text-center"
+                      style="margin-top: 20px; color: rgb(105, 59, 218);">{{'DASHBOARD.WORKER_ITEM.ADD_IMAGE_HERE' | translate}}
+                  <br>
+                <br>
+                  <i aria-hidden="true" class="fa fa-upload"></i>
+                <br>
+                <br>
+              </span>
+            </ngx-file-drop>
+
+            {{'DASHBOARD.WORKER_ITEM.OR' | translate}}
+
+            <span class="btn btn-link-blue btn-file"
+                  style="position: relative; right: 18px; bottom: 2px;"> <strong>{{'DASHBOARD.WORKER_ITEM.FROM_YOUR_FILE' | translate}} </strong> &nbsp;
+            <i aria-hidden="true" class="fa fa-upload"></i>
+                    <input [uploader]="uploader" ng2FileSelect type="file">
+          </span>
+
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #deviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{'DASHBOARD.DEVICE_ITEM.DO_DELETE' | translate}}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{'DASHBOARD.COMMON.DONT_DELETE' | translate}}</button>
+      <button class="btn-blue btn btn-sm" (click)="deleteDevice()">{{'DASHBOARD.COMMON.DELETE' | translate}}</button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+

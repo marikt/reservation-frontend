@@ -1,0 +1,455 @@
+<div class="row">
+  <br>
+</div>
+<div class="container container-padding">
+
+  <div class="row">
+    <app-landing-card *ngIf="this.dashboardService.payment?.plan && isDiscountApplicable()"
+      class="col-12 landing-card-no-padding"  >
+      <div class="text-white" style="border-radius: 10px; padding: 20px; margin: -10px -15px; background-color: #7a7adb; background-image: linear-gradient(315deg, #6841D7 0%, #170e13 74%);"> &nbsp;
+        <h6 class="">
+          <span style="font-size: 2.7em; position: relative; top: 8px;" > 🎁 </span>
+<!--          <i class="fas fa-percent icon-border"></i> &nbsp;-->
+          <span [innerHTML]="'PAYMENT.PROMO' | translate"></span> &nbsp; {{ 'PAYMENT.PROMO_CONDITION' | translate }}
+          <br>
+          <br>
+          <button class="btn btn-light " routerLink="/dashboard/payment/discount"
+                  (click)="modalService.close()"><i
+            class="fas fa-gift"></i> &nbsp; {{ 'PAYMENT.PROMO_BTN' | translate }}
+          </button>
+        </h6>
+      </div>
+    </app-landing-card>
+    <!--  =========================== 3 STEPS ================================= -->
+    <app-landing-card *ngIf="!todoItemService.googleCalendarConnected || !todoItemService.reservationButtonAdded"
+                      class="col-12 landing-card-no-padding">
+      <div class="row">
+        <br>
+      </div>
+      <h4>{{ 'DASHBOARD.LANDING.TITLE' | translate }}</h4>
+      <div class="row">
+        <br>
+      </div>
+      <app-dashboard-path
+        [googleCalendarConnected]="todoItemService.googleCalendarConnected"
+        [reservationButtonAdded]="todoItemService.reservationButtonAdded">
+      </app-dashboard-path>
+      <div class="row">
+        <br>
+        <br>
+      </div>
+    </app-landing-card>
+
+    <!--  =========================== TODOITEMS ================================= -->
+    <app-landing-card
+      *ngIf="todoItemService.googleCalendarConnected && todoItemService.reservationButtonAdded && !todoItemService.allTodoItemsDone"
+      class="col-12 landing-card-no-padding">
+      <br>
+      <br>
+      <br>
+      <div class="row" style="position: relative; left: 19px;">
+        <h6 class="text-grey offset-1"> {{ 'DASHBOARD.LANDING.FOLLOW_STEPS' | translate }} </h6>
+      </div>
+      <div class="row" style="position: relative; left: 19px;">
+        <div class="offset-1 col-9  card">
+          <span *ngFor="let item of todoItemService.todoItems; let idx = index">
+            <app-todolist-item
+              *ngIf="item.level != todoItemService.todoItemLevel.INTEGRATION && item.type != 'TUTORIAL'"
+              [showBottomBorder]="idx != (todoItemService.todoItems.length -1)"
+              [todoItem]="item"></app-todolist-item>
+          </span>
+        </div>
+      </div>
+      <div class="row" style="height: 10vh;">
+      </div>
+    </app-landing-card>
+
+    <!--  =========================== MENU ITEMS ================================= -->
+    <app-landing-card class="col-12 landing-card-no-padding">
+      <div class="row" style="padding: 25px;">
+        <a *ngFor="let item of dashboardItems"
+           [class]="item.clazz"
+           [id]="'landing-' + item.link"
+           [routerLink]="'/dashboard/' + item.link"
+           class="nav-link-blue nav-link col-md-4 col-6"
+           style="font-size: 1em; padding: 15px; line-height: 12px;">
+          <i [class]="item.icon"></i> {{ item.label | translate }}
+          <span *ngIf="item.labRelease" class="badge badge-pill badge-warning"
+                style="font-size: 0.8em;"> <i class="fas fa-vial"></i> lab release</span>
+          <span *ngIf="item.newBadge" class="badge badge-pill badge-success"
+                style="font-size: 0.8em;">new</span>
+        </a>
+      </div>
+    </app-landing-card>
+
+    <!--  =========================== OTHER ================================= -->
+    <div *ngIf="lineService.workers && lineService.services" class="col-12">
+      <div class="row">
+        <app-landing-card class="col-md-2 col-5 landing-card-no-padding">
+
+          <p class="" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.WORKER.TITLE' | translate }}</strong></p>
+          <div class="row">
+            <i class="far fa-user icon-border text-sm offset-1" style="position: relative; bottom: 5px; left: 8px;"></i>
+            <h4 class=" col-8"
+                style="position: relative; bottom: 8px;"><strong>{{ lineService.workers.length }}</strong></h4>
+          </div>
+          <div style="position: absolute; right: 5px; bottom: 23px;">
+            <a routerLink="/dashboard/dashboard-worker"
+               style="margin-right: 10px;" class="btn btn-sm btn-link-blue no-padding">
+              <small><i class="fas fa-share "></i></small></a>
+          </div>
+        </app-landing-card>
+
+        <app-landing-card class="col-md-2 col-5 landing-card-no-padding">
+
+          <p class="" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.SERVICE.TITLE' | translate }}</strong></p>
+          <div class="row">
+            <i class="fas fa-cut icon-border text-sm offset-1" style="position: relative; bottom: 5px; left: 8px;"></i>
+            <h4 class=" col-8"
+                style="position: relative; bottom: 8px;"><strong>{{ lineService.services.length }}</strong></h4>
+          </div>
+          <div style="position: absolute; right: 5px; bottom: 23px;">
+            <a routerLink="/dashboard/dashboard-service"
+               style="margin-right: 10px;" class="btn btn-sm btn-link-blue no-padding">
+              <small><i class="fas fa-share"></i></small></a>
+          </div>
+        </app-landing-card>
+        <app-landing-card class="col-md-3 col-6 landing-card-no-padding">
+
+          <p class="" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.LANDING.ALL_EVENTS_SUM' | translate }}</strong></p>
+          <div class="row">
+
+            <i class="far fa-calendar-check icon-border text-sm offset-1"
+               style="position: relative; bottom: 5px; left: 8px;"></i>
+            <h4 class=" col-8"
+                style="position: relative; bottom: 8px;"><strong>{{ allReservationCount }}</strong></h4>
+          </div>
+        </app-landing-card>
+        <app-landing-card class="col-md-5 col-12  landing-card-no-padding">
+
+          <p class="first-letter-upper-case" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.BUSINESS.RESERVATION_URL' | translate }}</strong></p>
+          <div class="row">
+
+            <div class="input-group col-12">
+              <input #url [ngModel]="dashboardService.business.url | formUrl"
+                     class="form-control form-control-sm input-with-element-right"
+                     disabled
+                     name="buttonLabel" type="text"/>
+              <div class="input-group-append" style="height: 31px;">
+                <button (click)="copyButtonLink()"
+                        class="btn btn-sm  btn-outline-secondary button-with-element-left"><i
+                  class="far fa-copy"></i></button>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-12">
+            <br>
+          </div>
+        </app-landing-card>
+      </div>
+    </div>
+
+    <!--  =========================== RELATIONS ================================= -->
+    <app-landing-card
+      *ngIf="lineService.workers && lineService.services && lineService.workers && lineService.services && lineService.workers.length < 20 && lineService.services.length < 20"
+      class="col-12 d-none d-md-block  landing-card-no-padding">
+      <div class="row ">
+        <div class="col-12">
+          <br>
+        </div>
+        <div *ngIf="lineService.calendars && lineService.calendars.length > 0" class="col-2"
+             style="margin-left: 40px">
+          <p class="text-center" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.LANDING.CALENDARS' | translate }}</strong></p>
+          <div class="row" style="">
+            <div *ngFor="let calendar of lineService.calendars; let idx = index;"
+                 [ngbTooltip]="calendar.name + ' TIMEZONE: ' + calendar.timeZone"
+                 class="dashboard-inner-card col-12  remove-arrow"
+                 style="padding: 15px; margin-bottom: 10px; background: white;"
+                 [id]="'calendar' + calendar.id">
+              <i class="fas fa-calendar"
+                 style="font-size: 1.2em;"
+                 [style.color]="calendar.color"></i> &nbsp;
+              &nbsp; {{ calendar.name | textShort: 10 }} &nbsp;
+              <!--        <span class="text-sm text-primary">{{ calendar.timeZone | textShort: 10 }}</span>-->
+              <app-go-to-google-calendar-setting-popup buttonStyle="position: absolute; right: -10px; bottom: -5px;"
+                                                       [calendar]="calendar"></app-go-to-google-calendar-setting-popup>
+            </div>
+            <div class="add-card-border col-12"
+                 style="padding: 15px; margin-bottom: 15px;  height: 50px; ">
+              <button routerLink="/dashboard/dashboard-calendar-usage" class="btn btn-link-blue btn-sm "
+                      style="position: relative; bottom: 8px;">
+                {{ 'DASHBOARD.MENU.CALENDAR' | translate }} &nbsp; <i class="fas fa-share"></i>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="offset-1 col-3">
+          <p class="text-center" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.WORKER.TITLE' | translate }}</strong></p>
+
+          <div class="row">
+            <div *ngFor="let worker of lineService.workers; let idx = index;"
+                 class="dashboard-inner-card col-12  remove-arrow"
+                 style="padding: 15px; margin-bottom: 10px; background: white;"
+                 [id]="'worker' + worker.id" [ngbTooltip]="worker.name">
+              <img *ngIf="worker.fullPathImg"
+                   [src]="server.SERVER + worker.fullPathImg"
+                   (error)="handleImageNotLoadedForWorker(worker)"
+                   class="img-fluid rounded-circle"
+                   width="30">
+              <img *ngIf="!worker.fullPathImg"
+                   class="img-fluid rounded-circle"
+                   src="../../../../resources/default-worker.png"
+                   width="30">
+              &nbsp; {{ worker.name | textShort: 8 }} &nbsp;
+
+              <div style="position: absolute; right: 5px; bottom: 3px;">
+
+                <a *ngIf="!worker.active"
+                   [routerLink]="['/dashboard/dashboard-worker-item', worker?.id]"
+                   [ngbTooltip]="'DASHBOARD.LANDING.INACTIVE' | translate"
+                   style="margin-right: 10px;" class="btn btn-link-black no-padding">
+                  <small><i class="far fa-stop-circle "></i></small></a>
+                <a [routerLink]="['/dashboard/dashboard-worker-item', worker?.id]"
+                   *ngIf="!worker.calendarId"
+                   [ngbTooltip]="'DASHBOARD.LANDING.NO_CALENDAR_FOR_WORKER' | translate"
+                   style="margin-right: 10px;" class="btn btn-link-danger no-padding">
+                  <small><i class="fas fa-exclamation-circle"></i></small></a>
+                <a [routerLink]="['/dashboard/dashboard-worker-item', worker?.id]"
+                   style="margin-right: 10px;" class="btn btn-link-blue no-padding">
+                  <small><i class="fas fa-edit"></i></small></a>
+                <a (click)="modalService.open(workerDelete,  {size: 'lg'}); selectedWorker = worker"
+                   class="btn btn-link-blue no-padding">
+                  <small><i class="fas fa-trash-alt"></i></small></a>
+
+              </div>
+
+            </div>
+            <div class="add-card-border col-12"
+                 style="padding: 15px; margin-bottom: 15px;  height: 50px; ">
+              <button (click)="workerService.addWorker()" class="btn btn-link-blue btn-sm "
+                      style="position: relative; bottom: 8px;"
+                      id="add-worker-button">
+                <i class="fas fa-plus "></i> &nbsp; {{ 'DASHBOARD.WORKER.ADD_WORKER' | translate }}
+              </button>
+
+            </div>
+          </div>
+        </div>
+        <div class="offset-1 col-3">
+          <p class="text-center" style="margin-top: 15px;">
+            <strong>{{ 'DASHBOARD.SERVICE.TITLE' | translate }}</strong></p>
+
+          <div class="row ">
+            <div *ngFor="let service of lineService.services; let idx = index;"
+                 style="padding: 15px;  margin-bottom: 10px; background: white"
+                 [ngbTooltip]="service.name"
+                 [id]="'service' + service.id" class="col-12 dashboard-inner-card remove-arrow">
+              <img *ngIf="service.fullPathImg"
+                   [src]="server.SERVER + service.fullPathImg"
+                   (error)="handleImageNotLoadedForService(service)"
+                   class="img-fluid rounded"
+                   width="30">
+              <img *ngIf="!service.fullPathImg"
+                   class="img-fluid rounded"
+                   src="../../../../resources/default-service.png"
+                   width="30">
+              &nbsp; {{ service.name | textShort: 10 }}
+              <p *ngIf="service.techName" class="text-secondary text-sm">({{ service.techName | textShort: 10 }})</p>
+              <div style="position: absolute; right: 5px; bottom: 3px;">
+
+                <a *ngIf="!service.active"
+                   [routerLink]="['/dashboard/dashboard-service-item', service?.id]"
+                   [ngbTooltip]="'DASHBOARD.LANDING.INACTIVE' | translate"
+                   style="margin-right: 10px;" class="btn btn-link-black no-padding">
+                  <small><i class="far fa-stop-circle "></i></small></a>
+                <a [routerLink]="['/dashboard/dashboard-service-item', service?.id]"
+                   [ngbTooltip]="'DASHBOARD.LANDING.NO_CALENDAR_FOR_SERVICE' | translate"
+                   *ngIf="service.type == 'COURSE' && !service.calendarId"
+                   class="btn btn-link-danger no-padding">
+                  <small><i class="fas fa-exclamation-circle"></i></small></a>
+                <a [routerLink]="['/dashboard/dashboard-service-item', service?.id]"
+                   class="btn btn-link-blue no-padding">
+                  <small><i class="fas fa-edit"></i></small></a>
+
+                <a (click)="modalService.open(serviceDelete,  {size: 'lg'}); selectedService = service"
+                   class="btn btn-link-blue no-padding">
+                  <small><i class="fas fa-trash-alt"></i></small></a>
+              </div>
+            </div>
+            <div class="add-card-border col-12 "
+                 style="padding: 15px; margin-bottom: 15px;  height: 50px; ">
+              <button (click)="serviceService.addService()" class="btn btn-link-blue btn-sm "
+                      style="position: relative; bottom: 8px;"
+                      id="add-service-button">
+                <i class="fas fa-plus "></i> &nbsp; {{ 'DASHBOARD.SERVICE.ADD_SERVICE' | translate }}
+              </button>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </app-landing-card>
+
+    <!--  =========================== STATISTIC ============================= -->
+    <app-landing-card
+      *ngIf="lineService.workers && lineService.services && allReservationCount && allReservationCount > 0"
+      class="col-12 d-none d-md-block  landing-card-no-padding">
+      <app-created-reservations-in-last-x-days
+        *ngIf="dashboardService.business"></app-created-reservations-in-last-x-days>
+    </app-landing-card>
+
+
+  </div>
+
+</div>
+<div class="row">
+  <br>
+  <br>
+</div>
+
+
+<ng-template #subscribeModal let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <br>
+      <img src="../../../../resources/apprec.png" width="300">
+      <br>
+      <br>
+      <h2>{{ 'DASHBOARD.SUBSCRIBED' | translate }}</h2>
+      <br>
+      <br>
+      <br>
+      <br>
+<!--      <a class="btn-blue btn" [routerLink]="'/faq/' +languageService.language+ '/invoice'"-->
+<!--         (click)="modalService.close()">-->
+<!--        {{ 'DASHBOARD.INVOICE_INFO' | translate }}-->
+<!--      </a>-->
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="userAccountAlert" class="alert-alert col-12 text-center">
+  <ngb-alert [type]="userAccountAlert.type" (close)="closeUserAccountAlert()">
+    <i *ngIf="userAccountAlert.type === 'success' " class="fas fa-check" aria-hidden="true"></i>
+    <i *ngIf="userAccountAlert.type === 'error' " class="fas fa-exclamation-circle text-red" aria-hidden="true"></i>
+    <i *ngIf="userAccountAlert.type === 'warning' " class="fa fa-warning text-warning"
+       aria-hidden="true"></i> {{ userAccountAlert.msg }}
+  </ngb-alert>
+</div>
+
+<app-video-guide
+  author="true"
+  label="VIDEO_GUIDE.LANDING.LABEL"
+  description="VIDEO_GUIDE.LANDING.DESCRIPTION"
+  videoSrc="https://www.youtube.com/embed/3LhsTBMwlTg">
+  <br>
+  <app-video-tutorial
+    btnType="link"
+    label="FAQ.INTRO.LABEL0"
+    videoSrc="https://www.youtube.com/embed/3LhsTBMwlTg"></app-video-tutorial>
+  <app-video-tutorial
+    btnType="link"
+    label="FAQ.INTRO.LABEL1"
+    videoSrc="https://www.youtube.com/embed/gSiKNTVT7n8"></app-video-tutorial>
+  <a class="btn btn-link btn-sm btn-link-blue "
+     target="_blank"
+     [href]="'https://www.notado.cz/faq/' + languageService.language + '/intro'">
+    {{ 'FAQ.INTRO.OTHER_VIDEOS' | translate }} <i class="fas fa-external-link-alt"></i></a>
+</app-video-guide>
+
+<ng-template #serviceDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{ 'DASHBOARD.SERVICE_ITEM.DELETE_CONFIRM' | translate }}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{ 'DASHBOARD.COMMON.DONT_DELETE' | translate }}
+      </button>
+      <button class="btn-blue btn btn-sm"
+              (click)="serviceService.deleteService(selectedService)">{{ 'DASHBOARD.COMMON.DELETE' | translate }}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #workerDelete let-c="close" let-d="dismiss">
+
+  <div class="modal-header text-center">
+
+    <span class='col-12 modal-title text-center'>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </span>
+  </div>
+
+  <div class="modal-body">
+    <div class="container text-center">
+      <i style="font-size: 2.5em" class="far fa-trash-alt text-grey"></i>
+      <br>
+      <br>
+      <br>
+
+      <h5><strong>{{ 'DASHBOARD.WORKER_ITEM.DO_DELETE' | translate }}</strong></h5>
+
+      <br>
+      <br>
+      <br>
+
+      <button class="btn-link btn-link-gray btn btn-sm"
+              (click)="d('Cross click')">{{ 'DASHBOARD.COMMON.DONT_DELETE' | translate }}
+      </button>
+      <button class="btn-blue btn btn-sm"
+              (click)="workerService.deleteWorker(selectedWorker)">{{ 'DASHBOARD.COMMON.DELETE' | translate }}
+      </button>
+      <br>
+      <br>
+    </div>
+  </div>
+</ng-template>

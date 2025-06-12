@@ -1,0 +1,20 @@
+pipelines:
+
+  custom:
+    deploy-production:
+      - step:
+          image: node:10.15.3
+          name: Deploy to production
+          caches:
+            - node
+          script:
+            - yarn install
+            - yarn build-prod
+            - declare -x VERSION=$(jq -r '.version' package.json)
+            - echo $VERSION
+            - git tag $VERSION
+            - git push origin --tags
+            - ssh root@31.31.74.54  'rm -rf /home/notado/notado-frontend/*'
+            - scp -rp ./build/* ssh root@31.31.74.54:/home/notado/notado-frontend/
+
+

@@ -1,0 +1,102 @@
+<div *ngIf="showBackButton(cardName) || showServiceLabel(cardName)"
+     style="min-height: 50px; margin-left: -30px !important;" class="row"
+     [style.background]="formService.template?.componentColor">
+  <div class="col-12">
+    <div class="row">
+      <button
+        (click)="prevFormWindow()"
+        *ngIf="showBackButton(cardName)"
+        [style.color]="formService.template?.textButtonColor"
+        style="position: relative; top: 5px;"
+        class="btn btn-sm btn-link btn-link-gray pull-left col-3"
+        id="form-previous"><i class="fas fa-chevron-left"></i> {{ 'FORM.BACK' | translate }} </button>
+
+      <p [style.color]="formService.template?.textButtonColor"
+         class="col-6 text-center"
+         style="position: relative; top: 15px; white-space: nowrap;  overflow: hidden;  text-overflow: ellipsis;">
+      <span *ngIf="formService.calendarEvent?.service && (formService.idx > getIdx(formWindowName.SERVICE))">
+      {{formService.calendarEvent.service?.name}}
+        </span>
+      </p>
+
+      <button
+        *ngIf="formService.calendarEvent"
+        (click)="reservationInfoShow =! reservationInfoShow"
+        [style.color]="formService.template?.textButtonColor"
+        style="position: relative; top: 13px;"
+        class="btn btn-sm btn-link  btn-link-gray pull-right btn-sm btn-circle col-3"
+        type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+        aria-controls="collapseExample"
+        id="reservation-info"><i class="fas fa-info" style="font-size: 0.6em; position: relative; bottom: 3px;"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!showBackButton(cardName) && !showServiceLabel(cardName)" style="min-height: 50px;" class="row footer"
+     [style.background]="formService.template?.formBackgroundColor">
+
+</div>
+
+<div class="row" *ngIf="reservationInfoShow">
+  <div class="card card-body">
+    <div class="row">
+      <div class="offset-md-5 col-md-4 offset-3 col-7">
+        <label>{{ 'FORM.SERVICE' | translate }}:</label>
+        <h6>
+
+          <strong>{{ formService.calendarEvent.service?.name }}</strong>
+          <small>
+          <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration">
+            {{ formService.calendarEvent.service?.duration | durationToString }}
+          </span>
+            <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration">
+          </span>
+            <span *ngIf="formService.calendarEvent.service && formService.calendarEvent.service.duration && formService.calculatePrice() > 0">
+            |
+          </span>
+            <span *ngIf="formService.calculatePrice() > 0">
+            {{ formService.calculatePrice() }} {{formService.business.currency}}
+          </span>
+          </small>
+        <p>{{formService.calendarEvent.service?.description}}</p>
+        </h6>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row" *ngIf="formService.calendarEvent.worker">
+      <div class="offset-md-5 col-md-4 offset-3 col-7">
+        <label>
+          <span *ngIf="formService.reservationConfig?.workerLabel">{{formService.reservationConfig.workerLabel}}:</span>
+          <span *ngIf="!formService.reservationConfig?.workerLabel">{{ 'FORM.WORKER' | translate }}:</span>
+        </label>
+        <h6>{{formService.calendarEvent.worker?.name}}</h6>
+      </div>
+    </div>
+
+    <br *ngIf="formService.calendarEvent.worker">
+
+    <div class="row"
+         *ngIf="(formService.calendarEvent?.dateAndTimeAndIds?.length > 0) && (formService.idx > getIdx(formWindowName.DATE))">
+      <div class="offset-md-5 col-md-4 offset-3 col-7">
+        <label [style.color]="formService.template?.backgroundTextColor"
+               style="opacity: 0.8">{{ 'FORM.DATE' | translate }}:</label>
+        <span *ngFor="let dateAndTime of formService.calendarEvent.dateAndTimeAndIds.slice(0, 8); let idx = index;">
+            <h6 [style.color]="formService.template?.backgroundTextColor">
+              {{ dateAndTime.date | dateToString }} &nbsp; <span
+              class="text-sm"> {{ dateAndTime.time | timeToString }} </span>
+            </h6>
+          </span>
+        <span *ngIf="formService.calendarEvent.dateAndTimeAndIds.length > 8">
+          <h6 [style.color]="formService.template?.backgroundTextColor">
+            ( +{{ formService.calendarEvent.dateAndTimeAndIds.length - 8 }} {{ 'FORM.MORE' | translate }} )
+          </h6>
+    </span>
+      </div>
+    </div>
+
+  </div>
+</div>

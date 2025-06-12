@@ -1,0 +1,18 @@
+<div class="row d-none d-xl-block">
+  <div class="col-12 text-secondary">
+    <h5> 12,000,000+ {{'INTRO.SOCIAL_PROOF.LABEL1' | translate}} &nbsp;&nbsp;
+      <span *ngFor="let feedback of feedbacks; let idx = index;" class="profile-stack d-inline-flex">
+                <div class="profile-circle">
+                    <img [src]="'../../../../resources/intro/feedback/' + feedback.img + '.png'" [alt]="feedback.url" [ngbTooltip]="feedback.url">
+                </div>
+            </span>
+      700+
+      <span *ngIf="languageService.language === 'cs'">
+        <img
+          src="../../../../resources/lang/cs.png" width="17" style="" alt="language flag">
+      </span>
+      {{'INTRO.SOCIAL_PROOF.LABEL2' | translate}}
+
+    </h5>
+  </div>
+</div>

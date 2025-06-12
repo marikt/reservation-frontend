@@ -1,0 +1,41 @@
+<div class="editor-wrapper">
+  <div class="editor-container" [style.height.px]="height">
+    <textarea
+      #keywordHighlighterComponent
+      [(ngModel)]="message"
+      (ngModelChange)="onInput()"
+      class="editor-input"
+      (scroll)="syncScroll()"
+      spellcheck="false"
+    ></textarea>
+    <div #overlayDiv class="editor-overlay" [innerHTML]="highlightedText"></div>
+  </div>
+  
+  <div class="editor-toolbar" *ngIf="showEmojiOption">
+    <div class="toolbar-spacer"></div>
+    <div class="emoji-wrapper">
+      <button 
+        type="button" 
+        class="emoji-button" 
+        (click)="toggleEmojiPicker()"
+        title="Insert emoji">
+        😊
+      </button>
+      
+      <div class="emoji-picker-container" *ngIf="showEmojiPicker">
+        <div class="emoji-picker-header">
+          <span class="emoji-picker-title">Facebook Emojis</span>
+          <button class="emoji-picker-close" (click)="showEmojiPicker = false" title="Close">×</button>
+        </div>
+        <emoji-mart
+          [set]="selectedEmojiSet"
+          [darkMode]="false"
+          [emojiSize]="20"
+          [showPreview]="false"
+          [enableFrequentEmojiSort]="true"
+          (emojiSelect)="addEmojiFromPicker($event)"
+        ></emoji-mart>
+      </div>
+    </div>
+  </div>
+</div>

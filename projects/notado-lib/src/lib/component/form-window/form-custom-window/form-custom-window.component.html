@@ -1,0 +1,104 @@
+<br>
+<span *ngIf="customFields">
+
+  <div *ngFor="let customField of customFields; let idx = index;" class="row">
+
+    <div class="form-group offset-1 offset-md-2 col-10 col-md-8">
+        <span *ngIf="customField.componentType === componentType.TEXT">
+          <label [style.color]="formService.template?.textColor">{{customField.label}}</label>
+          <input class="form-control"
+                 [id]="'customField' + customField.componentType + '-' + idx "
+                 [(ngModel)]="customField.value" type="text">
+        </span>
+         <span *ngIf="customField.componentType === componentType.CHECKBOX">
+            <label class="custom-control custom-checkbox">
+                  <input class="form-check-input checkbox-lg"
+                         [id]="'customField' + customField.componentType + '-' + idx "
+                         [(ngModel)]="customField.value" checked="customField.value" type="checkbox">
+               <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"
+                    style="position: relative; left: 15px; top: 3px;"
+                    [style.color]="formService.template?.textColor">{{customField.label}}</span>
+            </label>
+        </span>
+         <span *ngIf="customField.componentType === componentType.TEXTAREA">
+            <label [style.color]="formService.template?.textColor">{{customField.label}}</label>
+            <textarea class="form-control" rows="2"
+                      [id]="'customField' + customField.componentType + '-' + idx "
+                      [(ngModel)]="customField.value" type="text"></textarea>
+        </span>
+         <span *ngIf="customField.componentType === componentType.ATTENDEES">
+            <label [style.color]="formService.template?.textColor">{{customField.label}}</label>
+            <label class="pull-right" id="attendeesLimit"
+                   [style.color]="formService.template?.textColor"
+                   [class.text-danger]="attendees.value > attendeesLimit">(max {{attendeesLimit}})</label>
+            <input class="form-control"
+                   min="1"
+                   [max]="attendeesLimit"
+                   (ngModelChange)="attendeesWasEdited(attendees); customField.value = attendees.value"
+                   [ngModel]="formService.calendarEvent.requestedAttendeesNo"
+                   [class.is-invalid]="attendees.value > attendeesLimit"
+                   [id]="'customField' + customField.componentType + '-' + idx "
+                   type="number" #attendees="ngModel">
+        </span>
+         <span *ngIf="customField.componentType === componentType.COLOR">
+            <label [style.color]="formService.template?.textColor">{{customField.label}}</label>
+            <input
+              [id]="'customField' + customField.componentType + '-' + idx "
+              [(colorPicker)]="customField.value"
+              [style.background]="customField.value"
+              class="form-control color-picker" style="width: 80px;"/>
+        </span>
+        <span *ngIf="customField.componentType === componentType.LINE">
+          <hr>
+        </span>
+        <span *ngIf="customField.componentType === componentType.LABEL">
+            <h5 [style.color]="formService.template?.textColor">{{customField.label}}</h5>
+      </span>
+
+        <span *ngIf="customField.componentType === componentType.TIMEPICKER">
+          <label [style.color]="formService.template?.textColor">{{customField.label}}</label>
+          <ngb-timepicker [(ngModel)]="customField.value"></ngb-timepicker>
+        </span>
+        <span *ngIf="customField.componentType === componentType.DATEPICKER">
+          <label [style.color]="formService.template?.textColor">{{customField.label}}</label>
+
+          <form class="row row-cols-sm-auto">
+              <div class="col-6">
+                <div class="input-group">
+                  <input class="form-control input-calendar radius-right-none" placeholder="dd-mm-yyyy"
+                         [dayTemplate]="dtcustom"
+                         [(ngModel)]="customField.value"
+                         name="dp"
+                         ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary btn-calendar btn-sm"
+                              [style.background]="formService.template?.componentColor"
+                              [style.color]="formService.template?.textButtonColor"
+                              (click)="d.toggle()" type="button">
+                        <i class="fas fa-calendar"></i>
+                      </button>
+                    </div>
+                </div>
+              </div>
+            </form>
+            <ng-template #dtcustom let-currentMonth="currentMonth" let-date="date" let-disabled="disabled"
+                         let-selected="selected">
+                  <div
+                    [class.current-month-cell]="date.month === currentMonth"
+                    [class.selected-cell]="selected"
+                    [style.background-color]="getDatePickerColor(selected)"
+                    class="cell">
+                    {{ date.day }}
+                  </div>
+            </ng-template>
+
+        </span>
+
+    </div>
+    <br>
+  </div>
+
+</span>
+
+<br>

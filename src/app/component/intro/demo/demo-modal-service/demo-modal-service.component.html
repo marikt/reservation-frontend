@@ -1,0 +1,92 @@
+<br>
+
+
+<div class="row" style="">
+  <div class="offset-1 col-10">
+    <div class="card mb-3">
+      <button
+        (click)="demoService.nextState(); demoService.reservation.service = 'DEMO.' + demoType + '.S_1'"
+        style="padding: 0px !important;"
+        class="btn btn-default">
+
+        <div class="row no-gutters text-left">
+          <div class="col-4">
+            <img
+                class="rounded "
+                 for="inlineRadio1"
+                 [src]="'../../../../../resources/demo/service/' + demoType + '1.png'"
+                 style="width: 150px;">
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h6 class="service-label">{{'DEMO.' + demoType + '.S_1' | translate}}&nbsp;&nbsp;<small class="text-muted">
+                <span> 1h</span> </small></h6>
+              <br>
+
+              <p class="card-text"><small>{{'DEMO.' + demoType + '.D_1' | translate}}</small></p>
+
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="">
+  <div class="offset-1 col-10">
+    <div class="card mb-3">
+      <button
+        (click)="demoService.nextState(); demoService.reservation.service = 'DEMO.' + demoType + '.S_2'"
+        style="padding: 0px !important;"
+        class="btn btn-default">
+
+        <div class="row no-gutters text-left">
+          <div class="col-4">
+            <img class="rounded " for="inlineRadio1"
+                 [src]="'../../../../../resources/demo/service/' + demoType + '2.png'"
+                 style="width: 150px;">
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h6 class="service-label">{{'DEMO.' + demoType + '.S_2' | translate}}&nbsp;&nbsp;<small class="text-muted">
+                <span> 50min</span> </small></h6>
+              <br>
+              <p class="card-text"><small>{{'DEMO.' + demoType + '.D_2' | translate}}</small></p>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="">
+  <div class="offset-1 col-10">
+    <div class="card mb-3">
+      <button
+        (click)="demoService.nextState(); demoService.reservation.service = 'DEMO.' + demoType + '.S_3'"
+        style="padding: 0px !important;"
+        class="btn btn-default">
+
+        <div class="row no-gutters text-left">
+          <div class="col-4">
+            <img class="rounded " for="inlineRadio1"
+                 [src]="'../../../../../resources/demo/service/' + demoType + '3.png'"
+                 style="width: 150px;">
+          </div>
+          <div class="col-8">
+            <div class="card-body">
+              <h6 class="service-label">{{'DEMO.' + demoType + '.S_3' | translate}}&nbsp;&nbsp;<small class="text-muted">
+                <span> 1h 40min</span> </small></h6>
+              <br>
+              <p class="card-text"><small>{{'DEMO.' + demoType + '.D_3' | translate}}</small></p>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<br>
+

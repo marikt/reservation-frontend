@@ -1,0 +1,50 @@
+
+.close-modal {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  //background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAARVBMVEUAAABAUGBEWWNBWV9DVWFFWWNFWmREWWNEWmNDV2BEWmNEWWRCWmNEWWJDWWRFWGNEWGJEWmNEWWRDWWREWWNFWmT////nTSXdAAAAFXRSTlMAELQrKrrp6Lw17/A2U1xdZb7AF8b7jkLoAAAAAWJLR0QWfNGoGQAAAAd0SU1FB+YLGgYsBQlrN0YAAABYSURBVAjXTY1JEoAgDAQHxAV3hfz/q6aAMObWXTVpOD/ALniHUSYTYZYFcTWhuO0oIhBNdKziIBYhPwRO5YuoW2G2vLpbpYcs20NNsFvFw5CKFymzG3P6AGjxBZLv6mAuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTExLTI2VDA2OjQ0OjA0KzAwOjAw+nzFeQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0xMS0yNlQwNjo0NDowNCswMDowMIshfcUAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjItMTEtMjZUMDY6NDQ6MDUrMDA6MDB6Q1euAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 12px 12px;
+  box-sizing: border-box;
+  border: 1px solid;
+  margin: -1rem -2rem -1rem auto;
+  box-shadow: 6px 6px 6px rgba(23, 43, 77, 0.2);
+}
+
+.show-modal {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  //background-image: url("data:image/png;base64,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");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 18px 18px;
+  box-sizing: border-box;
+  border: 1px solid;
+  margin: -1rem -2rem -1rem auto;
+  box-shadow: 6px 6px 6px rgba(23, 43, 77, 0.2);
+}
+
+
+.img-link:hover {
+  box-shadow: 6px 6px 6px rgba(23, 43, 77, 0.2);
+
+}
+
+.shadow {
+  -webkit-box-shadow: 0px 0px 12px -2px rgba(0,0,0,1) !important;
+  -moz-box-shadow: 0px 0px 12px -2px rgba(0,0,0,1) !important;
+  box-shadow: 0px 0px 12px -2px rgba(0,0,0,1) !important;
+}
+
+.show-guide {
+  position: fixed; bottom: 0px; right: 0px;
+}
+.hide-guide {
+  /*position: fixed; bottom: 0px; right: -810px;*/
+  position: fixed; bottom: 0px; right: 0px;
+}

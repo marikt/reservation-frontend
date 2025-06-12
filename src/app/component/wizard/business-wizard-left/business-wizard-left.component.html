@@ -1,0 +1,69 @@
+<div class="row bg" style="white-space: pre-line;">
+
+  <div class="col-md-9 col-12" style="">
+    <div class="row">
+      <div class="offset-1 offset-md-2">
+
+        <br>
+        <div class="row d-none d-md-block">
+          <div class="navbar-brand text-white">
+
+              <span style="font-family: bariol; font-size: 1.1em; font-weight: 700; opacity: 0.3;">
+              <img src="../../../../resources/logo-bw.png" style="width:27px;"> NOTADO
+              </span>
+
+          </div>
+        </div>
+
+        <div class="row" style="height: 5vh"></div>
+        <div class="row d-none d-md-block" style="height: 27vh"></div>
+
+        <h2 class="text-white" style="height: 10vh">{{label | translate}}</h2>
+
+        <br>
+        <br>
+        <div class="row d-none d-md-block" style="height: 25vh"></div>
+
+        <div>
+          <button *ngIf="wizardService.routesStack.size() > 0"
+                  (click)="wizardService.back()"
+                  [class.btn-back-position]="!isMobile"
+                  class="btn btn-link btn-link-white ">
+            <img class="" src="../../../resources/icon/back-white.svg" style="margin-right: 10px;">
+            <span style="">{{ 'COMMON.BACK' | translate }}</span>
+          </button>
+
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-1 blue-white-bg d-none d-md-block">
+    <div style="height: 100vh; width: 1px;"></div>
+  </div>
+
+
+</div>
+
+<a (click)="skipWizard()" class="wizard-close" style="position: fixed;
+  top: 2vh;
+  right: 2vw;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: white;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAARVBMVEUAAABAUGBEWWNBWV9DVWFFWWNFWmREWWNEWmNDV2BEWmNEWWRCWmNEWWJDWWRFWGNEWGJEWmNEWWRDWWREWWNFWmT////nTSXdAAAAFXRSTlMAELQrKrrp6Lw17/A2U1xdZb7AF8b7jkLoAAAAAWJLR0QWfNGoGQAAAAd0SU1FB+YLGgYsBQlrN0YAAABYSURBVAjXTY1JEoAgDAQHxAV3hfz/q6aAMObWXTVpOD/ALniHUSYTYZYFcTWhuO0oIhBNdKziIBYhPwRO5YuoW2G2vLpbpYcs20NNsFvFw5CKFymzG3P6AGjxBZLv6mAuAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTExLTI2VDA2OjQ0OjA0KzAwOjAw+nzFeQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0xMS0yNlQwNjo0NDowNCswMDowMIshfcUAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjItMTEtMjZUMDY6NDQ6MDUrMDA6MDB6Q1euAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat; background-position: center center; background-size: 12px 12px; box-sizing: border-box; border: 1px solid;
+  z-index: 999;">
+</a>
+
+
+
+<!--<a *ngIf="navbarService.showWizardSkipButton"-->
+<!--   (click)="skipWizard()"-->
+<!--   id="wizard-skip-button"-->
+<!--   class="btn btn-link-blue " type="button" style="position: fixed; right: 30px; bottom: 30px; z-index: 9999;">-->
+<!--  {{ 'COMMON.SKIP' | translate }} <i class="fas fa-forward"></i>-->
+<!--</a>-->

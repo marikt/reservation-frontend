@@ -1,0 +1,187 @@
+<script src="form-date.component.ts"></script>
+
+
+<!-- ================================================================================================== -->
+<!-- ============================================= APPOINTMENT ======================================== -->
+<!-- ============================================= DEVICE ============================================= -->
+<!-- ================================================================================================== -->
+
+<span *ngIf="formService.calendarEvent.service.type === serviceType.APPOINTMENT ||
+             formService.calendarEvent.service.type === serviceType.DEVICE">
+  <div [class.text-center]="isMobile" class="row">
+
+    <!--    JUST SKELETON ------------------------------------------------------ -->
+    <div *ngIf="!date" class="offset-1 col-10 offset-md-1 col-md-4" style="margin-right: 25px;">
+
+       <ngb-datepicker #dp
+                       [dayTemplate]="dtcustom"
+                       [startDate]="date"
+                       class="first-call custom-datepicker notranslate ">
+
+       </ngb-datepicker>
+
+
+      <ng-template #dtcustom let-currentMonth="currentMonth" let-date="date" let-disabled="disabled"
+                   let-selected="selected">
+        <div
+          [class.current-month-cell]="date.month === currentMonth"
+          [class.selected-cell]="selected"
+          class="cell"
+        >
+          {{ date.day }}
+        </div>
+
+      </ng-template>
+    </div>
+    <!--    END OF SKELETON ------------------------------------------------------ -->
+
+    <div *ngIf="date" class="offset-1 col-10 offset-md-1 col-md-4 notranslate" style="margin-right: 25px;">
+      <ngb-datepicker #dp
+                      (navigate)="onMonthChange($event)"
+                      (ngModelChange)="formService.calculateTimesOnDateChange($event)"
+                      [(ngModel)]="formService.calendarEvent.startDate"
+                      [dayTemplate]="dtcustom"
+                      [maxDate]="maxDate"
+                      [minDate]="today"
+                      [startDate]="formService.calendarEvent.startDate"
+                      class="custom-datepicker notranslate ">
+      </ngb-datepicker>
+
+      <ng-template #dtcustom
+                   let-currentMonth="currentMonth"
+                   let-date="date"
+                   let-disabled="disabled"
+                   let-selected="selected">
+        <div
+          *ngIf="eventsLoaded"
+          [class.selected-cell]="selected"
+          [class.current-month-cell]="date.month === currentMonth"
+          [style.background-color]="selected ? this.formService.template.componentColor : 'transparent'"
+          [style.color]="selected ? this.formService.template.textButtonColor : this.formService.template.textColor | addAlphaColor: ((eventsLoaded && isDayDisabled(date) || date.month !== currentMonth) ? 0.35 : 1)"
+          class="cell"
+          [id]="date.day + '-' + date.month"
+        >
+          {{ date.day }}
+        </div>
+
+      </ng-template>
+
+    </div>
+
+    <div class="col-10 mx-auto text-center offset-md-1 col-md-5 d-flex flex-column align-items-center">
+      <br class="d-block d-md-none">
+      <br class="d-block d-md-none">
+      <div *ngIf="formService.isAnyWorkerOrDeviceAvailable && eventsLoaded" class="row w-100 justify-content-center">
+        <div class="col-4">
+          <app-form-time [times]="formService.timesMorning" label="FORM.MORNING"></app-form-time>
+        </div>
+        <div class="col-4">
+          <app-form-time [times]="formService.timesNoon" label="FORM.NOON"></app-form-time>
+        </div>
+        <div class="col-4">
+          <app-form-time [times]="formService.timesAfternoon" label="FORM.AFTERNOON"></app-form-time>
+        </div>
+      </div>
+
+      <div *ngIf="!formService.isAnyWorkerOrDeviceAvailable"
+           [style.color]="formService.template?.textColor"
+           class="row text-grey text-center justify-content-center align-items-center mx-auto p-3 mt-2 no-time-container"
+           style="border: 2px dotted rgba(0,0,0,0.2); border-radius: 8px;"
+           id="no-time-available">
+        <div class="col-12 text-center d-flex flex-column align-items-center">
+
+         <span *ngIf="formService.reservationConfig?.noDateAvailableMessage" class="text-center w-100">
+            {{ formService.reservationConfig.noDateAvailableMessage }}
+          </span>
+
+          <span *ngIf="!formService.reservationConfig?.noDateAvailableMessage" class="text-center w-100">
+            <span *ngIf="formService.calendarEvent.service.type === serviceType.APPOINTMENT">
+                <span *ngIf="formService.calendarEvent.worker">
+                {{ 'FORM.WORKER' | translate }} {{ formService.calendarEvent.worker.name }} {{ 'FORM.WORKER_NOT_AVAILABLE' | translate }}
+                </span>
+                <span *ngIf="!formService.calendarEvent.worker">
+                 {{ 'FORM.SERVICE' | translate }}  {{ formService.calendarEvent.service.name }} {{ 'FORM.SERVICE_NOT_AVAILABLE' | translate }}
+                </span>
+            </span>
+            <span *ngIf="formService.calendarEvent.service.type === serviceType.DEVICE">
+                <span *ngIf="formService.calendarEvent.device">
+                {{ 'FORM.DEVICE' | translate }} {{ formService.calendarEvent.device.name }} {{ 'FORM.DEVICE_NOT_AVAILABLE' | translate }}
+                </span>
+            </span>
+          </span>
+
+          <div class="mt-4 text-center"
+               *ngIf="!notificationService.showNotificationForm && formService.reservationConfig?.showNotificationButton && notificationService.shouldShowNotificationButton(formService.calendarEvent.worker)">
+            <button
+              [style.background-color]="formService.template?.componentColor"
+              [style.color]="formService.template?.textButtonColor"
+              class="btn btn-sm"
+              id="toggleNotificationFormButton"
+              (click)="notificationService.toggleNotificationForm()">
+              {{ 'FORM.NOTIFY_ME_WHEN_AVAILABLE' | translate }}
+            </button>
+            <p class="mt-2 small" [style.color]="formService.template?.textColor">
+              {{ 'FORM.NOTIFICATION_EXPLANATION' | translate }}
+            </p>
+          </div>
+
+          <div class="mt-3 text-center w-100" *ngIf="notificationService.showNotificationForm">
+
+            <div class="form-group d-flex justify-content-center" *ngIf="!notificationService.notificationSuccess">
+
+              <input
+                type="email"
+                class="form-control"
+                id="notificationEmailInput"
+                style="max-width: 300px;"
+                [(ngModel)]="notificationService.notificationEmail"
+                placeholder="{{ 'FORM.EMAIL_PLACEHOLDER' | translate }}"
+                [style.border-color]="formService.template?.componentColor">
+            </div>
+            <div class="mt-2 d-flex justify-content-center" *ngIf="!notificationService.notificationSuccess">
+              <button
+                [style.background-color]="formService.template?.componentColor"
+                [style.color]="formService.template?.textButtonColor"
+                id="registerForNotificationButton"
+                class="btn btn-sm mr-2"
+                (click)="notificationService.registerForNotification()"
+                [disabled]="!notificationService.notificationEmail || notificationService.isSubmitting">
+                {{ 'FORM.SUBMIT' | translate }}
+              </button>
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                (click)="notificationService.toggleNotificationForm()">
+                {{ 'FORM.CANCEL' | translate }}
+              </button>
+
+            </div>
+            <div class="mt-2 text-success" *ngIf="notificationService.notificationSuccess">
+              {{ 'FORM.NOTIFICATION_SUCCESS' | translate }}
+            </div>
+            <div class="mt-2 text-danger" *ngIf="notificationService.notificationError">
+              {{ notificationService.notificationError }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--      ======================================================================================================================= &ndash;&gt;-->
+      <div *ngIf="!isValid()" class="text-error text-center">
+        {{ 'FORM.SELECT_TIME' | translate }}
+      </div>
+
+    </div>
+
+
+  </div>
+  <br *ngIf="isValid()">
+  <div *ngIf="formService.calendarEvent.service.allowMultipleBooking">
+    <app-form-date-and-time-item></app-form-date-and-time-item>
+  </div>
+  <br>
+  <app-form-worker-window
+    *ngIf="formService.calendarEvent.service.type === serviceType.APPOINTMENT"></app-form-worker-window>
+  <app-form-device-window
+    *ngIf="formService.calendarEvent.service.type === serviceType.DEVICE"></app-form-device-window>
+
+    </span>

@@ -1,0 +1,112 @@
+<div class="container" style="white-space: pre-line;">
+  <br>
+  <br>
+
+  <button [routerLink]="'/blog/' + languageService.language + '/blog-list'"
+          class="btn btn-link btn-link-blue"
+
+          style="position: relative;right: 10px;">
+    <img class="" src="../../../resources/icon/back-blue.svg" style="margin-right: 5px; width: 12px;">
+    <span style="font-size: 0.9em">{{'COMMON.BACK' | translate}} </span>
+  </button>
+  <br>
+  <br>
+  <br>
+  <div
+
+    [ngStyle]="{'background': 'url(../../../../resources/blog/' + blogId + '.png' + ') no-repeat scroll top center', 'background-size': 'cover'}"
+    style="min-height: 60vh; box-shadow: inset 0 0 0 1000px rgba(0,0,0,.6);">
+    <div class="row text-center">
+      <div class="col-12">
+        <strong>
+          <h1 class="text-center display-3 text-white" style="margin-top: 1em;">
+            {{title}}
+          </h1>
+        </strong>
+      </div>
+    </div>
+
+
+  </div>
+
+  <br>
+  <br>
+
+  <div class="row text-left" *ngIf="!hideAuthor">
+    <div class="col-3 col-md-1">
+      <img src="../../../../resources/contact/tomas.jpg" width="70"
+           style=" border-radius: 50px !important;"
+           alt="author">
+    </div>
+
+    <div class="col-9">
+      <br>
+      <h5 class="card-title" style="position: relative; bottom: 15px;">Tomáš Mařík</h5>
+      <p *ngIf="date" class="card-text" style="position: relative; bottom: 25px;">
+        <small
+          class="text-muted">
+          <i class="fab fa-linkedin"></i> &nbsp; <a class="text-blue"
+                                                    href="https://www.linkedin.com/in/tomas-marik-571bb022/"
+                                                    target="_blank"> linkedin</a>
+        </small> /
+        <small
+          class="text-muted">
+          <i class="fab fa-stack-overflow"></i> &nbsp; <a class="text-blue"
+                                                    href="https://stackoverflow.com/users/5215278/tomas-marik"
+                                                    target="_blank"> stackoverflow</a>
+        </small>
+        <br>
+        <small
+          class="text-muted">{{date}}</small></p>
+    </div>
+  </div>
+  <br>
+  <br>
+
+  <ng-content></ng-content>
+  <br>
+  <span *ngIf="faq && faq.length > 0">
+    <br>
+    <h2>Často kladené dotazy</h2>
+    <br>
+    <div *ngFor="let f of this.faq;">
+      <app-row-faq-item [question]="f.question" [answer]="f.answer"></app-row-faq-item>
+    </div>
+  </span>
+  <br>
+
+  <br>
+  <app-try-button></app-try-button>
+  <br>
+  <br>
+  <span *ngIf="readMore && readMore.length > 0">
+    <br>
+    <h2>Mohlo by vás také zajímat</h2>
+    <br>
+    <div *ngFor="let readMoreItem of this.readMore;">
+        <a [routerLink]="'/blog/' + languageService.language + '/' + readMoreItem.url">
+        <h6>
+        {{readMoreItem.title}}
+      </h6>
+      </a>
+    </div>
+  </span>
+
+
+
+
+  <br>
+  <br>
+  <button [routerLink]="'/blog/' + languageService.language + '/blog-list'"
+          class="btn btn-link btn-link-blue"
+
+          style="position: relative;right: 10px;">
+    <img class="" src="../../../resources/icon/back-blue.svg" style="margin-right: 5px; width: 12px;">
+    <span style="font-size: 0.9em">{{'COMMON.BACK' | translate}}</span>
+  </button>
+
+
+  <br>
+  <br>
+
+</div>

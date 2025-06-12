@@ -1,0 +1,21 @@
+<br>
+<br>
+<br>
+<h3 class="text-center">{{formService.calendarEvent.service.duration | daysHoursMinutes}}</h3>
+<br>
+<div class="row text-center">
+  <div class="col-12">
+    <input
+      type="range"
+      id="serviceDurationSlider"
+      [min]="calculate(formService.calendarEvent.service.durationMin)"
+      [max]="calculate(formService.calendarEvent.service.durationMax)"
+      style="width: 85%;"
+      [(ngModel)]="value"
+      (input)="setServiceDuration()">
+  </div>
+</div>
+
+<br>
+<br>
+<br>

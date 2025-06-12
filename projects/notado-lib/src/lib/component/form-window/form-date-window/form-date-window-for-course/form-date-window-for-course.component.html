@@ -1,0 +1,199 @@
+<script src="form-date.component.ts"></script>
+
+<span *ngIf="formService.calendarEvent.service.type == serviceType.COURSE">
+
+    <div class="row">
+    <h5 *ngIf="eventsLoaded && (!formService.eventHolderService.alreadyExistingEvents || formService.eventHolderService.alreadyExistingEvents.length == 0)"
+        class="text-grey offset-1">
+
+      <span *ngIf="!formService.reservationConfig?.noDateAvailableMessage">
+        {{ 'FORM.NO_COURSES' | translate }}
+      </span>
+      <span *ngIf="formService.reservationConfig?.noDateAvailableMessage">
+        {{formService.reservationConfig.noDateAvailableMessage}}
+      </span>
+    </h5>
+    </div>
+
+    <div class="row">
+    <h5 *ngIf="!eventsLoaded && (!formService.eventHolderService.alreadyExistingEvents || formService.eventHolderService.alreadyExistingEvents.length == 0)"
+        class="text-grey offset-1">
+      {{ 'FORM.LOADING_COURSES' | translate }}
+    </h5>
+    </div>
+
+    <span
+      *ngIf="formService.eventHolderService.alreadyExistingEvents && formService.eventHolderService.alreadyExistingEvents.length <= COURSE_COUNT_THRESHOLD">
+          <div class="row">
+            <div *ngFor="let event of formService.eventHolderService.alreadyExistingEvents" class="col-md-4 col-6 col-lg-3 text-center">
+              <app-form-course-item [event]="event"
+                                    [cardColor]="formService.template?.componentColor"
+                                    [textColor]="formService.template?.textButtonColor"
+              ></app-form-course-item>
+            </div>
+          </div>
+    </span>
+
+      <span
+        *ngIf="formService.eventHolderService.alreadyExistingEvents && formService.eventHolderService.alreadyExistingEvents.length > COURSE_COUNT_THRESHOLD && eventsLoaded">
+      <div class="row" [class.text-center]="isMobile">
+
+        <div class="offset-1 col-10 offset-md-1 col-md-4" style="margin-right: 25px;">
+        <ngb-datepicker #dp
+                        class="custom-datepicker"
+
+                        (navigate)="date=$event.next"
+                        (ngModelChange)="formService.calculateTimesOnDateChangeForCourse($event)"
+                        [(ngModel)]="formService.calendarEvent.startDate"
+                        [maxDate]="maxDate"
+                        [dayTemplate]="dtcustom"
+                        [minDate]="today"
+                        [startDate]="date">
+        </ngb-datepicker>
+
+
+        <ng-template #dtcustom
+                     let-currentMonth="currentMonth"
+                     let-date="date"
+                     let-disabled="disabled"
+                     let-selected="selected">
+          <div
+            [class.current-month-cell]="date.month === currentMonth"
+            [class.selected-cell]="selected"
+            [style.background-color]="selected ? this.formService.template.componentColor : 'transparent'"
+            [style.color]="selected ? this.formService.template.textButtonColor : this.formService.template.textColor | addAlphaColor: ((isDayEnableForCourse(date) && date.month === currentMonth) ? 1 : 0.5)"
+            class="cell"
+            [id]="date.day + '-' + date.month"
+          >
+            {{ date.day }}
+          </div>
+
+        </ng-template>
+
+      </div>
+
+      <div class="offset-2 col-8 offset-md-1 col-md-5">
+          <br class="d-block d-md-none">
+          <div
+            *ngIf="((formService.timesMorning || formService.timesMorning.length > 0) ||
+                      (formService.timesNoon || formService.timesNoon.length > 0) ||
+                      (formService.timesAfternoon || formService.timesAfternoon.length > 0)) &&
+                      !(formService.calendarEvent.startDate && hasOnlyCoursesWithNoCapacity(formService.calendarEvent.startDate))"
+            class="row">
+            <div class="col-4">
+              <app-form-time [times]="formService.timesMorning" label="FORM.MORNING"></app-form-time>
+            </div>
+            <div class="col-4">
+              <app-form-time [times]="formService.timesNoon" label="FORM.NOON"></app-form-time>
+            </div>
+            <div class="col-4">
+              <app-form-time [times]="formService.timesAfternoon" label="FORM.AFTERNOON"></app-form-time>
+            </div>
+          </div>
+
+          <div *ngIf="((!formService.timesMorning || formService.timesMorning.length == 0) &&
+                      (!formService.timesNoon || formService.timesNoon.length == 0) &&
+                      (!formService.timesAfternoon || formService.timesAfternoon.length == 0)) ||
+                      (formService.calendarEvent.startDate && hasOnlyCoursesWithNoCapacity(formService.calendarEvent.startDate))"
+               [style.color]="formService.template?.textColor"
+               class="row text-grey text-center justify-content-center align-items-center mx-auto p-3 mt-2 no-time-container"
+               style="border: 2px dotted rgba(0,0,0,0.2); border-radius: 8px;"
+               id="no-time-available">
+            <div class="col-12 text-center d-flex flex-column align-items-center">
+              <span *ngIf="formService.reservationConfig?.noDateAvailableMessage" class="text-center w-100">
+                {{formService.reservationConfig.noDateAvailableMessage}}
+              </span>
+              <span *ngIf="!formService.reservationConfig?.noDateAvailableMessage" class="text-center w-100">
+                {{ 'FORM.NO_COURSES_FOR_DATE' | translate }}
+              </span>
+
+              <div class="mt-4 text-center"
+                   *ngIf="!notificationService.showNotificationForm &&
+                         formService.reservationConfig?.showNotificationButton &&
+                         (notificationService.hasCoursesWithNoCapacity() ||
+                          (formService.calendarEvent.startDate && hasOnlyCoursesWithNoCapacity(formService.calendarEvent.startDate)))">
+                <button
+                  [style.background-color]="formService.template?.componentColor"
+                  [style.color]="formService.template?.textButtonColor"
+                  class="btn btn-sm"
+                  id="toggleNotificationFormButton2"
+                  (click)="notificationService.toggleNotificationForm()">
+                  {{ 'FORM.NOTIFY_ME_WHEN_AVAILABLE' | translate }}
+                </button>
+                <p class="mt-2 small" [style.color]="formService.template?.textColor">
+                  {{ 'FORM.NOTIFICATION_EXPLANATION' | translate }}
+                </p>
+              </div>
+
+              <div class="mt-3 text-center w-100" *ngIf="notificationService.showNotificationForm">
+                <div class="form-group d-flex justify-content-center" *ngIf="!notificationService.notificationSuccess">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="notificationEmailInput2"
+                    style="max-width: 300px;"
+                    [(ngModel)]="notificationService.notificationEmail"
+                    placeholder="{{ 'FORM.EMAIL_PLACEHOLDER' | translate }}"
+                    [style.border-color]="formService.template?.componentColor">
+                </div>
+                <div class="mt-2 d-flex justify-content-center" *ngIf="!notificationService.notificationSuccess">
+                  <button
+                    [style.background-color]="formService.template?.componentColor"
+                    [style.color]="formService.template?.textButtonColor"
+                    id="registerForNotificationButton2"
+                    class="btn btn-sm mr-2"
+                    (click)="notificationService.registerForNotification()"
+                    [disabled]="!notificationService.notificationEmail || notificationService.isSubmitting">
+                    {{ 'FORM.SUBMIT' | translate }}
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline-secondary"
+                    (click)="notificationService.toggleNotificationForm()">
+                    {{ 'FORM.CANCEL' | translate }}
+                  </button>
+                </div>
+                <div class="mt-2 text-success" *ngIf="notificationService.notificationSuccess">
+                  {{ 'FORM.NOTIFICATION_SUCCESS' | translate }}
+                </div>
+                <div class="mt-2 text-danger" *ngIf="notificationService.notificationError">
+                  {{ notificationService.notificationError }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!isValid()" class="text-error text-center">
+            {{ 'FORM.SELECT_TIME' | translate }}
+          </div>
+        </div>
+        </div>
+      </span>
+
+
+    <div class="row "
+         *ngIf="formService.calendarEvent.service.allowMultipleBooking && getEventsWithCapacityCount() > 4">
+            <div class="col-12 ">
+        <br>
+      </div>
+
+      <div class="col-12 text-center">
+
+      <button (click)="addAllDates()"
+              [style.background]="formService.template?.componentColor"
+              [style.border-radius]="formService.template?.buttonRadius"
+              [style.color]="formService.template?.textButtonColor"
+              [class.highlighted]="formService.template?.highlightComponentForEditor?.button"
+              class="btn-custom btn-sm "
+              id="book-all-dates-button"
+              style="border-width: 0;">
+  {{ 'FORM.ADD_ALL_DATES' | translate }} ({{ getEventsWithCapacityCount() }})
+    </button>
+        </div>
+      <div class="col-12 ">
+        <br>
+      </div>
+    </div>
+    <div *ngIf="formService.calendarEvent.service.allowMultipleBooking">
+    <app-form-date-and-time-item></app-form-date-and-time-item>
+  </div>
+  <br>
+</span>
